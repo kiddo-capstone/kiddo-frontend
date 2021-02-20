@@ -6,7 +6,7 @@ import MissionControl from "../MissionControl/MissionControl";
 
 // App Setup
 const initialState = {
-  missions: ["mission"],
+  missions: [{id:1, title: 'eat bugs', description: 'find and eat 3 bugs'}],
   user: { name: "scott" },
 };
 
