@@ -8,14 +8,15 @@ import StyleSample from "../views/StyleSample";
 
 function App() {
   const [state, dispatch] = useReducer(appReducer, initialState);
+  const [show, setShow] = useState(true)
 
   return (
     <AppContext.Provider value={[state, dispatch]}>
       <div className="App">
-        <h1 className="App-logo">🕵️</h1>
-        <p>Welcome to KidDo</p>
         <MissionControl />
-        <StyleSample />
+
+        <button onClick={() => setShow(!show)}>Show Style Guide</button>
+        {show && <StyleSample />}
       </div>
     </AppContext.Provider>
   );

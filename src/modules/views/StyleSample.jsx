@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import AppContext from "../app/AppContext";
 
-const StyleSample = props => {
+const StyleSample = (props) => {
   const [state, dispatch] = useContext(AppContext)
   const {colors, shadows, gradients, fonts} = state.theme
 
