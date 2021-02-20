@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom'
 import './index.css';
-import App from './App';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import reportWebVitals from './reportWebVitals';
+import App from './components/App/App';
+import * as serviceWorkerRegistration from './setup/serviceWorkerRegistration';
+import reportWebVitals from './setup/reportWebVitals';
 
 ReactDOM.render(
   <BrowserRouter basename={process.env.PUBLIC_URL}>
