@@ -7,4 +7,4 @@ export const primary = `linear-gradient( 90deg, ${ primaryAccent } 10%, ${ prima
 
 export const secondary = `linear-gradient( 90deg, ${ secondaryAccent } 10%, ${ secondaryColor } 100%)`
 
-export const tertiary = `linear-gradient( 90deg, ${ secondaryAccent } 10%, ${ secondaryColor } 100%)`
+export const tertiary = `linear-gradient( 90deg, ${ tertiaryAccent } 10%, ${ tertiaryColor } 100%)`

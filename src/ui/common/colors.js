@@ -1,4 +1,10 @@
-// Colors
+// New Agent Colors
+export const black = '#000000'
+export const red = '#E5572E'
+export const yellow = '#FFC915'
+export const blue = '#15BEBB'
+export const darkGrey = '#2E292A'
+export const green = '#78AE41'
 
 export const primary = '#7367F0'
 export const primaryAccent = '#CE9FFC'
@@ -17,9 +23,3 @@ export const grey2 = '#999999'
 export const grey3 = '#666666'
 export const grey4 = '#333333'
 
-export const black = '#000000'
-export const red = '#E5572E'
-export const yellow = '#FFC915'
-export const blue = '#15BEBB'
-export const darkGrey = '#2E292A'
-export const green = '#78AE41'
