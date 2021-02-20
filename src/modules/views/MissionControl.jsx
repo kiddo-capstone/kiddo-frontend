@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import AppContext from "../App/AppContext";
+import AppContext from "../app/AppContext";
 
 const MissionControl = props => {
   const [state, dispatch] = useContext(AppContext)

@@ -1,14 +1,9 @@
 import React, { useReducer, useState } from "react";
+import { Switch, Route } from "react-router-dom";
 import AppContext from "./AppContext";
-import { appReducer } from "../common/appReducer";
+import { appReducer, initialState } from "../common/appReducer";
 import "./App.css";
-import MissionControl from "../MissionControl/MissionControl";
-
-// App Setup
-const initialState = {
-  missions: [{id:1, title: 'eat bugs', description: 'find and eat 3 bugs'}],
-  user: { name: "scott" },
-};
+import MissionControl from "../views/MissionControl";
 
 function App() {
   const [state, dispatch] = useReducer(appReducer, initialState);
