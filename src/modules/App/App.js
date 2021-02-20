@@ -4,6 +4,7 @@ import AppContext from "./AppContext";
 import { appReducer, initialState } from "../common/appReducer";
 import "./App.css";
 import MissionControl from "../views/MissionControl";
+import StyleSample from "../views/StyleSample";
 
 function App() {
   const [state, dispatch] = useReducer(appReducer, initialState);
@@ -14,6 +15,7 @@ function App() {
         <h1 className="App-logo">🕵️</h1>
         <p>Welcome to KidDo</p>
         <MissionControl />
+        <StyleSample />
       </div>
     </AppContext.Provider>
   );
