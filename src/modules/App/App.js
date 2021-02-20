@@ -1,6 +1,6 @@
 import React, { useReducer, useState } from "react";
 import AppContext from "./AppContext";
-import { appReducer } from "../../common/modules/appReducer";
+import { appReducer } from "../common/appReducer";
 import "./App.css";
 import MissionControl from "../MissionControl/MissionControl";
 
