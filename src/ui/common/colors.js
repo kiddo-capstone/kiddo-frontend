@@ -5,6 +5,8 @@ export const yellow = '#FFC915'
 export const blue = '#15BEBB'
 export const darkGrey = '#2E292A'
 export const green = '#78AE41'
+export const purple = '#7367F0'
+export const lightPurple = '#CE9FFC'
 
 export const primary = '#7367F0'
 export const primaryAccent = '#CE9FFC'
