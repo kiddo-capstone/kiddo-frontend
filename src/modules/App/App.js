@@ -7,20 +7,29 @@ import StyleSample from "../views/StyleSample";
 import DailyMission from "../views/DailyMission";
 import Sidebar from "../common/sidebar/Sidebar";
 import Header from "../common/header/Header";
+import Error400 from '../common/error/Error400';
+import Error500 from '../common/error/Error500';
 
 function App() {
   const [state, dispatch] = useReducer(appReducer, initialState);
+  const [error, setError] = useState(null)
 
   return (
-    <AppContext.Provider value={[state, dispatch]}>
-      <Header />
-      {/* <Sidebar /> */}
-      <Switch>
-        <Route path="/daily-mission" component={DailyMission} />
-        <Route path="/style-guide" component={StyleSample} />
-        <Route path="/mission-control" component={MissionControl} />
-      </Switch>
-    </AppContext.Provider>
+    <>
+      {!error ?
+      <AppContext.Provider value={[state, dispatch]}>
+        <Header />
+        {/* <Sidebar /> */}
+        <Switch>
+          <Route exact path="/daily-mission" component={DailyMission} />
+          <Route exact path="/style-guide" component={StyleSample} />
+          <Route exact path="/mission-control" component={MissionControl} />
+          <Route path="/" component={Error400}/>
+        </Switch>
+      </AppContext.Provider>
+      : <Error500 />
+      }
+    </>
   );
 }
 
