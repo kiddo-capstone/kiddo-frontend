@@ -27,7 +27,7 @@ function App() {
           <Route path="/" component={Error400}/>
         </Switch>
       </AppContext.Provider>
-      : <ErrorBoundary />
+        : <ErrorBoundary />
       }
     </>
   );
