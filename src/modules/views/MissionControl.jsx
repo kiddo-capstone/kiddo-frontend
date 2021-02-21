@@ -1,14 +1,18 @@
 import React, { useContext } from "react";
 import AppContext from "../app/AppContext";
+import PageContainer from "../../ui/containers/PageContainer";
+import TitleContainer from "../../ui/containers/TitleContainer";
 
 const MissionControl = props => {
-  const [state, dispatch] = useContext(AppContext)
-  const {colors, shadows, gradients, fonts} = state.theme
-  
+  const [state, dispatch] = useContext(AppContext);
+  const { colors, shadows, gradients, fonts } = state.theme;
+
   return (
-    <div>
-      <h1>I'm a Mission Control Component</h1>
-    </div>
+    <PageContainer>
+      <TitleContainer>
+        <h1>I'm a Mission Control Component</h1>
+      </TitleContainer>
+    </PageContainer>
   );
 };
 
