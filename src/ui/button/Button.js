@@ -35,6 +35,7 @@ const Button = ({children, disabled, primary, ...others}) => {
   const classes = useStyles(primary ? true : false)
   return ( 
     <button 
+      aria-label={children}
       className={classes.butt}
       disabled={disabled}
       {...others}
