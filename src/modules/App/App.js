@@ -7,8 +7,8 @@ import StyleSample from "../views/StyleSample";
 import DailyMission from "../views/DailyMission";
 import Sidebar from "../common/sidebar/Sidebar";
 import Header from "../common/header/Header";
-import Error400 from '../common/error/Error400';
-import Error500 from '../common/error/Error500';
+import Error400 from "../common/error/Error400";
+import ErrorBoundary from "../common/error/ErrorBoundary";
 
 function App() {
   const [state, dispatch] = useReducer(appReducer, initialState);
@@ -27,7 +27,7 @@ function App() {
           <Route path="/" component={Error400}/>
         </Switch>
       </AppContext.Provider>
-      : <Error500 />
+      : <ErrorBoundary />
       }
     </>
   );
