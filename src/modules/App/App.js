@@ -8,15 +8,14 @@ import DailyMission from "../views/DailyMission";
 import Sidebar from "../common/sidebar/Sidebar";
 import Header from "../common/header/Header";
 import Error400 from "../common/error/Error400";
-import ErrorBoundary from "../common/error/ErrorBoundary";
+import Error500 from "../common/error/Error500";
+import { ErrorBoundary } from "react-error-boundary";
 
 function App() {
   const [state, dispatch] = useReducer(appReducer, initialState);
-  const [error, setError] = useState(null)
-
+  
   return (
-    <>
-      {!error ?
+    <ErrorBoundary FallbackComponent={Error500}>
       <AppContext.Provider value={[state, dispatch]}>
         <Header />
         {/* <Sidebar /> */}
@@ -24,12 +23,11 @@ function App() {
           <Route exact path="/daily-mission" component={DailyMission} />
           <Route exact path="/style-guide" component={StyleSample} />
           <Route exact path="/mission-control" component={MissionControl} />
-          <Route path="/" component={Error400}/>
+          <Route exact path="/error-500" component={Error500} />
+          <Route path="/" component={Error400} />
         </Switch>
       </AppContext.Provider>
-        : <ErrorBoundary />
-      }
-    </>
+    </ErrorBoundary>
   );
 }
 
