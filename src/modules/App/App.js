@@ -16,35 +16,35 @@ function App() {
   return (
     <AppContext.Provider value={[state, dispatch]}>
       <main className="App">
-        <Switch>
-          <Route
-            exact 
-            path='/agent-dashboard'
-            render={() =>
-              <>
-              <Sidebar />
-              <MissionControl />
-              </>
-            }
-          />
-          <Route
-            exact
-            path='/daily-mission'
-            render={() =>
-              <DailyMission />
-            }
-          />
-          <Route
-            exact
-            path='/style-guide'
-            render={() =>
-              <>
-              <Button onClick={() => setShow(!show)}>{show ? "Hide Style Guide" : "Show Style Guide"}</Button>
-              {show && <StyleSample />}
-              </>
-            }
-          />
-        </Switch>
+        <Sidebar />
+        <div className='routes'>
+          <Switch>
+            <Route
+              exact
+              path='/agent-dashboard'
+              render={() =>
+                <MissionControl />
+              }
+            />
+            <Route
+              exact
+              path='/daily-mission'
+              render={() =>
+                <DailyMission />
+              }
+            />
+            <Route
+              exact
+              path='/style-guide'
+              render={() =>
+                <>
+                  <Button onClick={() => setShow(!show)}>{show ? "Hide Style Guide" : "Show Style Guide"}</Button>
+                  {show && <StyleSample />}
+                </>
+              }
+            />
+          </Switch>
+        </div>
       </main>
     </AppContext.Provider>
   );
