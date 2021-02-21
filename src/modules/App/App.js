@@ -14,7 +14,7 @@ function App() {
   return (
     <AppContext.Provider value={[state, dispatch]}>
       <Header />
-      <Sidebar />
+      {/* <Sidebar /> */}
       <Switch>
         <Route path="/agent-dashboard" component={MissionControl}/>
         <Route path="/daily-mission" component={DailyMission} />
