@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import AppContext from "../app/AppContext";
+import Button from '../../ui/button/Button'
 
 const StyleSample = (props) => {
   const [state, dispatch] = useContext(AppContext)
@@ -31,6 +32,28 @@ const StyleSample = (props) => {
         <h3 style={{color: colors.lightPurple}}>lightPurple</h3>
         <h3 style={{color: colors.darkGrey}}>darkGrey</h3>
       </div>
+      <section>
+        <div>
+          <Button>Primary</Button>
+          <Button disabled>Disabled</Button>
+        </div>
+        <div>
+          <Button >Secondary</Button>
+          <Button disabled >Disabled</Button>
+        </div>
+        <div>
+          <Button >Tertiary</Button>
+          <Button disabled >Disabled</Button>
+        </div>
+      </section>
+
+      <style jsx>{`
+        section div {
+          display: flex;
+          flex-direction: row;
+        }
+      `}</style>
+
     </div>
   );
 };

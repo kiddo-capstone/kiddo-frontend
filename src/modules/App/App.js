@@ -5,6 +5,7 @@ import { appReducer, initialState } from "../common/appReducer";
 import "./App.css";
 import MissionControl from "../views/MissionControl";
 import StyleSample from "../views/StyleSample";
+import Button from '../../ui/button/Button'
 
 function App() {
   const [state, dispatch] = useReducer(appReducer, initialState);
@@ -13,9 +14,7 @@ function App() {
   return (
     <AppContext.Provider value={[state, dispatch]}>
       <div className="App">
-        <MissionControl />
-
-        <button onClick={() => setShow(!show)}>Show Style Guide</button>
+        <Button onClick={() => setShow(!show)}>Show Style Guide</Button>
         {show && <StyleSample />}
       </div>
     </AppContext.Provider>
