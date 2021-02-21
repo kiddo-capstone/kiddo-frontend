@@ -16,7 +16,6 @@ function App() {
       <Header />
       {/* <Sidebar /> */}
       <Switch>
-        <Route path="/agent-dashboard" component={MissionControl}/>
         <Route path="/daily-mission" component={DailyMission} />
         <Route path="/style-guide" component={StyleSample} />
         <Route path="/mission-control" component={MissionControl} />
