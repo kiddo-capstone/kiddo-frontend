@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import AppContext from "../app/AppContext";
 import Button from "../../ui/button/Button";
 import PageContainer from "../../ui/containers/PageContainer";
+import TitleContainer from "../../ui/containers/TitleContainer";
 
 const StyleSample = props => {
   const [state, dispatch] = useContext(AppContext);
@@ -9,6 +10,9 @@ const StyleSample = props => {
 
   return (
     <PageContainer>
+      <TitleContainer>
+        <h1>Style Guide</h1>
+      </TitleContainer>
       <div style={{ display: "flex", justifyContent: 'space-evenly' }}>
         <div style={{ display:'flex', flexDirection:'column' }}>
           <h1 style={{ color: colors.green, fontFamily: fonts.primary }}>
