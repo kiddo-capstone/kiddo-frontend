@@ -1,38 +1,29 @@
-// const Sidebar = () => {
-//   return (
-//     <aside>
-      // <img src='http://www.clker.com/cliparts/6/8/2/d/15164313681889389218spy-kids-gadgets-clipart.hi.png' />
-//     </aside>
-//   )
-// }
-
-// export default Sidebar
-import React, { createContext, useContext } from 'react';
+// React Imports
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+
+// Material-ui Imports
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
-// import InboxIcon from '@material-ui/icons/MoveToInbox';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-// import  from '@material-ui/core/';
-import ListItemText from '@material-ui/core/ListItemText';
-
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 // App Imports
-import AppContext from "../../app/AppContext";
+// import AppContext from "../../app/AppContext";
+import theme from "../../../ui/common/theme"
 
-
-
+const appStyles = theme
 const drawerWidth = 240;
 
+
 const useStyles = makeStyles((theme) => ({
+  
   root: {
     display: 'flex',
   },
@@ -43,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appBar: {
+    backgroundColor: appStyles.colors.primary,
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
@@ -55,10 +47,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
+  // toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: '#EA5455'
+    backgroundColor: appStyles.colors.primary
+
   },
   content: {
     flexGrow: 1,
@@ -67,10 +60,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SideBar(props) {
-
-  const [state, dispatch] = useContext(AppContext)
+  // const [state, dispatch] = useContext(AppContext)
   const { window } = props;
-  
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -78,18 +69,19 @@ function SideBar(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
-console.log(state)
+
   const drawer = (
-    <div style={{backgroundColor:`${state.theme.colors.primary}`}}>
-      <div className={classes.toolbar} />
-      <List>
-
-          <ListItem button >
-            <>⭐</>
-            <ListItemText />
-          </ListItem>
-
-      </List>
+    <div>
+      <Toolbar className={classes.toolbar}>AGENT DETAILS</Toolbar>
+      <Divider/>
+      <div className={classes.drawerPaper} />
+        {/* <Toolbar> */}
+      
+              {/* <div className={classes.drawerPaper}> */}
+                <img src='http://www.clker.com/cliparts/6/8/2/d/15164313681889389218spy-kids-gadgets-clipart.hi.png' />
+              {/* </div> */}
+          
+      {/* </Toolbar> */}
     </div>
   );
 
@@ -98,7 +90,7 @@ console.log(state)
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar style={{backgroundColor:`${state.theme.colors.primary}`}} position="fixed" className={classes.appBar}>
+      {/* <AppBar  position="fixed" className={classes.appBar}> */}
         <Toolbar>
           <IconButton
             color="inherit"
@@ -110,7 +102,7 @@ console.log(state)
           ⭐
           </IconButton>
         </Toolbar>
-      </AppBar>
+      {/* </AppBar> */}
       <nav className={classes.drawer} aria-label="agent-profile">
         <Hidden smUp implementation="css">
           <Drawer
@@ -127,7 +119,6 @@ console.log(state)
             }}
           >
             {drawer}
-             <img src='http://www.clker.com/cliparts/6/8/2/d/15164313681889389218spy-kids-gadgets-clipart.hi.png' />
           </Drawer>
         </Hidden>
         <Hidden xsDown implementation="css">
