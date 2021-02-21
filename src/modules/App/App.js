@@ -14,7 +14,7 @@ function App() {
   return (
     <AppContext.Provider value={[state, dispatch]}>
       <div className="App">
-        <Button onClick={() => setShow(!show)}>Show Style Guide</Button>
+        <Button onClick={() => setShow(!show)}>{show ? "Hide Style Guide" : "Show Style Guide"}</Button>
         {show && <StyleSample />}
       </div>
     </AppContext.Provider>
