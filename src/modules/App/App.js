@@ -7,6 +7,7 @@ import MissionControl from "../views/MissionControl";
 import StyleSample from "../views/StyleSample";
 import Button from '../../ui/button/Button';
 import DailyMission from "../views/DailyMission";
+import Sidebar from "../common/sidebar/Sidebar";
 
 function App() {
   const [state, dispatch] = useReducer(appReducer, initialState);
@@ -19,8 +20,11 @@ function App() {
           <Route
             exact 
             path='/agent-dashboard'
-            render={() => 
+            render={() =>
+              <>
+              <Sidebar />
               <MissionControl />
+              </>
             }
           />
           <Route
@@ -30,9 +34,17 @@ function App() {
               <DailyMission />
             }
           />
+          <Route
+            exact
+            path='/style-guide'
+            render={() =>
+              <>
+              <Button onClick={() => setShow(!show)}>{show ? "Hide Style Guide" : "Show Style Guide"}</Button>
+              {show && <StyleSample />}
+              </>
+            }
+          />
         </Switch>
-        <Button onClick={() => setShow(!show)}>{show ? "Hide Style Guide" : "Show Style Guide"}</Button>
-        {show && <StyleSample />}
       </main>
     </AppContext.Provider>
   );
