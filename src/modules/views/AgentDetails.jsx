@@ -1,14 +1,16 @@
-import PageContainer from "../../ui/containers/PageContainer";
 import TitleContainer from "../../ui/containers/TitleContainer";
+import React, { useContext } from "react";
+import AppContext from "../app/AppContext";
 
-const DailyMission = () => {
+const AgentDetails = () => {
   return (
-    <PageContainer>
+    <div>
       <TitleContainer>
-        <h1>Daily Mission</h1>
+        <h1>Agent Name</h1>
       </TitleContainer>
-    </PageContainer>
+        <img src="http://www.clker.com/cliparts/6/8/2/d/15164313681889389218spy-kids-gadgets-clipart.hi.png" />
+    </div>
   );
 };
 
-export default DailyMission;
+export default AgentDetails;
