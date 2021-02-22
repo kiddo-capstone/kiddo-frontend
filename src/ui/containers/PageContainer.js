@@ -16,7 +16,33 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import theme from "../common/theme";
 import Header from "../../modules/common/header/Header";
 
-const useStyles = makeStyles(() => ({
+const appStyles = theme;
+const drawerWidth = 240;
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+  },
+  drawer: {
+    [theme.breakpoints.up("sm")]: {
+      width: drawerWidth,
+      flexShrink: 0,
+    },
+  },
+  drawerPaper: {
+    width: drawerWidth,
+    backgroundColor: appStyles.colors.primary,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up("sm")]: {
+      display: "none",
+    },
+  },
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+  },
   pageContainer: {
     // textAlign: 'center',
     // backgroundColor: '#282c34',
