@@ -5,7 +5,6 @@ import { appReducer, initialState } from "../common/appReducer";
 import MissionControl from "../views/MissionControl";
 import StyleSample from "../views/StyleSample";
 import DailyMission from "../views/DailyMission";
-import Header from "../common/header/Header";
 import Error400 from "../common/error/Error400";
 import Error500 from "../common/error/Error500";
 import { ErrorBoundary } from "react-error-boundary";
@@ -17,7 +16,6 @@ function App() {
   return (
     <ErrorBoundary FallbackComponent={Error500}>
       <AppContext.Provider value={[state, dispatch]}>
-        <Header />
         <AppContainer />
         <Switch>
           <Route exact path="/daily-mission" component={DailyMission} />
