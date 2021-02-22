@@ -49,9 +49,11 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
+    backgroundColor: "#282c34",
+    fontFamily: "'Russo One', sans-serif",
   },
   pageContainer: {
-    // textAlign: 'center',
+    textAlign: "center",
     // backgroundColor: "#282c34",
     margin: "0 6%",
     marginTop: "1%",
@@ -118,8 +120,8 @@ function PageContainer(props) {
         ⭐
       </IconButton> */}
 
-      <div className={classes.drawer} aria-label="agent-profile">
-        <Hidden smUp implementation="css">
+      <nav className={classes.drawer} aria-label="agent-profile">
+        <Hidden smUp implementation="js">
           <Drawer
             container={container}
             variant="temporary"
@@ -147,10 +149,13 @@ function PageContainer(props) {
             {drawer}
           </Drawer>
         </Hidden>
-      </div>
+      </nav>
       <main className={classes.content}>
-        <Header />
-        {children}
+        <div className={classes.toolbar} />
+        <section className={classes.pageContainer}>
+          <Header />
+          {children}
+        </section>
       </main>
     </div>
   );
