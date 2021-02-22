@@ -16,6 +16,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 // App Imports
 import theme from "../common/theme";
 import Header from "../../modules/common/header/Header";
+import AgentDetails from "../../modules/views/AgentDetails";
 
 const appStyles = theme;
 const drawerWidth = 240;
@@ -86,8 +87,8 @@ function PageContainer(props) {
     <div>
       <Toolbar className={classes.appBar}>AGENT DETAILS</Toolbar>
       <Divider />
-      <div className={classes.drawerPaper} />
-      <img src="http://www.clker.com/cliparts/6/8/2/d/15164313681889389218spy-kids-gadgets-clipart.hi.png" />
+      {/* Render AgentDetails card here */}
+      <AgentDetails />
     </div>
   );
 
