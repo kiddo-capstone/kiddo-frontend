@@ -18,7 +18,14 @@ function App() {
       <AppContext.Provider value={[state, dispatch]}>
         <AppContainer />
         <Switch>
-          <Route exact path="/daily-mission" component={DailyMission} />
+          <Route
+            exact
+            path="/daily-mission/:id"
+            render={({ match }) => {
+              const id = +match.params.id;
+              return <DailyMission id={id} />;
+            }}
+          />
           <Route exact path="/style-guide" component={StyleSample} />
           <Route exact path="/mission-control" component={MissionControl} />
           <Route exact path="/error-500" component={Error500} />
