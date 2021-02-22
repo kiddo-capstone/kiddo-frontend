@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
   },
   drawer: {
+    width: drawerWidth,
     [theme.breakpoints.up("sm")]: {
       width: drawerWidth,
       flexShrink: 0,
@@ -39,13 +40,19 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
+  appBar: {
+    backgroundColor: appStyles.colors.primary,
+    [theme.breakpoints.up("sm")]: {
+      width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: drawerWidth,
+    },
+  },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
   },
   pageContainer: {
     // textAlign: 'center',
-    // backgroundColor: '#282c34',
+    // backgroundColor: "#282c34",
     margin: "0 6%",
     marginTop: "1%",
     minHeight: "100%",
@@ -57,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     fontFamily: "'Russo One', sans-serif",
   },
+  toolbar: theme.mixins.toolbar,
 }));
 
 function PageContainer(props) {
@@ -71,7 +79,7 @@ function PageContainer(props) {
 
   const drawer = (
     <div>
-      <Toolbar className={classes.toolbar}>AGENT DETAILS</Toolbar>
+      <Toolbar className={classes.appBar}>AGENT DETAILS</Toolbar>
       <Divider />
       <div className={classes.drawerPaper} />
       <img src="http://www.clker.com/cliparts/6/8/2/d/15164313681889389218spy-kids-gadgets-clipart.hi.png" />
@@ -84,18 +92,33 @@ function PageContainer(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Toolbar>
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          edge="start"
-          onClick={handleDrawerToggle}
-          className={classes.menuButton}
-        >
-          ⭐
-        </IconButton>
-      </Toolbar>
-      <nav className={classes.drawer} aria-label="agent-profile">
+      <AppBar position="fixed" className={classes.appBar}>
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            className={classes.menuButton}
+          >
+            ⭐
+          </IconButton>
+          Responsive drawer
+        </Toolbar>
+      </AppBar>
+      {/* <div className={classes.toolbar} />
+ 
+      <IconButton
+        color="inherit"
+        aria-label="open drawer"
+        edge="start"
+        onClick={handleDrawerToggle}
+        className={classes.menuButton}
+      >
+        ⭐
+      </IconButton> */}
+
+      <div className={classes.drawer} aria-label="agent-profile">
         <Hidden smUp implementation="css">
           <Drawer
             container={container}
@@ -124,7 +147,7 @@ function PageContainer(props) {
             {drawer}
           </Drawer>
         </Hidden>
-      </nav>
+      </div>
       <main className={classes.content}>
         <Header />
         {children}
