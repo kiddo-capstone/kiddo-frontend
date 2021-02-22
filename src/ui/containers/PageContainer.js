@@ -10,6 +10,7 @@ import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
 import Toolbar from "@material-ui/core/Toolbar";
+import Container from "@material-ui/core/Toolbar";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 // App Imports
@@ -42,6 +43,8 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     backgroundColor: appStyles.colors.primary,
+    fontFamily: "'Russo One', sans-serif",
+    fontSize: "calc(10px + 2vmin)",
     [theme.breakpoints.up("sm")]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
@@ -105,51 +108,38 @@ function PageContainer(props) {
           >
             ⭐
           </IconButton>
-          Responsive drawer
+          Welcome, Agent Sally!
         </Toolbar>
       </AppBar>
-      {/* <div className={classes.toolbar} />
- 
-      <IconButton
-        color="inherit"
-        aria-label="open drawer"
-        edge="start"
-        onClick={handleDrawerToggle}
-        className={classes.menuButton}
-      >
-        ⭐
-      </IconButton> */}
 
-      <nav className={classes.drawer} aria-label="agent-profile">
-        <Hidden smUp implementation="js">
-          <Drawer
-            container={container}
-            variant="temporary"
-            anchor={theme.direction === "rtl" ? "right" : "left"}
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            ModalProps={{
-              keepMounted: true,
-            }}
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-        <Hidden xsDown implementation="css">
-          <Drawer
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            variant="permanent"
-            open
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-      </nav>
+      <Hidden smUp implementation="js">
+        <Drawer
+          container={container}
+          variant="temporary"
+          anchor={theme.direction === "rtl" ? "right" : "left"}
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+          ModalProps={{
+            keepMounted: true,
+          }}
+        >
+          {drawer}
+        </Drawer>
+      </Hidden>
+      <Hidden xsDown implementation="css">
+        <Drawer
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+          variant="permanent"
+          open
+        >
+          {drawer}
+        </Drawer>
+      </Hidden>
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <section className={classes.pageContainer}>
@@ -160,16 +150,5 @@ function PageContainer(props) {
     </div>
   );
 }
-
-// const PageContainer = ({ children }) => {
-//   const classes = useStyles();
-
-//   return (
-//     <section className={classes.pageContainer}>
-//       <Header />
-//       {children}
-//     </section>
-//   );
-// };
 
 export default PageContainer;
