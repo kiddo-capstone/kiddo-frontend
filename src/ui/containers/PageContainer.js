@@ -59,15 +59,89 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PageContainer = ({ children }) => {
+function PageContainer(props) {
+  const { window, children } = props;
   const classes = useStyles();
+  const theme = useTheme();
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+
+  const drawer = (
+    <div>
+      <Toolbar className={classes.toolbar}>AGENT DETAILS</Toolbar>
+      <Divider />
+      <div className={classes.drawerPaper} />
+      <img src="http://www.clker.com/cliparts/6/8/2/d/15164313681889389218spy-kids-gadgets-clipart.hi.png" />
+    </div>
+  );
+
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <section className={classes.pageContainer}>
-      <Header />
-      {children}
-    </section>
+    <div className={classes.root}>
+      <CssBaseline />
+      <Toolbar>
+        <IconButton
+          color="inherit"
+          aria-label="open drawer"
+          edge="start"
+          onClick={handleDrawerToggle}
+          className={classes.menuButton}
+        >
+          ⭐
+        </IconButton>
+      </Toolbar>
+      <nav className={classes.drawer} aria-label="agent-profile">
+        <Hidden smUp implementation="css">
+          <Drawer
+            container={container}
+            variant="temporary"
+            anchor={theme.direction === "rtl" ? "right" : "left"}
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+            ModalProps={{
+              keepMounted: true,
+            }}
+          >
+            {drawer}
+          </Drawer>
+        </Hidden>
+        <Hidden xsDown implementation="css">
+          <Drawer
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+            variant="permanent"
+            open
+          >
+            {drawer}
+          </Drawer>
+        </Hidden>
+      </nav>
+      <main className={classes.content}>
+        <Header />
+        {children}
+      </main>
+    </div>
   );
-};
+}
+
+// const PageContainer = ({ children }) => {
+//   const classes = useStyles();
+
+//   return (
+//     <section className={classes.pageContainer}>
+//       <Header />
+//       {children}
+//     </section>
+//   );
+// };
 
 export default PageContainer;
