@@ -9,6 +9,7 @@ import Header from "../common/header/Header";
 import Error400 from "../common/error/Error400";
 import Error500 from "../common/error/Error500";
 import { ErrorBoundary } from "react-error-boundary";
+import AppContainer from "../../ui/containers/AppContainer";
 
 function App() {
   const [state, dispatch] = useReducer(appReducer, initialState);
@@ -17,7 +18,7 @@ function App() {
     <ErrorBoundary FallbackComponent={Error500}>
       <AppContext.Provider value={[state, dispatch]}>
         <Header />
-        {/* <Sidebar /> */}
+        <AppContainer />
         <Switch>
           <Route exact path="/daily-mission" component={DailyMission} />
           <Route exact path="/style-guide" component={StyleSample} />
