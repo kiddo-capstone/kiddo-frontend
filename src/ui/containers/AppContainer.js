@@ -14,12 +14,13 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 // App Imports
 import theme from "../common/theme";
-import Header from "../../modules/common/header/Header";
+// import Header from "../../modules/common/header/Header";
 import AgentDetails from "../../modules/views/AgentDetails";
 import PageContainer from "./PageContainer";
 
 const appStyles = theme;
-const drawerWidth = "clamp(240px, 30%, 40%)";
+const drawerWidth = 300;
+// "clamp(240px, 30%, 40%)"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,29 +54,17 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    marginTop: "20px",
-    backgroundColor: "#282c34",
+    backgroundColor: appStyles.colors.primary,
     fontFamily: "'Russo One', sans-serif",
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: drawerWidth,
+    },
   },
-  // pageContainer: {
-  //   textAlign: "center",
-  //   // backgroundColor: "#282c34",
-  //   margin: "0 6%",
-  //   marginTop: "1%",
-  //   minHeight: "100%",
-  //   display: "flex",
-  //   flexDirection: "column",
-  //   justifyContent: "center",
-  //   alignItems: "center",
-  //   fontSize: "calc(10px + 2vmin)",
-  //   color: "white",
-  //   fontFamily: "'Russo One', sans-serif",
-  // },
   toolbar: theme.mixins.toolbar,
 }));
 
 function AppContainer(props) {
-  const { window, children } = props;
+  const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -88,7 +77,6 @@ function AppContainer(props) {
     <div>
       <Toolbar className={classes.appBar}>AGENT DETAILS</Toolbar>
       <Divider />
-      {/* Render AgentDetails card here */}
       <AgentDetails />
     </div>
   );
@@ -114,7 +102,7 @@ function AppContainer(props) {
         </Toolbar>
       </AppBar>
       <div className={classes.drawer}>
-        <Hidden smUp implementation="js">
+        <Hidden smUp implementation="css">
           <Drawer
             container={container}
             variant="temporary"
@@ -144,14 +132,10 @@ function AppContainer(props) {
           </Drawer>
         </Hidden>
       </div>
-      {/* <div className={classes.toolbar} /> */}
+
       <main className={classes.content}>
-        {/* <div className={classes.toolbar} /> */}
+        {/* <Header /> */}
         <PageContainer />
-        {/* <section className={classes.pageContainer}>
-          <Header />
-          {children}
-        </section> */}
       </main>
     </div>
   );
