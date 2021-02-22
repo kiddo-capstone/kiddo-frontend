@@ -9,14 +9,12 @@ import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 // App Imports
-// import AppContext from "../../app/AppContext";
-import theme from "../../../ui/common/theme"
+import theme from "../../../ui/common/theme";
+import Header from "../header/Header";
 
 const appStyles = theme
 const drawerWidth = 240;
@@ -60,7 +58,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function SideBar(props) {
-  // const [state, dispatch] = useContext(AppContext)
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -75,13 +72,7 @@ function SideBar(props) {
       <Toolbar className={classes.toolbar}>AGENT DETAILS</Toolbar>
       <Divider/>
       <div className={classes.drawerPaper} />
-        {/* <Toolbar> */}
-      
-              {/* <div className={classes.drawerPaper}> */}
-                <img src='http://www.clker.com/cliparts/6/8/2/d/15164313681889389218spy-kids-gadgets-clipart.hi.png' />
-              {/* </div> */}
-          
-      {/* </Toolbar> */}
+        <img src='http://www.clker.com/cliparts/6/8/2/d/15164313681889389218spy-kids-gadgets-clipart.hi.png' />
     </div>
   );
 
@@ -90,7 +81,6 @@ function SideBar(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      {/* <AppBar  position="fixed" className={classes.appBar}> */}
         <Toolbar>
           <IconButton
             color="inherit"
@@ -102,7 +92,6 @@ function SideBar(props) {
           ⭐
           </IconButton>
         </Toolbar>
-      {/* </AppBar> */}
       <nav className={classes.drawer} aria-label="agent-profile">
         <Hidden smUp implementation="css">
           <Drawer

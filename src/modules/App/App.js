@@ -5,7 +5,6 @@ import { appReducer, initialState } from "../common/appReducer";
 import MissionControl from "../views/MissionControl";
 import StyleSample from "../views/StyleSample";
 import DailyMission from "../views/DailyMission";
-import Sidebar from "../common/sidebar/Sidebar";
 import Header from "../common/header/Header";
 import Error400 from "../common/error/Error400";
 import Error500 from "../common/error/Error500";
@@ -13,7 +12,7 @@ import { ErrorBoundary } from "react-error-boundary";
 
 function App() {
   const [state, dispatch] = useReducer(appReducer, initialState);
-  
+
   return (
     <ErrorBoundary FallbackComponent={Error500}>
       <AppContext.Provider value={[state, dispatch]}>
