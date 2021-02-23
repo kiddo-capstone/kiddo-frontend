@@ -9,20 +9,26 @@ import Error400 from "../common/error/Error400";
 import Error500 from "../common/error/Error500";
 import { ErrorBoundary } from "react-error-boundary";
 import AppContainer from "../../ui/containers/AppContainer";
-import { getAllMissions, getAllTasks } from '../common/apiCalls'
+import { getAllMissions, getAllTasks, getAllUsers } from "../common/apiCalls";
 
 function App() {
   const [state, dispatch] = useReducer(appReducer, initialState);
 
-  useEffect(() => {
-    getAllMissions()
+  useEffect(async() => {
+    await getAllMissions()
     .then(data => addMissionsToState(data.data))
     .catch(error => console.log(error))
   }, [])
 
-  useEffect(() => {
-    getAllTasks()
+  useEffect(async() => {
+    await getAllTasks()
       .then(data => addTasksToState(data.data))
+      .catch(error => console.log(error))
+  }, [])
+
+  useEffect(async() => {
+    await getAllUsers()
+      .then(data => addUsersToState(data.data))
       .catch(error => console.log(error))
   }, [])
 
@@ -33,6 +39,11 @@ function App() {
 
   const addTasksToState = (data) => {
     const action = { type: 'FETCH_TASKS', tasks: data }
+    dispatch(action)
+  }
+
+  const addUsersToState = (data) => {
+    const action = { type: 'FETCH_USERS', users: data }
     dispatch(action)
   }
 
