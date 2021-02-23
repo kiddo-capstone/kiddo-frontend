@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import theme from "../../../ui/common/theme";
 
 const Error500 = () => {
