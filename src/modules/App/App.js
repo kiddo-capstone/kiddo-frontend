@@ -9,7 +9,7 @@ import Error400 from "../common/error/Error400";
 import Error500 from "../common/error/Error500";
 import { ErrorBoundary } from "react-error-boundary";
 import AppContainer from "../../ui/containers/AppContainer";
-import { getAllMissions } from '../common/apiCalls'
+import { getAllMissions, getAllTasks } from '../common/apiCalls'
 
 function App() {
   const [state, dispatch] = useReducer(appReducer, initialState);
@@ -20,8 +20,19 @@ function App() {
     .catch(error => console.log(error))
   }, [])
 
+  useEffect(() => {
+    getAllTasks()
+      .then(data => addTasksToState(data.data))
+      .catch(error => console.log(error))
+  }, [])
+
   const addMissionsToState = (data) => {
     const action = { type: 'FETCH_MISSIONS', missions: data }
+    dispatch(action)
+  }
+
+  const addTasksToState = (data) => {
+    const action = { type: 'FETCH_TASKS', tasks: data }
     dispatch(action)
   }
 
