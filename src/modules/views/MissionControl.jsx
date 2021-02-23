@@ -6,11 +6,30 @@ import Mission from '../mission/Mission'
 import { Link } from "react-router-dom";
 import {makeStyles} from '@material-ui/core'
 
-const useStyles = makeStyles(primary => ({
+const useStyles = makeStyles(theme => ({
   missions: {
     justifyContent: 'space-between',
-    height: '90%'
-  }
+    height: '90%',
+    minWidth: '620px',
+    width: '90%',
+    textAlign: "center",
+    border: "solid 1px white",
+    borderRadius: '5px',
+    marginTop: "25px",
+    minHeight: "100%",
+    display: "flex",
+    flexDirection: "column",
+    // justifyContent: "center",
+    alignItems: "center",
+    fontSize: "calc(10px + 2vmin)",
+    color: "white",
+
+    padding: '1.5em .5em',
+    backgroundColor: "#282c34",
+    [theme.breakpoints.down('600')]: {
+      minWidth: '20px',
+    },
+  },
 }))
 
 const MissionControl = props => {
@@ -31,9 +50,9 @@ const MissionControl = props => {
   return (
     <PageContainer>
       <TitleContainer>Mission Control</TitleContainer>
-      <MediumContainer className={classes.missions}>
+      <section className={classes.missions}>
         {makeMissionList()}
-      </MediumContainer>
+      </section>
     </PageContainer>
   );
 };
