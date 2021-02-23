@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
 import AppContext from "../app/AppContext";
 import {
-  TitleContainer,
-  SmallContainer,
   BadgeContainer,
 } from "../../ui/containers/index";
 import BadgeBG from "../../ui/badges/BadgeBg";
@@ -29,6 +27,7 @@ const useStyles = makeStyles(theme => ({
     height: "100%",
     fontSize: "clamp(10px, 1.75rem, 4vmin)",
     color: "white",
+    border: 'solid 4px lightgrey',
   },
   left: {
     height: "100%",
@@ -38,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     flex: 1,
     padding: ".4em .4em",
     backgroundColor: "lightgrey",
-    color: "black",
+    color: "#282C34",
     fontFamily: "'Mitr', sans-serif",
     fontSize: "clamp(7px, 1.75rem, 4vmin)",
     "& p:nth-child(1)": {},

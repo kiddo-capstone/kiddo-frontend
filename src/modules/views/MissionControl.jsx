@@ -8,22 +8,20 @@ import {makeStyles} from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
   missions: {
+    // marginTop: "25px",
+    // border: "solid 1px white",
     justifyContent: 'space-between',
     height: '90%',
     minWidth: '750px',
     width: '90%',
     textAlign: "center",
-    border: "solid 1px white",
     borderRadius: '5px',
-    marginTop: "25px",
     minHeight: "100%",
     display: "flex",
     flexDirection: "column",
-    // justifyContent: "center",
     alignItems: "center",
     fontSize: "calc(10px + 2vmin)",
     color: "white",
-
     padding: '1.5em .5em',
     backgroundColor: "#282c34",
     [theme.breakpoints.down('600')]: {

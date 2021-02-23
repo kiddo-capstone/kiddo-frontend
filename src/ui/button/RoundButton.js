@@ -3,6 +3,10 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   round: {
+    fontSize: '1em',
+    fontWeight: '400',
+    padding: '2%',
+
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
