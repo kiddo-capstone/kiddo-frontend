@@ -11,3 +11,10 @@ export const getAllTasks = () => {
       .then(res => res.json())
   )
 }
+
+export const getAllUsers = () => {
+  return (
+    fetch('http://localhost:3000/api/v1/users')
+      .then(res => res.json())
+  )
+}
