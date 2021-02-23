@@ -13,7 +13,6 @@ import { getAllMissions, getAllTasks, getAllUsers } from "../common/apiCalls";
 const App = () => {
   const [state, dispatch] = useReducer(appReducer, initialState);
   const [error, setError] = useState(null);
-  // const handleError = useErrorHandler();
 
   useEffect(async () => {
     await getAllMissions()
