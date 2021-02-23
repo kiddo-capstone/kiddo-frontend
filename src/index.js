@@ -5,11 +5,17 @@ import "./index.css";
 import App from "./modules/app/App";
 import * as serviceWorkerRegistration from "./setup/serviceWorkerRegistration";
 import reportWebVitals from "./setup/reportWebVitals";
+import { Auth0Provider } from "@auth0/auth0-react";
 
 ReactDOM.render(
-  <BrowserRouter basename={process.env.PUBLIC_URL}>
-    <App />
-  </BrowserRouter>,
+  <Auth0Provider
+    domain="dev-45kbuxp3.us.auth0.com"
+    clientId="KBYokR5NYW0COpeCkQBGHXGdKGH3zhqj"
+    redirectUri={window.location.origin + "/home"}>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <App />
+    </BrowserRouter>
+  </Auth0Provider>,
   document.getElementById("root")
 );
 
