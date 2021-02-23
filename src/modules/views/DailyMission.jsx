@@ -1,3 +1,4 @@
+import React from 'react';
 import PageContainer from "../../ui/containers/PageContainer";
 import TitleContainer from "../../ui/containers/TitleContainer";
 
@@ -11,4 +12,4 @@ const DailyMission = () => {
   );
 };
 
-export default DailyMission;
+export default React.memo(DailyMission);

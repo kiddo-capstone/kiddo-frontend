@@ -57,5 +57,4 @@ const MissionControl = props => {
   );
 };
 
-// .memo supposedly assists with caching - trying it out
 export default React.memo(MissionControl);
