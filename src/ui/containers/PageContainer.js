@@ -1,32 +1,30 @@
-import {makeStyles} from '@material-ui/core'
+import { makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles(() => ({
+const drawerWidth = 300;
+const useStyles = makeStyles((theme) => ({
   pageContainer: {
-    // textAlign: 'center',
-    // backgroundColor: '#282c34',
-    margin: '0 6%',
-    marginTop: '1%',
-    minHeight: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontSize: 'calc(10px + 2vmin)',
-    color: 'white',
+    textAlign: "center",
+    backgroundColor: "#282c34",
+    marginTop: "25px",
+    minHeight: "100%",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: "calc(10px + 2vmin)",
+    color: "white",
     fontFamily: "'Russo One', sans-serif",
-  }
-}))
+    // media query for pushing page content past drawer
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: drawerWidth,
+    },
+  },
+}));
 
+const PageContainer = ({ children }) => {
+  const classes = useStyles();
 
+  return <div className={classes.pageContainer}>{children}</div>;
+};
 
-const PageContainer = ({children}) => {
-  const classes = useStyles()
-
-  return ( 
-    <section className={classes.pageContainer}>
-      {children}
-    </section>
-   );
-}
- 
 export default PageContainer;

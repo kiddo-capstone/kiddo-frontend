@@ -1,10 +1,11 @@
 import React from "react";
 import Button from "../../../ui/button/Button";
 import { Link } from "react-router-dom";
-import { makeStyles } from "@material-ui/core";
-import * as colors from '../../../ui/common/colors'
+import { makeStyles, useTheme } from "@material-ui/core";
 
-const useStyles = makeStyles(primary => ({
+import * as colors from '../../../ui/common/colors'
+const drawerWidth = 240;
+const useStyles = makeStyles((theme) => ({
   navbar: {
     background: "rebeccapurple",
     display: "flex",
@@ -30,7 +31,7 @@ const Header = () => {
   return (
     <header className={classes.navbar}>
       <section className={classes.left}>
-        <h1>BRANDING + NAVBAR</h1>
+        <h1>BRANDING + NAV FOR DEVELOPMENT</h1>
       </section>
       <nav className={classes.linkContainer}>
         <Link className={classes} title="mission control" to="/mission-control">
