@@ -1,3 +1,4 @@
+import React from 'react';
 import { makeStyles } from "@material-ui/core";
 
 const drawerWidth = 300;
@@ -29,4 +30,4 @@ const PageContainer = ({ children }) => {
   return <div className={classes.pageContainer}>{children}</div>;
 };
 
-export default PageContainer;
+export default React.memo(PageContainer);

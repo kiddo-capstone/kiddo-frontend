@@ -1,3 +1,4 @@
+import React from 'react';
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -17,4 +18,4 @@ const BadgeContainer = ({children}) => {
    );
 }
  
-export default BadgeContainer;
+export default React.memo(BadgeContainer);

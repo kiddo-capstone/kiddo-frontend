@@ -1,3 +1,4 @@
+import React from 'react';
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((props) => ({
@@ -31,4 +32,4 @@ const BadgeBG = (props) => {
     );
 };
 
-export default BadgeBG;
+export default React.memo(BadgeBG);
