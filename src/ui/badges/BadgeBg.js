@@ -2,15 +2,16 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((props) => ({
   BadgeBG: {
+    width: 'fit-content',
     background: '#757575',
-    // background: props.color,
     borderRadius: '15px',
     height: "fit-content",
     padding: '.2em .2em',
     display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
+    justifyContent: "space-around",
     alignItems: "center",
+    // flexDirection: "column",
+    // background: props.color,
     // textAlign: "center",
     // border: "solid .1px gold",
     // fontSize: "calc(10px + 2vmin)",
