@@ -19,7 +19,7 @@ const MissionControl = props => {
   
   const classes = useStyles()
 
-  const mapMissions = () => {
+  const makeMissionList = () => {
     return state.missions.map(mission => {
       return <Mission
         key={mission.id}
@@ -32,7 +32,7 @@ const MissionControl = props => {
     <PageContainer>
       <TitleContainer>Mission Control</TitleContainer>
       <MediumContainer className={classes.missions}>
-        {mapMissions()}
+        {makeMissionList()}
       </MediumContainer>
     </PageContainer>
   );
