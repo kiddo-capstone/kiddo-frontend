@@ -16,34 +16,24 @@ function App() {
 
   useEffect(async() => {
     await getAllMissions()
-    .then(data => addMissionsToState(data.data))
-    .catch(error => console.log(error))
+      .then(data => addDataToState('missions', data.data))
+      .catch(error => console.log(error))
   }, [])
 
   useEffect(async() => {
     await getAllTasks()
-      .then(data => addTasksToState(data.data))
+      .then(data => addDataToState('tasks', data.data))
       .catch(error => console.log(error))
   }, [])
 
   useEffect(async() => {
     await getAllUsers()
-      .then(data => addUsersToState(data.data))
+      .then(data => addDataToState('users', data.data))
       .catch(error => console.log(error))
   }, [])
 
-  const addMissionsToState = (data) => {
-    const action = { type: 'FETCH_MISSIONS', missions: data }
-    dispatch(action)
-  }
-
-  const addTasksToState = (data) => {
-    const action = { type: 'FETCH_TASKS', tasks: data }
-    dispatch(action)
-  }
-
-  const addUsersToState = (data) => {
-    const action = { type: 'FETCH_USERS', users: data }
+  const addDataToState = (type, data) => {
+    const action = { type: `FETCH_${type.toUpperCase()}`, [type]: data }
     dispatch(action)
   }
 
