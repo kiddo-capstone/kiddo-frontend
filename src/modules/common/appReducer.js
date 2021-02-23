@@ -13,7 +13,10 @@ export const appReducer = (state, action) => {
     case 'FETCH_MISSIONS':
       return {...state, missions: action.missions}
     case 'FETCH_TASKS':
+      console.log(action)
       return { ...state, tasks: action.tasks }
+    case 'FETCH_USERS':
+      return { ...state, users: action.users }
     default:
       return state;
   }
