@@ -20,12 +20,13 @@ import AgentDetails from "../../modules/views/AgentDetails";
 import PageContainer from "./PageContainer";
 
 const appStyles = theme;
-const drawerWidth = 300;
+const drawerWidth = 240;
 // "clamp(240px, 30%, 40%)"
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
+    fontFamily: appStyles.fonts.primary,
   },
   drawer: {
     width: drawerWidth,
@@ -46,11 +47,10 @@ const useStyles = makeStyles(theme => ({
   },
   appBar: {
     backgroundColor: appStyles.colors.primary,
-    fontFamily: "'Russo One', sans-serif",
     fontSize: "calc(10px + 2vmin)",
     [theme.breakpoints.up("sm")]: {
       width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
+      // marginLeft: drawerWidth,
     },
   },
   content: {
@@ -61,15 +61,20 @@ const useStyles = makeStyles(theme => ({
       marginLeft: drawerWidth,
     },
   },
+
   buttonGroup: {
-    justifyContent: 'end',
-    alignSelf: 'center'
+    justifyContent: "end",
+    alignSelf: "center",
   },
   headerButton: {
-    margin: '.4em',
-    backgroundColor: 'transparent',
+    margin: ".4em",
+    backgroundColor: "transparent",
   },
-  toolbar: theme.mixins.toolbar,
+
+  toolbar: {
+    minHeight: theme.mixins.toolbar,
+    textAlign: "center",
+  },
 }));
 
 function AppContainer(props) {
@@ -86,7 +91,7 @@ function AppContainer(props) {
 
   const drawer = (
     <div>
-      <Toolbar className={classes.appBar}>AGENT DETAILS</Toolbar>
+      <Toolbar className={classes.toolBar}>AGENT DETAILS</Toolbar>
       <Divider />
       <AgentDetails />
     </div>
@@ -99,27 +104,28 @@ function AppContainer(props) {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar style={{justifyContent: 'space-between'}}>
+        <Toolbar style={{ justifyContent: "space-between" }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            className={classes.menuButton}>
+            className={classes.menuButton}
+          >
             ⭐
           </IconButton>
           Welcome, Agent Sally!
           <div className={classes.buttonGroup}>
-            <Link
-              title="mission control"
-              to="/mission-control">
+            <Link title="mission control" to="/mission-control">
               <Button className={classes.headerButton}>Mission Control</Button>
             </Link>
             <Link title="style guide" to="/style-guide">
               <Button className={classes.headerButton}>Style Guide</Button>
             </Link>
             <Link title="login" to="/login">
-              <Button className={classes.headerButton}>{isAuthenticated ? 'Log Out' : 'Log In'}</Button>
+              <Button className={classes.headerButton}>
+                {isAuthenticated ? "Log Out" : "Log In"}
+              </Button>
             </Link>
           </div>
         </Toolbar>
@@ -137,7 +143,8 @@ function AppContainer(props) {
             }}
             ModalProps={{
               keepMounted: true,
-            }}>
+            }}
+          >
             {drawer}
           </Drawer>
         </Hidden>
@@ -148,7 +155,8 @@ function AppContainer(props) {
               paper: classes.drawerPaper,
             }}
             variant="permanent"
-            open>
+            open
+          >
             {drawer}
           </Drawer>
         </Hidden>

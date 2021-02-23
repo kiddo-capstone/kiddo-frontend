@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 import { makeStyles } from "@material-ui/core";
 
-const drawerWidth = 300;
+const drawerWidth = 240;
 const drawerHeight = 40;
 const useStyles = makeStyles((theme) => ({
   pageContainer: {

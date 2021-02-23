@@ -34,13 +34,13 @@ const useStyles = makeStyles(() => ({
                 inset 0 0 0 5px #000000,`,
     background: "white",
     overflow: "hidden",
-    animation: "mvTop 1.5s"
-  },
-  avatarImg: {
-    width: "100%",
-    height: "100%",
-    objectFit: "cover"
+    animation: "mvTop 1.5s",
+      "& img": {
+        width: "100%",
+        height: "100%",
+        objectFit: "cover"
   }
+}
 
 }))
 
