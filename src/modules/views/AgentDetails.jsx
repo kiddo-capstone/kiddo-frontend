@@ -13,4 +13,4 @@ const AgentDetails = () => {
   );
 };
 
-export default AgentDetails;
+export default React.memo(AgentDetails);

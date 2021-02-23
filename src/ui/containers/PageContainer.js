@@ -1,6 +1,8 @@
+import React from 'react';
 import { makeStyles } from "@material-ui/core";
 
 const drawerWidth = 300;
+const drawerHeight = 40;
 const useStyles = makeStyles((theme) => ({
   pageContainer: {
     textAlign: "center",
@@ -17,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     // media query for pushing page content past drawer
     [theme.breakpoints.up("sm")]: {
       marginLeft: drawerWidth,
+      marginTop: drawerHeight,
     },
   },
 }));
@@ -27,4 +30,4 @@ const PageContainer = ({ children }) => {
   return <div className={classes.pageContainer}>{children}</div>;
 };
 
-export default PageContainer;
+export default React.memo(PageContainer);
