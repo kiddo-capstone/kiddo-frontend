@@ -6,10 +6,11 @@ import {
   BadgeContainer,
 } from "../../ui/containers/index";
 import BadgeBG from "../../ui/badges/BadgeBg";
-import Button from "../../ui/button/Button";
+import RoundButton from "../../ui/button/RoundButton";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
 import { art, heart, explore } from "../../assets/index";
+import { convertDate } from "../common/convertDate";
 
 const useStyles = makeStyles(theme => ({
   missionWrapper: {
@@ -58,59 +59,34 @@ const useStyles = makeStyles(theme => ({
     },
   },
   right: {
-    flex: .7,
+    flex: 0.7,
   },
   start: {
-    // marginRight: '1em',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    background: 'gold',
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    background: "gold",
     color: "#575757",
-    height: '5em',
-    width: '5em',
-    borderRadius: '50%',
-    willChange: 'transform',
-    cursor: 'pointer',
-    transition: 'transform ease .3s',
-    '&:hover': {
-      transform: 'scale(1.05)',
+    height: "5em",
+    width: "5em",
+    borderRadius: "50%",
+    willChange: "transform",
+    cursor: "pointer",
+    transition: "transform ease .3s",
+    "&:hover": {
+      transform: "scale(1.05)",
     },
-  }
+  },
 }));
 
-const convertDate = date => {
-  let stringDate = new Date(date).getUTCDate();
-  let stringDay = new Date(date).getUTCDay();
-  stringDay =
-    stringDay === 0
-      ? "Monday"
-      : stringDay === 1
-      ? "Tuesday"
-      : stringDay === 2
-      ? "Wednesday"
-      : stringDay === 3
-      ? "Thursday"
-      : stringDay === 4
-      ? "Friday"
-      : stringDay === 5
-      ? "Saturday"
-      : "Sunday";
-  return { stringDate, stringDay };
-};
-
 // it's strange, had to pull props out of props??
-const Mission = ({
-  props: {
-    attributes: { name, due_date, user_id, created_at, updated_at },
-  },
-}) => {
+const Mission = (props) => {
   const [state, dispatch] = useContext(AppContext);
-
-  const {
-    theme: { colors },
-  } = state;
+  
+  const {props: { attributes: { name, due_date, user_id, created_at, updated_at }}} = props
+  const {theme: { colors }} = state;
   const classes = useStyles(state.theme.colors);
+
   const assignedDate = convertDate(created_at).stringDate;
   const assignedDay = convertDate(created_at).stringDay;
 
@@ -133,13 +109,13 @@ const Mission = ({
           </BadgeBG>
         </div>
         <div className={classes.right}>
-          <div className={classes.start}>
-            <h4 style={{margin: 0}}>START</h4>
-          </div>
+          <Link to={`/daily-missions/${props.props.id}`} style={{textDecoration:'none'}}>
+            <RoundButton>START</RoundButton>
+          </Link>
         </div>
       </div>
     </div>
   );
 };
 
-export default Mission;
+export default React.memo(Mission);
