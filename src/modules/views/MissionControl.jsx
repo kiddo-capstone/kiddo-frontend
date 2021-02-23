@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
   missions: {
     justifyContent: 'space-between',
     height: '90%',
-    minWidth: '620px',
+    minWidth: '750px',
     width: '90%',
     textAlign: "center",
     border: "solid 1px white",
@@ -49,7 +49,7 @@ const MissionControl = props => {
 
   return (
     <PageContainer>
-      <TitleContainer>Mission Control</TitleContainer>
+      <TitleContainer><h1>Mission Control</h1></TitleContainer>
       <section className={classes.missions}>
         {makeMissionList()}
       </section>
