@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import AppContext from "./AppContext";
 import { appReducer, initialState } from "../common/appReducer";
@@ -9,9 +9,21 @@ import Error400 from "../common/error/Error400";
 import Error500 from "../common/error/Error500";
 import { ErrorBoundary } from "react-error-boundary";
 import AppContainer from "../../ui/containers/AppContainer";
+import { getAllMissions } from '../common/apiCalls'
 
 function App() {
   const [state, dispatch] = useReducer(appReducer, initialState);
+
+  useEffect(() => {
+    getAllMissions()
+    .then(data => addMissionsToState(data.data))
+    .catch(error => console.log(error))
+  }, [])
+
+  const addMissionsToState = (data) => {
+    const action = { type: 'FETCH_MISSIONS', missions: data }
+    dispatch(action)
+  }
 
   return (
     <ErrorBoundary FallbackComponent={Error500}>
