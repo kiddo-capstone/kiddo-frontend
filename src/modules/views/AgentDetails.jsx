@@ -61,18 +61,7 @@ const useStyles = makeStyles(() => ({
     },
   },
   icon: {
-    margin: "auto",
-    position: "relative",
-    width: "40px",
-    height: "40px",
-    borderRadius: "50%",
-    // boxShadow: `0 0 0 3px ${appStyles.colors.background}`,
-    overflow: "hidden",
-    "& img": {
-      width: "100%",
-      height: "100%",
-      objectFit: "cover",
-    },
+    alignSelf: "center"
   },
   table: {
     marginTop: "10px",
@@ -87,28 +76,36 @@ const useStyles = makeStyles(() => ({
     },
     "& td": {
       // backgroundColor: appStyles.colors.grey1,
-      fontFamily: appStyles.fonts.tertiary,
+      fontFamily: appStyles.fonts.primary,
       color: appStyles.colors.white,
     },
   },
-  stats: {
-    display: "flex",
-    flexDirection: "column",
-    margin: "auto",
+  statBox: {
+    // paddingTop: "10px"
+    // display: "flex",
+    // flexDirection: "column",
+    // margin: "auto",
     // position: "relative",
-    justifyContent: "center"
+    // justifyContent: "space-around"
   },
+  statRow: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly"
+  }
   
 }));
 
 const stats = [
-  { bgcolor: "#6a1b9a", completed: 60 },
-  { bgcolor: "#00695c", completed: 30 },
-  { bgcolor: "#ef6c00", completed: 53 },
+  { barColor: appStyles.colors.yellow, completed: 60 },
+  { barColor: appStyles.colors.yellow, completed: 30 },
+  { barColor: appStyles.colors.yellow, completed: 53 },
 ];
 
 const AgentDetails = (props) => {
   const classes = useStyles();
+  const [state, dispatch] = useContext(AppContext);
+  // const {props: { attributes: { name, due_date, user_id, created_at, updated_at }}} = props
  
   return (
     <section className={classes.section}>
@@ -138,18 +135,28 @@ const AgentDetails = (props) => {
                 <th>Points:</th>
                 <td>60</td>
               </tr>
+              <tr>
+                <th>Reward:</th>
+                <td>Pizza Party 100pts</td>
+              </tr>
             </tbody>
           </table>
         </div>
       </div>
+      <span style={{textAlign: "center", color: appStyles.colors.yellow}}>
+            <h2>STATS</h2>
+          </span>
 
-      <div className={classes.stats}>
+      <div className={classes.statBox}>
           {/* <ProgressBar
             completed={10}
             barColor={appStyles.colors.yellow}
           /> */}
           {stats.map((item, idx) => (
-        <ProgressBar key={idx} barColor={item.bgcolor} completed={item.completed} />
+            <div className={classes.statRow}>
+            <div className={classes.icon}>❤️</div>
+        <ProgressBar key={idx} barColor={item.barColor} completed={item.completed} />
+        </div>
       ))}
       </div>
     </section>
