@@ -5,6 +5,7 @@ export const initialState = {
   users: [],
   missions: [],
   tasks: [],
+  selectedMission: {},
   theme,
 };
 
