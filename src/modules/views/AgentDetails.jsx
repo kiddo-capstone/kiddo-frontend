@@ -10,76 +10,114 @@ const appStyles = theme;
 // hex code is "#282c34"
 
 const useStyles = makeStyles(() => ({
+  root: {
+    // padding: "10px"
+  },
   card: {
     display: 'flex',
     flexDirection: 'column',
-    height: "400px",
-    // marginTop: "20px",
-    // padding: "10px",
-    // border: `6px solid ${appStyles.colors.primaryAccent}`,
-    borderRadius: "10px",
-    boxShadow: "0 10px 25px 5px rgba(0, 0, 0, 0.2)",
-    // background: "#151515",
+    // justifyContent: 'spaceAround',
+    height: "450px",
+    // border: `6px solid ${appStyles.colors.background}`,
+    // borderRadius: "10px",
+    // boxShadow: "0 10px 25px 5px rgba(0, 0, 0, 0.2)",
     overflow: "hidden",
-    backgroundColor: appStyles.colors.secondary,
-    background: `linear-gradient(to top, ${appStyles.colors.red}, ${appStyles.colors.primary})`
+    backgroundColor: "#3e4453",
+    // background: `linear-gradient(to top, ${appStyles.colors.red}, ${appStyles.colors.primary})`
 },
 cardHeader: {
   position: "relative",
-  height: "150px",
+  paddingTop: "50px",
+  paddingBottom: "50px",
+  height: "30%",
   // border: `6px solid ${appStyles.colors.primaryAccent}`,
   // background: `linear-gradient(to top, ${appStyles.colors.red}, ${appStyles.colors.primaryAccent})`,
-  backgroundColor: appStyles.colors.primaryAccent,
+  background: "#3e4453",
   backgroundSize: "cover",
-  // backgroundPosition: "top",
-  // "&:after": {
-    // content: "''",
-    // position: "absolute",
-    // width: "100%",
-    // height: "100%",
-    // background: `linear-gradient(to top, rgb(5,85,134), rgba(181,181,181, 0.1))`
-  // }
 },
 titleText: {
     fontFamily: appStyles.fonts.primary,
     fontSize: "12px",
     textAlign: 'center',
-    color: appStyles.colors.black
+    color: appStyles.colors.white
   },
   avatar: {
-    position: "initial",
     margin: "auto",
-    // top: "20px",
-    // right: 0,
-    // left: 0,
-    width: "220px",
-    height: "220px",
+    position: "relative",
+    width: "180px",
+    height: "180px",
     borderRadius: "50%",
-    // boxShadow: "0 0 0 5px #151515",
-    background: appStyles.colors.background,
+    // boxShadow: `0 0 0 3px ${appStyles.colors.background}`,
     overflow: "hidden",
       "& img": {
         width: "100%",
         height: "100%",
         // objectFit: "cover"
-  }
-}
-
+      },
+  },
+  icon: {
+    margin: "auto",
+    position: "relative",
+    width: "80px",
+    height: "80px",
+    borderRadius: "50%",
+    // boxShadow: `0 0 0 3px ${appStyles.colors.background}`,
+    overflow: "hidden",
+      "& img": {
+        width: "100%",
+        height: "100%",
+        objectFit: "cover"
+      },
+  },
+  table: {
+    marginTop: "20px",
+    width: "95%",
+    fontSize: "16px",
+    color: appStyles.colors.white,
+    "&:th": {
+      
+    },
+    "&:td": {
+      backgroundColor: appStyles.colors.green,
+      fontSize: "20px"
+    },
+  },
 }))
 
 const AgentDetails = () => {
   const classes = useStyles();
 
   return (
+    <section className={classes.root}>
     <div className={classes.card}>
-      <div className={classes.cardHeader}>
-       {/* <div className={classes.dsTop}> */}
-      <span className={classes.titleText}><h1>Welcome, Agent Sally!</h1></span>
+      {/* <div className={classes.cardHeader}> */}
+        {/* <span className={classes.titleText}><h1>Welcome, Agent Sally!</h1>
+        </span> */}
         <div className={classes.avatar}>
-        <img src="http://www.clker.com/cliparts/6/8/2/d/15164313681889389218spy-kids-gadgets-clipart.hi.png" />
-    </div>
-    </div>
-    </div>
+          <img src="https://image.freepik.com/free-vector/little-kid-avatar-profile_18591-50928.jpg" />
+        </div>
+      <table className={classes.table}>
+        <tbody>
+        <tr>
+          <th>Date</th>
+          <td>Tuesday, February 22, 2021</td>
+        </tr>
+        <tr>
+          <th>Agent Status</th>
+          <td>Status Icon</td>
+        </tr>
+        <tr>
+          <th>Points</th>
+          <td>60</td>
+        </tr>
+        </tbody>
+      </table>
+      </div>
+      <div className={classes.icon}>
+        <img src="https://cdn1.vectorstock.com/i/1000x1000/10/70/golden-coin-with-star-icon-for-game-vector-11791070.jpg" />
+      </div>
+    {/* </div> */}
+    </section>
   );
 };
 

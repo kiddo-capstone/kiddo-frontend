@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: appStyles.colors.primary,
+    backgroundColor: "#3e4452",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appBar: {
-    backgroundColor: appStyles.colors.primary,
+    backgroundColor: "#3e4452",
     fontSize: "calc(10px + 2vmin)",
     [theme.breakpoints.up("sm")]: {
       width: `calc(100% - ${drawerWidth}px)`,
@@ -91,7 +91,7 @@ function AppContainer(props) {
 
   const drawer = (
     <div>
-      <Toolbar className={classes.toolBar}>AGENT DETAILS</Toolbar>
+      {/* <Toolbar className={classes.appBar}></Toolbar> */}
       <Divider />
       <AgentDetails />
     </div>
