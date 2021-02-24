@@ -1,16 +1,11 @@
-import TitleContainer from "../../ui/containers/TitleContainer";
 import React, { useContext, useState, useEffect } from "react";
 import AppContext from "../app/AppContext";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
-import { art, heart, explore } from "../../assets/index";
-import Divider from "@material-ui/core/Divider";
+// import { art, heart, explore } from "../../assets/index";
 import ProgressBar from "../../ui/progressBar/ProgressBar";
 
 const appStyles = theme;
-
-// appStyles.colors.background (should be soft black) is not rendering
-// hex code is "#282c34"
 
 const useStyles = makeStyles(() => ({
   section: {
@@ -19,25 +14,17 @@ const useStyles = makeStyles(() => ({
     justifyContent: "spaceAround",
   },
   card: {
-    // display: "flex",
-    // flexDirection: "column",
-    // justifyContent: 'spaceAround',
     height: "450px",
-    // border: `6px solid ${appStyles.colors.background}`,
-    // borderRadius: "10px",
-    // boxShadow: "0 10px 25px 5px rgba(0, 0, 0, 0.2)",
+    boxShadow: "0 10px 25px 5px rgba(0, 0, 0, 0.2)",
     overflow: "hidden",
     backgroundColor: "#3e4453",
-    // background: `linear-gradient(to top, ${appStyles.colors.red}, ${appStyles.colors.primary})`
   },
   cardHeader: {
     position: "relative",
     paddingTop: "50px",
     paddingBottom: "50px",
     height: "30%",
-    // border: `6px solid ${appStyles.colors.primaryAccent}`,
     background: `linear-gradient(to top, ${appStyles.colors.yellow}, ${appStyles.colors.red})`,
-    // background: "#3e4453",
     backgroundSize: "cover",
   },
   titleText: {
@@ -52,7 +39,6 @@ const useStyles = makeStyles(() => ({
     width: "180px",
     height: "180px",
     borderRadius: "50%",
-    // boxShadow: `0 0 0 3px ${appStyles.colors.background}`,
     overflow: "hidden",
     "& img": {
       width: "100%",
@@ -61,7 +47,7 @@ const useStyles = makeStyles(() => ({
     },
   },
   icon: {
-    alignSelf: "center"
+    alignSelf: "center",
   },
   table: {
     marginTop: "10px",
@@ -75,25 +61,18 @@ const useStyles = makeStyles(() => ({
       color: appStyles.colors.yellow,
     },
     "& td": {
-      // backgroundColor: appStyles.colors.grey1,
       fontFamily: appStyles.fonts.primary,
       color: appStyles.colors.white,
     },
   },
   statBox: {
     // paddingTop: "10px"
-    // display: "flex",
-    // flexDirection: "column",
-    // margin: "auto",
-    // position: "relative",
-    // justifyContent: "space-around"
   },
   statRow: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-evenly"
-  }
-  
+    justifyContent: "space-evenly",
+  },
 }));
 
 const stats = [
@@ -102,37 +81,24 @@ const stats = [
   { barColor: appStyles.colors.yellow, completed: 53 },
 ];
 
-// const getUserMissions = (userId, missions) => {
-//   const userMissions = missions.filter(mission => mission.attributes.user_id === userId)
-//   console.log(userMissions)
-// }
-
 const AgentDetails = (props) => {
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
-  const allUsers = state.users
-  const [user, setUser] = useState(null)
-  const [userMissions, setUserMissions] = useState([])
-  
+  const allUsers = state.users;
+
+  const [user, setUser] = useState(null);
+
   const getUserById = (users, id) => {
-  const foundUser = users.find(user => +user.id === id)
-  console.log(foundUser)
-  return foundUser
-}
-
-//   const userId = userDetails.id
-//   const allMissions = state.missions
+    const foundUser = users.find((user) => +user.id === id);
+    // console.log(foundUser);
+    return foundUser;
+  };
   
-//   const getUserMissions = (userId, missions) => {
-//   const userMissions = missions.filter(mission => mission.attributes.user_id === userId)
-//   console.log(userMissions)
-// }
-  // getUserMissions(userId, allMissions)
   useEffect(() => {
-    const newUser = getUserById(allUsers, 1)
+    const newUser = getUserById(allUsers, 1);
     setUser(newUser)
-  }, [])
-
+  }, []);
+ 
   return (
     <section className={classes.section}>
       <div className={classes.card}>
@@ -142,10 +108,11 @@ const AgentDetails = (props) => {
           </div>
 
           <span className={classes.titleText}>
-            <h1>{user.attributes.name}</h1>
+    {/* Commented out due to issues holding onto user in state: */}
+            {/* <h1>{user.attributes.name}</h1> */} 
           </span>
-       
-          <hr/>
+
+          <hr />
 
           <table className={classes.table}>
             <tbody>
@@ -169,21 +136,21 @@ const AgentDetails = (props) => {
           </table>
         </div>
       </div>
-      <span style={{textAlign: "center", color: appStyles.colors.yellow}}>
-            <h2>STATS</h2>
-          </span>
+      <span style={{ textAlign: "center", color: appStyles.colors.yellow }}>
+        <h2>STATS</h2>
+      </span>
 
       <div className={classes.statBox}>
-          {/* <ProgressBar
-            completed={10}
-            barColor={appStyles.colors.yellow}
-          /> */}
-          {stats.map((item, idx) => (
-            <div className={classes.statRow}>
+        {stats.map((item, idx) => (
+          <div className={classes.statRow}>
             <div className={classes.icon}>❤️</div>
-        <ProgressBar key={idx} barColor={item.barColor} completed={item.completed} />
-        </div>
-      ))}
+            <ProgressBar
+              key={idx}
+              barColor={item.barColor}
+              completed={item.completed}
+            />
+          </div>
+        ))}
       </div>
     </section>
   );
