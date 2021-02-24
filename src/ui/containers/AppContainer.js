@@ -1,6 +1,7 @@
 // React Imports
 import React from "react";
-import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // Material-ui Imports
 import AppBar from "@material-ui/core/AppBar";
@@ -13,8 +14,8 @@ import Toolbar from "@material-ui/core/Toolbar";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 // App Imports
+import Button from "../button/Button";
 import theme from "../common/theme";
-// import Header from "../../modules/common/header/Header";
 import AgentDetails from "../../modules/views/AgentDetails";
 import PageContainer from "./PageContainer";
 
@@ -22,7 +23,7 @@ const appStyles = theme;
 const drawerWidth = 300;
 // "clamp(240px, 30%, 40%)"
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
   },
@@ -60,14 +61,24 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: drawerWidth,
     },
   },
+  buttonGroup: {
+    justifyContent: 'end',
+    alignSelf: 'center'
+  },
+  headerButton: {
+    margin: '.4em',
+    backgroundColor: 'transparent',
+  },
   toolbar: theme.mixins.toolbar,
 }));
 
 function AppContainer(props) {
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const { isAuthenticated } = useAuth0();
   const { window } = props;
+
   const classes = useStyles();
   const theme = useTheme();
-  const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -88,17 +99,29 @@ function AppContainer(props) {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
+        <Toolbar style={{justifyContent: 'space-between'}}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
+            className={classes.menuButton}>
             ⭐
           </IconButton>
           Welcome, Agent Sally!
+          <div className={classes.buttonGroup}>
+            <Link
+              title="mission control"
+              to="/mission-control">
+              <Button className={classes.headerButton}>Mission Control</Button>
+            </Link>
+            <Link title="style guide" to="/style-guide">
+              <Button className={classes.headerButton}>Style Guide</Button>
+            </Link>
+            <Link title="login" to="/login">
+              <Button className={classes.headerButton}>{isAuthenticated ? 'Log Out' : 'Log In'}</Button>
+            </Link>
+          </div>
         </Toolbar>
       </AppBar>
       <div className={classes.drawer}>
@@ -114,8 +137,7 @@ function AppContainer(props) {
             }}
             ModalProps={{
               keepMounted: true,
-            }}
-          >
+            }}>
             {drawer}
           </Drawer>
         </Hidden>
@@ -126,8 +148,7 @@ function AppContainer(props) {
               paper: classes.drawerPaper,
             }}
             variant="permanent"
-            open
-          >
+            open>
             {drawer}
           </Drawer>
         </Hidden>
