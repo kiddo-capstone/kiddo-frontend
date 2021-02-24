@@ -101,11 +101,11 @@ const useStyles = makeStyles(() => ({
   
 }));
 
-// const testData = [
-//   { bgcolor: "#6a1b9a", completed: 60 },
-//   { bgcolor: "#00695c", completed: 30 },
-//   { bgcolor: "#ef6c00", completed: 53 },
-// ];
+const stats = [
+  { bgcolor: "#6a1b9a", completed: 60 },
+  { bgcolor: "#00695c", completed: 30 },
+  { bgcolor: "#ef6c00", completed: 53 },
+];
 
 const AgentDetails = (props) => {
   const classes = useStyles();
@@ -144,11 +144,13 @@ const AgentDetails = (props) => {
       </div>
 
       <div className={classes.stats}>
-          <ProgressBar
-            bgcolor={appStyles.colors.yellow}
+          {/* <ProgressBar
             completed={10}
-          />
-     
+            barColor={appStyles.colors.yellow}
+          /> */}
+          {stats.map((item, idx) => (
+        <ProgressBar key={idx} barColor={item.bgcolor} completed={item.completed} />
+      ))}
       </div>
     </section>
   );
