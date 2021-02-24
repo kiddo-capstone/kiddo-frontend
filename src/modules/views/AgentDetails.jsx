@@ -6,50 +6,58 @@ import theme from "../../ui/common/theme"
 
 const appStyles = theme;
 
+// appStyles.colors.background (should be soft black) is not rendering 
+// hex code is "#282c34"
+
 const useStyles = makeStyles(() => ({
   card: {
-  height: "400px",
-  borderRadius: "10px",
-  boxShadow: "0 10px 25px 5px rgba(0, 0, 0, 0.2)",
-  background: "#151515",
-  overflow: "hidden",
-  display: 'flex',
-  flexDirection: 'column',
-  backgroundColor: appStyles.colors.secondary,
-  border: `6px solid ${appStyles.colors.secondaryAccent}`
+    display: 'flex',
+    flexDirection: 'column',
+    height: "400px",
+    // marginTop: "20px",
+    // padding: "10px",
+    // border: `6px solid ${appStyles.colors.primaryAccent}`,
+    borderRadius: "10px",
+    boxShadow: "0 10px 25px 5px rgba(0, 0, 0, 0.2)",
+    // background: "#151515",
+    overflow: "hidden",
+    backgroundColor: appStyles.colors.secondary,
+    background: `linear-gradient(to top, ${appStyles.colors.red}, ${appStyles.colors.primary})`
 },
 cardHeader: {
   position: "relative",
-  height: "250px",
-  backgroundColor: appStyles.colors.blue,
+  height: "150px",
+  // border: `6px solid ${appStyles.colors.primaryAccent}`,
+  // background: `linear-gradient(to top, ${appStyles.colors.red}, ${appStyles.colors.primaryAccent})`,
+  backgroundColor: appStyles.colors.primaryAccent,
   backgroundSize: "cover",
   // backgroundPosition: "top",
-  "&:after": {
-    content: "''",
-    position: "absolute",
-    width: "100%",
-    height: "100%",
-    background: `linear-gradient(to top, rgb(5,85,134), rgba(181,181,181, 0.1))`
-  }
+  // "&:after": {
+    // content: "''",
+    // position: "absolute",
+    // width: "100%",
+    // height: "100%",
+    // background: `linear-gradient(to top, rgb(5,85,134), rgba(181,181,181, 0.1))`
+  // }
 },
 titleText: {
-    fontFamily: theme.fonts.primary,
-    fontSize: 10,
-    alignSelf: 'center'
+    fontFamily: appStyles.fonts.primary,
+    fontSize: "12px",
+    textAlign: 'center',
+    color: appStyles.colors.black
   },
   avatar: {
-    // position: "relative",
+    position: "initial",
     margin: "auto",
-    top: "10px",
+    // top: "20px",
     // right: 0,
     // left: 0,
-    width: "200px",
-    height: "200px",
+    width: "220px",
+    height: "220px",
     borderRadius: "50%",
-    boxShadow: "0 0 0 5px #151515",
-    // background: "black",
+    // boxShadow: "0 0 0 5px #151515",
+    background: appStyles.colors.background,
     overflow: "hidden",
-    animation: "mvTop 1.5s",
       "& img": {
         width: "100%",
         height: "100%",
@@ -68,7 +76,6 @@ const AgentDetails = () => {
        {/* <div className={classes.dsTop}> */}
       <span className={classes.titleText}><h1>Welcome, Agent Sally!</h1></span>
         <div className={classes.avatar}>
-      
         <img src="http://www.clker.com/cliparts/6/8/2/d/15164313681889389218spy-kids-gadgets-clipart.hi.png" />
     </div>
     </div>
