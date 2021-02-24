@@ -1,5 +1,5 @@
 import TitleContainer from "../../ui/containers/TitleContainer";
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import AppContext from "../app/AppContext";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
@@ -102,11 +102,37 @@ const stats = [
   { barColor: appStyles.colors.yellow, completed: 53 },
 ];
 
+// const getUserMissions = (userId, missions) => {
+//   const userMissions = missions.filter(mission => mission.attributes.user_id === userId)
+//   console.log(userMissions)
+// }
+
 const AgentDetails = (props) => {
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
-  // const {props: { attributes: { name, due_date, user_id, created_at, updated_at }}} = props
- 
+  const allUsers = state.users
+  const [user, setUser] = useState(null)
+  const [userMissions, setUserMissions] = useState([])
+  
+  const getUserById = (users, id) => {
+  const foundUser = users.find(user => +user.id === id)
+  console.log(foundUser)
+  return foundUser
+}
+
+//   const userId = userDetails.id
+//   const allMissions = state.missions
+  
+//   const getUserMissions = (userId, missions) => {
+//   const userMissions = missions.filter(mission => mission.attributes.user_id === userId)
+//   console.log(userMissions)
+// }
+  // getUserMissions(userId, allMissions)
+  useEffect(() => {
+    const newUser = getUserById(allUsers, 1)
+    setUser(newUser)
+  }, [])
+
   return (
     <section className={classes.section}>
       <div className={classes.card}>
@@ -116,7 +142,7 @@ const AgentDetails = (props) => {
           </div>
 
           <span className={classes.titleText}>
-            <h1>AGENT SALLY</h1>
+            <h1>{user.attributes.name}</h1>
           </span>
        
           <hr/>

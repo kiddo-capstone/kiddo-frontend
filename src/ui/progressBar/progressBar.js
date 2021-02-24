@@ -20,7 +20,7 @@ const ProgressBar = (props) => {
     backgroundColor: barColor,
     borderRadius: "inherit",
     textAlign: "right",
-    "& :active": { transition: "width 1s ease-in-out" },
+    "& :hover": { transition: "width 2s ease-in-out" },
   };
 
   const label = {
