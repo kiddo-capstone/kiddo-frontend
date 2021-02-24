@@ -108,7 +108,7 @@ const Mission = (props) => {
           </BadgeBG>
         </div>
         <div className={classes.right}>
-          <Link to={`/daily-missions/${props.props.id}`} style={{textDecoration:'none'}}>
+          <Link to={`/daily-mission/${props.props.id}`} style={{textDecoration:'none'}}>
             <RoundButton>START</RoundButton>
           </Link>
         </div>
