@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import AppContext from "../app/AppContext";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
-// import { art, heart, explore } from "../../assets/index";
+import kids from "../../assets/kids_trio.png";
 import ProgressBar from "../../ui/progressBar/ProgressBar";
 
 const appStyles = theme;
@@ -24,7 +24,8 @@ const useStyles = makeStyles(() => ({
     paddingTop: "50px",
     paddingBottom: "50px",
     height: "30%",
-    background: `linear-gradient(to top, ${appStyles.colors.yellow}, ${appStyles.colors.red})`,
+    background: appStyles.colors.grey2,
+    // background: `linear-gradient(to top, ${appStyles.colors.yellow}, ${appStyles.colors.red})`,
     backgroundSize: "cover",
   },
   titleText: {
@@ -36,14 +37,14 @@ const useStyles = makeStyles(() => ({
   avatar: {
     margin: "auto",
     position: "relative",
-    width: "180px",
+    width: "220px",
     height: "180px",
-    borderRadius: "50%",
+    // borderRadius: "50%",
     overflow: "hidden",
     "& img": {
       width: "100%",
       height: "100%",
-      // objectFit: "cover"
+      objectFit: "contain"
     },
   },
   icon: {
@@ -104,7 +105,7 @@ const AgentDetails = (props) => {
       <div className={classes.card}>
         <div className={classes.cardHeader}>
           <div className={classes.avatar}>
-            <img src="https://image.freepik.com/free-vector/little-kid-avatar-profile_18591-50928.jpg" />
+            <img src={kids} />
           </div>
 
           <span className={classes.titleText}>
@@ -118,7 +119,7 @@ const AgentDetails = (props) => {
             <tbody>
               <tr>
                 <th>Date:</th>
-                <td>2-21-2021</td>
+                <td>{ new Date().toLocaleDateString() }</td>
               </tr>
               <tr>
                 <th>Agent Status:</th>

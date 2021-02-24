@@ -5,7 +5,7 @@ import BadgeBG from "../../ui/badges/BadgeBg";
 import RoundButton from "../../ui/button/RoundButton";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
-import { art, heart, explore } from "../../assets/index";
+import { art, heart, explore, kids } from "../../assets/index";
 import { convertDate } from "../common/convertDate";
 
 const useStyles = makeStyles(theme => ({
