@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import AppContext from "../app/AppContext";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme"
+import { art, heart, explore } from "../../assets/index";
 
 const appStyles = theme;
 
@@ -58,8 +59,8 @@ titleText: {
   icon: {
     margin: "auto",
     position: "relative",
-    width: "80px",
-    height: "80px",
+    width: "40px",
+    height: "40px",
     borderRadius: "50%",
     // boxShadow: `0 0 0 3px ${appStyles.colors.background}`,
     overflow: "hidden",
@@ -70,16 +71,16 @@ titleText: {
       },
   },
   table: {
-    marginTop: "20px",
+    marginTop: "10px",
     width: "95%",
     fontSize: "16px",
     color: appStyles.colors.white,
-    "&:th": {
-      
+    "& th": {
+      color: appStyles.colors.red
     },
-    "&:td": {
-      backgroundColor: appStyles.colors.green,
-      fontSize: "20px"
+    "& td": {
+      backgroundColor: appStyles.colors.grey,
+      color: appStyles.colors.black
     },
   },
 }))
@@ -99,22 +100,22 @@ const AgentDetails = () => {
       <table className={classes.table}>
         <tbody>
         <tr>
-          <th>Date</th>
+          <th>Date:</th>
           <td>Tuesday, February 22, 2021</td>
         </tr>
         <tr>
-          <th>Agent Status</th>
-          <td>Status Icon</td>
+          <th>Agent Status:</th>
+          <td>😃</td>
         </tr>
         <tr>
-          <th>Points</th>
+          <th>Points:</th>
           <td>60</td>
         </tr>
         </tbody>
       </table>
       </div>
       <div className={classes.icon}>
-        <img src="https://cdn1.vectorstock.com/i/1000x1000/10/70/golden-coin-with-star-icon-for-game-vector-11791070.jpg" />
+        <img src="https://image.freepik.com/free-vector/little-kid-avatar-profile_18591-50928.jpg" />
       </div>
     {/* </div> */}
     </section>

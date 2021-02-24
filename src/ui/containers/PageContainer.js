@@ -5,7 +5,7 @@ import theme from "../common/theme";
 const appStyles = theme;
 const drawerWidth = 300;
 
-const drawerWidth = 240;
+// const drawerWidth = 240;
 const drawerHeight = 40;
 const useStyles = makeStyles((theme) => ({
   pageContainer: {
