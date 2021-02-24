@@ -11,7 +11,7 @@ ReactDOM.render(
   <Auth0Provider
     domain="dev-45kbuxp3.us.auth0.com"
     clientId="KBYokR5NYW0COpeCkQBGHXGdKGH3zhqj"
-    redirectUri={window.location.origin + "/home"}>
+    redirectUri={window.location.origin + "/mission-control"}>
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <App />
     </BrowserRouter>
