@@ -11,6 +11,7 @@ const theme = {
     secondaryAccent: colors.secondaryAccent,
     secondary: colors.secondary,
     secondaryAccent: colors.secondaryAccent,
+    background: colors.background,
     black: colors.black,
     red: colors.red,
     yellow: colors.yellow,

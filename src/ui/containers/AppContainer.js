@@ -20,7 +20,7 @@ import AgentDetails from "../../modules/views/AgentDetails";
 import PageContainer from "./PageContainer";
 
 const appStyles = theme;
-const drawerWidth = 240;
+const drawerWidth = 300;
 // "clamp(240px, 30%, 40%)"
 
 const useStyles = makeStyles((theme) => ({
