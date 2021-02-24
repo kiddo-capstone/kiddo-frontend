@@ -4,6 +4,7 @@ import AppContext from "../app/AppContext";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme"
 import { art, heart, explore } from "../../assets/index";
+import Divider from "@material-ui/core/Divider";
 
 const appStyles = theme;
 
@@ -11,9 +12,7 @@ const appStyles = theme;
 // hex code is "#282c34"
 
 const useStyles = makeStyles(() => ({
-  root: {
-    // padding: "10px"
-  },
+  
   card: {
     display: 'flex',
     flexDirection: 'column',
@@ -32,15 +31,15 @@ cardHeader: {
   paddingBottom: "50px",
   height: "30%",
   // border: `6px solid ${appStyles.colors.primaryAccent}`,
-  // background: `linear-gradient(to top, ${appStyles.colors.red}, ${appStyles.colors.primaryAccent})`,
-  background: "#3e4453",
+  background: `linear-gradient(to top, ${appStyles.colors.yellow}, ${appStyles.colors.red})`,
+  // background: "#3e4453",
   backgroundSize: "cover",
 },
 titleText: {
     fontFamily: appStyles.fonts.primary,
-    fontSize: "12px",
+    fontSize: "20px",
     textAlign: 'center',
-    color: appStyles.colors.white
+    color: appStyles.colors.yellow,
   },
   avatar: {
     margin: "auto",
@@ -72,15 +71,20 @@ titleText: {
   },
   table: {
     marginTop: "10px",
-    width: "95%",
-    fontSize: "16px",
-    color: appStyles.colors.white,
+    width: "100%",
+    fontSize: "20px",
+    color: appStyles.colors.yellow,
+    marginLeft: "10px",
+    textAlign: "left",
+    
     "& th": {
-      color: appStyles.colors.red
+      color: appStyles.colors.yellow,
     },
     "& td": {
-      backgroundColor: appStyles.colors.grey,
-      color: appStyles.colors.black
+      // backgroundColor: appStyles.colors.grey1,
+      fontFamily: appStyles.fonts.tertiary,
+      color: appStyles.colors.white,
+
     },
   },
 }))
@@ -89,19 +93,21 @@ const AgentDetails = () => {
   const classes = useStyles();
 
   return (
-    <section className={classes.root}>
+    <section >
     <div className={classes.card}>
-      {/* <div className={classes.cardHeader}> */}
-        {/* <span className={classes.titleText}><h1>Welcome, Agent Sally!</h1>
-        </span> */}
+      <div className={classes.cardHeader}>
         <div className={classes.avatar}>
           <img src="https://image.freepik.com/free-vector/little-kid-avatar-profile_18591-50928.jpg" />
         </div>
+         <span className={classes.titleText}><h1>AGENT SALLY</h1>
+        </span>
+        <Divider />
       <table className={classes.table}>
         <tbody>
+          {/* <th>Date:</th> */}
         <tr>
           <th>Date:</th>
-          <td>Tuesday, February 22, 2021</td>
+          <td>2-21-2021</td>
         </tr>
         <tr>
           <th>Agent Status:</th>
@@ -114,10 +120,10 @@ const AgentDetails = () => {
         </tbody>
       </table>
       </div>
-      <div className={classes.icon}>
+      {/* <div className={classes.icon}>
         <img src="https://image.freepik.com/free-vector/little-kid-avatar-profile_18591-50928.jpg" />
-      </div>
-    {/* </div> */}
+      </div> */}
+    </div>
     </section>
   );
 };

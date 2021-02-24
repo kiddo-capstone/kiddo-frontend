@@ -91,8 +91,6 @@ function AppContainer(props) {
 
   const drawer = (
     <div>
-      {/* <Toolbar className={classes.appBar}></Toolbar> */}
-      <Divider />
       <AgentDetails />
     </div>
   );
@@ -131,23 +129,23 @@ function AppContainer(props) {
         </Toolbar>
       </AppBar>
       <div className={classes.drawer}>
-        <Hidden smUp implementation="css">
-          <Drawer
-            container={container}
-            variant="temporary"
-            anchor={theme.direction === "rtl" ? "right" : "left"}
-            open={mobileOpen}
-            onClose={handleDrawerToggle}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            ModalProps={{
-              keepMounted: true,
-            }}
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
+        {/* <Hidden smUp implementation="css"> */}
+        <Drawer
+          container={container}
+          variant="temporary"
+          anchor={theme.direction === "rtl" ? "right" : "left"}
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+          ModalProps={{
+            keepMounted: true,
+          }}
+        >
+          {drawer}
+        </Drawer>
+        {/* </Hidden> */}
 
         <Hidden xsDown implementation="css">
           <Drawer
@@ -163,7 +161,6 @@ function AppContainer(props) {
       </div>
 
       <main className={classes.content}>
-        {/* <Header /> */}
         <PageContainer />
       </main>
     </div>
