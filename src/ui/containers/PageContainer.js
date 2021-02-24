@@ -1,12 +1,16 @@
-import React from 'react';
+import React from "react";
 import { makeStyles } from "@material-ui/core";
+import theme from "../common/theme";
 
+const appStyles = theme;
 const drawerWidth = 300;
+
+// const drawerWidth = 240;
 const drawerHeight = 40;
 const useStyles = makeStyles((theme) => ({
   pageContainer: {
     textAlign: "center",
-    backgroundColor: "#282c34",
+    backgroundColor: appStyles.colors.background,
     marginTop: "25px",
     minHeight: "100%",
     display: "flex",
