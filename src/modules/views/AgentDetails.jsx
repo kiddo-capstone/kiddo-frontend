@@ -2,8 +2,10 @@ import React, { useContext, useState, useEffect } from "react";
 import AppContext from "../app/AppContext";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
-// import { art, heart, explore } from "../../assets/index";
-import ProgressBar from "../../ui/progressBar/progressBar";
+import kids from "../../assets/kids_trio.png";
+import ProgressBar from "../../ui/progressBar/ProgressBar";
+import Auth from "../auth/Auth";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const appStyles = theme;
 
@@ -14,7 +16,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: "spaceAround",
   },
   card: {
-    height: "450px",
+    height: "auto",
     boxShadow: "0 10px 25px 5px rgba(0, 0, 0, 0.2)",
     overflow: "hidden",
     backgroundColor: "#3e4453",
@@ -22,28 +24,31 @@ const useStyles = makeStyles(() => ({
   cardHeader: {
     position: "relative",
     paddingTop: "50px",
-    paddingBottom: "50px",
+    paddingBottom: "20px",
     height: "30%",
-    background: `linear-gradient(to top, ${appStyles.colors.yellow}, ${appStyles.colors.red})`,
+    background: appStyles.colors.grey3,
     backgroundSize: "cover",
   },
   titleText: {
     fontFamily: appStyles.fonts.primary,
     fontSize: "20px",
     textAlign: "center",
-    color: appStyles.colors.yellow,
+    color: appStyles.colors.green,
   },
   avatar: {
     margin: "auto",
     position: "relative",
-    width: "180px",
-    height: "180px",
+    background: appStyles.colors.white,
+    marginBottom: "0.7em",
+    width: "220px",
+    height: "200px",
     borderRadius: "50%",
+    border: `5px solid ${appStyles.colors.darkGrey}`,
     overflow: "hidden",
     "& img": {
       width: "100%",
       height: "100%",
-      // objectFit: "cover"
+      objectFit: "cover"
     },
   },
   icon: {
@@ -53,20 +58,17 @@ const useStyles = makeStyles(() => ({
     marginTop: "10px",
     width: "100%",
     fontSize: "20px",
-    color: appStyles.colors.yellow,
+    color: appStyles.colors.green,
     marginLeft: "10px",
     textAlign: "left",
 
     "& th": {
-      color: appStyles.colors.yellow,
+      color: appStyles.colors.green,
     },
     "& td": {
       fontFamily: appStyles.fonts.primary,
       color: appStyles.colors.white,
     },
-  },
-  statBox: {
-    // paddingTop: "10px"
   },
   statRow: {
     display: "flex",
@@ -76,40 +78,26 @@ const useStyles = makeStyles(() => ({
 }));
 
 const stats = [
-  { barColor: appStyles.colors.yellow, completed: 60 },
-  { barColor: appStyles.colors.yellow, completed: 30 },
-  { barColor: appStyles.colors.yellow, completed: 53 },
+  { barColor: appStyles.colors.red, completed: 60 },
+  { barColor: appStyles.colors.red, completed: 30 },
+  { barColor: appStyles.colors.red, completed: 53 },
 ];
 
 const AgentDetails = (props) => {
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
-  const allUsers = state.users;
-
-  const [user, setUser] = useState(null);
-
-  const getUserById = (users, id) => {
-    const foundUser = users.find((user) => +user.id === id);
-    // console.log(foundUser);
-    return foundUser;
-  };
-  
-  useEffect(() => {
-    const newUser = getUserById(allUsers, 1);
-    setUser(newUser)
-  }, []);
+  const { user, isAuthenticated } = useAuth0()
  
   return (
     <section className={classes.section}>
       <div className={classes.card}>
         <div className={classes.cardHeader}>
           <div className={classes.avatar}>
-            <img src="https://image.freepik.com/free-vector/little-kid-avatar-profile_18591-50928.jpg" />
+            <img src={!isAuthenticated ? kids : user.picture} />
           </div>
 
           <span className={classes.titleText}>
-    {/* Commented out due to issues holding onto user in state: */}
-            {/* <h1>{user.attributes.name}</h1> */} 
+            <h1>{!isAuthenticated ? 'Secret Agent' : user.name}</h1> 
           </span>
 
           <hr />
@@ -118,7 +106,7 @@ const AgentDetails = (props) => {
             <tbody>
               <tr>
                 <th>Date:</th>
-                <td>2-21-2021</td>
+                <td>{ new Date().toLocaleDateString() }</td>
               </tr>
               <tr>
                 <th>Agent Status:</th>
@@ -128,22 +116,17 @@ const AgentDetails = (props) => {
                 <th>Points:</th>
                 <td>60</td>
               </tr>
-              <tr>
-                <th>Reward:</th>
-                <td>Pizza Party 100pts</td>
-              </tr>
             </tbody>
           </table>
         </div>
       </div>
-      <span style={{ textAlign: "center", color: appStyles.colors.yellow }}>
+      <span style={{ textAlign: "center", color: appStyles.colors.white }}>
         <h2>STATS</h2>
       </span>
-
-      <div className={classes.statBox}>
+      <div>
         {stats.map((item, idx) => (
-          <div className={classes.statRow}>
-            <div className={classes.icon}>❤️</div>
+          <div className={classes.statRow} key={`statRow-${idx}`}>
+            <div className={classes.icon} key={`icon-${idx}`}>❤️</div>
             <ProgressBar
               key={idx}
               barColor={item.barColor}
@@ -152,6 +135,7 @@ const AgentDetails = (props) => {
           </div>
         ))}
       </div>
+      <Auth />
     </section>
   );
 };
