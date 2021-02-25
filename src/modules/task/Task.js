@@ -19,15 +19,12 @@ const useStyles = makeStyles(theme => ({
     cursor: 'pointer',
     '&:hover': {
       transform: 'translateY(-.3em)',
-      // filter: 'brightness(0.5)',
       '& $task': {
         transition: 'border ease 2s, background-color 1s, color 1s, box-shadow 1.5s',
         backgroundColor: "#ffdb00",
         border: "solid 4px gold",
         color: 'black',
         boxShadow: '0 0 20px 15px gold',
-        // filter: 'blur(3px)',
-        // backdropFilter: 'grayscale(1)',
       },
       '& $category': {
         opacity: 0,
@@ -35,14 +32,11 @@ const useStyles = makeStyles(theme => ({
     },
   },
   category: {
-    // flexDirection: 'column',
     display: "flex",
     width: 'fit-content',
     transform: 'translate(.6em, 1.7em)',
     transition: 'ease .3s',
     zIndex: 1,
-    // willChange: 'transform',
-    // willChange: 'filter',
     '& p': {
       color: 'gold',
       margin: 0,
@@ -63,7 +57,6 @@ const useStyles = makeStyles(theme => ({
     border: "solid 4px lightgrey",
     padding: '1em',
     transition: 'ease .3s',
-    // willChange: 'transform',
 
   },
   titleContainer: {
@@ -71,13 +64,10 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
   },
   taskText: {
-    // flex: 2,
     display: "flex",
     flexDirection: "row",
     alignItems: "baseline",
-    // marginLeft: "4em",
     display: "flex",
-    // alignItems: "baseline",
     "& h1": {
       fontWeight: "100",
       lineHeight: '1',
