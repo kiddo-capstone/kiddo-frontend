@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: "10px",
     backgroundColor: "rgb(40,44,52, .5)",
     outline: "none",
-    color: "white",
+    color: "blanchedalmond",
   },
 }));
 
