@@ -25,6 +25,7 @@ const useStyles = makeStyles(theme => ({
     minWidth: '350px',
     height: '12em',
     overflow: 'auto',
+    // color: 'blanchedalmond',
   },
   actionContainer: {
     border: "solid 3px hotpink",
@@ -82,6 +83,11 @@ const TaskView = ({ id }) => {
     }
   }
 
+  const handleClick = () => {
+    console.log('handled')
+    // update the needed glags 
+  }
+
   return (
     // FYI
     // rendering different text than previous click BC switch from
@@ -117,8 +123,8 @@ const TaskView = ({ id }) => {
           </div>
         </section>
       </section>
-      <Button color="hotpink" disabled={complete ? false : true}>
-        {complete ? 'All Done!' : 'Complete Task to Submit!'}
+      <Button onClick={handleClick} color="hotpink" disabled={complete ? false : true}>
+        {complete ? 'All Done!' : 'Complete Task to Submit'}
       </Button>
     </PageContainer>
   );
