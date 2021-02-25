@@ -15,6 +15,8 @@ export const appReducer = (state, action) => {
       return {...state, missions: action.missions}
     case 'FETCH_SELECTED_MISSION':
       return {...state, selectedMission: action.selectedMission}
+    case 'FETCH_SELECTED_TASK':
+      return { ...state, tasks: action.selectedTask }
     case 'FETCH_TASKS':
       return { ...state, tasks: action.tasks }
     case 'FETCH_USERS':
