@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
     width: 'fit-content',
     height: "fit-content",
     padding: '0 .5em',
-    maxHeight: '1.3em',
+    maxHeight: '1em',
   },
 }));
 

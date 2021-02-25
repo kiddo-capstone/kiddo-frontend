@@ -1,20 +1,21 @@
 import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(color => ({
   round: {
-    fontSize: '1em',
+    fontSize: '.9em',
     fontWeight: '400',
     padding: '2%',
-
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    background: "#575757",
+    background: ((color) => color || "#3e4452"),
     color: "gold",  
     border: 'solid 3px gold',
-    height: "5em",
-    width: "5em",
+    height: "clamp(40px, 5em, 300px)",
+    width: "clamp(40px, 5em, 300px)",
+    // fontSize: 'clamp(20px, 1%, 280px)',
+    // fontSize: '1em',
     borderRadius: "50%",
     willChange: "transform",
     cursor: "pointer",
@@ -22,13 +23,13 @@ const useStyles = makeStyles(theme => ({
     "&:hover": {
       transform: "scale(1.05)",
       background: "gold",
-      color: "#575757",
+      color: "#3e4452",
     },
   },
 }));
 
-const RoundButton = ({ children }) => {
-  const classes = useStyles();
+const RoundButton = ({ children, color }) => {
+  const classes = useStyles(color);
 
   return (
     <div className={classes.round}>

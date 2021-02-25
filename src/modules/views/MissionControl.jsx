@@ -5,6 +5,7 @@ import Button from "../../ui/button/Button";
 import Mission from '../mission/Mission'
 import { Link } from "react-router-dom";
 import {makeStyles} from '@material-ui/core'
+import AccentLine from '../../ui/decorative/AccentLine'
 
 const useStyles = makeStyles(theme => ({
   missions: {
@@ -48,6 +49,7 @@ const MissionControl = props => {
   return (
     <PageContainer>
       <TitleContainer><h1>Mission Control</h1></TitleContainer>
+      <AccentLine color='red' height={5}/>
       <section className={classes.missions}>
         {makeMissionList()}
       </section>
