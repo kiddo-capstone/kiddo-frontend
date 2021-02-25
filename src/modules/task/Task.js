@@ -14,11 +14,24 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'flex-start',
     flexDirection: 'column',
-    transition: 'transform ease .2s',
+    transition: 'ease .3s',
     willChange: 'transform',
     cursor: 'pointer',
     '&:hover': {
-      transform: 'translateY(-.3em)'
+      transform: 'translateY(-.3em)',
+      // filter: 'brightness(0.5)',
+      '& $task': {
+        transition: 'border ease 2s, background-color 1s, color 1s, box-shadow 1.5s',
+        backgroundColor: "#ffdb00",
+        border: "solid 4px gold",
+        color: 'black',
+        boxShadow: '0 0 20px 15px gold',
+        // filter: 'blur(3px)',
+        // backdropFilter: 'grayscale(1)',
+      },
+      '& $category': {
+        opacity: 0,
+      },
     },
   },
   category: {
@@ -26,6 +39,10 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     width: 'fit-content',
     transform: 'translate(.6em, 1.7em)',
+    transition: 'ease .3s',
+    zIndex: 1,
+    // willChange: 'transform',
+    // willChange: 'filter',
     '& p': {
       color: 'gold',
       margin: 0,
@@ -45,20 +62,9 @@ const useStyles = makeStyles(theme => ({
     color: "white",
     border: "solid 4px lightgrey",
     padding: '1em',
-  },
-  left: {
-    height: "100%",
-    width: "fit-content",
-    minWidth: "fit-content",
-    maxWidth: "fit-content",
-    flex: 1,
-    padding: ".4em .4em",
-    backgroundColor: "lightgrey",
-    color: "#282C34",
-    fontFamily: "'Mitr', sans-serif",
-    fontSize: "clamp(7px, 1.75rem, 4vmin)",
-    "& p:nth-child(1)": {},
-    "& p:nth-child(2)": {},
+    transition: 'ease .3s',
+    // willChange: 'transform',
+
   },
   titleContainer: {
     marginTop: 1,
@@ -87,25 +93,6 @@ const useStyles = makeStyles(theme => ({
     fontFamily: 'Roboto',
     fontWeight: '300',
     fontSize: '1rem',
-  },
-  right: {
-    flex: 0.7,
-  },
-  start: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    background: "gold",
-    color: "#575757",
-    height: "5em",
-    width: "5em",
-    borderRadius: "50%",
-    willChange: "transform",
-    cursor: "pointer",
-    transition: "transform ease .3s",
-    "&:hover": {
-      transform: "scale(1.05)",
-    },
   },
 }));
 
