@@ -4,8 +4,8 @@ export const cannedData = {
           "id": "1",
           "type": "task",
           "attributes": {
-              "name": "EQ level up",
-              "description": "Say something kind",
+              "name": "💜 Understanding Feelings",
+              "description": "Every good secret agent needs to understand their emotions. Take 10 minutes to journal your feelings",
               "category": "EQ",
               "points": 100
           }
@@ -14,8 +14,8 @@ export const cannedData = {
           "id": "2",
           "type": "task",
           "attributes": {
-              "name": "IQ level up",
-              "description": "Conquer homework",
+              "name": "🧠 IQ Upgrade",
+              "description": "Every agent can increase their own skills with good, hard work. Complete 10 math problems.",
               "category": "IQ",
               "points": 50
           }
@@ -24,8 +24,8 @@ export const cannedData = {
           "id": "3",
           "type": "task",
           "attributes": {
-              "name": "Special",
-              "description": "Make your bed",
+              "name": "🛏️  A Tidy Home Base",
+              "description": "Good rest is one of the most important things for an agent to have. Make sure your bed is ready to sleep in after today's missions.",
               "category": "Misc",
               "points": 1337
           }
