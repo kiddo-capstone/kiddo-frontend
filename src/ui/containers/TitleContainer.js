@@ -4,16 +4,7 @@ const useStyles = makeStyles(() => ({
   titleContainer: {
     textAlign: "center",
     justifyContent: "center",
-    // margin: '0 2%',
-    // width: '100%',
-    // backgroundColor: '#282c34',
-    // alignItems: 'center',
-    // minHeight: '100%',
-    // display: 'flex',
-    // flexDirection: 'column',
-    // fontSize: 'calc(10px + 2vmin)',
-    // color: 'white',
-    // fontFamily: "'Russo One', sans-serif",
+    zIndex: 1,
   },
 }));
 
