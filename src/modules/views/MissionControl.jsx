@@ -48,8 +48,11 @@ const MissionControl = props => {
 
   return (
     <PageContainer>
-      <TitleContainer><h1>Mission Control</h1></TitleContainer>
-      <AccentLine color='red' height={5}/>
+      <TitleContainer>
+        <p>Welcome back to</p>
+        <h1>Mission Control</h1>
+      </TitleContainer>
+      <AccentLine color='gold' height={5}/>
       <section className={classes.missions}>
         {makeMissionList()}
       </section>
