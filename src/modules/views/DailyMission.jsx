@@ -3,16 +3,42 @@ import AppContext from "../app/AppContext";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
 import { getMissionById } from "../common/apiCalls";
+import {cannedData} from '../../cannedData'
 
+import Task from '../task/Task'
 import PageContainer from "../../ui/containers/PageContainer";
 import TitleContainer from "../../ui/containers/TitleContainer";
 
-const useStyles = makeStyles(theme => ({}));
+const useStyles = makeStyles(theme => ({
+  tasks: {
+    // marginTop: "25px",
+    // border: "solid 1px white",
+    justifyContent: 'space-between',
+    height: '90%',
+    minWidth: '750px',
+    width: '90%',
+    textAlign: "center",
+    borderRadius: '5px',
+    minHeight: "100%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    fontSize: "calc(10px + 2vmin)",
+    color: "white",
+    // padding: '1.5em .5em',
+    backgroundColor: "#282c34",
+    [theme.breakpoints.down('600')]: {
+      minWidth: '20px',
+    },
+  },
+}))
 
 const DailyMission = props => {
   const [state, dispatch] = useContext(AppContext);
   const [error, setError] = useState(null);
   const { id } = props;
+  const {selectedMission: {attributes}} = state
+  const classes = useStyles()
 
   useEffect(async () => {
   await getMissionById(id)
@@ -25,12 +51,26 @@ const DailyMission = props => {
     dispatch(action)
   }
 
+  const makeTasksList = () => {
+    // swap canned data for real data in state w/BE link up
+    return cannedData.data.map(task => {
+      return <Task
+        key={task.id}
+        props={task}
+      />
+    })
+  }
 
   return (
     <PageContainer>
       <TitleContainer>
-        <h1>{id}</h1>
+        <p>Your mission:</p>
+        <h1>{attributes?.name}</h1>
       </TitleContainer>
+      <section className={classes.tasks}>
+        {/* hardcoded canned data for tasks imported into file */}
+        {makeTasksList()}
+      </section>
     </PageContainer>
   );
 };
