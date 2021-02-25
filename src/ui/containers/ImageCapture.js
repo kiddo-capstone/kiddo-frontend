@@ -3,6 +3,8 @@ import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import { IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import SmallContainer from "./SmallContainer";
+import RoundButton from "../button/RoundButton 2";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "80%",
     maxHeight: "80%",
     margin: "10px",
+    display: "flex",
+    justifyContent: "center",
+    border: 1,
   },
   img: {
     height: "inherit",
@@ -31,22 +36,19 @@ const ImageCapture = () => {
       if (target.files.length !== 0) {
         const file = target.files[0];
         const newUrl = URL.createObjectURL(file);
+        console.log(newUrl);
         setSource(newUrl);
       }
     }
   };
   return (
-    <div className={classes.root}>
-      <h5>Capture your image</h5>
+    // <div className={classes.root}>
+    <SmallContainer>
+      <h4>Capture Photo Evidence</h4>
       {source && (
-        <Box
-          display="flex"
-          justifyContent="center"
-          border={1}
-          className={classes.imgBox}
-        >
+        <div className={classes.imgBox}>
           <img src={source} alt={"snap"} className={classes.img}></img>
-        </Box>
+        </div>
       )}
       <input
         accept="image/*"
@@ -57,15 +59,14 @@ const ImageCapture = () => {
         onChange={(e) => handleCapture(e.target)}
       />
       <label htmlFor="icon-button-file">
-        <IconButton
-          color="primary"
-          aria-label="upload picture"
-          component="span"
-        >
-          📸
-        </IconButton>
+        <RoundButton>
+          <span color="primary" aria-label="upload picture" component="span">
+            📸
+          </span>
+        </RoundButton>
       </label>
-    </div>
+    </SmallContainer>
+    // </div>
   );
 };
 export default ImageCapture;
