@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   descriptionContainer: {
-    border: "solid 1px hotpink",
+    border: "solid 3px hotpink",
     borderRadius: "10px",
     fontFamily: "monospace",
     padding: "1em 1em",
@@ -26,11 +26,10 @@ const useStyles = makeStyles(theme => ({
   },
   actionContainer: {
     // border: "solid 1px hotpink",
+    // paddingTop: "1em",
     borderRadius: "10px",
     fontFamily: "monospace",
-    // paddingTop: "1em",
     minWidth: '350px',
-
   },
   category: {
     display: "flex",
@@ -85,6 +84,13 @@ const TaskView = ({ id }) => {
     );
   };
 
+  const checkReady = (trueFalse) => {
+    console.log(trueFalse);
+    if (complete !== trueFalse) {
+      setComplete(trueFalse)
+    }
+  }
+
   return (
     // FYI
     // rendering different text than previous click BC switch from
@@ -118,7 +124,7 @@ const TaskView = ({ id }) => {
             <p>.</p>
           </span>
           <div className={classes.actionContainer}>
-            <Journal />
+            <Journal checkReady={checkReady}/>
           </div>
         </section>
       </section>
