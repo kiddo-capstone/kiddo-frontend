@@ -1,10 +1,5 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
-import AppContext from "../app/AppContext";
-import { BadgeContainer } from "../../ui/containers/index";
-import BadgeBG from "../../ui/badges/BadgeBg";
-import RoundButton from "../../ui/button/RoundButton";
-import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   taskWrapper: {
@@ -88,9 +83,7 @@ const useStyles = makeStyles(theme => ({
 
 const Task = ({ props }) => {
   const classes = useStyles();
-  const {
-    attributes: { name, description, category, points },
-  } = props;
+  const {attributes: { name, description, category, points }} = props;
 
   return (
     <article className={classes.taskWrapper}>
