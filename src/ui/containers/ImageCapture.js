@@ -10,11 +10,13 @@ const useStyles = makeStyles((theme) => ({
   root: {
     height: "100%",
     textAlign: "center",
+    backgroundColor: "#3e4453",
   },
   imgBox: {
     maxWidth: "80%",
     maxHeight: "80%",
     margin: "10px",
+    paddingBottom: "10px",
     display: "flex",
     justifyContent: "center",
     border: 1,
@@ -25,6 +27,19 @@ const useStyles = makeStyles((theme) => ({
   },
   input: {
     display: "none",
+  },
+  avatar: {
+    margin: "auto",
+    position: "relative",
+    width: "80%",
+    height: "80%",
+    // borderRadius: "50%",
+    overflow: "hidden",
+    "& img": {
+      width: "100%",
+      height: "100%",
+      objectFit: "cover",
+    },
   },
 }));
 const ImageCapture = () => {
@@ -42,12 +57,11 @@ const ImageCapture = () => {
     }
   };
   return (
-    // <div className={classes.root}>
     <SmallContainer>
-      <h4>Capture Photo Evidence</h4>
+      <h5>Capture Photo Evidence</h5>
       {source && (
-        <div className={classes.imgBox}>
-          <img src={source} alt={"snap"} className={classes.img}></img>
+        <div className={classes.avatar}>
+          <img src={source} alt={"snap"} className={classes.img} />
         </div>
       )}
       <input
@@ -66,7 +80,6 @@ const ImageCapture = () => {
         </RoundButton>
       </label>
     </SmallContainer>
-    // </div>
   );
 };
 export default ImageCapture;

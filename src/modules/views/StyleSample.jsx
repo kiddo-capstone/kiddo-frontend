@@ -4,7 +4,7 @@ import Button from "../../ui/button/Button";
 import PageContainer from "../../ui/containers/PageContainer";
 import TitleContainer from "../../ui/containers/TitleContainer";
 import ImageCapture from "../../ui/containers/ImageCapture";
-
+import Modal from "../../ui/modal/Modal"
 const StyleSample = props => {
   const [state, dispatch] = useContext(AppContext);
   const { colors, shadows, gradients, fonts } = state.theme;
@@ -14,7 +14,9 @@ const StyleSample = props => {
       <TitleContainer>
         <h1>Style Guide</h1>
       </TitleContainer>
+      <Modal>
       <ImageCapture />
+      </Modal>
       {/* <div style={{ display: "flex", justifyContent: 'space-evenly' }}>
         <div style={{ display:'flex', flexDirection:'column' }}>
           <h1 style={{ color: colors.green, fontFamily: fonts.primary }}>
@@ -73,6 +75,7 @@ const StyleSample = props => {
         }
       `}</style> */}
     </PageContainer>
+    
   );
 };
 
