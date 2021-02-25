@@ -33,18 +33,26 @@ const useStyles = makeStyles(theme => ({
   left: {
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     height: "100%",
-    flex: .7,
+    flex: .6,
     backgroundColor: "lightgrey",
-    color: "#282C34",
-    fontFamily: "'Mitr', sans-serif",
-    fontSize: "clamp(7px, 1.75rem, 4vmin)",
+    color: "#3e4452",
     "& p:nth-child(1)": {
-      fontSize: "clamp(5px, .6em, 50px)",
+      fontSize: "clamp(7px, 1.75rem, 3.3vmin)",
+      fontWeight: '100',
+      margin: 0,
     },
     "& p:nth-child(2)": {
-      fontSize: "clamp(5px, 1em, 50px)",
+      margin: 0,
+      fontSize: "clamp(5px, 3em, 50px)",
+    },
+    "& span": {
+      fontSize: "clamp(7px, 1.75rem, 3.3vmin)",
+      backgroundColor: 'gold',
+      marginRight: 4,
+      margin: 0,
+
     },
   },
   middle: {
@@ -60,13 +68,6 @@ const useStyles = makeStyles(theme => ({
       "& p": {
         margin: 0,
       },
-      // "& p:nth-child(1)": {
-      //   fontSize: 'clamp(10px,.5em,.7em)',
-      //   // textDecoration: 'underline',
-      //   color: 'gold',
-      //   fontWeight: "light",
-      //   fontFamily: `'Roboto', sans-serif`,
-      // },
       "& p:nth-child(1)": {
         fontSize: "clamp(5px, 1.5em, 50px)",
         fontFamily: `'Russo One', sans-serif`,
@@ -79,23 +80,7 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     justifyContent: 'center',
     display: 'flex',
-  },
-  start: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    background: "gold",
-    color: "#575757",
-    height: "5em",
-    width: "5em",
-    borderRadius: "50%",
-    willChange: "transform",
-    cursor: "pointer",
-    transition: "transform ease .3s",
-    "&:hover": {
-      transform: "scale(1.05)",
-    },
-  },
+  }
 }));
 
 // it's strange, had to pull props out of props??
@@ -121,9 +106,12 @@ const Mission = props => {
         <div className={classes.left}>
           <p>{assignedDay}</p>
           <p>{assignedDate}</p>
+          <span className={classes.category}>
+            <p>💰 X {(Math.random() * 100+1).toFixed(0)}</p>
+          </span>
         </div>
         <div className={classes.middle}>
-          <span>
+          <span className={classes.title}>
             {/* <p>Mission</p> */}
             <p>{name}</p>
           </span>
