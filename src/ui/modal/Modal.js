@@ -1,15 +1,12 @@
 import React from "react";
 // import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
-import PageContainer from "../containers/PageContainer";
+// import PageContainer from "../containers/PageContainer";
 import Button from "../button/Button";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
+
 const appStyles = theme;
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -21,30 +18,50 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexDirection: "column",
     backgroundColor: "#3e4452",
-    padding: "10px",
+    padding: ".5em",
     color: "white",
+
     fontFamily: appStyles.fonts.secondary,
   },
-  title: {
+  titleBar: {
     display: "flex",
     flexDirection: "row",
-    margin: "2em",
-    color: "white",
+    // fontSize: "clamp(5px, 1.75rem, 4vmin)",
+    // justifyContent: "space-around",
+    margin: "1em",
+    color: appStyles.colors.green,
+  },
+  title: {
+    fontSize: 20,
+    marginLeft: "20px",
   },
   content: {
-    color: "white",
+    padding: "1em",
+    color: appStyles.colors.white,
+    fontSize: 18,
+    fontFamily: appStyles.fonts.secondary,
   },
   icon: {
-    margin: "auto",
     position: "relative",
-    width: "180px",
-    height: "180px",
+    width: "80px",
+    height: "80px",
     borderRadius: "50%",
     overflow: "hidden",
+    backgroundColor: appStyles.colors.green,
     "& img": {
       width: "100%",
       height: "100%",
       // objectFit: "cover"
+    },
+    buttonBar: {
+      display: "flex",
+      // color: appStyles.colors.white,
+      alignSelf: "center",
+    },
+    button: {
+      display: "flex",
+      color: appStyles.colors.white,
+      alignSelf: "center",
     },
   },
 }));
@@ -75,23 +92,23 @@ export default function Modal({ title, message, children }) {
         aria-labelledby="agent-modal-container"
       >
         <div className={classes.root}>
-          <div className={classes.title}>
+          <div className={classes.titleBar}>
             <img
               className={classes.icon}
               src="https://static.thenounproject.com/png/1085386-200.png"
             />
-            <h2 className={classes.root} id="message-title">
+            <h1 className={classes.title} id="message-title">
               {title}
-            </h2>
+            </h1>
           </div>
-          <div className={classes.root}>
+          <div className={classes.content}>
             <span id="message-content">{message}</span>
           </div>
-          <DialogActions className={classes.title}>
+          <div className={classes.buttonBar}>
             <Button onClick={handleClose}>
               <span className={classes.content}>OK!</span>
             </Button>
-          </DialogActions>
+          </div>
         </div>
       </Dialog>
     </div>

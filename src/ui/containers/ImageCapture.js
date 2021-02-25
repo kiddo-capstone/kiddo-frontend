@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   imgBox: {
     // maxWidth: "80%",
     // maxHeight: "80%",
-    margin: "10px",
+    marginRight: "2em",
     paddingBottom: "10px",
     display: "flex",
     justifyContent: "center",
@@ -33,8 +33,8 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     margin: "auto",
     position: "relative",
-    width: "70%",
-    height: "70%",
+    width: "65%",
+    height: "65%",
     // borderRadius: "50%",
     overflow: "hidden",
     "& img": {
