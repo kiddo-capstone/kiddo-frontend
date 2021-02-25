@@ -11,8 +11,6 @@ import TitleContainer from "../../ui/containers/TitleContainer";
 
 const useStyles = makeStyles(theme => ({
   tasks: {
-    // marginTop: "25px",
-    // border: "solid 1px white",
     justifyContent: 'space-between',
     height: '90%',
     minWidth: '750px',
@@ -25,12 +23,18 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     fontSize: "calc(10px + 2vmin)",
     color: "white",
-    // padding: '1.5em .5em',
     backgroundColor: "#282c34",
     [theme.breakpoints.down('600')]: {
       minWidth: '20px',
     },
   },
+  line: {
+    height: 3,
+    backgroundColor: 'cyan',
+    width: '-webkit-fill-available',
+    transform: 'translateY(-2.8em)',
+    zIndex: 0,
+  }
 }))
 
 const DailyMission = props => {
@@ -63,10 +67,11 @@ const DailyMission = props => {
 
   return (
     <PageContainer>
-      <TitleContainer>
+      <TitleContainer style={{width: '100%'}}>
         <p>Your mission:</p>
         <h1>{attributes?.name}</h1>
       </TitleContainer>
+      <div className={classes.line}/>
       <section className={classes.tasks}>
         {/* hardcoded canned data for tasks imported into file */}
         {makeTasksList()}
