@@ -12,8 +12,7 @@ const LogoutButton = () => {
   const { logout } = useAuth0();
   return (
     <Button
-      primary={true}
-      onClick={() => logout({ returnTo: window.location.origin + "/login" })}>
+      onClick={() => logout({ returnTo: window.location.origin + "/mission-control" })}>
       Log Out
     </Button>
   );
@@ -42,10 +41,10 @@ const Profile = () => {
 
 const Auth = ({isAuthenticated}) => {
   return (
-    <PageContainer>
+    <>
       <TitleContainer>{!isAuthenticated ? 'Click below to log into your account' : 'Click below to log out of your account'}</TitleContainer>
       <Profile />
-    </PageContainer>
+    </>
   );
 };
 
