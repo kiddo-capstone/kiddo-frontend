@@ -3,16 +3,17 @@ import {makeStyles} from '@material-ui/core'
 import * as fonts from '../common/fonts'
 import * as colors from '../common/colors'
 
-const useStyles = makeStyles(primary => ({
+const useStyles = makeStyles(theme => ({
   butt: {
     fontSize: '1em',
     fontWeight: '400',
     padding: '2%',
     fontFamily: fonts.secondary,
     borderRadius: '15px',
-    borderColor: !primary ? colors.secondaryAccent : colors.primaryAccent,
-    background: !primary ? colors.secondary : colors.primary,
-    color: !primary ? colors.secondaryAccent : colors.primaryAccent,
+    borderColor: ((theme) => theme.primary ? colors.primaryAccent :  colors.secondaryAccent),
+    background: ((theme) => theme.primary ? colors.primary :  colors.secondary),
+    color: colors.darkGrey,
+    // color: ((theme) => theme.primary ? colors.primaryAccent :  colors.secondaryAccent),
     outline: 'none',
     willChange: 'transform',
     margin: '2%',
@@ -31,8 +32,9 @@ const useStyles = makeStyles(primary => ({
   }
 }))
 
-const Button = ({children, disabled, primary, ...others}) => {
-  const classes = useStyles(primary ? true : false)
+const Button = (props) => {
+  const {children, disabled, primary, ...others} = props
+  const classes = useStyles(props)
   return ( 
     <button 
       aria-label={children}
