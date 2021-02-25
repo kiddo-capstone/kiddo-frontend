@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     height: "100%",
     textAlign: "center",
-    backgroundColor: "#3e4453",
   },
   imgBox: {
     maxWidth: "80%",
@@ -48,6 +47,7 @@ const ImageCapture = () => {
 
   const handleCapture = (target) => {
     if (target.files) {
+      console.log(target.files);
       if (target.files.length !== 0) {
         const file = target.files[0];
         const newUrl = URL.createObjectURL(file);
@@ -57,7 +57,7 @@ const ImageCapture = () => {
     }
   };
   return (
-    <SmallContainer>
+    <div className={classes.root}>
       <h5>Capture Photo Evidence</h5>
       {source && (
         <div className={classes.avatar}>
@@ -79,7 +79,7 @@ const ImageCapture = () => {
           </span>
         </RoundButton>
       </label>
-    </SmallContainer>
+    </div>
   );
 };
 export default ImageCapture;

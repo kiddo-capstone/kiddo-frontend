@@ -15,8 +15,8 @@ const StyleSample = props => {
         <h1>Style Guide</h1>
       </TitleContainer>
       <Modal>
-      <ImageCapture />
       </Modal>
+      <ImageCapture />
       {/* <div style={{ display: "flex", justifyContent: 'space-evenly' }}>
         <div style={{ display:'flex', flexDirection:'column' }}>
           <h1 style={{ color: colors.green, fontFamily: fonts.primary }}>
