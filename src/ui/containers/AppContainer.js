@@ -18,6 +18,7 @@ import Button from "../button/Button";
 import theme from "../common/theme";
 import AgentDetails from "../../modules/views/AgentDetails";
 import PageContainer from "./PageContainer";
+import magnifyingGlass from "../../assets/magnifying-glass.png"
 
 const appStyles = theme;
 const drawerWidth = 300;
@@ -110,10 +111,10 @@ function AppContainer(props) {
             onClick={handleDrawerToggle}
             className={classes.menuButton}
           >
-            ⭐
+            <img src={magnifyingGlass} alt="magnifying glass" style={{height: '2em'}}/>
           </IconButton>
           Welcome, Agent Sally!
-          <div className={classes.buttonGroup}>
+          {/* <div className={classes.buttonGroup}>
             <Link title="mission control" to="/mission-control">
               <Button className={classes.headerButton}>Mission Control</Button>
             </Link>
@@ -125,7 +126,7 @@ function AppContainer(props) {
                 {isAuthenticated ? "Log Out" : "Log In"}
               </Button>
             </Link>
-          </div>
+          </div> */}
         </Toolbar>
       </AppBar>
       <div className={classes.drawer}>
