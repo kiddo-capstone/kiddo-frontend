@@ -75,18 +75,6 @@ const TaskView = ({ id }) => {
     dispatch(action);
   };
 
-  const makeButtons = () => {
-    return complete ? (
-      <Button color="hotpink" disabled={false}>
-        All Done!
-      </Button>
-    ) : (
-      <Button color="hotpink" disabled={true}>
-        Complete Task to Submit!
-      </Button>
-    );
-  };
-
   const checkReady = (trueFalse) => {
     console.log(trueFalse);
     if (complete !== trueFalse) {
@@ -129,7 +117,9 @@ const TaskView = ({ id }) => {
           </div>
         </section>
       </section>
-      {makeButtons()}
+      <Button color="hotpink" disabled={complete ? false : true}>
+        {complete ? 'All Done!' : 'Complete Task to Submit!'}
+      </Button>
     </PageContainer>
   );
 };

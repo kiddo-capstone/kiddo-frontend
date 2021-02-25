@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     willChange: 'transform',
     margin: '2%',
     cursor: 'pointer',
-    transition: 'transform ease .3s',
+    transition: 'transform ease .3s, border ease 2s, background ease 1s, color ease 1s',
     '&:hover': {
       transform: 'translateY(-3%)',
     },
