@@ -23,13 +23,16 @@ const useStyles = makeStyles(theme => ({
     fontFamily: "monospace",
     padding: "1em 1em",
     minWidth: '350px',
+    height: '12em',
+    overflow: 'auto',
   },
   actionContainer: {
-    // border: "solid 1px hotpink",
+    border: "solid 3px hotpink",
     // paddingTop: "1em",
     borderRadius: "10px",
     fontFamily: "monospace",
     minWidth: '350px',
+    // height: '100%',
   },
   category: {
     display: "flex",
@@ -112,9 +115,7 @@ const TaskView = ({ id }) => {
             <p>
               {attributes?.description} and here is some more placeholder text,
               combined with a handful of model sentence structures, to generate
-              Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is
-              therefore always free from repetition, injected humour, or
-              non-characteristic words etc.
+              Lorem Ipsum which looks reasonable.
             </p>
           </div>
         </section>

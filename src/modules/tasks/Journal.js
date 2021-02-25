@@ -5,8 +5,8 @@ const useStyles = makeStyles(theme => ({
   textBox: {
     fontSize: "1em",
     width: "100%",
-    height: "100%",
-    border: "solid 3px hotpink",
+    // height: "100%",
+    border: "none",
     padding: "1em",
     borderRadius: "10px",
     backgroundColor: "rgb(40,44,52, .5)",
@@ -31,7 +31,7 @@ const Journal = ({checkReady}) => {
     <section>
       <form>
         <textarea
-          rows="10"
+          rows="8"
           cols="60"
           className={classes.textBox}
           type="text"
