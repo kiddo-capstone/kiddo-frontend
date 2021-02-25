@@ -19,9 +19,12 @@ const Journal = ({checkReady}) => {
   const [entry, setEntry] = useState("");
   const classes = useStyles();
 
+  useEffect(()=> {
+    entry ? checkReady(true) : checkReady(false)
+  }, [entry])
+
   const handleChange = (value) => {
     setEntry(value)
-    entry ? checkReady(true) : checkReady(false)
   }
 
   return (
