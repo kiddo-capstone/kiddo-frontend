@@ -11,7 +11,7 @@ export const lightPurple = "#CE9FFC";
 export const primary = "#7367F0";
 export const primaryAccent = "#CE9FFC";
 
-export const secondary = "#EA5455";
+export const secondary = "hotpink";
 export const secondaryAccent = "#FEB692";
 
 export const tertiary = "#EA5455";

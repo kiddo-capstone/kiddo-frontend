@@ -1,10 +1,5 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
-import AppContext from "../app/AppContext";
-import { BadgeContainer } from "../../ui/containers/index";
-import BadgeBG from "../../ui/badges/BadgeBg";
-import RoundButton from "../../ui/button/RoundButton";
-import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   taskWrapper: {
@@ -48,14 +43,14 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#575757",
+    backgroundColor: "#3e4452",
     textAlign: "center",
     borderRadius: "5px",
     height: "100%",
     fontSize: "clamp(10px, 1.75rem, 4vmin)",
     color: "white",
     border: "solid 4px lightgrey",
-    padding: '1em',
+    padding: '1.5em',
     transition: 'ease .3s',
 
   },
@@ -88,9 +83,7 @@ const useStyles = makeStyles(theme => ({
 
 const Task = ({ props }) => {
   const classes = useStyles();
-  const {
-    attributes: { name, description, category, points },
-  } = props;
+  const {attributes: { name, description, category, points }} = props;
 
   return (
     <article className={classes.taskWrapper}>

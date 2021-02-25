@@ -2,7 +2,7 @@ export const art = (
   <svg
     fill='green'
     xmlns="http://www.w3.org/2000/svg"
-    height='1.5em'
+    height='1.2em'
     x="0px"
     y="0px"
     viewBox="0 0 100 125"

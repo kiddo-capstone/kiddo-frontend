@@ -5,13 +5,14 @@ import Button from "../../ui/button/Button";
 
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
-  return <Button onClick={() => loginWithRedirect()}>Log In</Button>;
+  return <Button primary={true} onClick={() => loginWithRedirect()}>Log In</Button>;
 };
 
 const LogoutButton = () => {
   const { logout } = useAuth0();
   return (
     <Button
+      primary={true}
       onClick={() => logout({ returnTo: window.location.origin + "/login" })}>
       Log Out
     </Button>

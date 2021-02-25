@@ -6,6 +6,7 @@ export const initialState = {
   missions: [],
   tasks: [],
   selectedMission: {},
+  selectedTask: {},
   theme,
 };
 
@@ -16,7 +17,7 @@ export const appReducer = (state, action) => {
     case 'FETCH_SELECTED_MISSION':
       return {...state, selectedMission: action.selectedMission}
     case 'FETCH_SELECTED_TASK':
-      return { ...state, tasks: action.selectedTask }
+      return { ...state, selectedTask: action.selectedTask }
     case 'FETCH_TASKS':
       return { ...state, tasks: action.tasks }
     case 'FETCH_USERS':

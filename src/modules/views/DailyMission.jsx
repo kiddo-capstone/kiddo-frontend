@@ -8,6 +8,7 @@ import { cannedData } from "../../cannedData";
 import Task from "../task/Task";
 import PageContainer from "../../ui/containers/PageContainer";
 import TitleContainer from "../../ui/containers/TitleContainer";
+import AccentLine from '../../ui/decorative/AccentLine'
 
 const useStyles = makeStyles(theme => ({
   tasks: {
@@ -29,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   line: {
-    height: 3,
+    height: 5,
     backgroundColor: "cyan",
     width: "-webkit-fill-available",
     transform: "translateY(-2.8em)",
@@ -60,11 +61,11 @@ const DailyMission = props => {
     return cannedData.data.map(task => {
       return (
         <Link
-          to={`/task/${id}`}
+          key={task.id}
+          to={`/task/${task.id}`}
           style={{ textDecoration: "none", width: 'inherit', display: 'flex', justifyContent: 'center' }}>
           <Task key={task.id} props={task} />
         </Link>
-          // <Task key={task.id} props={task} />
       );
     });
   };
@@ -75,7 +76,7 @@ const DailyMission = props => {
         <p>Your mission:</p>
         <h1>{attributes?.name}</h1>
       </TitleContainer>
-      <div className={classes.line} />
+      <AccentLine />
       <section className={classes.tasks}>
         {/* hardcoded canned data for tasks imported into file */}
         {makeTasksList()}
