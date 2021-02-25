@@ -1,8 +1,6 @@
 import React from "react";
-// import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import Slide from "@material-ui/core/Slide";
-// import PageContainer from "../containers/PageContainer";
 import Button from "../button/Button";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
@@ -20,25 +18,25 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "#3e4452",
     padding: ".5em",
     color: "white",
+    // minWidth: "100%",
+    // maxWidth: "100%",
 
     fontFamily: appStyles.fonts.secondary,
   },
   titleBar: {
     display: "flex",
     flexDirection: "row",
-    // fontSize: "clamp(5px, 1.75rem, 4vmin)",
-    // justifyContent: "space-around",
     margin: "1em",
     color: appStyles.colors.green,
   },
   title: {
-    fontSize: 20,
+    fontSize: "clamp(5px, 1.75rem, 4vmin)",
     marginLeft: "20px",
   },
   content: {
     padding: "1em",
     color: appStyles.colors.white,
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: appStyles.fonts.secondary,
   },
   icon: {
@@ -55,8 +53,8 @@ const useStyles = makeStyles(() => ({
     },
     buttonBar: {
       display: "flex",
-      // color: appStyles.colors.white,
-      alignSelf: "center",
+      flexDirection: "row",
+      justifyContent: "flex-end",
     },
     button: {
       display: "flex",
@@ -87,7 +85,7 @@ export default function Modal({ title, message, children }) {
         open={open}
         TransitionComponent={Transition}
         keepMounted
-        // className={classes.root}
+        // className={classes.root} ** This will display only the modal
         onClose={handleClose}
         aria-labelledby="agent-modal-container"
       >
@@ -97,12 +95,12 @@ export default function Modal({ title, message, children }) {
               className={classes.icon}
               src="https://static.thenounproject.com/png/1085386-200.png"
             />
-            <h1 className={classes.title} id="message-title">
-              {title}
-            </h1>
+            <div className={classes.title}>
+              <h2 id="message-title">{title}</h2>
+            </div>
           </div>
-          <div className={classes.content}>
-            <span id="message-content">{message}</span>
+          <div className={classes.content} id="message-content">
+            {message}
           </div>
           <div className={classes.buttonBar}>
             <Button onClick={handleClose}>

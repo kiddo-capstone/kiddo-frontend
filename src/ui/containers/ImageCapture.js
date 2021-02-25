@@ -1,12 +1,8 @@
 import React, { useState } from "react";
-import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
-import { IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import SmallContainer from "./SmallContainer";
 import RoundButton from "../button/RoundButton 2";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
     flexDirection: "column",
@@ -26,15 +22,17 @@ const useStyles = makeStyles((theme) => ({
   img: {
     height: "inherit",
     maxWidth: "inherit",
+    paddingBottom: "30px",
   },
   input: {
     display: "none",
   },
-  avatar: {
+  icon: {
     margin: "auto",
     position: "relative",
     width: "65%",
     height: "65%",
+    paddingTop: "20px",
     // borderRadius: "50%",
     overflow: "hidden",
     "& img": {
@@ -50,7 +48,6 @@ const ImageCapture = () => {
 
   const handleCapture = (target) => {
     if (target.files) {
-      console.log(target.files);
       if (target.files.length !== 0) {
         const file = target.files[0];
         const newUrl = URL.createObjectURL(file);
@@ -64,7 +61,7 @@ const ImageCapture = () => {
     <div className={classes.root}>
       <h5>Capture Photo Evidence</h5>
       {source && (
-        <div className={classes.avatar}>
+        <div className={classes.icon}>
           <img src={source} alt={"snap"} className={classes.img} />
         </div>
       )}
@@ -78,9 +75,7 @@ const ImageCapture = () => {
       />
       <label htmlFor="icon-button-file">
         <RoundButton>
-          <span color="primary" aria-label="upload picture" component="span">
-            📸
-          </span>
+          <span aria-label="upload picture">📸</span>
         </RoundButton>
       </label>
     </div>
