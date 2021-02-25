@@ -133,13 +133,13 @@ const Mission = props => {
           <span className={classes.title}>
             {/* <p>Mission</p> */}
             <p>{name}</p>
-          </span>
+          {/* </span> */}
           <BadgeBG>
             <BadgeContainer>{ <img className={classes.icon} src={intelligence} /> }</BadgeContainer>
             <BadgeContainer>{ <img className={classes.icon} src={creativity} /> }</BadgeContainer>
             <BadgeContainer>{<img className={classes.icon} src={activity} /> }</BadgeContainer>
           </BadgeBG>
-        {/* </div> */}
+        </div>
         <div className={classes.right}>
           <Link
             to={`/daily-mission/${props.props.id}`}
