@@ -24,7 +24,8 @@ const useStyles = makeStyles(theme => ({
     },
     '&:disabled': {
       borderColor: colors.grey1, 
-      background: colors.grey3,
+      background: 'none',
+      // background: colors.grey3,
       color: colors.grey2,    
       cursor: 'default',
       transform: 'none',
