@@ -3,8 +3,9 @@ import { Switch, Route } from "react-router-dom";
 import AppContext from "./AppContext";
 import { appReducer, initialState } from "../common/appReducer";
 import MissionControl from "../views/MissionControl";
-import StyleSample from "../views/StyleSample";
 import DailyMission from "../views/DailyMission";
+import TaskView from "../views/TaskView";
+import StyleSample from "../views/StyleSample";
 import Error400 from "../common/error/Error400";
 import Error500 from "../common/error/Error500";
 import AppContainer from "../../ui/containers/AppContainer";
@@ -50,6 +51,14 @@ const App = () => {
               render={({ match }) => {
                 const id = +match.params.id;
                 return <DailyMission id={id} />;
+              }}
+            />
+            <Route
+              exact
+              path="/task/:id"
+              render={({ match }) => {
+                const id = +match.params.id;
+                return <TaskView id={id} />;
               }}
             />
             <Route exact path="/style-guide" component={StyleSample} />
