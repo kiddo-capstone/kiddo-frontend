@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
   pageContainer: {
     textAlign: "center",
     backgroundColor: appStyles.colors.background,
+    margin: ((theme) => theme.margin || 'default'),
     marginTop: "25px",
     minHeight: "100%",
     display: "flex",
@@ -28,10 +29,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PageContainer = ({ children }) => {
-  const classes = useStyles();
+const PageContainer = (props) => {
+  const classes = useStyles(props);
 
-  return <div className={classes.pageContainer}>{children}</div>;
+  return <div className={classes.pageContainer}>{props.children}</div>;
 };
 
 export default React.memo(PageContainer);
