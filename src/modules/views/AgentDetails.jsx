@@ -3,7 +3,7 @@ import AppContext from "../app/AppContext";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
 // import { art, heart, explore } from "../../assets/index";
-import ProgressBar from "../../ui/progressBar/ProgressBar";
+import ProgressBar from "../../ui/progressBar/progressBar";
 
 const appStyles = theme;
 
