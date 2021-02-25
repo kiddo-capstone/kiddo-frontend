@@ -8,12 +8,15 @@ import RoundButton from "../button/RoundButton 2";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
     height: "100%",
     textAlign: "center",
   },
   imgBox: {
-    maxWidth: "80%",
-    maxHeight: "80%",
+    // maxWidth: "80%",
+    // maxHeight: "80%",
     margin: "10px",
     paddingBottom: "10px",
     display: "flex",
@@ -30,8 +33,8 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     margin: "auto",
     position: "relative",
-    width: "80%",
-    height: "80%",
+    width: "70%",
+    height: "70%",
     // borderRadius: "50%",
     overflow: "hidden",
     "& img": {
@@ -53,6 +56,7 @@ const ImageCapture = () => {
         const newUrl = URL.createObjectURL(file);
         console.log(newUrl);
         setSource(newUrl);
+        // Make image POST request (newUrl)
       }
     }
   };
