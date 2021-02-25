@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
 import kids from "../../assets/kids_trio.png";
 import ProgressBar from "../../ui/progressBar/ProgressBar";
+import Auth from "../auth/Auth";
 
 const appStyles = theme;
 
@@ -14,7 +15,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: "spaceAround",
   },
   card: {
-    height: "450px",
+    height: "auto",
     boxShadow: "0 10px 25px 5px rgba(0, 0, 0, 0.2)",
     overflow: "hidden",
     backgroundColor: "#3e4453",
@@ -22,24 +23,28 @@ const useStyles = makeStyles(() => ({
   cardHeader: {
     position: "relative",
     paddingTop: "50px",
-    paddingBottom: "50px",
+    paddingBottom: "20px",
     height: "30%",
-    background: appStyles.colors.grey2,
-    // background: `linear-gradient(to top, ${appStyles.colors.yellow}, ${appStyles.colors.red})`,
+    background: appStyles.colors.grey3,
+    // background: `linear-gradient(to top, ${appStyles.colors.green}, ${appStyles.colors.red})`,
     backgroundSize: "cover",
   },
   titleText: {
     fontFamily: appStyles.fonts.primary,
     fontSize: "20px",
     textAlign: "center",
-    color: appStyles.colors.yellow,
+    color: appStyles.colors.green,
   },
   avatar: {
     margin: "auto",
     position: "relative",
+    background: appStyles.colors.white,
+    padding: "1em",
+    marginBottom: "0.7em",
     width: "220px",
-    height: "180px",
-    // borderRadius: "50%",
+    height: "200px",
+    borderRadius: "50%",
+    border: `5px solid ${appStyles.colors.darkGrey}`,
     overflow: "hidden",
     "& img": {
       width: "100%",
@@ -54,12 +59,12 @@ const useStyles = makeStyles(() => ({
     marginTop: "10px",
     width: "100%",
     fontSize: "20px",
-    color: appStyles.colors.yellow,
+    color: appStyles.colors.green,
     marginLeft: "10px",
     textAlign: "left",
 
     "& th": {
-      color: appStyles.colors.yellow,
+      color: appStyles.colors.green,
     },
     "& td": {
       fontFamily: appStyles.fonts.primary,
@@ -77,9 +82,9 @@ const useStyles = makeStyles(() => ({
 }));
 
 const stats = [
-  { barColor: appStyles.colors.yellow, completed: 60 },
-  { barColor: appStyles.colors.yellow, completed: 30 },
-  { barColor: appStyles.colors.yellow, completed: 53 },
+  { barColor: appStyles.colors.red, completed: 60 },
+  { barColor: appStyles.colors.red, completed: 30 },
+  { barColor: appStyles.colors.red, completed: 53 },
 ];
 
 const AgentDetails = (props) => {
@@ -90,9 +95,7 @@ const AgentDetails = (props) => {
   const [user, setUser] = useState(null);
 
   const getUserById = (users, id) => {
-    const foundUser = users.find((user) => +user.id === id);
-    // console.log(foundUser);
-    return foundUser;
+    return users.find((user) => +user.id === id);
   };
   
   useEffect(() => {
@@ -129,15 +132,11 @@ const AgentDetails = (props) => {
                 <th>Points:</th>
                 <td>60</td>
               </tr>
-              <tr>
-                <th>Reward:</th>
-                <td>Pizza Party 100pts</td>
-              </tr>
             </tbody>
           </table>
         </div>
       </div>
-      <span style={{ textAlign: "center", color: appStyles.colors.yellow }}>
+      <span style={{ textAlign: "center", color: appStyles.colors.white }}>
         <h2>STATS</h2>
       </span>
 
@@ -153,6 +152,7 @@ const AgentDetails = (props) => {
           </div>
         ))}
       </div>
+      <Auth />
     </section>
   );
 };
