@@ -61,11 +61,10 @@ const DailyMission = props => {
     return cannedData.data.map(task => {
       return (
         <Link
-          to={`/task/${id}`}
+          to={`/task/${task.id}`}
           style={{ textDecoration: "none", width: 'inherit', display: 'flex', justifyContent: 'center' }}>
           <Task key={task.id} props={task} />
         </Link>
-          // <Task key={task.id} props={task} />
       );
     });
   };
