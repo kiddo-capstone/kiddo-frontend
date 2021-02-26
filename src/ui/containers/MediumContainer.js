@@ -10,14 +10,11 @@ const useStyles = makeStyles(() => ({
     minHeight: "100%",
     display: "flex",
     flexDirection: "column",
-    // justifyContent: "center",
     alignItems: "center",
     fontSize: "calc(10px + 2vmin)",
     color: "white",
-
     padding: '1.5em .5em',
     backgroundColor: "#282c34",
-    // fontFamily: "'Russo One', sans-serif",
   },
 }));
 

@@ -5,7 +5,9 @@ import BadgeBG from "../../ui/badges/BadgeBg";
 import RoundButton from "../../ui/button/RoundButton";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
-import { art, heart, explore } from "../../assets/index";
+import creativity from "../../assets/creativity.png";
+import intelligence from "../../assets/intelligence.png";
+import activity from "../../assets/activity.png";
 import { convertDate } from "../common/convertDate";
 
 const useStyles = makeStyles(theme => ({
@@ -22,6 +24,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
+    flexWrap: "wrap",
     backgroundColor: "#3e4452",
     textAlign: "center",
     borderRadius: "5px",
@@ -79,7 +82,26 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     justifyContent: 'center',
     display: 'flex',
-  }
+  },
+  icon: {
+    height: '1.5em',
+  },
+  start: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    background: "gold",
+    color: "#575757",
+    height: "5em",
+    width: "5em",
+    borderRadius: "50%",
+    willChange: "transform",
+    cursor: "pointer",
+    transition: "transform ease .3s",
+    "&:hover": {
+      transform: "scale(1.05)",
+    },
+  },
 }));
 
 // it's strange, had to pull props out of props??
@@ -111,13 +133,13 @@ const Mission = props => {
         </div>
         <div className={classes.middle}>
           <span className={classes.title}>
-            {/* <p>Mission</p> */}
+            <p>Mission</p>
             <p>{name}</p>
           </span>
           <BadgeBG>
-            <BadgeContainer>{art}</BadgeContainer>
-            <BadgeContainer>{art}</BadgeContainer>
-            <BadgeContainer>{art}</BadgeContainer>
+            <BadgeContainer>{ <img className={classes.icon} src={intelligence} /> }</BadgeContainer>
+            <BadgeContainer>{ <img className={classes.icon} src={creativity} /> }</BadgeContainer>
+            <BadgeContainer>{<img className={classes.icon} src={activity} /> }</BadgeContainer>
           </BadgeBG>
         </div>
         <div className={classes.right}>

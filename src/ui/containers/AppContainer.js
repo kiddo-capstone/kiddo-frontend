@@ -18,6 +18,7 @@ import Button from "../button/Button";
 import theme from "../common/theme";
 import AgentDetails from "../../modules/views/AgentDetails";
 import PageContainer from "./PageContainer";
+import magnifyingGlass from "../../assets/magnifying-glass.png"
 
 const appStyles = theme;
 const drawerWidth = 300;
@@ -79,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
 
 function AppContainer(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const { isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
   const { window } = props;
 
   const classes = useStyles();
@@ -110,22 +111,9 @@ function AppContainer(props) {
             onClick={handleDrawerToggle}
             className={classes.menuButton}
           >
-            ⭐
+            <img src={magnifyingGlass} alt="magnifying glass" style={{height: '2em'}}/>
           </IconButton>
-          Welcome, Agent Sally!
-          <div className={classes.buttonGroup}>
-            <Link title="mission control" to="/mission-control">
-              <Button className={classes.headerButton}>Mission Control</Button>
-            </Link>
-            <Link title="style guide" to="/style-guide">
-              <Button className={classes.headerButton}>Style Guide</Button>
-            </Link>
-            <Link title="login" to="/login">
-              <Button className={classes.headerButton}>
-                {isAuthenticated ? "Log Out" : "Log In"}
-              </Button>
-            </Link>
-          </div>
+          Welcome, Agent { isAuthenticated && user.given_name }!
         </Toolbar>
       </AppBar>
       <div className={classes.drawer}>

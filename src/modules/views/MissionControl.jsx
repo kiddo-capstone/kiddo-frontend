@@ -9,8 +9,6 @@ import AccentLine from '../../ui/decorative/AccentLine'
 
 const useStyles = makeStyles(theme => ({
   missions: {
-    // marginTop: "25px",
-    // border: "solid 1px white",
     justifyContent: 'space-between',
     height: '90%',
     minWidth: '750px',
