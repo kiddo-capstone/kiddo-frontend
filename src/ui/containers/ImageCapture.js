@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import RoundButton from "../button/RoundButton 2";
+import RoundButton from "../button/RoundButton";
 
 const useStyles = makeStyles(() => ({
   root: {
