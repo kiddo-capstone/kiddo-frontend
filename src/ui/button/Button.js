@@ -18,13 +18,14 @@ const useStyles = makeStyles(theme => ({
     willChange: 'transform',
     margin: '2%',
     cursor: 'pointer',
-    transition: 'transform ease .3s',
+    transition: 'transform ease .3s, border ease 2s, background ease 1s, color ease 1s',
     '&:hover': {
       transform: 'translateY(-3%)',
     },
     '&:disabled': {
       borderColor: colors.grey1, 
-      background: colors.grey3,
+      background: 'none',
+      // background: colors.grey3,
       color: colors.grey2,    
       cursor: 'default',
       transform: 'none',

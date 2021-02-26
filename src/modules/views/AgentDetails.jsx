@@ -7,6 +7,7 @@ import ProgressBar from "../../ui/progressBar/ProgressBar";
 import Auth from "../auth/Auth";
 import { useAuth0 } from "@auth0/auth0-react";
 
+
 const appStyles = theme;
 
 const useStyles = makeStyles(() => ({

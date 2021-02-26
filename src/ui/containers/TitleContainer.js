@@ -6,6 +6,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     zIndex: 1,
     margin: ((theme) => theme.margin),
+    '& p': {
+      margin: 0,
+    }
   },
 }));
 
