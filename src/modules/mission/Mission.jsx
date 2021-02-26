@@ -150,7 +150,7 @@ const Mission = props => {
           </Link>
         </div>
       </div>
-    // </div>
+    </div>
   );
 };
 
