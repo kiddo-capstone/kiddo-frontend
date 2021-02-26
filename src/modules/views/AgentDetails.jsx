@@ -16,35 +16,35 @@ const useStyles = makeStyles(() => ({
     justifyContent: "spaceAround",
   },
   card: {
-    height: "auto",
+    height: "450px",
     boxShadow: "0 10px 25px 5px rgba(0, 0, 0, 0.2)",
     overflow: "hidden",
-    backgroundColor: "#3e4453",
+    backgroundColor: appStyles.colors.greyAccent,
   },
   cardHeader: {
     position: "relative",
     paddingTop: "50px",
-    paddingBottom: "20px",
+    paddingBottom: "50px",
     height: "30%",
-    background: appStyles.colors.grey3,
-    // background: `linear-gradient(to top, ${appStyles.colors.green}, ${appStyles.colors.red})`,
+    // background: appStyles.colors.greyAccent,
+    background: `linear-gradient(to top, ${appStyles.colors.red}, ${appStyles.colors.yellow})`,
     backgroundSize: "cover",
   },
   titleText: {
     fontFamily: appStyles.fonts.primary,
     fontSize: "20px",
     textAlign: "center",
-    color: appStyles.colors.green,
+    color: appStyles.colors.yellow,
   },
   avatar: {
     margin: "auto",
     position: "relative",
-    background: appStyles.colors.white,
+    background: appStyles.colors.greyAccent,
     marginBottom: "0.7em",
     width: "220px",
     height: "200px",
     borderRadius: "50%",
-    border: `5px solid ${appStyles.colors.darkGrey}`,
+    border: `2px solid ${appStyles.colors.yellow}`,
     overflow: "hidden",
     "& img": {
       width: "100%",
@@ -59,12 +59,12 @@ const useStyles = makeStyles(() => ({
     marginTop: "10px",
     width: "100%",
     fontSize: "20px",
-    color: appStyles.colors.green,
+    // color: appStyles.colors.yellow,
     marginLeft: "10px",
     textAlign: "left",
 
     "& th": {
-      color: appStyles.colors.green,
+      color: appStyles.colors.yellow,
     },
     "& td": {
       fontFamily: appStyles.fonts.primary,
@@ -82,9 +82,9 @@ const useStyles = makeStyles(() => ({
 }));
 
 const stats = [
-  { barColor: appStyles.colors.red, completed: 60 },
-  { barColor: appStyles.colors.red, completed: 30 },
-  { barColor: appStyles.colors.red, completed: 53 },
+  { barColor: appStyles.colors.yellow, completed: 60 },
+  { barColor: appStyles.colors.yellow, completed: 30 },
+  { barColor: appStyles.colors.yellow, completed: 53 },
 ];
 
 const AgentDetails = (props) => {
@@ -124,7 +124,7 @@ const AgentDetails = (props) => {
           </table>
         </div>
       </div>
-      <span style={{ textAlign: "center", color: appStyles.colors.white }}>
+      <span style={{ textAlign: "center", color: appStyles.colors.yellow }}>
         <h2>STATS</h2>
       </span>
 

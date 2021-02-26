@@ -16,6 +16,7 @@ const theme = {
     red: colors.red,
     yellow: colors.yellow,
     blue: colors.blue,
+    greyAccent: colors.greyAccent,
     darkGrey: colors.darkGrey,
     green: colors.green,
     purple: colors.purple,
