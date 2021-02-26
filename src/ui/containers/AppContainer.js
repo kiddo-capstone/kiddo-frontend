@@ -18,7 +18,7 @@ import Button from "../button/Button";
 import theme from "../common/theme";
 import AgentDetails from "../../modules/views/AgentDetails";
 import PageContainer from "./PageContainer";
-import magnifyingGlass from "../../assets/magnifying-glass.png"
+import magnifyingGlass from "../../assets/magnifying-glass.png";
 
 const appStyles = theme;
 const drawerWidth = 300;
@@ -62,7 +62,6 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: drawerWidth,
     },
   },
-
   buttonGroup: {
     justifyContent: "end",
     alignSelf: "center",
@@ -111,35 +110,41 @@ function AppContainer(props) {
             onClick={handleDrawerToggle}
             className={classes.menuButton}
           >
-            <img src={magnifyingGlass} alt="magnifying glass" style={{height: '2em'}}/>
+            <img
+              src={magnifyingGlass}
+              alt="magnifying glass"
+              style={{ height: "2em" }}
+            />
           </IconButton>
-          Welcome, Agent { isAuthenticated && user.given_name }!
+          Welcome, Agent {isAuthenticated && user.given_name}!
         </Toolbar>
       </AppBar>
       <div className={classes.drawer}>
-        {/* <Hidden smUp implementation="css"> */}
-        <Drawer
-          container={container}
-          variant="temporary"
-          anchor={theme.direction === "rtl" ? "right" : "left"}
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          classes={{
-            paper: classes.drawerPaper,
-          }}
-          ModalProps={{
-            keepMounted: true,
-          }}
-        >
-          {drawer}
-        </Drawer>
-        {/* </Hidden> */}
-
+        <Hidden smUp implementation="css">
+          <Drawer
+            container={container}
+            variant="temporary"
+            anchor={theme.direction === "rtl" ? "right" : "left"}
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+            ModalProps={{
+              keepMounted: true,
+            }}
+          >
+            {drawer}
+          </Drawer>
+        </Hidden>
+      </div>
+      <div className={classes}>
         <Hidden xsDown implementation="css">
           <Drawer
             classes={{
               paper: classes.drawerPaper,
             }}
+            container={container}
             variant="permanent"
             open
           >

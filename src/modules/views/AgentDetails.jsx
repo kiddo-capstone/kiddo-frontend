@@ -14,6 +14,7 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "spaceAround",
+    color: appStyles.colors.yellow,
   },
   card: {
     height: "450px",
@@ -34,7 +35,6 @@ const useStyles = makeStyles(() => ({
     fontFamily: appStyles.fonts.primary,
     fontSize: "20px",
     textAlign: "center",
-    color: appStyles.colors.yellow,
   },
   avatar: {
     margin: "auto",
@@ -59,12 +59,11 @@ const useStyles = makeStyles(() => ({
     marginTop: "10px",
     width: "100%",
     fontSize: "20px",
-    // color: appStyles.colors.yellow,
     marginLeft: "10px",
     textAlign: "left",
 
     "& th": {
-      color: appStyles.colors.yellow,
+      
     },
     "& td": {
       fontFamily: appStyles.fonts.primary,
