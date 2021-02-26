@@ -13,7 +13,6 @@ const useStyles = makeStyles(theme => ({
     margin: ".5em 0",
     width: "90%",
     height: "fit-content",
-    width: "100%",
   },
   mission: {
     height: '6em',
