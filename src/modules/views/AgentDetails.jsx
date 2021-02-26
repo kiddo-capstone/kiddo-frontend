@@ -5,6 +5,7 @@ import theme from "../../ui/common/theme";
 import kids from "../../assets/kids_trio.png";
 import ProgressBar from "../../ui/progressBar/ProgressBar";
 import Auth from "../auth/Auth";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const appStyles = theme;
 
@@ -39,7 +40,6 @@ const useStyles = makeStyles(() => ({
     margin: "auto",
     position: "relative",
     background: appStyles.colors.white,
-    padding: "1em",
     marginBottom: "0.7em",
     width: "220px",
     height: "200px",
@@ -49,7 +49,7 @@ const useStyles = makeStyles(() => ({
     "& img": {
       width: "100%",
       height: "100%",
-      objectFit: "contain"
+      objectFit: "cover"
     },
   },
   icon: {
@@ -90,30 +90,18 @@ const stats = [
 const AgentDetails = (props) => {
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
-  const allUsers = state.users;
-
-  const [user, setUser] = useState(null);
-
-  const getUserById = (users, id) => {
-    return users.find((user) => +user.id === id);
-  };
-  
-  useEffect(() => {
-    const newUser = getUserById(allUsers, 1);
-    setUser(newUser)
-  }, []);
+  const { user, isAuthenticated } = useAuth0()
  
   return (
     <section className={classes.section}>
       <div className={classes.card}>
         <div className={classes.cardHeader}>
           <div className={classes.avatar}>
-            <img src={kids} />
+            <img src={!isAuthenticated ? kids : user.picture} />
           </div>
 
           <span className={classes.titleText}>
-    {/* Commented out due to issues holding onto user in state: */}
-            {/* <h1>{user.attributes.name}</h1> */} 
+            <h1>{user.name}</h1> 
           </span>
 
           <hr />
