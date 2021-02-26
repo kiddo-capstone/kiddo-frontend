@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "space-between",
     alignItems: "center",
     flexWrap: "wrap",
-    backgroundColor: "#575757",
+    backgroundColor: "#3e4452",
     textAlign: "center",
     borderRadius: "5px",
     fontSize: "clamp(10px, 1.75rem, 4vmin)",
@@ -80,6 +80,9 @@ const useStyles = makeStyles(theme => ({
   },
   right: {
     flex: 0.7,
+    width: "100%",
+    justifyContent: 'center',
+    display: 'flex',
   },
   icon: {
     height: '1.5em',
@@ -122,7 +125,7 @@ const Mission = props => {
   return (
     <div className={classes.missionWrapper}>
       <div className={classes.mission}>
-        {/* <div className={classes.left}>
+        <div className={classes.left}>
           <p>{assignedDay}</p>
           <p>{assignedDate}</p>
           <span className={classes.category}>
@@ -131,9 +134,9 @@ const Mission = props => {
         </div>
         <div className={classes.middle}>
           <span className={classes.title}>
-            {/* <p>Mission</p> */}
+            <p>Mission</p>
             <p>{name}</p>
-          {/* </span> */}
+          </span>
           <BadgeBG>
             <BadgeContainer>{ <img className={classes.icon} src={intelligence} /> }</BadgeContainer>
             <BadgeContainer>{ <img className={classes.icon} src={creativity} /> }</BadgeContainer>
