@@ -101,7 +101,7 @@ const AgentDetails = (props) => {
           </div>
 
           <span className={classes.titleText}>
-            <h1>{user.name}</h1> 
+            <h1>{!isAuthenticated ? 'Secret Agent' : user.name}</h1> 
           </span>
 
           <hr />
