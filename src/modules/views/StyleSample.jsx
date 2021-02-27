@@ -3,8 +3,10 @@ import AppContext from "../app/AppContext";
 import Button from "../../ui/button/Button";
 import PageContainer from "../../ui/containers/PageContainer";
 import TitleContainer from "../../ui/containers/TitleContainer";
-import ImageCapture from "../../ui/containers/ImageCapture";
+import ImageCapture from '../tasks/ImageCapture'
 import Modal from "../../ui/modal/Modal"
+import ModalWrapper from "../../ui/modal/ModalWrapper"
+import AgentDetails from "../views/AgentDetails"
 import Logo from '../common/logo/Logo'
 
 const StyleSample = props => {
