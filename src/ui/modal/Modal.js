@@ -44,7 +44,7 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: ".5em 1em 1em 1em",
+    padding: "1em 1em 1em 2em",
     backgroundColor: appStyles.colors.background,
     color: appStyles.colors.white,
     fontSize: 16,
@@ -76,7 +76,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function Modal({ title, message, children }) {
+const Modal = ({ title, message, children }) => {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
 
@@ -115,15 +115,9 @@ export default function Modal({ title, message, children }) {
               <RoundButton>OK!</RoundButton>
             </div>
           </div>
-          {/* <div className={classes.buttonBar}>
-            <RoundButton>
-              <span onClick={handleClose} className={classes.buttonBar}>
-                OK!
-              </span>
-            </RoundButton>
-          </div> */}
         </div>
       </Dialog>
     </div>
   );
-}
+};
+export default React.memo(Modal);
