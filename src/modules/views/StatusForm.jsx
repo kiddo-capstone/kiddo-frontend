@@ -110,4 +110,4 @@ const StatusForm = () => {
   )
 }
 
-export default StatusForm;
+export default React.memo(StatusForm);
