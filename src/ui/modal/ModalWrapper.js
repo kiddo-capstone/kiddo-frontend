@@ -32,7 +32,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function Modal({ children }) {
+export default function Modal({ btnMessage, children }) {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
 
@@ -47,7 +47,7 @@ export default function Modal({ children }) {
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Secret Message!
+        { btnMessage }
       </Button>
       <Dialog
         open={open}
