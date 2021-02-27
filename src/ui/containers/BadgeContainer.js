@@ -3,10 +3,10 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   badge: {
-    width: 'fit-content',
-    height: "fit-content",
-    padding: '0 .5em',
-    maxHeight: '1em',
+    // width: 'fit-content',
+    // height: "fit-content",
+    // padding: '0 .5em',
+    // maxHeight: '1em',
   },
 }));
 

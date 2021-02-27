@@ -10,7 +10,7 @@ const drawerHeight = 40;
 const useStyles = makeStyles((theme) => ({
   pageContainer: {
     textAlign: "center",
-    backgroundColor: appStyles.colors.background,
+    // backgroundColor: appStyles.colors.background,
     margin: ((theme) => theme.margin || 'default'),
     minHeight: "100%",
     display: "flex",
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
       marginTop: drawerHeight - 20,
     },
     [theme.breakpoints.down("sm")]: {
-      marginTop: "25px",
+      marginTop: "45px",
     },
   },
 }));

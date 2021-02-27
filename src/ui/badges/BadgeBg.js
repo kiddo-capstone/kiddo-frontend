@@ -3,15 +3,18 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((props) => ({
   BadgeBG: {
-    width: 'fit-content',
-    background: '#757575',
-    borderRadius: '15px',
-    height: "fit-content",
-    padding: '.2em .2em',
+    width: '50%',
+    background: '#ffffff29',
+    borderRadius: '3em',
     display: "flex",
     justifyContent: "space-around",
-    alignItems: "center",
-    marginTop: '.6em',
+    paddingTop: '.3em',
+    marginTop: '.5em',
+    border: 'solid 1px',
+    // background: '#757575',
+    // height: "fit-content",
+    // padding: '.2em .2em',
+    // alignItems: "center",
   },
 }));
 
