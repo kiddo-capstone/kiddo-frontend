@@ -3,7 +3,7 @@ import AppContext from "../app/AppContext";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
 import kids from "../../assets/kids_trio.png";
-import ProgressBar from "../../ui/progressBar/progressBar";
+import ProgressBar from "../../ui/progressBar/ProgressBar";
 import Auth from "../auth/Auth";
 import { useAuth0 } from "@auth0/auth0-react";
 
