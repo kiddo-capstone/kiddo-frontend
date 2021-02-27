@@ -34,7 +34,7 @@ const Journal = ({ checkReady }) => {
   const classes = useStyles();
 
   useEffect(()=> {
-    entry.split(' ').length > 15 ? checkReady(true) : checkReady(false)
+    entry.split(' ').length > 14 ? checkReady(true) : checkReady(false)
     // we need logic to bundle the updated task object to have completed true/false, and 
     // bubble it back up to TaskView - button submission => DISPATCH to update state for task
   }, [entry]);
