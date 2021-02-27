@@ -50,13 +50,14 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#3e4452",
     fontSize: "calc(10px + 2vmin)",
     [theme.breakpoints.up("sm")]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      // marginLeft: drawerWidth,
+      // width: `calc(100% - ${drawerWidth}px)`,
+      display: 'none',
     },
   },
   content: {
     flexGrow: 1,
-    backgroundColor: appStyles.colors.primary,
+    marginTop: 0,
+    // backgroundColor: appStyles.colors.primary,
     fontFamily: "'Russo One', sans-serif",
     [theme.breakpoints.up("sm")]: {
       marginLeft: drawerWidth,

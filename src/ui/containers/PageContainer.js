@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     backgroundColor: appStyles.colors.background,
     margin: ((theme) => theme.margin || 'default'),
-    marginTop: "25px",
     minHeight: "100%",
     display: "flex",
     flexDirection: "column",
@@ -24,7 +23,10 @@ const useStyles = makeStyles((theme) => ({
     // media query for pushing page content past drawer
     [theme.breakpoints.up("sm")]: {
       marginLeft: drawerWidth,
-      marginTop: drawerHeight,
+      marginTop: drawerHeight - 20,
+    },
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "25px",
     },
   },
 }));
