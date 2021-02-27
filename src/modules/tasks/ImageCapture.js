@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import RoundButton from "../../ui/button/RoundButton";
+import camera from "../../assets/camera.png";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -41,11 +42,11 @@ const useStyles = makeStyles(() => ({
   icon: {
     margin: "auto",
     position: "relative",
-    width: "65%",
-    height: "65%",
+    width: "80%",
+    height: "80%",
     paddingTop: "20px",
     // borderRadius: "50%",
-    overflow: "hidden",
+    // overflow: "hidden",
     "& img": {
       width: "100%",
       height: "100%",
@@ -88,7 +89,9 @@ const ImageCapture = ({ checkReady }) => {
       />
       <label htmlFor="icon-button-file">
         <RoundButton>
-          <span aria-label="upload picture">📸</span>
+          <span aria-label="upload picture">
+            <img src={camera} className={classes.icon} />
+          </span>
         </RoundButton>
       </label>
     </div>
