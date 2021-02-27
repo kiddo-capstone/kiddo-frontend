@@ -5,10 +5,21 @@ import RoundButton from "../../ui/button/RoundButton";
 const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
+    padding: "1em",
     flexDirection: "column",
     alignItems: "center",
     height: "100%",
     textAlign: "center",
+  },
+  box: {
+    fontSize: "1em",
+    width: "100%",
+    border: "none",
+    padding: "1em",
+    borderRadius: "10px",
+    backgroundColor: "rgb(40,44,52, .5)",
+    outline: "none",
+    color: "blanchedalmond",
   },
   imgBox: {
     // maxWidth: "80%",
@@ -53,7 +64,6 @@ const ImageCapture = () => {
         const newUrl = URL.createObjectURL(file);
         console.log(newUrl);
         setSource(newUrl);
-        // Make image POST request (newUrl)
       }
     }
   };

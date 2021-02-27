@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { makeStyles } from "@material-ui/core";
 import AppContext from "../app/AppContext";
-import ImageCapture from "./ImageCapture";
 
 const useStyles = makeStyles((theme) => ({
   textBox: {

@@ -9,7 +9,6 @@ export const cannedData = {
           "Every good secret agent needs to understand their emotions. Take 10 minutes to journal your feelings",
         category: "EQ",
         points: 100,
-        photoIsRequired: true,
       },
     },
     {
@@ -21,7 +20,6 @@ export const cannedData = {
           "Every agent can increase their own skills with good, hard work. Complete 10 math problems.",
         category: "IQ",
         points: 50,
-        photoIsRequired: false,
       },
     },
     {
@@ -33,7 +31,6 @@ export const cannedData = {
           "Good rest is one of the most important things for an agent to have. Make sure your bed is ready to sleep in after today's missions.",
         category: "Misc",
         points: 1337,
-        photoIsRequired: false,
       },
     },
     {
@@ -44,7 +41,6 @@ export const cannedData = {
         description: "testing",
         category: "test",
         points: 3,
-        photoIsRequired: false,
       },
     },
   ],
@@ -61,6 +57,7 @@ export const missionTasks = {
         message: "I'm Baaack!",
         image_path: "",
         is_completed: false,
+        photoIsRequired: true,
       },
     },
     {
@@ -69,6 +66,7 @@ export const missionTasks = {
       message: "I'm Baaack!",
       image_path: "",
       is_completed: false,
+      photoIsRequired: false,
     },
   ],
 };
