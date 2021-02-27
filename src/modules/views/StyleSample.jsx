@@ -16,7 +16,7 @@ const StyleSample = props => {
       <TitleContainer>
         <h1>Style Guide</h1>
       </TitleContainer>
-      <Modal title={"Secret Agent Message"} message={"Remember, Agent Calvin, do not take photos of yourself or family. A secret agent must always keep their identity...secret!"}/>
+      <Modal title={"Secret Agent Message"} message={"Remember, Agent Calvin, do not take photos of yourself or family. A secret agent must always keep their identity...secret!"} buttonText={"Secret Message!"}/>
       <ModalWrapper><ImageCapture /></ModalWrapper>
       <ModalWrapper><AgentDetails/></ModalWrapper>
       <ImageCapture />

@@ -19,7 +19,7 @@ const useStyles = makeStyles(() => ({
     backgroundColor: appStyles.colors.blue,
     padding: "0 1em 0 1em",
     color: "white",
-    border: `2px solid ${appStyles.colors.background}`,
+    // border: `2px solid ${appStyles.colors.background}`,
     boxShadow: `inset 5em 2em ${appStyles.colors.background}`,
     // minWidth: "100%",
     // maxWidth: "100%",
@@ -62,21 +62,13 @@ const useStyles = makeStyles(() => ({
       height: "100%",
       // objectFit: "cover"
     },
-    buttonBar: {
-      // display: "flex",
-      // flexDirection: "row",
-      // justifyContent: "center",
-      alignSelf: "center",
-      margin: "2em",
-      color: appStyles.colors.white,
-    },
     button: {
       textAlign: "center",
     },
   },
 }));
 
-const Modal = ({ title, message, children }) => {
+const Modal = ({ title, message, buttonText }) => {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
 
@@ -90,7 +82,7 @@ const Modal = ({ title, message, children }) => {
 
   return (
     <div>
-      <Button onClick={handleClickOpen}>Secret Message!</Button>
+      <Button onClick={handleClickOpen}>{buttonText}</Button>
       <Dialog
         open={open}
         TransitionComponent={Transition}

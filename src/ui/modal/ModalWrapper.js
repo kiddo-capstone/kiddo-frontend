@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexDirection: "column",
     backgroundColor: "#3e4452",
-    border: `2px solid ${appStyles.colors.yellow}`,
+    border: `3px solid ${appStyles.colors.yellow}`,
     padding: ".2em",
     color: "white",
     minWidth: "100%",
