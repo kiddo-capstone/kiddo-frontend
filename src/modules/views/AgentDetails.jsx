@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
 import kids from "../../assets/kids_trio.png";
 import ProgressBar from "../../ui/progressBar/ProgressBar";
-import Auth from "../auth/Auth";
+import MiniAuth from "../auth/MiniAuth";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const appStyles = theme;
@@ -78,9 +78,12 @@ const useStyles = makeStyles(() => ({
 }));
 
 const stats = [
-  { barColor: appStyles.colors.red, completed: 60 },
-  { barColor: appStyles.colors.red, completed: 30 },
-  { barColor: appStyles.colors.red, completed: 53 },
+  // { barColor: appStyles.colors.red, completed: 60 },
+  // { barColor: appStyles.colors.red, completed: 30 },
+  // { barColor: appStyles.colors.red, completed: 53 },
+  { barColor: 'gold', completed: 60 },
+  { barColor: 'gold', completed: 30 },
+  { barColor: 'gold', completed: 53 },
 ];
 
 const AgentDetails = (props) => {
@@ -135,7 +138,7 @@ const AgentDetails = (props) => {
           </div>
         ))}
       </div>
-      <Auth />
+      <MiniAuth />
     </section>
   );
 };
