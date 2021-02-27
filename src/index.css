@@ -30,13 +30,13 @@ code {
 }
 
 *::-webkit-scrollbar-track {
-  background: #282C34;
+  background: #3E4452;
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #7367F0;
+  background-color: #3E4452;
   /* background-color: #3E4452; */
   border-radius: 20px;
-  /* border: 1px solid gold; */
+  border: 1px solid rgb(177, 161, 71);
   /* border: 3px solid rgb(255, 166, 0); */
 }
