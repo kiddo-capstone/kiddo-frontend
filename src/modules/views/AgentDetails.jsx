@@ -7,6 +7,7 @@ import bubbles from "../../assets/bubbles.svg";
 import ProgressBar from "../../ui/progressBar/ProgressBar";
 import MiniAuth from "../auth/MiniAuth";
 import { useAuth0 } from "@auth0/auth0-react";
+import StatusForm from "./StatusForm";
 
 const appStyles = theme;
 
@@ -57,21 +58,16 @@ const useStyles = makeStyles(() => ({
   icon: {
     alignSelf: "center",
   },
-  table: {
-    marginTop: "10px",
-    width: "100%",
-    fontSize: "20px",
-    color: 'gold',
-    marginLeft: "10px",
-    textAlign: "left",
-
-    "& th": {
-      color: 'gold',
-    },
-    "& td": {
-      fontFamily: appStyles.fonts.primary,
-      color: appStyles.colors.white,
-    },
+  details: {
+    display: "flex",
+    flexDirection: "column"
+  },
+  detailsChild: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    padding: "0 2em",
+    color: appStyles.colors.white
   },
   statRow: {
     display: "flex",
@@ -104,23 +100,20 @@ const AgentDetails = (props) => {
           </span>
 
           <hr />
-
-          <table className={classes.table}>
-            <tbody>
-              <tr>
-                <th>Date:</th>
-                <td>{ new Date().toLocaleDateString() }</td>
-              </tr>
-              <tr>
-                <th>Agent Status:</th>
-                <td>😃</td>
-              </tr>
-              <tr>
-                <th>Points:</th>
-                <td>60</td>
-              </tr>
-            </tbody>
-          </table>
+          <div className={classes.details}>
+            <div className={classes.detailsChild}>
+              <h3>Date:</h3>
+              <h4>{ new Date().toLocaleDateString() }</h4>
+            </div>
+            <div className={classes.detailsChild}>
+              <h3>Points:</h3>
+              <h4>###</h4>
+            </div>
+            <div className={classes.detailsChild}>
+              <h3>Agent Status:</h3>
+              <StatusForm />
+            </div>
+          </div>
         </div>
       </div>
       <span style={{ textAlign: "center", color: appStyles.colors.white }}>
