@@ -111,7 +111,7 @@ const TaskView = ({ id }) => {
           </span>
           <div className={classes.descriptionContainer}>
             <p>
-              {attributes?.description} and here is some more placeholder text,
+              {attributes?.description} in <b style={{color: 'gold'}}>15 words</b>. Here is some more placeholder text,
               combined with a handful of model sentence structures, to generate
               Lorem Ipsum which looks reasonable.
             </p>
