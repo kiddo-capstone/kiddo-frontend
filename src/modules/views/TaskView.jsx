@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import AppContext from "../app/AppContext";
 import { makeStyles } from "@material-ui/core";
 import { PageContainer, TitleContainer } from "../../ui/containers/index";
-import Journal from '../tasks/Journal'
+import Journal from "../tasks/Journal";
 import ImageCapture from "../tasks/ImageCapture";
 import AccentLine from "../../ui/decorative/AccentLine";
 import Button from "../../ui/button/Button";
@@ -15,29 +15,29 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     display: "flex",
     padding: "0em 2em",
-    flexWrap: 'wrap',
+    flexWrap: "wrap",
     "& h1, h2, h3, h4, p": {
       margin: 0,
     },
   },
   descriptionContainer: {
-    border: ((theme) => `solid 3px ${theme.colors.blue}`),
+    border: theme => `solid 3px ${theme.colors.blue}`,
     borderRadius: "10px",
     fontFamily: "monospace",
     padding: "1em 1em",
-    minWidth: '350px',
-    height: '12em',
-    overflow: 'auto',
+    minWidth: "350px",
+    height: "12em",
+    overflow: "auto",
     // color: 'blanchedalmond',
   },
   actionContainer: {
-    border: ((theme) => `solid 3px ${theme.colors.blue}`),
+    border: theme => `solid 3px ${theme.colors.blue}`,
     // paddingTop: "1em",
     borderRadius: "10px",
     fontFamily: "monospace",
-    minWidth: '350px',
-    height: '100%',
-    backgroundColor: 'rgb(40,44,52, .5)',
+    minWidth: "350px",
+    height: "100%",
+    backgroundColor: "rgb(40,44,52, .5)",
   },
   category: {
     display: "flex",
@@ -55,8 +55,8 @@ const useStyles = makeStyles(theme => ({
   },
   right: {
     flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
   },
 }));
 
@@ -65,10 +65,11 @@ const TaskView = ({ id }) => {
   const [complete, setComplete] = useState(false);
   const [error, setError] = useState(null);
   const classes = useStyles(state.theme);
-  console.log(state.theme);
+  // console.log(state.theme);
   const {
     selectedTask: { attributes },
   } = state;
+  console.log(attributes);
 
   useEffect(async () => {
     await getTaskById(id)
@@ -81,17 +82,34 @@ const TaskView = ({ id }) => {
     dispatch(action);
   };
 
-  const checkReady = (trueFalse) => {
+  const checkReady = trueFalse => {
     console.log(trueFalse);
     if (complete !== trueFalse) {
-      setComplete(trueFalse)
+      setComplete(trueFalse);
     }
-  }
+  };
 
   const handleClick = () => {
-    console.log('handled')
-    // update the needed glags 
-  }
+    console.log("handled");
+    // update the needed glags
+  };
+
+  const getTask = () => {
+    if (attributes?.category === "EQ") {
+      return(
+        <div className={classes.actionContainer}>
+          {/* {attributes.photoIsRequired === true && <ImageCapture />} */}
+          <Journal checkReady={checkReady} />
+        </div>
+      )
+    } else if (attributes?.category === "IQ") {
+      return (
+        <div className={classes.actionContainer}>
+          <ImageCapture checkReady={checkReady}/>
+        </div>
+      )
+    }
+  };
 
   return (
     // FYI
@@ -112,28 +130,23 @@ const TaskView = ({ id }) => {
           </span>
           <div className={classes.descriptionContainer}>
             <p>
-              {attributes?.description} in <b style={{color: state.theme.colors.blue}}>15 words</b>. Here is some more placeholder text,
-              combined with a handful of model sentence structures, to generate
-              Lorem Ipsum.
+              {attributes?.description} in{" "}
+              <b style={{ color: state.theme.colors.blue }}>15 words</b>. Here
+              is some more placeholder text, combined with a handful of model
+              sentence structures, to generate Lorem Ipsum.
             </p>
           </div>
         </section>
         <div style={{ width: "1%" }} />
         <section className={classes.right}>
-          <span className={classes.category} style={{opacity: 0}}>
+          <span className={classes.category} style={{ opacity: 0 }}>
             <p>.</p>
           </span>
-          <div className={classes.actionContainer}>
-            {/* {attributes.photoIsRequired === true && <ImageCapture />} */}
-            <Journal checkReady={checkReady}/>
-          </div>
-          <div className={classes.actionContainer}>
-            <ImageCapture checkReady={checkReady}/>
-          </div>
+          {getTask()}
         </section>
       </section>
       <Button primary onClick={handleClick} disabled={complete ? false : true}>
-        {complete ? 'All Done!' : 'Complete Task to Submit'}
+        {complete ? "All Done!" : "Complete Task to Submit"}
       </Button>
     </PageContainer>
   );

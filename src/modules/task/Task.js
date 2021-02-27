@@ -95,7 +95,6 @@ const Task = ({ props }) => {
   const {
     attributes: { name, description, category, points, photoIsRequired },
   } = props;
-
   return (
     <article className={classes.taskWrapper}>
       <span className={classes.category}>
