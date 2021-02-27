@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import RoundButton from "../../ui/button/RoundButton";
 
@@ -53,7 +53,7 @@ const useStyles = makeStyles(() => ({
     },
   },
 }));
-const ImageCapture = () => {
+const ImageCapture = ({ checkReady }) => {
   const classes = useStyles();
   const [source, setSource] = useState("");
 
@@ -67,6 +67,9 @@ const ImageCapture = () => {
       }
     }
   };
+  useEffect(() => {
+    source ? checkReady(true) : checkReady(false);
+  }, [source]);
   return (
     <div className={classes.root}>
       <h5>Capture Photo Evidence</h5>

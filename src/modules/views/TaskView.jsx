@@ -126,7 +126,7 @@ const TaskView = ({ id }) => {
             <Journal checkReady={checkReady}/>
           </div>
           <div className={classes.actionContainer}>
-            <ImageCapture />
+            <ImageCapture checkReady={checkReady}/>
           </div>
         </section>
       </section>
