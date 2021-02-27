@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     fontSize: "calc(10px + 2vmin)",
     color: "white",
-    backgroundColor: "#282c34",
+    // backgroundColor: "#282c34",
     [theme.breakpoints.down("600")]: {
       minWidth: "20px",
     },

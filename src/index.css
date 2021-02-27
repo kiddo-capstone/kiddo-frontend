@@ -1,6 +1,11 @@
 body {
   margin: 0;
-  background-color: #282c34 !important;
+  background-image: linear-gradient(
+    90deg
+    /* , #e4572e5c, #2256b545), url('/src/assets/kids_trio.png'); */
+    , #e4572e5c, #2256b545), url(https://lyncstream.com/wp-content/uploads/2017/02/header-overlay-2.png);
+  background-size: cover;
+  /* background-color: #282c34 !important; */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;

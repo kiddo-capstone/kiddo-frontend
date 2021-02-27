@@ -36,7 +36,8 @@ const useStyles = makeStyles(theme => ({
     borderRadius: "10px",
     fontFamily: "monospace",
     minWidth: '350px',
-    // height: '100%',
+    height: '100%',
+    backgroundColor: 'rgb(40,44,52, .5)',
   },
   category: {
     display: "flex",

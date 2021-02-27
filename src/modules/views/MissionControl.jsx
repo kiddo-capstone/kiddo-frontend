@@ -22,7 +22,8 @@ const useStyles = makeStyles(theme => ({
     fontSize: "calc(10px + 2vmin)",
     color: "white",
     padding: '1.5em .5em',
-    backgroundColor: "#282c34",
+    // background: "none",
+    // backgroundColor: "#282c34",
     [theme.breakpoints.down('600')]: {
       minWidth: '20px',
     },

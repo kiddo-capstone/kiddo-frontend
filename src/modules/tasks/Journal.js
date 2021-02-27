@@ -2,16 +2,24 @@ import React, { useState, useEffect, useContext } from "react";
 import { makeStyles } from "@material-ui/core";
 import AppContext from "../app/AppContext";
 
-const useStyles = makeStyles((theme) => ({
+
+const useStyles = makeStyles(theme => ({
+  form: {
+    height: '12em',
+  },
   textBox: {
     fontSize: "1em",
     width: "100%",
     border: "none",
     padding: "1em",
     borderRadius: "10px",
-    backgroundColor: "rgb(40,44,52, .5)",
+    backgroundColor: "rgb(40,44,52, .0)",
     outline: "none",
     color: "blanchedalmond",
+    resize: 'none',
+    '&::placeholder': {
+      color: '#9a9a9a', 
+    }
   },
 }));
 
