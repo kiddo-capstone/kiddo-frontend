@@ -63,7 +63,7 @@ const App = () => {
             />
             <Route exact path="/style-guide" component={StyleSample} />
             <Route exact path="/mission-control" component={MissionControl} />
-            <Route exact path="/login" component={Auth} />
+            <Route exact path="/welcome" component={Auth} />
             <Route path="/" component={Error400} />
           </Switch>
         </AppContext.Provider> :
