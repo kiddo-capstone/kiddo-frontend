@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     fontFamily: fonts.secondary,
     borderRadius: '15px',
     borderColor: ((theme) => theme.primary ? colors.primaryAccent :  colors.secondaryAccent),
-    background: ((theme) => theme.primary ? colors.primary :  colors.secondary),
+    background: ((theme) => theme.primary ? colors.purple :  colors.secondary),
     color: colors.darkGrey,
     // color: ((theme) => theme.primary ? colors.primaryAccent :  colors.secondaryAccent),
     outline: 'none',
@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
       borderColor: colors.grey1, 
       background: 'none',
       // background: colors.grey3,
-      color: colors.grey2,    
+      color: colors.grey3,    
       cursor: 'default',
       transform: 'none',
     }
