@@ -45,3 +45,13 @@ export const getUserById = (id) => {
       .then((res) => res.json())
   );
 };
+
+export const updateMissionTask = (id, updatedMission) => {
+  fetch(`https://kiddo-backend.herokuapp.com/api/1v/mission_tasks/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    body: JSON.stringify(updatedMission),
+  }).then((response) => response.json());
+};

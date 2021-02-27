@@ -17,9 +17,9 @@ const StyleSample = props => {
         <h1>Style Guide</h1>
       </TitleContainer>
       <Modal title={"Secret Agent Message"} message={"Remember, Agent Calvin, do not take photos of yourself or family. A secret agent must always keep their identity...secret!"} buttonText={"Secret Message!"}/>
-      <ModalWrapper><ImageCapture /></ModalWrapper>
+      <ModalWrapper>Wassup</ModalWrapper>
       <ModalWrapper><AgentDetails/></ModalWrapper>
-      <ImageCapture />
+      
       {/* <div style={{ display: "flex", justifyContent: 'space-evenly' }}>
         <div style={{ display:'flex', flexDirection:'column' }}>
           <h1 style={{ color: colors.green, fontFamily: fonts.primary }}>
