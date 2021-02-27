@@ -3,12 +3,12 @@ import AppContext from "../app/AppContext";
 import Button from "../../ui/button/Button";
 import PageContainer from "../../ui/containers/PageContainer";
 import TitleContainer from "../../ui/containers/TitleContainer";
-import ImageCapture from "../../ui/containers/ImageCapture";
+import ImageCapture from "../tasks/ImageCapture";
 import Modal from "../../ui/modal/Modal"
 const StyleSample = props => {
   const [state, dispatch] = useContext(AppContext);
   const { colors, shadows, gradients, fonts } = state.theme;
-
+  
   return (
     <PageContainer>
       <TitleContainer>
