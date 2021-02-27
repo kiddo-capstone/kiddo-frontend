@@ -56,17 +56,16 @@ export const missionTasks = {
       id: "1",
       type: "task",
       attributes: {
-        name: "💜 Understanding Feelings",
-        description:
-          "Every good secret agent needs to understand their emotions. Take 10 minutes to journal your feelings",
-        category: "EQ",
-        points: 100,
-        photoIsRequired: true,
+        mission_id: "1",
+        task_id: "1",
+        message: "I'm Baaack!",
+        image_path: "",
+        is_completed: false,
       },
     },
     {
       mission_id: "1",
-      task_id: "1",
+      task_id: "2",
       message: "I'm Baaack!",
       image_path: "",
       is_completed: false,
