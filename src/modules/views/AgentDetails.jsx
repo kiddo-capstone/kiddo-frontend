@@ -34,7 +34,7 @@ const useStyles = makeStyles(() => ({
     fontFamily: appStyles.fonts.primary,
     fontSize: "20px",
     textAlign: "center",
-    color: appStyles.colors.green,
+    color: appStyles.colors.yellow,
   },
   avatar: {
     margin: "auto",
@@ -64,7 +64,10 @@ const useStyles = makeStyles(() => ({
     flexDirection: "row",
     justifyContent: "space-between",
     padding: "0 2em",
-    color: appStyles.colors.white
+    color: appStyles.colors.white,
+    "& h2:nth-child(1)": {
+      color: appStyles.colors.yellow,
+    },
   },
   statRow: {
     display: "flex",
@@ -99,15 +102,15 @@ const AgentDetails = (props) => {
           <hr />
           <div className={classes.details}>
             <div className={classes.detailsChild}>
-              <h3>Date:</h3>
+              <h2>Date:</h2>
               <h4>{ new Date().toLocaleDateString() }</h4>
             </div>
             <div className={classes.detailsChild}>
-              <h3>Points:</h3>
+              <h2>Points:</h2>
               <h4>###</h4>
             </div>
             <div className={classes.detailsChild}>
-              <h3>Agent Status:</h3>
+              <h2>Agent Status:</h2>
               <StatusForm />
             </div>
           </div>
