@@ -58,7 +58,6 @@ const useStyles = makeStyles(theme => ({
   content: {
     flexGrow: 1,
     marginTop: 0,
-    // backgroundColor: appStyles.colors.primary,
     fontFamily: "'Russo One', sans-serif",
     [theme.breakpoints.up("sm")]: {
       marginLeft: drawerWidth,

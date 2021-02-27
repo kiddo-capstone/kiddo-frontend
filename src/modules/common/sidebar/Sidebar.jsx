@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appBar: {
-    backgroundColor: appStyles.colors.primary,
+    backgroundColor: appStyles.colors.darkGrey,
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   // toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: appStyles.colors.primary
+    backgroundColor: appStyles.colors.background,
 
   },
   content: {

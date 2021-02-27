@@ -76,7 +76,7 @@ const DailyMission = props => {
         <p>Your mission:</p>
         <h1>{attributes?.name}</h1>
       </TitleContainer>
-      <AccentLine />
+      <AccentLine color={state.theme.colors.purple}/>
       <section className={classes.tasks}>
         {/* hardcoded canned data for tasks imported into file */}
         {makeTasksList()}

@@ -31,22 +31,23 @@ const useStyles = makeStyles(() => ({
     // background: appStyles.colors.grey3,
   },
   titleText: {
+    // color: appStyles.colors.green,
     fontFamily: appStyles.fonts.primary,
     fontSize: "20px",
     textAlign: "center",
-    // color: appStyles.colors.green,
     color: 'gold',
   },
   avatar: {
+    // background: appStyles.colors.white,
+    // marginBottom: "0.7em",
+    // border: `4px solid gold`,
+    // border: `5px solid ${appStyles.colors.darkGrey}`,
     margin: "auto",
     position: "relative",
-    background: appStyles.colors.white,
-    marginBottom: "0.7em",
+    backgroundImage: 'radial-gradient(#00fde6, transparent)',
     width: "220px",
     height: "200px",
     borderRadius: "50%",
-    border: `10px solid gold`,
-    // border: `5px solid ${appStyles.colors.darkGrey}`,
     overflow: "hidden",
     "& img": {
       width: "100%",
@@ -58,17 +59,17 @@ const useStyles = makeStyles(() => ({
     alignSelf: "center",
   },
   table: {
+    // color: appStyles.colors.green,
     marginTop: "10px",
     width: "100%",
     fontSize: "20px",
     color: 'gold',
-    // color: appStyles.colors.green,
     marginLeft: "10px",
     textAlign: "left",
 
     "& th": {
-      color: 'gold',
       // color: appStyles.colors.green,
+      color: 'gold',
     },
     "& td": {
       fontFamily: appStyles.fonts.primary,

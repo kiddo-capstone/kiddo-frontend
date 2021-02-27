@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   descriptionContainer: {
-    border: "solid 3px hotpink",
+    border: ((theme) => `solid 3px ${theme.colors.blue}`),
     borderRadius: "10px",
     fontFamily: "monospace",
     padding: "1em 1em",
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
     // color: 'blanchedalmond',
   },
   actionContainer: {
-    border: "solid 3px hotpink",
+    border: ((theme) => `solid 3px ${theme.colors.blue}`),
     // paddingTop: "1em",
     borderRadius: "10px",
     fontFamily: "monospace",
@@ -64,7 +64,8 @@ const TaskView = ({ id }) => {
   const [state, dispatch] = useContext(AppContext);
   const [complete, setComplete] = useState(false);
   const [error, setError] = useState(null);
-  const classes = useStyles();
+  const classes = useStyles(state.theme);
+  console.log(state.theme);
   const {
     selectedTask: { attributes },
   } = state;
@@ -102,7 +103,7 @@ const TaskView = ({ id }) => {
         <p>Agent Task:</p>
         <h1>{attributes?.name}</h1>
       </TitleContainer>
-      <AccentLine color={"hotpink"} />
+      <AccentLine color={state.theme.colors.blue} />
       <section className={classes.innerContainer}>
         <section className={classes.left}>
           <span className={classes.category}>
@@ -111,9 +112,9 @@ const TaskView = ({ id }) => {
           </span>
           <div className={classes.descriptionContainer}>
             <p>
-              {attributes?.description} in <b style={{color: 'gold'}}>15 words</b>. Here is some more placeholder text,
+              {attributes?.description} in <b style={{color: state.theme.colors.blue}}>15 words</b>. Here is some more placeholder text,
               combined with a handful of model sentence structures, to generate
-              Lorem Ipsum which looks reasonable.
+              Lorem Ipsum.
             </p>
           </div>
         </section>
@@ -131,7 +132,7 @@ const TaskView = ({ id }) => {
           </div>
         </section>
       </section>
-      <Button onClick={handleClick} color="hotpink" disabled={complete ? false : true}>
+      <Button primary onClick={handleClick} disabled={complete ? false : true}>
         {complete ? 'All Done!' : 'Complete Task to Submit'}
       </Button>
     </PageContainer>
