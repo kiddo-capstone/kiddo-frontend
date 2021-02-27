@@ -103,6 +103,9 @@ const useStyles = makeStyles(theme => ({
     transition: "transform ease .3s",
     "&:hover": {
       transform: "scale(1.05)",
+      '& $icon': {
+      
+      }
     },
   },
 }));
