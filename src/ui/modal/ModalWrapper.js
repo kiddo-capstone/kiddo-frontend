@@ -16,51 +16,19 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexDirection: "column",
     backgroundColor: "#3e4452",
-    padding: ".5em",
+    border: `2px solid ${appStyles.colors.yellow}`,
+    padding: ".2em",
     color: "white",
-    // minWidth: "100%",
+    minWidth: "100%",
     // maxWidth: "100%",
-
-    fontFamily: appStyles.fonts.secondary,
-  },
-  titleBar: {
-    display: "flex",
-    flexDirection: "row",
-    margin: "1em",
-    color: appStyles.colors.green,
-  },
-  title: {
-    fontSize: "clamp(5px, 1.75rem, 4vmin)",
-    marginLeft: "20px",
+    fontFamily: appStyles.fonts.primary,
+    fontSize: "20px",
   },
   content: {
     padding: "1em",
     color: appStyles.colors.white,
     fontSize: 16,
     fontFamily: appStyles.fonts.secondary,
-  },
-  icon: {
-    position: "relative",
-    width: "80px",
-    height: "80px",
-    borderRadius: "50%",
-    overflow: "hidden",
-    backgroundColor: appStyles.colors.green,
-    "& img": {
-      width: "100%",
-      height: "100%",
-      // objectFit: "cover"
-    },
-    buttonBar: {
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "flex-end",
-    },
-    button: {
-      display: "flex",
-      color: appStyles.colors.white,
-      alignSelf: "center",
-    },
   },
 }));
 
@@ -87,9 +55,9 @@ export default function Modal({ children }) {
         keepMounted
         // className={classes.root} ** This will display only the modal
         onClose={handleClose}
-        aria-labelledby="agent-modal-container"
+        aria-labelledby="modal-wrapper"
       >
-        <section>{children}</section>
+        <section className={classes.root}>{children}</section>
       </Dialog>
     </div>
   );

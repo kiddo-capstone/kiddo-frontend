@@ -1,6 +1,7 @@
 import React from "react";
 import Dialog from "@material-ui/core/Dialog";
 import Slide from "@material-ui/core/Slide";
+import RoundButton from "../button/RoundButton";
 import Button from "../button/Button";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
@@ -15,9 +16,11 @@ const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
     flexDirection: "column",
-    backgroundColor: "#3e4452",
-    padding: ".5em",
+    backgroundColor: appStyles.colors.blue,
+    padding: "0 1em 0 1em",
     color: "white",
+    border: `2px solid ${appStyles.colors.background}`,
+    boxShadow: `inset 5em 2em ${appStyles.colors.background}`,
     // minWidth: "100%",
     // maxWidth: "100%",
 
@@ -26,40 +29,49 @@ const useStyles = makeStyles(() => ({
   titleBar: {
     display: "flex",
     flexDirection: "row",
+    justifyContent: "end",
+    alignItems: "center",
     margin: "1em",
-    color: appStyles.colors.green,
+    color: appStyles.colors.white,
   },
   title: {
-    fontSize: "clamp(5px, 1.75rem, 4vmin)",
+    fontSize: "clamp(10px, 1.5rem, 4vmin)",
     marginLeft: "20px",
+    textShadow: `.2em .2em ${appStyles.colors.background}`,
+    padding: 0,
   },
   content: {
-    padding: "1em",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: ".5em 1em 1em 1em",
+    backgroundColor: appStyles.colors.background,
     color: appStyles.colors.white,
     fontSize: 16,
     fontFamily: appStyles.fonts.secondary,
   },
   icon: {
     position: "relative",
-    width: "80px",
-    height: "80px",
+    maxWidth: "20%",
+    height: "20%",
     borderRadius: "50%",
     overflow: "hidden",
-    backgroundColor: appStyles.colors.green,
+    backgroundColor: appStyles.colors.white,
     "& img": {
       width: "100%",
       height: "100%",
       // objectFit: "cover"
     },
     buttonBar: {
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "flex-end",
+      // display: "flex",
+      // flexDirection: "row",
+      // justifyContent: "center",
+      alignSelf: "center",
+      margin: "2em",
+      color: appStyles.colors.white,
     },
     button: {
-      display: "flex",
-      color: appStyles.colors.white,
-      alignSelf: "center",
+      textAlign: "center",
     },
   },
 }));
@@ -78,9 +90,7 @@ export default function Modal({ title, message, children }) {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Secret Message!
-      </Button>
+      <Button onClick={handleClickOpen}>Secret Message!</Button>
       <Dialog
         open={open}
         TransitionComponent={Transition}
@@ -101,12 +111,17 @@ export default function Modal({ title, message, children }) {
           </div>
           <div className={classes.content} id="message-content">
             {message}
+            <div className={classes.button} onClick={handleClose}>
+              <RoundButton>OK!</RoundButton>
+            </div>
           </div>
-          <div className={classes.buttonBar}>
-            <Button onClick={handleClose}>
-              <span className={classes.content}>OK!</span>
-            </Button>
-          </div>
+          {/* <div className={classes.buttonBar}>
+            <RoundButton>
+              <span onClick={handleClose} className={classes.buttonBar}>
+                OK!
+              </span>
+            </RoundButton>
+          </div> */}
         </div>
       </Dialog>
     </div>
