@@ -12,3 +12,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace, "Mitr", sans-serif, "Roboto", sans-serif, "Russo One", sans-serif;
 }
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #7367F0;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #282C34;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #7367F0;
+  /* background-color: #3E4452; */
+  border-radius: 20px;
+  /* border: 1px solid gold; */
+  /* border: 3px solid rgb(255, 166, 0); */
+}
