@@ -3,9 +3,12 @@ import AppContext from "../app/AppContext";
 import { makeStyles } from "@material-ui/core";
 import { PageContainer, TitleContainer } from "../../ui/containers/index";
 import Journal from '../tasks/Journal'
+import ImageCapture from "../tasks/ImageCapture";
 import AccentLine from "../../ui/decorative/AccentLine";
 import Button from "../../ui/button/Button";
+import ModalWrapper from "../../ui/modal/ModalWrapper";
 import { getTaskById } from "../common/apiCalls";
+import { missionTasks } from "../../cannedData";
 
 const useStyles = makeStyles(theme => ({
   innerContainer: {
@@ -119,7 +122,11 @@ const TaskView = ({ id }) => {
             <p>.</p>
           </span>
           <div className={classes.actionContainer}>
+            {/* {attributes.photoIsRequired === true && <ImageCapture />} */}
             <Journal checkReady={checkReady}/>
+          </div>
+          <div className={classes.actionContainer}>
+            <ImageCapture checkReady={checkReady}/>
           </div>
         </section>
       </section>

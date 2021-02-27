@@ -1,14 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import RoundButton from "../button/RoundButton";
+import RoundButton from "../../ui/button/RoundButton";
+import camera from "../../assets/camera.png";
 
 const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
+    padding: "1em",
     flexDirection: "column",
     alignItems: "center",
     height: "100%",
     textAlign: "center",
+  },
+  box: {
+    fontSize: "1em",
+    width: "100%",
+    border: "none",
+    padding: "1em",
+    borderRadius: "10px",
+    backgroundColor: "rgb(40,44,52, .5)",
+    outline: "none",
+    color: "blanchedalmond",
   },
   imgBox: {
     // maxWidth: "80%",
@@ -30,11 +42,11 @@ const useStyles = makeStyles(() => ({
   icon: {
     margin: "auto",
     position: "relative",
-    width: "65%",
-    height: "65%",
+    width: "80%",
+    height: "80%",
     paddingTop: "20px",
     // borderRadius: "50%",
-    overflow: "hidden",
+    // overflow: "hidden",
     "& img": {
       width: "100%",
       height: "100%",
@@ -42,7 +54,7 @@ const useStyles = makeStyles(() => ({
     },
   },
 }));
-const ImageCapture = () => {
+const ImageCapture = ({ checkReady }) => {
   const classes = useStyles();
   const [source, setSource] = useState("");
 
@@ -53,10 +65,12 @@ const ImageCapture = () => {
         const newUrl = URL.createObjectURL(file);
         console.log(newUrl);
         setSource(newUrl);
-        // Make image POST request (newUrl)
       }
     }
   };
+  useEffect(() => {
+    source ? checkReady(true) : checkReady(false);
+  }, [source]);
   return (
     <div className={classes.root}>
       <h5>Capture Photo Evidence</h5>
@@ -75,7 +89,9 @@ const ImageCapture = () => {
       />
       <label htmlFor="icon-button-file">
         <RoundButton>
-          <span aria-label="upload picture">📸</span>
+          <span aria-label="upload picture">
+            <img src={camera} className={classes.icon} />
+          </span>
         </RoundButton>
       </label>
     </div>

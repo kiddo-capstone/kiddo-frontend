@@ -3,18 +3,22 @@ import AppContext from "../app/AppContext";
 import Button from "../../ui/button/Button";
 import PageContainer from "../../ui/containers/PageContainer";
 import TitleContainer from "../../ui/containers/TitleContainer";
-import ImageCapture from "../../ui/containers/ImageCapture";
-import Modal from "../../ui/modal/Modal"
+import ImageCapture from "../tasks/ImageCapture";
+import Modal from "../../ui/modal/Modal";
+import ModalWrapper from "../../ui/modal/ModalWrapper";
+import AgentDetails from "./AgentDetails"
 const StyleSample = props => {
   const [state, dispatch] = useContext(AppContext);
   const { colors, shadows, gradients, fonts } = state.theme;
-
+  
   return (
     <PageContainer>
       <TitleContainer>
         <h1>Style Guide</h1>
       </TitleContainer>
-      <Modal title={"Secret Agent Message"} message={"Remember, Agent Calvin, do not take photos of yourself or family. A secret agent must always keep their identity...secret!"}/>
+      <Modal title={"Secret Agent Message"} message={"Remember, Agent Calvin, do not take photos of yourself or family. A secret agent must always keep their identity...secret!"} buttonText={"Secret Message!"}/>
+      <ModalWrapper><ImageCapture /></ModalWrapper>
+      <ModalWrapper><AgentDetails/></ModalWrapper>
       <ImageCapture />
       {/* <div style={{ display: "flex", justifyContent: 'space-evenly' }}>
         <div style={{ display:'flex', flexDirection:'column' }}>

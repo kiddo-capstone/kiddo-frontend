@@ -1,17 +1,17 @@
 import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles(color => ({
+const useStyles = makeStyles((color) => ({
   round: {
-    fontSize: '.9em',
-    fontWeight: '400',
-    padding: '2%',
+    fontSize: ".9em",
+    fontWeight: "400",
+    padding: "2%",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    background: ((color) => color || "#3e4452"),
-    color: "gold",  
-    border: 'solid 3px gold',
+    background: (color) => color || "#3e4452",
+    color: "gold",
+    border: "solid 3px gold",
     height: "clamp(40px, 5em, 300px)",
     width: "clamp(40px, 5em, 300px)",
     // fontSize: 'clamp(20px, 1%, 280px)',
@@ -33,7 +33,7 @@ const RoundButton = ({ children, color }) => {
 
   return (
     <div className={classes.round}>
-      <h4 style={{ margin: 0 }}>{children}</h4>
+      <h4 style={{ textAlign: "center", margin: 0 }}>{children}</h4>
     </div>
   );
 };

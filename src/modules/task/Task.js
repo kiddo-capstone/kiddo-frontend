@@ -1,41 +1,42 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   taskWrapper: {
     marginBottom: ".2em",
     width: "90%",
     height: "fit-content",
-    display: 'flex',
-    justifyContent: 'flex-start',
-    flexDirection: 'column',
-    transition: 'ease .3s',
-    willChange: 'transform',
-    cursor: 'pointer',
-    '&:hover': {
-      transform: 'translateY(-.3em)',
-      '& $task': {
-        transition: 'border ease 2s, background-color 1s, color 1s, box-shadow 1.5s',
+    display: "flex",
+    justifyContent: "flex-start",
+    flexDirection: "column",
+    transition: "ease .3s",
+    willChange: "transform",
+    cursor: "pointer",
+    "&:hover": {
+      transform: "translateY(-.3em)",
+      "& $task": {
+        transition:
+          "border ease 2s, background-color 1s, color 1s, box-shadow 1.5s",
         backgroundColor: "#ffdb00",
         border: "solid 4px gold",
-        color: 'black',
-        boxShadow: '0 0 20px 15px gold',
+        color: "black",
+        boxShadow: "0 0 20px 15px gold",
       },
-      '& $category': {
+      "& $category": {
         opacity: 0,
       },
     },
   },
   category: {
     display: "flex",
-    width: 'fit-content',
-    transform: 'translate(.6em, 1.7em)',
-    transition: 'ease .3s',
+    width: "fit-content",
+    transform: "translate(.6em, 1.7em)",
+    transition: "ease .3s",
     zIndex: 1,
-    '& p': {
-      color: 'gold',
+    "& p": {
+      color: "gold",
       margin: 0,
-      marginRight: '.4em',
+      marginRight: ".4em",
     },
   },
   task: {
@@ -50,13 +51,12 @@ const useStyles = makeStyles(theme => ({
     fontSize: "clamp(10px, 1.75rem, 4vmin)",
     color: "white",
     border: "solid 4px lightgrey",
-    padding: '1.5em',
-    transition: 'ease .3s',
-
+    padding: "1.5em",
+    transition: "ease .3s",
   },
   titleContainer: {
     marginTop: 1,
-    display: 'flex',
+    display: "flex",
   },
   taskText: {
     display: "flex",
@@ -65,7 +65,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     "& h1": {
       fontWeight: "100",
-      lineHeight: '1',
+      lineHeight: "1",
       margin: 0,
     },
     "& p": {
@@ -75,15 +75,17 @@ const useStyles = makeStyles(theme => ({
     },
   },
   taskDescription: {
-    fontFamily: 'Roboto',
-    fontWeight: '300',
-    fontSize: '1rem',
+    fontFamily: "Roboto",
+    fontWeight: "300",
+    fontSize: "1rem",
   },
 }));
 
 const Task = ({ props }) => {
   const classes = useStyles();
-  const {attributes: { name, description, category, points }} = props;
+  const {
+    attributes: { name, description, category, points, photoIsRequired },
+  } = props;
 
   return (
     <article className={classes.taskWrapper}>

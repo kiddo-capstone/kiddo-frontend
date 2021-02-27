@@ -2,8 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { makeStyles } from "@material-ui/core";
 import AppContext from "../app/AppContext";
 
-
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   textBox: {
     fontSize: "1em",
     width: "100%",
@@ -16,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Journal = ({checkReady}) => {
+const Journal = ({ checkReady }) => {
   const [state, dispatch] = useContext(AppContext);
   const { selectedTask } = state;
 
@@ -26,15 +25,15 @@ const Journal = ({checkReady}) => {
 
   const classes = useStyles();
 
-  useEffect(()=> {
-    entry ? checkReady(true) : checkReady(false)
-    // we need logic to bundle the updated task object to have completed true/false, and 
+  useEffect(() => {
+    entry ? checkReady(true) : checkReady(false);
+    // we need logic to bundle the updated task object to have completed true/false, and
     // bubble it back up to TaskView - button submission => DISPATCH to update state for task
-  }, [entry])
+  }, [entry]);
 
   const handleChange = (value) => {
-    setEntry(value)
-  }
+    setEntry(value);
+  };
 
   return (
     <section>
@@ -47,7 +46,8 @@ const Journal = ({checkReady}) => {
           value={entry}
           name="entry"
           placeholder="Write your answer here and click submit when you're done!"
-          onChange={event => setEntry(event.target.value)}></textarea>
+          onChange={(event) => setEntry(event.target.value)}
+        ></textarea>
       </form>
       {/* <input type='submit'/> */}
     </section>
