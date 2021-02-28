@@ -63,6 +63,7 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
     padding: "0 2em",
     color: appStyles.colors.white,
     "& h2:nth-child(1)": {
