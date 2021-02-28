@@ -3,6 +3,7 @@ import AppContext from "../app/AppContext";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
 import kids from "../../assets/kids_trio.png";
+import bubbles from "../../assets/bubbles.svg";
 import ProgressBar from "../../ui/progressBar/ProgressBar";
 import MiniAuth from "../auth/MiniAuth";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -16,22 +17,20 @@ const useStyles = makeStyles(() => ({
     justifyContent: "spaceAround",
   },
   card: {
+    // boxShadow: "0 10px 25px 5px rgba(0, 0, 0, 0.2)",
     height: "auto",
-    boxShadow: "0 10px 25px 5px rgba(0, 0, 0, 0.2)",
     overflow: "hidden",
-    // backgroundColor: "#3e4453",
-    // backgroundImage: 'radial-gradient(#186aff6b, #4e1e1e42), url("https://image.freepik.com/free-vector/black-white-star-pattern-background-graphic_1165-1161.jpg")',
-    backgroundSize: "cover",
+    //                        **  PASS IN VAR FOR MOOD COLORING  **
+    backgroundImage: `linear-gradient(1deg, #3E4452, #00f24294), url(${bubbles})`,
+    backgroundPosition: 'center',
   },
   cardHeader: {
     position: "relative",
     paddingTop: "50px",
     paddingBottom: "20px",
     height: "30%",
-    // background: appStyles.colors.grey3,
   },
   titleText: {
-    // color: appStyles.colors.green,
     fontFamily: appStyles.fonts.primary,
     fontSize: "20px",
     textAlign: "center",
@@ -59,7 +58,6 @@ const useStyles = makeStyles(() => ({
     alignSelf: "center",
   },
   table: {
-    // color: appStyles.colors.green,
     marginTop: "10px",
     width: "100%",
     fontSize: "20px",
@@ -68,7 +66,6 @@ const useStyles = makeStyles(() => ({
     textAlign: "left",
 
     "& th": {
-      // color: appStyles.colors.green,
       color: 'gold',
     },
     "& td": {
@@ -84,9 +81,6 @@ const useStyles = makeStyles(() => ({
 }));
 
 const stats = [
-  // { barColor: appStyles.colors.red, completed: 60 },
-  // { barColor: appStyles.colors.red, completed: 30 },
-  // { barColor: appStyles.colors.red, completed: 53 },
   { barColor: 'gold', completed: 60 },
   { barColor: 'gold', completed: 30 },
   { barColor: 'gold', completed: 53 },
