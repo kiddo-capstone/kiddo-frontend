@@ -27,8 +27,12 @@ const useStyles = makeStyles(theme => ({
     fontFamily: "monospace",
     padding: "1em 1em",
     minWidth: "350px",
-    height: "12em",
+    minHeight: '-webkit-fill-available',
+    height: 'clamp(12em, 95%, 100%)',
     overflow: "auto",
+    display: 'flex',
+    alignItems: 'center',
+    // height: "12em",
     // color: 'blanchedalmond',
   },
   actionContainer: {
@@ -37,7 +41,9 @@ const useStyles = makeStyles(theme => ({
     borderRadius: "10px",
     fontFamily: "monospace",
     minWidth: "350px",
-    height: "100%",
+    // height: 'clamp(12em, 95%, 100%)',
+    minHeight: '-webkit-fill-available',
+    // height: "100%",
     backgroundColor: "rgb(40,44,52, .5)",
   },
   category: {
@@ -52,9 +58,11 @@ const useStyles = makeStyles(theme => ({
     },
   },
   left: {
+    margin: '2% 0',
     flex: 1,
   },
   right: {
+    margin: '2% 0',
     flex: 1,
     display: "flex",
     flexDirection: "column",
