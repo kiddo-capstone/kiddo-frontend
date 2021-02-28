@@ -54,7 +54,7 @@ const useStyles = makeStyles(() => ({
     },
   },
 }));
-const ImageCapture = ({ checkReady }) => {
+const ImageCapture = ({ checkReady, updateImage }) => {
   const classes = useStyles();
   const [source, setSource] = useState("");
 
@@ -63,14 +63,19 @@ const ImageCapture = ({ checkReady }) => {
       if (target.files.length !== 0) {
         const file = target.files[0];
         const newUrl = URL.createObjectURL(file);
-        console.log(newUrl);
+
         setSource(newUrl);
+        updateImage(newUrl);
       }
     }
+    console.log(source);
+    return source;
   };
+
   useEffect(() => {
     source ? checkReady(true) : checkReady(false);
   }, [source]);
+
   return (
     <div className={classes.root}>
       <h5>Capture Photo Evidence</h5>

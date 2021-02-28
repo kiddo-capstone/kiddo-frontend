@@ -7,8 +7,9 @@ import ImageCapture from "../tasks/ImageCapture";
 import AccentLine from "../../ui/decorative/AccentLine";
 import Button from "../../ui/button/Button";
 import ModalWrapper from "../../ui/modal/ModalWrapper";
-import { getTaskById } from "../common/apiCalls";
+import { getTaskById, updateMissionTask } from "../common/apiCalls";
 import { missionTasks } from "../../cannedData";
+import { checkPropTypes } from "prop-types";
 
 const useStyles = makeStyles(theme => ({
   innerContainer: {
@@ -62,9 +63,14 @@ const useStyles = makeStyles(theme => ({
 const TaskView = ({ id }) => {
   const [state, dispatch] = useContext(AppContext);
   const [complete, setComplete] = useState(false);
+  // const [completedAssignment, setCompletedAssignment] = useState(null);
   const [error, setError] = useState(null);
+  const [imageUpload, setImageUpload] = useState(null);
+  const [messageUpload, setMessageUpload] = useState(null);
+
   const classes = useStyles();
   const {
+    selectedMission,
     selectedTask: { attributes },
   } = state;
 
@@ -80,10 +86,41 @@ const TaskView = ({ id }) => {
   };
 
   const checkReady = (trueFalse) => {
-    console.log(trueFalse);
+    // console.log(trueFalse);
     if (complete !== trueFalse) {
       setComplete(trueFalse)
     }
+  }
+
+  const submitTaskUpdate = async () => {
+
+     const completedTask = {
+      "data": {
+        "id": "1",
+        "type": "mission_task",
+        "attributes": {
+          "is_completed": true,
+          "message": messageUpload,
+          "mission_id": id,
+          "task_id": attributes.id,
+          "image_path": imageUpload
+        }
+      }
+    }
+    const action = {type: `UPDATE_COMPLETED_TASK`, completedTask}
+    console.log(completedTask)
+    // await updateMissionTask(completedTask).then(data => addTaskToState("selectedTask", data))
+  }
+
+
+  const updateImage = (image) => {
+    setImageUpload(image);
+    console.log(imageUpload, "updated image")
+  }
+  const updateMessage = (message) => {
+    
+    console.log(message, "updated message")
+    setMessageUpload(message);
   }
 
   const handleClick = () => {
@@ -122,11 +159,10 @@ const TaskView = ({ id }) => {
             <p>.</p>
           </span>
           <div className={classes.actionContainer}>
-            {/* {attributes.photoIsRequired === true && <ImageCapture />} */}
-            <Journal checkReady={checkReady}/>
+            <Journal checkReady={checkReady} updateMessage={updateMessage}/>
           </div>
           <div className={classes.actionContainer}>
-            <ImageCapture checkReady={checkReady}/>
+            <ImageCapture checkReady={checkReady} updateImage={updateImage}/>
           </div>
         </section>
       </section>

@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Journal = ({ checkReady }) => {
+const Journal = ({ checkReady, updateMessage }) => {
   const [state, dispatch] = useContext(AppContext);
   const { selectedTask } = state;
 
@@ -33,6 +33,7 @@ const Journal = ({ checkReady }) => {
 
   const handleChange = (value) => {
     setEntry(value);
+    updateMessage(entry);
   };
 
   return (

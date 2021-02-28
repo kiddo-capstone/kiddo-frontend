@@ -22,7 +22,10 @@ export const appReducer = (state, action) => {
     case "FETCH_USERS":
       return { ...state, users: action.users };
     case "UPDATE_COMPLETED_TASK":
-      return { ...state, tasks: action.tasks };
+      return {
+        ...state,
+        attributes: { image_path: action.image_path, message: action.message },
+      };
     default:
       return state;
   }
