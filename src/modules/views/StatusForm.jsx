@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import ModalWrapper from "../../ui/modal/ModalWrapper";
 import { makeStyles } from "@material-ui/core";
 import AppContext from "../app/AppContext";
+import Button from "../../ui/button/Button";
 
 const useStyles = makeStyles(() => ({
   modalContent: {
@@ -20,7 +21,7 @@ const useStyles = makeStyles(() => ({
     fontSize: "2em",
     "&:hover": {
       cursor: "pointer",
-      transform: "scale(1.2)",
+      transform: "scale(1.4)",
       transitionDuration: "0.4s",
     },
   },
@@ -30,8 +31,11 @@ const useStyles = makeStyles(() => ({
       background: "red",
     },
   },
-  checked: {
-    background: "red",
+  labelChecked: {
+    padding: "0.5em",
+    fontSize: "2em",
+    transform: "scale(1.4)",
+    animation: "pulse 2s infinite",
   }
 }))
 
@@ -48,30 +52,31 @@ const StatusForm = () => {
   const determineEmotion = (emoji) => {
     let emotion;
     if (emoji === '😊' || emoji === '🙂' || emoji === '😁' || emoji === '🥳' || emoji === '🤪') {
-      emotion = 'joy';
+      emotion = "joy";
     } else if (emoji === '😢' || emoji === '🥺' || emoji === '😭' || emoji === '😖') {
-      emotion = 'sadness';
+      emotion = "sadness";
     } else if (emoji === '😧' || emoji === '😰' || emoji === '😟' || emoji === '😖') {
-      emotion = 'fear';
+      emotion = "fear";
     } else if (emoji === '😡' || emoji === '🤨' || emoji === '😤' || emoji === '😠') {
-      emotion = 'anger';
+      emotion = "anger";
     } else if (emoji === '🥴' || emoji === '🥱' || emoji === '😳' || emoji === '🤢' || emoji === '🙄') {
-      emotion = 'disgust';
+      emotion = "disgust";
     }
     return emotion
   }
 
   const createInputs = () => {
     return emotions.map(emotion => {
+      const labelClass = emotion === status ? classes.labelChecked : classes.label
       return (
-        <label className={classes.label} htmlFor={emotion} key={emotion}>
+        <label className={labelClass} htmlFor={emotion} key={emotion}>
           { emotion }
           <input
             className={classes.input}
             type="radio"
             name="status"
             id={ emotion }
-            value={ determineEmotion(emotion) }
+            value={ emotion }
             onClick={(e) => handleSelect(e)}
           /> 
         </label>
@@ -80,19 +85,20 @@ const StatusForm = () => {
   }
 
   const handleSelect = (e) => {
-    console.log(e)
     setStatus(e.target.value)
-    const action = { type: `SET_STATUS`, status: status }
-    console.log(action)
-    dispatch(action)
   }
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   const action = { type: `SET_STATUS`, status: status }
-  //   console.log(action)
-  //   dispatch(action)
-  // }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const action = { 
+      type: "SET_STATUS", 
+      status: {
+        emotion: determineEmotion(status),
+        status: status 
+      }
+    }
+    dispatch(action)
+  }
   
   return (
     <ModalWrapper btnMessage=' ? '>
@@ -101,6 +107,10 @@ const StatusForm = () => {
       <form className={classes.form}>
         { createInputs() }
       </form>
+      {status && 
+      <Button onClick={(e) => handleSubmit(e)}>
+        SUBMIT
+      </Button>}
       </section>
     </ModalWrapper>
   )
