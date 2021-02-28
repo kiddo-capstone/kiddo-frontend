@@ -46,12 +46,15 @@ export const getUserById = (id) => {
   );
 };
 
-export const updateMissionTask = (completedTask) => {
-  fetch(`https://kiddo-backend.herokuapp.com/api/1v/mission_tasks/}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-    body: JSON.stringify(completedTask),
-  }).then((response) => response.json());
+export const updateMissionTask = (missionId, completedTask) => {
+  fetch(
+    `https://kiddo-backend.herokuapp.com/api/1v/mission_tasks/${missionId}}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      body: JSON.stringify(completedTask),
+    }
+  ).then((response) => response.json());
 };
