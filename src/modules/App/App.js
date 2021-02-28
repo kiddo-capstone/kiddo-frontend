@@ -2,6 +2,7 @@ import React, { useEffect, useReducer, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import AppContext from "./AppContext";
 import { appReducer, initialState } from "../common/appReducer";
+import Welcome from "../views/Welcome";
 import MissionControl from "../views/MissionControl";
 import DailyMission from "../views/DailyMission";
 import TaskView from "../views/TaskView";
@@ -9,7 +10,7 @@ import StyleSample from "../views/StyleSample";
 import Error400 from "../common/error/Error400";
 import Error500 from "../common/error/Error500";
 import AppContainer from "../../ui/containers/AppContainer";
-import { getAllMissions, getAllTasks, getAllUsers } from "../common/apiCalls";
+import { getAllMissions, getAllTasks } from "../common/apiCalls";
 import Auth from '../auth/Auth'
 
 const App = () => {
@@ -28,12 +29,6 @@ const App = () => {
       .catch(error => setError(error))
   }, [])
 
-  useEffect(async () => {
-    await getAllUsers()
-      .then(data => addDataToState('users', data.data))
-      .catch(error => setError(error))
-  }, [])
-
   const addDataToState = (type, data) => {
     const action = { type: `FETCH_${type.toUpperCase()}`, [type]: data }
     dispatch(action)
@@ -45,6 +40,7 @@ const App = () => {
         <AppContext.Provider value={[state, dispatch]}>
           <AppContainer />
           <Switch>
+            <Route exact path="/welcome" component={Welcome} />
             <Route
               exact
               path="/daily-mission/:id"
