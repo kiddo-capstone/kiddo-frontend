@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import {Link } from 'react-router-dom'
 import AppContext from "../app/AppContext";
 import { makeStyles } from "@material-ui/core";
 import { PageContainer, TitleContainer } from "../../ui/containers/index";
@@ -7,7 +8,7 @@ import ImageCapture from "../tasks/ImageCapture";
 import AccentLine from "../../ui/decorative/AccentLine";
 import Button from "../../ui/button/Button";
 import ModalWrapper from "../../ui/modal/ModalWrapper";
-import { getTaskById } from "../common/apiCalls";
+import { getTaskById, updateSelectedTaskAPI } from "../common/apiCalls";
 import { missionTasks } from "../../cannedData";
 
 const useStyles = makeStyles(theme => ({
@@ -28,22 +29,18 @@ const useStyles = makeStyles(theme => ({
     padding: "1em 1em",
     minWidth: "350px",
     minHeight: '-webkit-fill-available',
-    height: 'clamp(12em, 95%, 100%)',
+    height: 'clamp(5em, 95%, 100%)',
     overflow: "auto",
     display: 'flex',
     alignItems: 'center',
-    // height: "12em",
-    // color: 'blanchedalmond',
   },
   actionContainer: {
-    border: theme => `solid 3px ${theme.colors.blue}`,
-    // paddingTop: "1em",
+    border: (theme => `solid 3px ${theme.colors.blue}`),
     borderRadius: "10px",
     fontFamily: "monospace",
     minWidth: "350px",
-    // height: 'clamp(12em, 95%, 100%)',
+    height: 'clamp(5em, 95%, 100%)',
     minHeight: '-webkit-fill-available',
-    // height: "100%",
     backgroundColor: "rgb(40,44,52, .5)",
   },
   category: {
@@ -71,10 +68,10 @@ const useStyles = makeStyles(theme => ({
 
 const TaskView = ({ id }) => {
   const [state, dispatch] = useContext(AppContext);
-  const [complete, setComplete] = useState(false);
+  const [taskComplete , setTaskComplete] = useState(false);
+  const [updatedTask, setUpdatedTask] = useState(null);
   const [error, setError] = useState(null);
   const classes = useStyles(state.theme);
-  // console.log(state.theme);
   const {
     selectedTask: { attributes },
   } = state;
@@ -91,16 +88,26 @@ const TaskView = ({ id }) => {
     dispatch(action);
   };
 
-  const checkReady = trueFalse => {
-    console.log(trueFalse);
-    if (complete !== trueFalse) {
-      setComplete(trueFalse);
+  const checkReady = (trueFalse, updatedTask) => {
+    if (taskComplete !== trueFalse) {
+      setTaskComplete(trueFalse);
+      setUpdatedTask(updatedTask)
     }
   };
-
-  const handleClick = () => {
-    console.log("handled");
-    // update the needed glags
+    
+  const handleClick = async () => {
+    // only allowed to click when requirements have been met
+      // taskComplete is already true
+    const taskUpdates = {
+      "is_completed": true,
+      "message": updatedTask.message || null,
+      "image": updatedTask.image || null,
+    }  
+    // make API POST with updatedTask state
+    await updateSelectedTaskAPI(id, taskUpdates)
+    // clears selected task data to null
+    addTaskToState("selectedTask", {})
+    // redirect to missionView
   };
 
   const getTask = () => {
@@ -121,10 +128,6 @@ const TaskView = ({ id }) => {
   };
 
   return (
-    // FYI
-    // rendering different text than previous click BC switch from
-    // canned data over to fetching the task in the DB by ID which has old copy
-
     <PageContainer>
       <TitleContainer style={{ width: "100%" }}>
         <p>Agent Task:</p>
@@ -154,9 +157,11 @@ const TaskView = ({ id }) => {
           {getTask()}
         </section>
       </section>
-      <Button primary onClick={handleClick} disabled={complete ? false : true}>
-        {complete ? "All Done!" : "Complete Task to Submit"}
-      </Button>
+      <Link to={`/daily-mission/${state.selectedMission.id}`} style={{width: '100%'}}>
+        <Button primary onClick={handleClick} disabled={taskComplete ? false : true}>
+          {taskComplete ? "All Done!" : "Complete Task to Submit"}
+        </Button>
+      </Link>
     </PageContainer>
   );
 };

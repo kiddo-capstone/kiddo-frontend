@@ -68,9 +68,13 @@ const ImageCapture = ({ checkReady }) => {
       }
     }
   };
+  
   useEffect(() => {
-    source ? checkReady(true) : checkReady(false);
+    let updates = {};
+    updates.image = source
+    source ? checkReady(true, updates) : checkReady(false, updates);
   }, [source]);
+
   return (
     <div className={classes.root}>
       <h5>Capture Photo Evidence</h5>
