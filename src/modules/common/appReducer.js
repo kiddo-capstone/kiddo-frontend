@@ -1,5 +1,5 @@
 
-import theme from '../../ui/common/theme'
+import theme from "../../ui/common/theme";
 
 export const initialState = {
   users: [],
