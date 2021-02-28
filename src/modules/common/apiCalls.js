@@ -14,6 +14,13 @@ export const getMissionById = (id) => {
   );
 };
 
+export const getTasksByMissionId = (id) => {
+  return (
+    fetch(`https://kiddo-backend.herokuapp.com/api/v1/mission/${id}/tasks`)
+      .then((res) => res.json())
+  );
+};
+
 export const getAllTasks = () => {
   return (
     fetch("https://kiddo-backend.herokuapp.com/api/v1/tasks")

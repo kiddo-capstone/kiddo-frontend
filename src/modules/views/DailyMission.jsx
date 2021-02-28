@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import { getMissionById } from "../common/apiCalls";
 import { cannedData } from "../../cannedData";
+import {getTasksByMissionId} from '../common/apiCalls'
 
 import Task from "../task/Task";
 import PageContainer from "../../ui/containers/PageContainer";
@@ -47,17 +48,21 @@ const DailyMission = props => {
 
   useEffect(async () => {
     await getMissionById(id)
-      .then(data => addMissionToState("selectedMission", data.data))
+      .then(data => addDataToState("selectedMission", data.data))
       .catch(error => setError(error));
+      //   NEED TO HOOK UP WITH BACKEND
+      //   await getTasksByMissionId(id)
+      //     .then(data => addDataToState('selectedMissionTasks', data.data))
+      //     .catch(error => setError(error))
   }, []);
 
-  const addMissionToState = (type, data) => {
-    const action = { type: `FETCH_SELECTED_MISSION`, selectedMission: data };
+  const addDataToState = (type, data) => {
+    const action = { type: `FETCH_${type.toUpperCase()}`, selectedMission: data };
     dispatch(action);
   };
 
   const makeTasksList = () => {
-    // swap canned data for real data in state w/BE link up
+    // swap canned data for real data in state w/BE link up (selected mission tasks)
     return cannedData.data.map(task => {
       return (
         <Link
