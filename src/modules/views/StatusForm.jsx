@@ -6,14 +6,14 @@ import Button from "../../ui/button/Button";
 
 const useStyles = makeStyles(() => ({
   modalContent: {
-    height: "auto",
-    textAlign: "center"
+    textAlign: "center",
+    overflow: "hidden",
   },
   form: {
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "space-evenly",
+    justifyContent: "space-between",
     alignItems: "center",
   },
   label: {
@@ -35,19 +35,16 @@ const useStyles = makeStyles(() => ({
     padding: "0.5em",
     fontSize: "2em",
     transform: "scale(1.4)",
-    animation: "pulse 2s infinite",
   }
 }))
 
 const StatusForm = () => {
   const [state, dispatch] = useContext(AppContext);
   const [status, setStatus] = useState(null)
-  const [emotions, setEmotions] = useState(['😊', '🥺', '😤', '🙂', '🤨', '🥳', '🥴', '🤢', '😠', '🙄', '😭', '😢', '😟', '😁', '🥱', '😳', '🤪', '😡', '😖', '😰', '😧'])
+  const [emotions, setEmotions] = useState(['😊', '🥺', '😤', '🙂', '🤨', '🥳', '🥴', '😅', '😠', '🙄', '😭', '😢', '😟', '😁', '🥱', '😳', '🤪', '😡', '😖', '😰', '😧'])
   const classes = useStyles();
 
-  useEffect(() => {
-    console.log(status)
-  }, [status])
+  useEffect(() => {}, [status])
   
   const determineEmotion = (emoji) => {
     let emotion;
@@ -55,11 +52,11 @@ const StatusForm = () => {
       emotion = "joy";
     } else if (emoji === '😢' || emoji === '🥺' || emoji === '😭' || emoji === '😖') {
       emotion = "sadness";
-    } else if (emoji === '😧' || emoji === '😰' || emoji === '😟' || emoji === '😖') {
+    } else if (emoji === '😧' || emoji === '😰' || emoji === '😟' || emoji === '😅') {
       emotion = "fear";
     } else if (emoji === '😡' || emoji === '🤨' || emoji === '😤' || emoji === '😠') {
       emotion = "anger";
-    } else if (emoji === '🥴' || emoji === '🥱' || emoji === '😳' || emoji === '🤢' || emoji === '🙄') {
+    } else if (emoji === '🥴' || emoji === '🥱' || emoji === '😳' || emoji === '🙄') {
       emotion = "disgust";
     }
     return emotion
@@ -77,15 +74,11 @@ const StatusForm = () => {
             name="status"
             id={ emotion }
             value={ emotion }
-            onClick={(e) => handleSelect(e)}
+            onClick={(e) => setStatus(e.target.value)}
           /> 
         </label>
       )
     })
-  }
-
-  const handleSelect = (e) => {
-    setStatus(e.target.value)
   }
 
   const handleSubmit = (e) => {
@@ -94,14 +87,15 @@ const StatusForm = () => {
       type: "SET_STATUS", 
       status: {
         emotion: determineEmotion(status),
-        status: status 
+        emoji: status 
       }
     }
     dispatch(action)
+    // how can we close the modal after submit?
   }
   
   return (
-    <ModalWrapper btnMessage=' ? '>
+    <ModalWrapper btnMessage={<h3 style={{ padding: "0 1em" }}>{state.status ? state.status.emoji : "?"}</h3>}>
       <section className={classes.modalContent}>
       <h2>Agent Status Update</h2>
       <form className={classes.form}>
