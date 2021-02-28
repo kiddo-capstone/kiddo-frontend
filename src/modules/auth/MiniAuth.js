@@ -4,14 +4,13 @@ import Button from "../../ui/button/Button";
 
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
-  return <Button primary onClick={() => loginWithRedirect()}>Log In</Button>;
+  return <Button onClick={() => loginWithRedirect()}>Log In</Button>;
 };
 
 const LogoutButton = () => {
   const { logout } = useAuth0();
   return (
     <Button
-      primary
       onClick={() => logout({ returnTo: window.location.origin + "/welcome" })}>
       Log Out
     </Button>
@@ -25,7 +24,7 @@ const MiniAuth = () => {
   }
 
   return (
-    <span style={{width: '100%',display: 'flex', justifyContent: 'center'}}>
+    <span style={{width: '100%',display: 'flex', justifyContent: 'center', marginTop: '1em'}}>
       {!isAuthenticated ? <LoginButton /> : <LogoutButton />}
     </span>
   );

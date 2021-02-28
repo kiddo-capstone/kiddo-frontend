@@ -16,6 +16,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     padding: "0em 2em",
     flexWrap: "wrap",
+    marginBottom: '1em',
     "& h1, h2, h3, h4, p": {
       margin: 0,
     },
