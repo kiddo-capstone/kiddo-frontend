@@ -28,20 +28,18 @@ const Journal = ({ checkReady }) => {
   const { selectedTask } = state;
 
   const [entry, setEntry] = useState("");
-  // will need this for later logic addition
-  // const [currentTask, setCurrentTask] = useState(selectedTask);
-
   const classes = useStyles();
 
   useEffect(()=> {
-    entry.split(' ').length > 14 ? checkReady(true) : checkReady(false)
-    // we need logic to bundle the updated task object to have completed true/false, and 
-    // bubble it back up to TaskView - button submission => DISPATCH to update state for task
+    let updatedTask = selectedTask
+    updatedTask.message = entry
+    entry.split(' ').length > 14 ? checkReady(true, updatedTask) : checkReady(false, updatedTask)
   }, [entry]);
 
-  const handleChange = (value) => {
-    setEntry(value);
-  };
+
+  // const handleUpdate = (trueFalse) => {
+  //   checkReady(trueFalse)
+  // }
 
   return (
     <section>
@@ -57,7 +55,6 @@ const Journal = ({ checkReady }) => {
           onChange={(event) => setEntry(event.target.value)}
         ></textarea>
       </form>
-      {/* <input type='submit'/> */}
     </section>
   );
 };

@@ -47,6 +47,7 @@ const DailyMission = props => {
   const classes = useStyles();
 
   useEffect(async () => {
+    
     await getMissionById(id)
       .then(data => addDataToState("selectedMission", data.data))
       .catch(error => setError(error));
