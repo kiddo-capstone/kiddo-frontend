@@ -36,11 +36,6 @@ const Journal = ({ checkReady }) => {
     entry.split(' ').length > 14 ? checkReady(true, updatedTask) : checkReady(false, updatedTask)
   }, [entry]);
 
-
-  // const handleUpdate = (trueFalse) => {
-  //   checkReady(trueFalse)
-  // }
-
   return (
     <section>
       <form>
