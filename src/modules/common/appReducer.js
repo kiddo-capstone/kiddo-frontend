@@ -7,6 +7,7 @@ export const initialState = {
   tasks: [],
   selectedMission: {},
   selectedTask: {},
+  status: '',
   theme,
 };
 
@@ -22,6 +23,8 @@ export const appReducer = (state, action) => {
       return { ...state, tasks: action.tasks }
     case 'FETCH_USERS':
       return { ...state, users: action.users }
+    case 'SET_STATUS':
+      return { ...state, status: action.status }
     default:
       return state;
   }
