@@ -22,11 +22,11 @@ const Error400 = () => {
 
   return (
     <PageContainer>
-      <section className={classes.container}>
+      <section className={classes.container} style={{ filter: 'drop-shadow(2px 3px 3px black)'}}>
         <h1>Looks like you got lost!</h1>
         <img src={error400} className={classes.img} alt='404 error' />
         <h3>Unfortunately, this page doesn't exist.</h3>
-        <Button onClick={() => history.push("/mission-control")}>Take me back to mission control!</Button>
+        <Button primary onClick={() => history.push("/mission-control")}>Take me back to mission control!</Button>
       </section>
     </PageContainer >
   )

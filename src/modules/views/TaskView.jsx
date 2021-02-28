@@ -32,12 +32,9 @@ const useStyles = makeStyles(theme => ({
     overflow: "auto",
     display: 'flex',
     alignItems: 'center',
-    // height: "12em",
-    // color: 'blanchedalmond',
   },
   actionContainer: {
-    border: theme => `solid 3px ${theme.colors.blue}`,
-    // paddingTop: "1em",
+    border: (theme => `solid 3px ${theme.colors.blue}`),
     borderRadius: "10px",
     fontFamily: "monospace",
     minWidth: "350px",
@@ -73,7 +70,6 @@ const TaskView = ({ id }) => {
   const [complete, setComplete] = useState(false);
   const [error, setError] = useState(null);
   const classes = useStyles(state.theme);
-  // console.log(state.theme);
   const {
     selectedTask: { attributes },
   } = state;
