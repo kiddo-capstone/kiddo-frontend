@@ -2,6 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import Logo from '../../modules/common/logo/Logo'
 
 // Material-ui Imports
 import AppBar from "@material-ui/core/AppBar";
@@ -18,13 +19,13 @@ import Button from "../button/Button";
 import theme from "../common/theme";
 import AgentDetails from "../../modules/views/AgentDetails";
 import PageContainer from "./PageContainer";
-import magnifyingGlass from "../../assets/magnifying-glass.png"
+import magnifyingGlass from "../../assets/magnifying-glass.png";
 
 const appStyles = theme;
 const drawerWidth = 300;
 // "clamp(240px, 30%, 40%)"
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     fontFamily: appStyles.fonts.primary,
@@ -50,13 +51,13 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#3e4452",
     fontSize: "calc(10px + 2vmin)",
     [theme.breakpoints.up("sm")]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      // marginLeft: drawerWidth,
+      // width: `calc(100% - ${drawerWidth}px)`,
+      display: "none",
     },
   },
   content: {
     flexGrow: 1,
-    backgroundColor: appStyles.colors.primary,
+    marginTop: 0,
     fontFamily: "'Russo One', sans-serif",
     [theme.breakpoints.up("sm")]: {
       marginLeft: drawerWidth,
@@ -109,11 +110,14 @@ function AppContainer(props) {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
-            <img src={magnifyingGlass} alt="magnifying glass" style={{height: '2em'}}/>
+            className={classes.menuButton}>
+            <img
+              src={magnifyingGlass}
+              alt="magnifying glass"
+              style={{ height: "2em" }}
+            />
           </IconButton>
-          Welcome, Agent { isAuthenticated && user.given_name }!
+          Welcome, Agent {isAuthenticated && user.given_name}!
         </Toolbar>
       </AppBar>
       <div className={classes.drawer}>
@@ -129,8 +133,7 @@ function AppContainer(props) {
           }}
           ModalProps={{
             keepMounted: true,
-          }}
-        >
+          }}>
           {drawer}
         </Drawer>
         {/* </Hidden> */}
@@ -141,8 +144,7 @@ function AppContainer(props) {
               paper: classes.drawerPaper,
             }}
             variant="permanent"
-            open
-          >
+            open>
             {drawer}
           </Drawer>
         </Hidden>

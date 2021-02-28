@@ -5,12 +5,12 @@ import * as shadows from "./shadows";
 
 const theme = {
   colors: {
-    primary: colors.primary,
-    primaryAccent: colors.primaryAccent,
-    secondary: colors.secondary,
-    secondaryAccent: colors.secondaryAccent,
-    secondary: colors.secondary,
-    secondaryAccent: colors.secondaryAccent,
+    // primary: colors.primary,
+    // primaryAccent: colors.primaryAccent,
+    // secondary: colors.secondary,
+    // secondaryAccent: colors.secondaryAccent,
+    // secondary: colors.secondary,
+    // secondaryAccent: colors.secondaryAccent,
     background: colors.background,
     black: colors.black,
     red: colors.red,

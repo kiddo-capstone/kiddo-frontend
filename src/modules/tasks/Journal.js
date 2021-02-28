@@ -2,16 +2,24 @@ import React, { useState, useEffect, useContext } from "react";
 import { makeStyles } from "@material-ui/core";
 import AppContext from "../app/AppContext";
 
-const useStyles = makeStyles((theme) => ({
+
+const useStyles = makeStyles(theme => ({
+  form: {
+    height: '12em',
+  },
   textBox: {
     fontSize: "1em",
     width: "100%",
     border: "none",
     padding: "1em",
     borderRadius: "10px",
-    backgroundColor: "rgb(40,44,52, .5)",
+    backgroundColor: "rgb(40,44,52, .0)",
     outline: "none",
     color: "blanchedalmond",
+    resize: 'none',
+    '&::placeholder': {
+      color: '#9a9a9a', 
+    }
   },
 }));
 
@@ -25,9 +33,9 @@ const Journal = ({ checkReady }) => {
 
   const classes = useStyles();
 
-  useEffect(() => {
-    entry ? checkReady(true) : checkReady(false);
-    // we need logic to bundle the updated task object to have completed true/false, and
+  useEffect(()=> {
+    entry.split(' ').length > 14 ? checkReady(true) : checkReady(false)
+    // we need logic to bundle the updated task object to have completed true/false, and 
     // bubble it back up to TaskView - button submission => DISPATCH to update state for task
   }, [entry]);
 

@@ -19,22 +19,28 @@ const useStyles = makeStyles((theme) => ({
           "border ease 2s, background-color 1s, color 1s, box-shadow 1.5s",
         backgroundColor: "#ffdb00",
         border: "solid 4px gold",
-        color: "black",
-        boxShadow: "0 0 20px 15px gold",
+        color: 'black',
+        boxShadow: '0 0 20px 15px gold',
       },
-      "& $category": {
-        opacity: 0,
+      '& $category': {
+        '& p': {
+          color: 'black !important',
+        },
+
+        // opacity: 0,
       },
     },
   },
   category: {
     display: "flex",
-    width: "fit-content",
-    transform: "translate(.6em, 1.7em)",
-    transition: "ease .3s",
+    width: 'fit-content',
+    transform: 'translate(.6em, 1.7em)',
     zIndex: 1,
-    "& p": {
-      color: "gold",
+    transition: 'ease .3s',
+    '& p': {
+      willChange: 'color',
+      transition: 'color .35s',
+      color: 'gold',
       margin: 0,
       marginRight: ".4em",
     },
@@ -44,9 +50,12 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "center",
-    backgroundColor: "#3e4452",
-    textAlign: "center",
+    border: "solid 4px lightgrey",
     borderRadius: "5px",
+    backgroundColor: "#3e445296",
+    // backgroundColor: "#3e4452",
+    // backgroundColor: "#7367f07a;",
+    textAlign: "center",
     height: "100%",
     fontSize: "clamp(10px, 1.75rem, 4vmin)",
     color: "white",
@@ -86,7 +95,6 @@ const Task = ({ props }) => {
   const {
     attributes: { name, description, category, points, photoIsRequired },
   } = props;
-
   return (
     <article className={classes.taskWrapper}>
       <span className={classes.category}>

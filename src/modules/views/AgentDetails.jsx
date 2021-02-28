@@ -3,8 +3,9 @@ import AppContext from "../app/AppContext";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
 import kids from "../../assets/kids_trio.png";
+import bubbles from "../../assets/bubbles.svg";
 import ProgressBar from "../../ui/progressBar/ProgressBar";
-import Auth from "../auth/Auth";
+import MiniAuth from "../auth/MiniAuth";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const appStyles = theme;
@@ -16,34 +17,36 @@ const useStyles = makeStyles(() => ({
     justifyContent: "spaceAround",
   },
   card: {
+    // boxShadow: "0 10px 25px 5px rgba(0, 0, 0, 0.2)",
     height: "auto",
-    boxShadow: "0 10px 25px 5px rgba(0, 0, 0, 0.2)",
     overflow: "hidden",
-    backgroundColor: "#3e4453",
+    //                        **  PASS IN VAR FOR MOOD COLORING  **
+    backgroundImage: `linear-gradient(1deg, #3E4452, #00f24294), url(${bubbles})`,
+    backgroundPosition: 'center',
   },
   cardHeader: {
     position: "relative",
     paddingTop: "50px",
     paddingBottom: "20px",
     height: "30%",
-    background: appStyles.colors.grey3,
-    backgroundSize: "cover",
   },
   titleText: {
     fontFamily: appStyles.fonts.primary,
     fontSize: "20px",
     textAlign: "center",
-    color: appStyles.colors.green,
+    color: 'gold',
   },
   avatar: {
+    // background: appStyles.colors.white,
+    // marginBottom: "0.7em",
+    // border: `4px solid gold`,
+    // border: `5px solid ${appStyles.colors.darkGrey}`,
     margin: "auto",
     position: "relative",
-    background: appStyles.colors.white,
-    marginBottom: "0.7em",
+    backgroundImage: 'radial-gradient(#00fde6, transparent)',
     width: "220px",
     height: "200px",
     borderRadius: "50%",
-    border: `5px solid ${appStyles.colors.darkGrey}`,
     overflow: "hidden",
     "& img": {
       width: "100%",
@@ -58,12 +61,12 @@ const useStyles = makeStyles(() => ({
     marginTop: "10px",
     width: "100%",
     fontSize: "20px",
-    color: appStyles.colors.green,
+    color: 'gold',
     marginLeft: "10px",
     textAlign: "left",
 
     "& th": {
-      color: appStyles.colors.green,
+      color: 'gold',
     },
     "& td": {
       fontFamily: appStyles.fonts.primary,
@@ -78,9 +81,9 @@ const useStyles = makeStyles(() => ({
 }));
 
 const stats = [
-  { barColor: appStyles.colors.red, completed: 60 },
-  { barColor: appStyles.colors.red, completed: 30 },
-  { barColor: appStyles.colors.red, completed: 53 },
+  { barColor: 'gold', completed: 60 },
+  { barColor: 'gold', completed: 30 },
+  { barColor: 'gold', completed: 53 },
 ];
 
 const AgentDetails = (props) => {
@@ -135,7 +138,7 @@ const AgentDetails = (props) => {
           </div>
         ))}
       </div>
-      <Auth />
+      <MiniAuth />
     </section>
   );
 };

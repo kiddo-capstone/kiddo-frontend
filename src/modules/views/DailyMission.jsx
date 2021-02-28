@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     fontSize: "calc(10px + 2vmin)",
     color: "white",
-    backgroundColor: "#282c34",
+    // backgroundColor: "#282c34",
     [theme.breakpoints.down("600")]: {
       minWidth: "20px",
     },
@@ -76,7 +76,7 @@ const DailyMission = props => {
         <p>Your mission:</p>
         <h1>{attributes?.name}</h1>
       </TitleContainer>
-      <AccentLine />
+      <AccentLine color={state.theme.colors.purple}/>
       <section className={classes.tasks}>
         {/* hardcoded canned data for tasks imported into file */}
         {makeTasksList()}

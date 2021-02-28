@@ -17,15 +17,16 @@ const useStyles = makeStyles(theme => ({
     height: "fit-content",
   },
   mission: {
-    height: '6em',
-    padding: '0',
-    paddingRight: '1%',
+    height: "clamp(60px, 7em, 25vmin)",
+    // minHeight: "6em",
+    padding: "0",
+    paddingRight: "1%",
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     flexWrap: "wrap",
-    backgroundColor: "#3e4452",
+    backgroundColor: "#3e445296",
     textAlign: "center",
     borderRadius: "5px",
     fontSize: "clamp(10px, 1.75rem, 4vmin)",
@@ -33,28 +34,30 @@ const useStyles = makeStyles(theme => ({
     border: "solid 4px lightgrey",
   },
   left: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-around',
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-around",
     height: "100%",
-    flex: .6,
+    flex: 0.6,
     backgroundColor: "lightgrey",
     color: "#3e4452",
     "& p:nth-child(1)": {
       fontSize: "clamp(7px, 1.75rem, 3.3vmin)",
-      fontWeight: '100',
+      fontWeight: "100",
       margin: 0,
     },
     "& p:nth-child(2)": {
       margin: 0,
-      fontSize: "clamp(5px, 3em, 50px)",
+      fontSize: "clamp(5px, 1.4em, 50px)",
     },
     "& span": {
       fontSize: "clamp(7px, 1.75rem, 3.3vmin)",
-      backgroundColor: 'gold',
+      backgroundColor: "gold",
       marginRight: 4,
       margin: 0,
-
+    },
+    [theme.breakpoints.down("sm")]: {
+      display: 'none',
     },
   },
   middle: {
@@ -62,7 +65,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    margin: '3% 0',
+    // margin: '3% 0',
     "& span": {
       display: "flex",
       flexDirection: "column",
@@ -71,7 +74,7 @@ const useStyles = makeStyles(theme => ({
         margin: 0,
       },
       "& p:nth-child(1)": {
-        fontSize: "clamp(5px, 1.5em, 50px)",
+        fontSize: "clamp(5px, 1.5em, 5vmin)",
         fontFamily: `'Russo One', sans-serif`,
         fontWeight: "900",
       },
@@ -80,11 +83,11 @@ const useStyles = makeStyles(theme => ({
   right: {
     flex: 0.7,
     width: "100%",
-    justifyContent: 'center',
-    display: 'flex',
+    justifyContent: "center",
+    display: "flex",
   },
   icon: {
-    height: '1.5em',
+    height: "1.5em",
   },
   start: {
     display: "flex",
@@ -100,6 +103,9 @@ const useStyles = makeStyles(theme => ({
     transition: "transform ease .3s",
     "&:hover": {
       transform: "scale(1.05)",
+      '& $icon': {
+      
+      }
     },
   },
 }));
@@ -128,18 +134,27 @@ const Mission = props => {
           <p>{assignedDay}</p>
           <p>{assignedDate}</p>
           <span className={classes.category}>
-            <p>💰 X {(Math.random() * 100+1).toFixed(0)}</p>
+            <p>💰 X {(Math.random() * 100 + 1).toFixed(0)}</p>
           </span>
+        </div>
+        <div>
+          {/* <p>Mission</p> */}
         </div>
         <div className={classes.middle}>
           <span className={classes.title}>
-            <p>Mission</p>
+            {/* <p>Mission</p> */}
             <p>{name}</p>
           </span>
           <BadgeBG>
-            <BadgeContainer>{ <img className={classes.icon} src={intelligence} /> }</BadgeContainer>
-            <BadgeContainer>{ <img className={classes.icon} src={creativity} /> }</BadgeContainer>
-            <BadgeContainer>{<img className={classes.icon} src={activity} /> }</BadgeContainer>
+            <BadgeContainer>
+              {<img className={classes.icon} src={intelligence} />}
+            </BadgeContainer>
+            <BadgeContainer>
+              {<img className={classes.icon} src={creativity} />}
+            </BadgeContainer>
+            <BadgeContainer>
+              {<img className={classes.icon} src={activity} />}
+            </BadgeContainer>
           </BadgeBG>
         </div>
         <div className={classes.right}>

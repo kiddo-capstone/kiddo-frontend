@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   titleContainer: {
+    textShadow: '5px 5px 10px black',
     textAlign: "center",
     justifyContent: "center",
     zIndex: 1,
