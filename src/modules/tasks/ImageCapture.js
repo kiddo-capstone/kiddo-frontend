@@ -57,6 +57,7 @@ const useStyles = makeStyles(() => ({
 const ImageCapture = ({ checkReady }) => {
   const classes = useStyles();
   const [source, setSource] = useState("");
+  const [sourceFile, setSourceFile] = useState({});
 
   const handleCapture = (target) => {
     if (target.files) {
@@ -68,10 +69,10 @@ const ImageCapture = ({ checkReady }) => {
       }
     }
   };
-  
+
   useEffect(() => {
     let updates = {};
-    updates.image = source
+    updates.image = source;
     source ? checkReady(true, updates) : checkReady(false, updates);
   }, [source]);
 
