@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
 const Task = ({ props }) => {
   const classes = useStyles();
   const {
-    attributes: { name, description, category, points, photoIsRequired },
+    attributes: { name, description, category, points },
   } = props;
 
   return (
