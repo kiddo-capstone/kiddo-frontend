@@ -66,12 +66,7 @@ const DailyMission = props => {
     // swap canned data for real data in state w/BE link up (selected mission tasks)
     return cannedData.data.map(task => {
       return (
-        <Link
-          key={task.id}
-          to={`/task/${task.id}`}
-          style={{ textDecoration: "none", width: 'inherit', display: 'flex', justifyContent: 'center' }}>
           <Task key={task.id} props={task} />
-        </Link>
       );
     });
   };
@@ -87,6 +82,7 @@ const DailyMission = props => {
         {/* hardcoded canned data for tasks imported into file */}
         {makeTasksList()}
       </section>
+      {/* <Task key={100} props={cannedData.data[3]}/> */}
     </PageContainer>
   );
 };
