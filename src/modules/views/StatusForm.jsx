@@ -43,7 +43,17 @@ const StatusForm = () => {
   const [status, setStatus] = useState(null)
   const [emotions, setEmotions] = useState(['😊', '🥺', '😤', '🙂', '🤨', '🥳', '🥴', '😅', '😠', '🙄', '😭', '😢', '😟', '😁', '🥱', '😳', '🤪', '😡', '😖', '😰', '😧'])
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+  
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    console.log("closed!");
+  };
   useEffect(() => {}, [status])
   
   const determineEmotion = (emoji) => {
@@ -91,21 +101,27 @@ const StatusForm = () => {
       }
     }
     dispatch(action)
+    handleClose()
     // how can we close the modal after submit?
   }
   
   return (
-    <ModalWrapper btnMessage={<h3 style={{ padding: "0 1em" }}>{state.status ? state.status.emoji : "?"}</h3>}>
-      <section className={classes.modalContent}>
-      <h2>Agent Status Update</h2>
-      <form className={classes.form}>
-        { createInputs() }
-      </form>
-      {status && 
-      <Button onClick={(e) => handleSubmit(e)}>
-        SUBMIT
-      </Button>}
-      </section>
+    <ModalWrapper 
+      submitFunc={handleSubmit} 
+      btnMessage={<h3>{state.status ? state.status.emoji : "?"}</h3>} handleClickOpen={handleClickOpen} 
+      handleClose={handleClose} 
+      open={open}
+      >
+        <section className={classes.modalContent}>
+          <h2>Agent Status Update</h2>
+          <form className={classes.form}>
+            { createInputs() }
+          </form>
+          {status && 
+          <Button onClick={(e) => handleSubmit(e)}>
+            SUBMIT
+          </Button>}
+        </section>
     </ModalWrapper>
   )
 }

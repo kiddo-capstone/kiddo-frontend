@@ -15,10 +15,9 @@ export const getMissionById = (id) => {
 };
 
 export const getTasksByMissionId = (id) => {
-  return (
-    fetch(`https://kiddo-backend.herokuapp.com/api/v1/mission/${id}/tasks`)
-      .then((res) => res.json())
-  );
+  return fetch(
+    `https://kiddo-backend.herokuapp.com/api/v1/missions/${id}/tasks`
+  ).then((res) => res.json());
 };
 
 export const getAllTasks = () => {
@@ -54,17 +53,16 @@ export const getUserById = (id) => {
 };
 
 export const updateSelectedTaskAPI = (id, updates) => {
-  console.log(id, updates);
-  //   return fetch(`https://kiddo-backend.herokuapp.com/api/v1/mission_tasks/${id}`, {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'multipart/form-data'
-//       },
-//       body: JSON.stringify(selectedTask),
-//     })
-//     .then(response => response.json())
-//     .then(response => {
-//       console.log(response)
-//     })
-//     .catch(error => console.log(error, "Encountered an error"))
+  return fetch(
+    `https://kiddo-backend.herokuapp.com/api/v1/mission_tasks/${id}`,
+    {
+      method: "PATCH",
+      body: updates,
+    }
+  )
+    .then((response) => response.json())
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((error) => console.log(error, "Encountered an error"));
 };

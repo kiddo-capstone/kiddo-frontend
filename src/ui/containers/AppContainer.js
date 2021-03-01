@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import Logo from '../../modules/common/logo/Logo'
+import Logo from "../../modules/common/logo/Logo";
 
 // Material-ui Imports
 import AppBar from "@material-ui/core/AppBar";
@@ -25,7 +25,7 @@ const appStyles = theme;
 const drawerWidth = 300;
 // "clamp(240px, 30%, 40%)"
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     fontFamily: appStyles.fonts.primary,
@@ -110,7 +110,8 @@ function AppContainer(props) {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            className={classes.menuButton}>
+            className={classes.menuButton}
+          >
             <img
               src={magnifyingGlass}
               alt="magnifying glass"
@@ -133,7 +134,8 @@ function AppContainer(props) {
           }}
           ModalProps={{
             keepMounted: true,
-          }}>
+          }}
+        >
           {drawer}
         </Drawer>
         {/* </Hidden> */}
@@ -144,7 +146,8 @@ function AppContainer(props) {
               paper: classes.drawerPaper,
             }}
             variant="permanent"
-            open>
+            open
+          >
             {drawer}
           </Drawer>
         </Hidden>

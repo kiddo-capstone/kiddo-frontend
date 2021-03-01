@@ -57,6 +57,7 @@ const useStyles = makeStyles(() => ({
 const ImageCapture = ({ checkReady }) => {
   const classes = useStyles();
   const [source, setSource] = useState("");
+  const [sourceFile, setSourceFile] = useState(null);
 
   const handleCapture = (target) => {
     if (target.files) {
@@ -65,13 +66,14 @@ const ImageCapture = ({ checkReady }) => {
         const newUrl = URL.createObjectURL(file);
         console.log(newUrl);
         setSource(newUrl);
+        setSourceFile(file);
       }
     }
   };
-  
+
   useEffect(() => {
     let updates = {};
-    updates.image = source
+    updates.image = sourceFile;
     source ? checkReady(true, updates) : checkReady(false, updates);
   }, [source]);
 

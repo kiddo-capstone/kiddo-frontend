@@ -89,32 +89,38 @@ const TaskView = ({ id }) => {
   };
 
   const checkReady = (trueFalse, updatedTask) => {
+     console.log("updatedTask!:", updatedTask)
     if (taskComplete !== trueFalse) {
-      setTaskComplete(trueFalse);
+      setTaskComplete(trueFalse)
+      
       setUpdatedTask(updatedTask)
+     
     }
   };
     
   const handleClick = async () => {
     // only allowed to click when requirements have been met
       // taskComplete is already true
-    const taskUpdates = {
-      "is_completed": true,
-      "message": updatedTask.message || null,
-      "image": updatedTask.image || null,
-    }  
-    // make API POST with updatedTask state
-    await updateSelectedTaskAPI(id, taskUpdates)
-    // clears selected task data to null
-    addTaskToState("selectedTask", {})
-    // redirect to missionView
+    
+      let data = new FormData();
+      data.append("is_completed", true)
+
+      if(updatedTask.message) {
+        data.append("message", updatedTask.message)
+      }
+      if(updatedTask.image) {
+        data.append("image", updatedTask.image)
+      }
+    
+      await updateSelectedTaskAPI(id, data)
+      addTaskToState("selectedTask", {})
+    
   };
 
   const getTask = () => {
     if (attributes?.category === "EQ") {
       return(
         <div className={classes.actionContainer}>
-          {/* {attributes.photoIsRequired === true && <ImageCapture />} */}
           <Journal checkReady={checkReady} />
         </div>
       )
@@ -157,11 +163,14 @@ const TaskView = ({ id }) => {
           {getTask()}
         </section>
       </section>
-      <Link to={`/daily-mission/${state.selectedMission.id}`} style={{width: '100%'}}>
-        <Button primary onClick={handleClick} disabled={taskComplete ? false : true}>
+
+        <Link to={`/daily-mission/${state.selectedMission.id}`} style={{width: '100%'}}>
+          
+          <Button primary type="submit" onClick={handleClick} disabled={taskComplete ? false : true}>
           {taskComplete ? "All Done!" : "Complete Task to Submit"}
-        </Button>
-      </Link>
+          </Button>
+        </Link>
+  
     </PageContainer>
   );
 };

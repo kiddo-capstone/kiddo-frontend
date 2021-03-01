@@ -32,22 +32,22 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function Modal({ btnMessage, children }) {
-  const [open, setOpen] = React.useState(false);
+export default function ModalWrapper({
+  btnMessage,
+  children,
+  open,
+  handleClose,
+  handleClickOpen,
+}) {
   const classes = useStyles();
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        { btnMessage }
+      <Button
+        style={{ border: "none", background: "transparent", color: "#ffd602" }}
+        onClick={handleClickOpen}
+      >
+        {btnMessage}
       </Button>
       <Dialog
         open={open}

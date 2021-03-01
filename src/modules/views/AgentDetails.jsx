@@ -8,6 +8,7 @@ import ProgressBar from "../../ui/progressBar/ProgressBar";
 import MiniAuth from "../auth/MiniAuth";
 import { useAuth0 } from "@auth0/auth0-react";
 import StatusForm from "./StatusForm";
+import ModalWrapper from "../../ui/modal/ModalWrapper";
 
 const appStyles = theme;
 
@@ -22,7 +23,7 @@ const useStyles = makeStyles(() => ({
     height: "auto",
     overflow: "hidden",
     //                        **  PASS IN VAR FOR MOOD COLORING  **
-    backgroundImage: `linear-gradient(1deg, #3E4452, #00f24294), url(${bubbles})`,
+    // backgroundImage: `linear-gradient(1deg, #3E4452, #00f24294), url(${bubbles})`,
     backgroundPosition: 'center',
   },
   cardHeader: {
@@ -89,8 +90,8 @@ const stats = [
 const AgentDetails = (props) => {
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
-  const { user, isAuthenticated } = useAuth0()
-
+  const { user, isAuthenticated } = useAuth0();
+  
   return (
     <section className={classes.section}>
       <div className={classes.card}>
@@ -115,7 +116,9 @@ const AgentDetails = (props) => {
             </div>
             <div className={classes.detailsChild}>
               <h2>Agent Status:</h2>
-              <StatusForm />
+              {/* <ModalWrapper btnMessage={<h3>{state.status ? state.status.emoji : "?"}</h3>}> */}
+                <StatusForm />
+              {/* </ModalWrapper> */}
             </div>
           </div>
         </div>

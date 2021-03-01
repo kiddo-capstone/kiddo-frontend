@@ -19,12 +19,12 @@ const useStyles = makeStyles((theme) => ({
           "border ease 2s, background-color 1s, color 1s, box-shadow 1.5s",
         backgroundColor: "#ffdb00",
         border: "solid 4px gold",
-        color: 'black',
-        boxShadow: '0 0 20px 15px gold',
+        color: "black",
+        boxShadow: "0 0 20px 15px gold",
       },
-      '& $category': {
-        '& p': {
-          color: 'black !important',
+      "& $category": {
+        "& p": {
+          color: "black !important",
         },
 
         // opacity: 0,
@@ -33,14 +33,14 @@ const useStyles = makeStyles((theme) => ({
   },
   category: {
     display: "flex",
-    width: 'fit-content',
-    transform: 'translate(.6em, 1.7em)',
+    width: "fit-content",
+    transform: "translate(.6em, 1.7em)",
     zIndex: 1,
-    transition: 'ease .3s',
-    '& p': {
-      willChange: 'color',
-      transition: 'color .35s',
-      color: 'gold',
+    transition: "ease .3s",
+    "& p": {
+      willChange: "color",
+      transition: "color .35s",
+      color: "gold",
       margin: 0,
       marginRight: ".4em",
     },
@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
 const Task = ({ props }) => {
   const classes = useStyles();
   const {
-    attributes: { name, description, category, points, photoIsRequired },
+    attributes: { name, description, category, points },
   } = props;
   return (
     <article className={classes.taskWrapper}>
