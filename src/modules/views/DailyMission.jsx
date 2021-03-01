@@ -62,7 +62,7 @@ const DailyMission = props => {
 
   const makeTasksList = () => {
     const missionTasks = state.selectedMissionTasks
-    return missionTasks.map(task => {
+    return missionTasks?.map(task => {
       return <Task key={task.id} props={task} />;
     });
   };
