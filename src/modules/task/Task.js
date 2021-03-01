@@ -138,8 +138,8 @@ const Task = ({ props }) => {
     if (is_completed) {
       return (
         <span className={classes.taskText} style={{ color: "lightgreen" }}>
-          <h1 style={{ marginRight: ".5em" }}>Task Complete!</h1>
-          <p>{task_name}</p>
+          <h1 style={{ marginRight: ".5em" }}><u>{task_name}</u> Complete!</h1>
+          {/* <p>{task_name}</p> */}
         </span>
       );
     } else {
@@ -177,15 +177,14 @@ const Task = ({ props }) => {
       <div className={is_completed ? classes.completedTask : classes.task}>
         <div className={classes.titleContainer}>{renderTitle()}</div>
         <p className={classes.taskDescription}>
-          {is_completed ? (
-            <span>
-
-              <i style={{ color: "lightgreen", fontSize: "1.3em" }}>
-                {"Agent Message:  " + message}
-              </i>
-              <img src={image_path}/> 
-            </span>)
-            : (task_description)}
+        {is_completed ? (
+          <span style={{display: 'flex', flexDirection: 'column'}}>
+            <i style={{ color: "lightgreen", fontSize: "1em", margin: '1em' }}>
+              <b>Agent notes:</b>  " {message} "
+            </i>
+            <img src={image_path}/> 
+          </span>)
+          : (task_description)}
         </p>
       </div>
     </article>
