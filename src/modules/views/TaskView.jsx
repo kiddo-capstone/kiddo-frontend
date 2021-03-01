@@ -106,7 +106,7 @@ const TaskView = ({ id }) => {
     const taskUpdates = {
       // "is_completed": true,
       "message": updatedTask.message || null,
-      "image": updatedTask.image.name || null,
+      "image": updatedTask.image || null,
     }
       console.log(id, taskUpdates)
     // make API POST with updatedTask state

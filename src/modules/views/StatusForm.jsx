@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import ModalWrapper from "../../ui/modal/ModalWrapper";
+// import ModalWrapper from "../../ui/modal/ModalWrapper";
 import { makeStyles } from "@material-ui/core";
 import AppContext from "../app/AppContext";
 import Button from "../../ui/button/Button";
@@ -82,7 +82,7 @@ const StatusForm = () => {
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    // e.preventDefault()
     const action = { 
       type: "SET_STATUS", 
       status: {
@@ -95,7 +95,7 @@ const StatusForm = () => {
   }
   
   return (
-    <ModalWrapper btnMessage={<h3>{state.status ? state.status.emoji : "?"}</h3>}>
+    // <ModalWrapper btnMessage={<h3>{state.status ? state.status.emoji : "?"}</h3>}>
       <section className={classes.modalContent}>
       <h2>Agent Status Update</h2>
       <form className={classes.form}>
@@ -106,7 +106,7 @@ const StatusForm = () => {
         SUBMIT
       </Button>}
       </section>
-    </ModalWrapper>
+    // </ModalWrapper>
   )
 }
 

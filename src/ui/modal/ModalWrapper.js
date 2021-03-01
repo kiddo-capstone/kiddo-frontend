@@ -33,7 +33,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function Modal({ btnMessage, children }) {
+export default function ModalWrapper({ btnMessage, children }) {
   const [open, setOpen] = React.useState(false);
   const classes = useStyles();
 
