@@ -1,9 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import AppContext from "../app/AppContext";
 import { makeStyles } from "@material-ui/core";
-import { Link } from "react-router-dom";
 import { getMissionById, getTasksByMissionId } from "../common/apiCalls";
-import { cannedData } from "../../cannedData";
 
 import Task from "../task/Task";
 import PageContainer from "../../ui/containers/PageContainer";
@@ -24,7 +22,6 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     fontSize: "calc(10px + 2vmin)",
     color: "white",
-    // backgroundColor: "#282c34",
     [theme.breakpoints.down("600")]: {
       minWidth: "20px",
     },
@@ -64,9 +61,7 @@ const DailyMission = props => {
   };
 
   const makeTasksList = () => {
-    // swap canned data for real data in state w/BE link up (selected mission tasks)
     const missionTasks = state.selectedMissionTasks
-    // return cannedData.data.map(task => {
     return missionTasks.map(task => {
       return <Task key={task.id} props={task} />;
     });
@@ -80,10 +75,8 @@ const DailyMission = props => {
       </TitleContainer>
       <AccentLine color={state.theme.colors.purple}/>
       <section className={classes.tasks}>
-        {/* hardcoded canned data for tasks imported into file */}
         {makeTasksList()}
       </section>
-      {/* <Task key={100} props={cannedData.data[3]}/> */}
     </PageContainer>
   );
 };
