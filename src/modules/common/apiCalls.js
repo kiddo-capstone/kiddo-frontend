@@ -53,8 +53,6 @@ export const getUserById = (id) => {
 };
 
 export const updateSelectedTaskAPI = (id, updates) => {
-  console.log(id);
-  console.log("in apiCalls", id, updates);
   return fetch(
     `https://kiddo-backend.herokuapp.com/api/v1/mission_tasks/${id}`,
     {

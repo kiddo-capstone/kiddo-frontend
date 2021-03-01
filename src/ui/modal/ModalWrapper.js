@@ -4,7 +4,6 @@ import Slide from "@material-ui/core/Slide";
 import Button from "../button/Button";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
-import { nominalTypeHack } from "prop-types";
 
 const appStyles = theme;
 
@@ -33,18 +32,14 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function ModalWrapper({ btnMessage, children }) {
-  const [open, setOpen] = React.useState(false);
+export default function ModalWrapper({
+  btnMessage,
+  children,
+  open,
+  handleClose,
+  handleClickOpen,
+}) {
   const classes = useStyles();
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-    console.log("closed!");
-  };
 
   return (
     <div>
@@ -62,20 +57,7 @@ export default function ModalWrapper({ btnMessage, children }) {
         onClose={handleClose}
         aria-labelledby="modal-wrapper"
       >
-        <section className={classes.root}>
-          {children}
-          {handleClose}
-          <button
-            style={{
-              border: "none",
-              background: "transparent",
-              color: "#ffd602",
-            }}
-            onClick={handleClose}
-          >
-            closeModal
-          </button>
-        </section>
+        <section className={classes.root}>{children}</section>
       </Dialog>
     </div>
   );

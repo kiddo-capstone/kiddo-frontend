@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-// import ModalWrapper from "../../ui/modal/ModalWrapper";
+import ModalWrapper from "../../ui/modal/ModalWrapper";
 import { makeStyles } from "@material-ui/core";
 import AppContext from "../app/AppContext";
 import Button from "../../ui/button/Button";
@@ -38,12 +38,22 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const StatusForm = ({handleClose}) => {
+const StatusForm = () => {
   const [state, dispatch] = useContext(AppContext);
   const [status, setStatus] = useState(null)
   const [emotions, setEmotions] = useState(['😊', '🥺', '😤', '🙂', '🤨', '🥳', '🥴', '😅', '😠', '🙄', '😭', '😢', '😟', '😁', '🥱', '😳', '🤪', '😡', '😖', '😰', '😧'])
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+  
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    console.log("closed!");
+  };
   useEffect(() => {}, [status])
   
   const determineEmotion = (emoji) => {
@@ -82,7 +92,7 @@ const StatusForm = ({handleClose}) => {
   }
 
   const handleSubmit = (e) => {
-    // e.preventDefault()
+    e.preventDefault()
     const action = { 
       type: "SET_STATUS", 
       status: {
@@ -96,19 +106,23 @@ const StatusForm = ({handleClose}) => {
   }
   
   return (
-    // <ModalWrapper btnMessage={<h3>{state.status ? state.status.emoji : "?"}</h3>}>
-      <section className={classes.modalContent}>
-      <h2>Agent Status Update</h2>
-      <form className={classes.form}>
-        { createInputs() }
-      </form>
-      {status && 
-      // <Button onClick={(e) => handleSubmit(e)}>
-      <Button onClick={handleClose}>
-        SUBMIT
-      </Button>}
-      </section>
-    // </ModalWrapper>
+    <ModalWrapper 
+      submitFunc={handleSubmit} 
+      btnMessage={<h3>{state.status ? state.status.emoji : "?"}</h3>} handleClickOpen={handleClickOpen} 
+      handleClose={handleClose} 
+      open={open}
+      >
+        <section className={classes.modalContent}>
+          <h2>Agent Status Update</h2>
+          <form className={classes.form}>
+            { createInputs() }
+          </form>
+          {status && 
+          <Button onClick={(e) => handleSubmit(e)}>
+            SUBMIT
+          </Button>}
+        </section>
+    </ModalWrapper>
   )
 }
 

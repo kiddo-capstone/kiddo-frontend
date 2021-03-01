@@ -90,7 +90,7 @@ const stats = [
 const AgentDetails = (props) => {
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
-  const { user, isAuthenticated } = useAuth0()
+  const { user, isAuthenticated } = useAuth0();
   
   return (
     <section className={classes.section}>
@@ -116,9 +116,9 @@ const AgentDetails = (props) => {
             </div>
             <div className={classes.detailsChild}>
               <h2>Agent Status:</h2>
-              <ModalWrapper btnMessage={<h3>{state.status ? state.status.emoji : "?"}</h3>}>
+              {/* <ModalWrapper btnMessage={<h3>{state.status ? state.status.emoji : "?"}</h3>}> */}
                 <StatusForm />
-              </ModalWrapper>
+              {/* </ModalWrapper> */}
             </div>
           </div>
         </div>
