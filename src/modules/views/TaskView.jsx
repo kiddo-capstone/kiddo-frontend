@@ -89,22 +89,25 @@ const TaskView = ({ id }) => {
   };
 
   const checkReady = (trueFalse, updatedTask) => {
+     console.log("updatedTask!:", updatedTask)
     if (taskComplete !== trueFalse) {
-      setTaskComplete(trueFalse);
+      setTaskComplete(trueFalse)
+      const formData = new FormData()
       setUpdatedTask(updatedTask)
+     
     }
   };
     
   const handleClick = async () => {
     // only allowed to click when requirements have been met
       // taskComplete is already true
+    
     const taskUpdates = {
-      "is_completed": true,
+      // "is_completed": true,
       "message": updatedTask.message || null,
-      "image": updatedTask.image || null,
+      "image": updatedTask || null,
     }
-    // const formData = new FormData(taskUpdates)  
-    console.log(taskUpdates)
+      console.log(id, taskUpdates)
     // make API POST with updatedTask state
     await updateSelectedTaskAPI(id, taskUpdates)
     // clears selected task data to null
@@ -116,7 +119,6 @@ const TaskView = ({ id }) => {
     if (attributes?.category === "EQ") {
       return(
         <div className={classes.actionContainer}>
-          {/* {attributes.photoIsRequired === true && <ImageCapture />} */}
           <Journal checkReady={checkReady} />
         </div>
       )
@@ -159,14 +161,14 @@ const TaskView = ({ id }) => {
           {getTask()}
         </section>
       </section>
-      <form onSubmit={handleClick}>
+
         <Link to={`/daily-mission/${state.selectedMission.id}`} style={{width: '100%'}}>
           
           <Button primary type="submit" onClick={handleClick} disabled={taskComplete ? false : true}>
           {taskComplete ? "All Done!" : "Complete Task to Submit"}
           </Button>
         </Link>
-      </form>
+  
     </PageContainer>
   );
 };

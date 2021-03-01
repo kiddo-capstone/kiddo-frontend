@@ -2,10 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import { makeStyles } from "@material-ui/core";
 import AppContext from "../app/AppContext";
 
-
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   form: {
-    height: '12em',
+    height: "12em",
   },
   textBox: {
     fontSize: "1em",
@@ -16,10 +15,10 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "rgb(40,44,52, .0)",
     outline: "none",
     color: "blanchedalmond",
-    resize: 'none',
-    '&::placeholder': {
-      color: '#9a9a9a', 
-    }
+    resize: "none",
+    "&::placeholder": {
+      color: "#9a9a9a",
+    },
   },
 }));
 
@@ -30,10 +29,12 @@ const Journal = ({ checkReady }) => {
   const [entry, setEntry] = useState("");
   const classes = useStyles();
 
-  useEffect(()=> {
-    let updatedTask = selectedTask
-    updatedTask.message = entry
-    entry.split(' ').length > 14 ? checkReady(true, updatedTask) : checkReady(false, updatedTask)
+  useEffect(() => {
+    let updatedTask = selectedTask;
+    updatedTask.message = entry;
+    entry.split(" ").length > 14
+      ? checkReady(true, updatedTask)
+      : checkReady(false, updatedTask);
   }, [entry]);
 
   return (
@@ -45,7 +46,7 @@ const Journal = ({ checkReady }) => {
           className={classes.textBox}
           type="text"
           value={entry}
-          name="entry"
+          name="message"
           placeholder="Write your answer here and click submit when you're done!"
           onChange={(event) => setEntry(event.target.value)}
         ></textarea>

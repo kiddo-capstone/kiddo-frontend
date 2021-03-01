@@ -58,27 +58,29 @@ const ImageCapture = ({ checkReady }) => {
   const classes = useStyles();
   const [source, setSource] = useState("");
   const [sourceFile, setSourceFile] = useState({});
-  const [imgFormData, setImgFormData] = useState({});
 
   const handleCapture = (target) => {
-    // e.preventDefault();
     if (target.files) {
       if (target.files.length !== 0) {
         const file = target.files[0];
         const newUrl = URL.createObjectURL(file);
-        console.log("newUrl", newUrl);
-        console.log("file: :", file);
         setSource(newUrl);
         setSourceFile(file);
+
+        console.log("newUrl", newUrl);
+        console.log("file: :", file);
       }
     }
   };
 
   useEffect(() => {
     let updates = {};
-    updates.image = sourceFile;
-    console.log("formData", imgFormData);
-    source ? checkReady(true, updates) : checkReady(false, updates);
+    let formData = new FormData();
+    formData.append("image", source);
+    // updates.image = sourceFile;
+    console.log("SOURCEFILE", source);
+    console.log("UPDATES", formData);
+    source ? checkReady(true, formData) : checkReady(false, formData);
   }, [source]);
 
   return (
@@ -89,26 +91,26 @@ const ImageCapture = ({ checkReady }) => {
           <img src={source} alt={"snap"} className={classes.img} />
         </div>
       )}
-      {/* <form id="form-data-image" onSubmit={handleCapture}> */}
-      <label htmlFor="image_path">
-        <input
-          name="image_path"
-          accept="image/*"
-          className={classes.input}
-          id="image_path"
-          type="file"
-          capture="environment"
-          onChange={(e) => handleCapture(e.target)}
-        />
-      </label>
-      <label htmlFor="image_path">
-        <RoundButton>
-          <span aria-label="upload picture">
-            <img src={camera} className={classes.icon} />
-          </span>
-        </RoundButton>
-      </label>
-      {/* </form> */}
+      <form onSubmit={handleCapture}>
+        <label htmlFor="image">
+          <input
+            name="image"
+            accept="image/*"
+            className={classes.input}
+            id="image"
+            type="file"
+            capture="environment"
+            onChange={(e) => handleCapture(e.target)}
+          />
+        </label>
+        <label htmlFor="image">
+          <RoundButton>
+            <span aria-label="upload picture">
+              <img src={camera} className={classes.icon} />
+            </span>
+          </RoundButton>
+        </label>
+      </form>
     </div>
   );
 };
