@@ -59,10 +59,7 @@ export const updateSelectedTaskAPI = (id, updates) => {
     `https://kiddo-backend.herokuapp.com/api/v1/mission_tasks/${id}`,
     {
       method: "PATCH",
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      body: JSON.stringify(updates),
+      body: updates,
     }
   )
     .then((response) => response.json())
