@@ -16,7 +16,7 @@ export const getMissionById = (id) => {
 
 export const getTasksByMissionId = (id) => {
   return fetch(
-    `https://kiddo-backend.herokuapp.com/api/v1/mission/${id}/tasks`
+    `https://kiddo-backend.herokuapp.com/api/v1/missions/${id}/tasks`
   ).then((res) => res.json());
 };
 
