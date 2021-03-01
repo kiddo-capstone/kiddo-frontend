@@ -2,9 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 import AppContext from "../app/AppContext";
 import { makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import { getMissionById } from "../common/apiCalls";
+import { getMissionById, getTasksByMissionId } from "../common/apiCalls";
 import { cannedData } from "../../cannedData";
-import {getTasksByMissionId} from '../common/apiCalls'
 
 import Task from "../task/Task";
 import PageContainer from "../../ui/containers/PageContainer";
@@ -47,27 +46,29 @@ const DailyMission = props => {
   const classes = useStyles();
 
   useEffect(async () => {
-
     await getMissionById(id)
-      .then(data => addDataToState("selectedMission", data.data))
-      .catch(error => setError(error));
-      //   NEED TO HOOK UP WITH BACKEND
-      //   await getTasksByMissionId(id)
-      //     .then(data => addDataToState('selectedMissionTasks', data.data))
-      //     .catch(error => setError(error))
-  }, []);
+    .then(data => addDataToState("selectedMission", data.data))
+    .catch(error => setError(error))
+    getMissionTasks(id)
+  }, [state.selectedMissionTasks]);
+  
+  const getMissionTasks = async (id) => {
+    await getTasksByMissionId(id)
+      .then(data => addDataToState("selectedMissionTasks", data.data))
+      .catch(error => setError(error))
+  };
 
   const addDataToState = (type, data) => {
-    const action = { type: `FETCH_${type.toUpperCase()}`, selectedMission: data };
+    const action = { type: `FETCH_${type.toUpperCase()}`, [type]: data };
     dispatch(action);
   };
 
   const makeTasksList = () => {
     // swap canned data for real data in state w/BE link up (selected mission tasks)
-    return cannedData.data.map(task => {
-      return (
-          <Task key={task.id} props={task} />
-      );
+    const missionTasks = state.selectedMissionTasks
+    // return cannedData.data.map(task => {
+    return missionTasks.map(task => {
+      return <Task key={task.id} props={task} />;
     });
   };
 

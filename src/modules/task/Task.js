@@ -122,14 +122,15 @@ const Task = ({ props }) => {
   const classes = useStyles(props);
   const {
     attributes: {
-      name,
-      description,
-      category,
+      mission_id,
+      task_name,
+      task_description,
+      task_category,
       points,
       photoIsRequired,
       is_completed,
       message,
-      image,
+      image_path,
     },
   } = props;
 
@@ -138,14 +139,14 @@ const Task = ({ props }) => {
       return (
         <span className={classes.taskText} style={{ color: "lightgreen" }}>
           <h1 style={{ marginRight: ".5em" }}>Task Complete!</h1>
-          <p>{name}</p>
+          <p>{task_name}</p>
         </span>
       );
     } else {
       return (
         <span className={classes.taskText}>
           <h1 style={{ marginRight: ".5em" }}>Agent Task</h1>
-          <p>{name}</p>
+          <p>{task_name}</p>
         </span>
       );
     }
@@ -170,17 +171,21 @@ const Task = ({ props }) => {
   const taskCard = (
     <article className={classes.taskWrapper}>
       <span className={classes.category}>
-        <p style={is_completed && { color: "lightgreen" }}>{category}</p>
-        <p className={is_completed && classes.pulse}>💰 X {points}</p>
+        <p style={is_completed ? { color: "lightgreen" } : null}>{task_category}</p>
+        <p className={is_completed ? classes.pulse : null}>💰 X {points}</p>
       </span>
       <div className={is_completed ? classes.completedTask : classes.task}>
         <div className={classes.titleContainer}>{renderTitle()}</div>
         <p className={classes.taskDescription}>
           {is_completed ? (
-            <i style={{ color: "lightgreen", fontSize: "1.3em" }}>
-              {"Agent Message:  " + message}
-            </i>) 
-            : (description)}
+            <span>
+
+              <i style={{ color: "lightgreen", fontSize: "1.3em" }}>
+                {"Agent Message:  " + message}
+              </i>
+              <img src={image_path}/> 
+            </span>)
+            : (task_description)}
         </p>
       </div>
     </article>
