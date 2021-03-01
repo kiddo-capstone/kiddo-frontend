@@ -1,0 +1,15 @@
+{
+  "id": 1,
+  "type": "mission_task",
+  "attributes": {
+    "points": 100,
+    "mission_id": 1,
+    "task_id": 1,
+    "task_name": "EQ level up",
+    "task_description": "Say something kind",
+    "task_category": "EQ",
+    "message": "\"I'm a boss and cleaned my room\"",
+    "image_path": "https://kiddo-bucket.s3.us-west-2.amazonaws.com/JRwCyNM9bWaZqkj4egVYFtXA",
+    "is_completed": false
+  }
+}

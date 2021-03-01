@@ -1,0 +1,11 @@
+{ 
+  "id": 304,
+  "type": "mission",
+  "attributes": { 
+    "name": "Weekly chores",
+    "due_date": "2001-02-03",
+    "user_id": 487,
+    "created_at": "2021-02-21T04: 05: 24.749Z",
+    "updated_at": "2021-02-21T04: 05: 24.749Z"
+  }
+}
