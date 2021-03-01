@@ -26,10 +26,7 @@ const useStyles = makeStyles(props => ({
       "& $category": {
         "& p": {
           color: "black",
-          // color: (props => props.attributes.is_completed ? "lightgreen" : "black !important"),
         },
-
-        // opacity: 0,
       },
     },
   },
@@ -173,7 +170,7 @@ const Task = ({ props }) => {
   const taskCard = (
     <article className={classes.taskWrapper}>
       <span className={classes.category}>
-        <p style={is_completed && { color: "lightgreen !important" }}>{category}</p>
+        <p style={is_completed && { color: "lightgreen" }}>{category}</p>
         <p className={is_completed && classes.pulse}>💰 X {points}</p>
       </span>
       <div className={is_completed ? classes.completedTask : classes.task}>
