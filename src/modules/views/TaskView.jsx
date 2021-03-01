@@ -103,6 +103,7 @@ const TaskView = ({ id }) => {
       "message": updatedTask.message || null,
       "image": updatedTask.image || null,
     }  
+    
     // make API POST with updatedTask state
     await updateSelectedTaskAPI(id, taskUpdates)
     // clears selected task data to null
