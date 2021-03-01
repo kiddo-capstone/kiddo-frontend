@@ -92,24 +92,25 @@ const TaskView = ({ id }) => {
      console.log("updatedTask!:", updatedTask)
     if (taskComplete !== trueFalse) {
       setTaskComplete(trueFalse)
-      const formData = new FormData()
+      
       setUpdatedTask(updatedTask)
      
     }
   };
     
   const handleClick = async () => {
+    console.log(updatedTask)
     // only allowed to click when requirements have been met
       // taskComplete is already true
     
     const taskUpdates = {
       // "is_completed": true,
       "message": updatedTask.message || null,
-      "image": updatedTask || null,
+      "image": updatedTask.image.name || null,
     }
       console.log(id, taskUpdates)
     // make API POST with updatedTask state
-    await updateSelectedTaskAPI(id, taskUpdates)
+    await updateSelectedTaskAPI(3, taskUpdates)
     // clears selected task data to null
     addTaskToState("selectedTask", {})
     // redirect to missionView
