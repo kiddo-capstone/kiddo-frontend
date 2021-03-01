@@ -61,7 +61,7 @@ export const updateSelectedTaskAPI = (id, updates) => {
       headers: {
         "Content-Type": "multipart/form-data",
       },
-      body: JSON.stringify(selectedTask),
+      body: JSON.stringify(updates),
     }
   )
     .then((response) => response.json())
