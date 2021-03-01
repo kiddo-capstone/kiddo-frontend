@@ -65,7 +65,9 @@ const ImageCapture = ({ checkReady }) => {
         const file = target.files[0];
         const newUrl = URL.createObjectURL(file);
         console.log(newUrl);
+        console.log(file);
         setSource(newUrl);
+        setSourceFile(file);
       }
     }
   };
