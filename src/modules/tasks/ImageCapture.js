@@ -74,8 +74,8 @@ const ImageCapture = ({ checkReady }) => {
   useEffect(() => {
     let updates = {};
     updates.image = sourceFile;
-    sourceFile ? checkReady(true, updates) : checkReady(false, updates);
-  }, [sourceFile]);
+    source ? checkReady(true, updates) : checkReady(false, updates);
+  }, [source]);
 
   return (
     <div className={classes.root}>

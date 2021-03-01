@@ -103,14 +103,16 @@ const TaskView = ({ id }) => {
     // only allowed to click when requirements have been met
       // taskComplete is already true
     
-    const taskUpdates = {
-      // "is_completed": true,
-      "message": updatedTask.message || null,
-      "image": updatedTask.image || null,
-    }
-      console.log(id, taskUpdates)
+      let data = new FormData();
+      data.append("is_completed", true)
+      if(updatedTask.message) {
+        data.append("message", updatedTask.message)
+      }
+      if(updatedTask.image) {
+        data.append("image", updatedTask.image)
+      }
     // make API POST with updatedTask state
-    await updateSelectedTaskAPI(3, taskUpdates)
+    await updateSelectedTaskAPI(id, data)
     // clears selected task data to null
     addTaskToState("selectedTask", {})
     // redirect to missionView

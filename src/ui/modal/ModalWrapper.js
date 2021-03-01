@@ -43,6 +43,7 @@ export default function ModalWrapper({ btnMessage, children }) {
 
   const handleClose = () => {
     setOpen(false);
+    console.log("closed!");
   };
 
   return (
@@ -61,7 +62,20 @@ export default function ModalWrapper({ btnMessage, children }) {
         onClose={handleClose}
         aria-labelledby="modal-wrapper"
       >
-        <section className={classes.root}>{children}</section>
+        <section className={classes.root}>
+          {children}
+          {handleClose}
+          <button
+            style={{
+              border: "none",
+              background: "transparent",
+              color: "#ffd602",
+            }}
+            onClick={handleClose}
+          >
+            closeModal
+          </button>
+        </section>
       </Dialog>
     </div>
   );

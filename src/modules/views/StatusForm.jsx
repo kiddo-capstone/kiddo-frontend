@@ -38,7 +38,7 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const StatusForm = () => {
+const StatusForm = ({handleClose}) => {
   const [state, dispatch] = useContext(AppContext);
   const [status, setStatus] = useState(null)
   const [emotions, setEmotions] = useState(['😊', '🥺', '😤', '🙂', '🤨', '🥳', '🥴', '😅', '😠', '🙄', '😭', '😢', '😟', '😁', '🥱', '😳', '🤪', '😡', '😖', '😰', '😧'])
@@ -91,6 +91,7 @@ const StatusForm = () => {
       }
     }
     dispatch(action)
+    handleClose()
     // how can we close the modal after submit?
   }
   
@@ -102,7 +103,8 @@ const StatusForm = () => {
         { createInputs() }
       </form>
       {status && 
-      <Button onClick={(e) => handleSubmit(e)}>
+      // <Button onClick={(e) => handleSubmit(e)}>
+      <Button onClick={handleClose}>
         SUBMIT
       </Button>}
       </section>

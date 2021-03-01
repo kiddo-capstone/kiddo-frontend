@@ -91,11 +91,7 @@ const AgentDetails = (props) => {
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
   const { user, isAuthenticated } = useAuth0()
-  const [open, setOpen] = React.useState(false);
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  
   return (
     <section className={classes.section}>
       <div className={classes.card}>
@@ -121,7 +117,7 @@ const AgentDetails = (props) => {
             <div className={classes.detailsChild}>
               <h2>Agent Status:</h2>
               <ModalWrapper btnMessage={<h3>{state.status ? state.status.emoji : "?"}</h3>}>
-                <StatusForm open={true}/>
+                <StatusForm />
               </ModalWrapper>
             </div>
           </div>
