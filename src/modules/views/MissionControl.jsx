@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
 
 const MissionControl = props => {
   const [state, dispatch] = useContext(AppContext);
-  const { colors, shadows, gradients, fonts } = state.theme;
+  // const { colors, shadows, gradients, fonts } = state.theme;
   
   const classes = useStyles()
 
