@@ -102,8 +102,9 @@ const TaskView = ({ id }) => {
       "is_completed": true,
       "message": updatedTask.message || null,
       "image": updatedTask.image || null,
-    }  
-    
+    }
+    // const formData = new FormData(taskUpdates)  
+    console.log(taskUpdates)
     // make API POST with updatedTask state
     await updateSelectedTaskAPI(id, taskUpdates)
     // clears selected task data to null
@@ -158,11 +159,14 @@ const TaskView = ({ id }) => {
           {getTask()}
         </section>
       </section>
-      <Link to={`/daily-mission/${state.selectedMission.id}`} style={{width: '100%'}}>
-        <Button primary onClick={handleClick} disabled={taskComplete ? false : true}>
+      <form onSubmit={handleClick}>
+        <Link to={`/daily-mission/${state.selectedMission.id}`} style={{width: '100%'}}>
+          
+          <Button primary type="submit" onClick={handleClick} disabled={taskComplete ? false : true}>
           {taskComplete ? "All Done!" : "Complete Task to Submit"}
-        </Button>
-      </Link>
+          </Button>
+        </Link>
+      </form>
     </PageContainer>
   );
 };

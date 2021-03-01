@@ -65,14 +65,11 @@ const ImageCapture = ({ checkReady }) => {
     if (target.files) {
       if (target.files.length !== 0) {
         const file = target.files[0];
-        // const formData = new FormData(file);
-        // formData.append("image_path", file);
         const newUrl = URL.createObjectURL(file);
         console.log("newUrl", newUrl);
         console.log("file: :", file);
         setSource(newUrl);
         setSourceFile(file);
-        // setImgFormData(formData);
       }
     }
   };
@@ -92,26 +89,26 @@ const ImageCapture = ({ checkReady }) => {
           <img src={source} alt={"snap"} className={classes.img} />
         </div>
       )}
-      <form id="" onSubmit={handleCapture}>
-        <label htmlFor="image_path">
-          <input
-            name="image_path"
-            accept="image/*"
-            className={classes.input}
-            id="image_path"
-            type="file"
-            capture="environment"
-            onChange={(e) => handleCapture(e.target)}
-          />
-        </label>
-        <label htmlFor="image_path">
-          <RoundButton>
-            <span aria-label="upload picture">
-              <img src={camera} className={classes.icon} />
-            </span>
-          </RoundButton>
-        </label>
-      </form>
+      {/* <form id="form-data-image" onSubmit={handleCapture}> */}
+      <label htmlFor="image_path">
+        <input
+          name="image_path"
+          accept="image/*"
+          className={classes.input}
+          id="image_path"
+          type="file"
+          capture="environment"
+          onChange={(e) => handleCapture(e.target)}
+        />
+      </label>
+      <label htmlFor="image_path">
+        <RoundButton>
+          <span aria-label="upload picture">
+            <img src={camera} className={classes.icon} />
+          </span>
+        </RoundButton>
+      </label>
+      {/* </form> */}
     </div>
   );
 };
