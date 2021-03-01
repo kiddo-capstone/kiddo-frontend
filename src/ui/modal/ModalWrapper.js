@@ -4,6 +4,7 @@ import Slide from "@material-ui/core/Slide";
 import Button from "../button/Button";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
+import { nominalTypeHack } from "prop-types";
 
 const appStyles = theme;
 
@@ -46,8 +47,11 @@ export default function Modal({ btnMessage, children }) {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        { btnMessage }
+      <Button
+        style={{ border: "none", background: "transparent", color: "#ffd602" }}
+        onClick={handleClickOpen}
+      >
+        {btnMessage}
       </Button>
       <Dialog
         open={open}

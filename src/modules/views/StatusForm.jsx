@@ -95,7 +95,7 @@ const StatusForm = () => {
   }
   
   return (
-    <ModalWrapper btnMessage={<h3 style={{ padding: "0 1em" }}>{state.status ? state.status.emoji : "?"}</h3>}>
+    <ModalWrapper btnMessage={<h3>{state.status ? state.status.emoji : "?"}</h3>}>
       <section className={classes.modalContent}>
       <h2>Agent Status Update</h2>
       <form className={classes.form}>
