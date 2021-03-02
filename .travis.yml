@@ -8,7 +8,7 @@ install:
   - npm install
 
 script:
-  - http-server ./build
+  - npm start
 
 deploy:
   provider: heroku
