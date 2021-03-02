@@ -1,18 +1,15 @@
-os:
-  -osx 
+os: "-osx"
 language: node_js
 node_js:
-  - node
+- node
 notifications:
   email: false
-  
 install:
-  - npm install
-
+- npm install
 deploy:
   provider: heroku
   app: kiddo-frontend
   skip_cleanup: true
   on: main
   api_key:
-    secure: pj8tIIPMPprMHhrsDR7w0MDKHG5xgm7j6+A/tPbv0EarasXJiyZhO1fhBtdYktgSeAmhCAgjA2bDoZUrFSpbicOfNObAnPBt/UidRrUtADXZ+t8OB3L94pIOhek7AOlW5t+a8yfJ221RtPtx7uspYxoRuliKEOkoIfdCCoLhw1bWEQyhPh8sMdVsQj73okmbnPUUFG6cL9gUY5G5l7kP9ik67qSQH/AS1u/rm2T7d8SDx1H8y2F3yXZURGpge8x/Xxuqr54XBm9CSFvnoaO7sR7FEw2cqmDC4ikVzPArUB1/C4TN3rNleVrEBbQN9jRdduoBPjNNVqSCcxAPSVpa7yYCk485+TNNnTv9/TUx8kmXe6uHU44jj2LLiFn/jdSsFQzaNTAzT60D/lxOqQtQpQ//yObyWUlaBExFvFUOgNLyDf4NVRbDZ1MzSb6LbxvlbDQGpD4gi1VhGYZNTXRgb82pNJwmygjTYWhVslcOlT4Ixl9j0tYW8+/VFmMGR6ogJv6AYIXWd9VfaIeKMPuOQrNFT4B1roY1RSU/2OJjA5szQNp0g1NjOCqssUAriGzDSX7+/5v+PM2M+f0Eh/RctNwL5A1YGUuYhL17t0180o+AVGLCvOlfXnkryY9zfMQjhJFOvSZkX/B96o/Jcc/yMHExqc0jMlK1sDOJF522xDw=
+    secure: jhcPdvY0M3qTMstdlqBFypuHvEBk1psehwew8s5CdLa2tdvjtVSA4CPlKcpgkp8t5t8+jQuXzhB/Wxb3HpxczjdjgLKOG45UOwka8Cu0/BFitKKbxB7im11biKeBxSCockb3UUi0M20pmW2pHK8qfgSyLls1OAdZbbMYyID0CEB2oM+7WDqwqF7jWCsobYL3HuJLlL9SfeJNKatkuuGOdyJVyqIgmSFl9zkDMvCuOwGg67UiEyEAHrhxo69I01o2g8hQKc3o9LF6jqPaU7yzGRzs5C+4tQgF5KYyIxYouNe3tmtVn9ScXKknez3YjWmBISAHkklRL4Ra3TCBFkvS/EJdpM1y+QefQrO/NZb6nIddslhk2F4SKVtf+w1hUhHWt3DXWCnrNvQ9hwkWjBmd6LOO9FSog6gt7FxXQGmgQETuBD/ImsFTByCKCYHRfm2YD2OY+ei0FOv0I05csD5ONLWN0OKBM1EDfoI5321T4ujuhEI/ktrkAH2hK1RkCBQSPA7sSWWQZSFgt7sDqE17N1AxJ2yYp471CnBH2wkECDkl0ACmSAI+d5/snUeY4co3TPbrI/m64CcHBe9bvOynb7VP+5ihH+uHOyBrQr0Z6ZCAQHcLEAoGJjmHDbLb6ihva4AZ3u1PurrOpWCrjikRxOFJP9zu5phV+UHLlzpNSMo=
