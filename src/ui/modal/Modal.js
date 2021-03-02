@@ -62,27 +62,65 @@ const useStyles = makeStyles(() => ({
       height: "100%",
       // objectFit: "cover"
     },
-    button: {
-      textAlign: "center",
+  },
+  button: {
+    fontSize: "1em",
+    fontWeight: "400",
+    padding: "2%",
+    fontFamily: appStyles.fonts.secondary,
+    borderRadius: "15px",
+    border: "solid 3px",
+    width: "80%",
+    borderColor: appStyles.colors.blue,
+    background: "transparent",
+    color: appStyles.colors.background,
+    outline: "none",
+    willChange: "transform",
+    margin: "2%",
+    cursor: "pointer",
+    transition:
+      "transform ease .3s, border ease 2s, background ease .3s, color ease .3s",
+    "&:hover": {
+      // borderColor: ((theme) => theme.primary ? colors.darkBlue :  colors.darkPink),
+      background: appStyles.colors.darkPink,
+      color: appStyles.colors.white,
+      transform: "translateY(-3%)",
+    },
+    "&:hover": {
+      borderColor: appStyles.colors.grey1,
+      color: appStyles.colors.grey3,
+      background: "none",
     },
   },
 }));
 
-const Modal = ({ title, message, buttonText }) => {
-  const [open, setOpen] = React.useState(false);
+const Modal = ({
+  title,
+  message,
+  buttonText,
+  children,
+  open,
+  handleClose,
+  handleClickOpen,
+}) => {
   const classes = useStyles();
+  // const [open, setOpen] = React.useState(true);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
 
   return (
     <div>
-      <Button onClick={handleClickOpen}>{buttonText}</Button>
+      {/* {buttonText && (
+        <button className={classes.button} onClick={handleClickOpen}>
+          {buttonText}
+        </button>
+      )} */}
       <Dialog
         open={open}
         TransitionComponent={Transition}
@@ -103,7 +141,7 @@ const Modal = ({ title, message, buttonText }) => {
           </div>
           <div className={classes.content} id="message-content">
             {message}
-            <div className={classes.button} onClick={handleClose}>
+            <div onClick={handleClose}>
               <RoundButton>OK!</RoundButton>
             </div>
           </div>

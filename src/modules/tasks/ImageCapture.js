@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import RoundButton from "../../ui/button/RoundButton";
 import camera from "../../assets/camera.png";
+import Modal from "../../ui/modal/Modal";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -58,6 +59,16 @@ const ImageCapture = ({ checkReady }) => {
   const classes = useStyles();
   const [source, setSource] = useState("");
   const [sourceFile, setSourceFile] = useState(null);
+  const [alert, setAlert] = useState(true);
+  const [open, setOpen] = React.useState(true);
+
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
+
+  const handleClose = () => {
+    setAlert(false);
+  };
 
   const handleCapture = (target) => {
     if (target.files) {
@@ -93,13 +104,27 @@ const ImageCapture = ({ checkReady }) => {
         capture="environment"
         onChange={(e) => handleCapture(e.target)}
       />
-      <label htmlFor="icon-button-file">
-        <RoundButton>
-          <span aria-label="upload picture">
-            <img src={camera} className={classes.icon} />
-          </span>
-        </RoundButton>
-      </label>
+
+      {alert && (
+        <Modal
+          open={open}
+          title={"Secret Agent Message"}
+          message={
+            "Remember, Agent Calvin, do not take photos of yourself or family. A secret agent must always keep their identity...secret!"
+          }
+          // handleClickOpen={handleClickOpen}
+          handleClose={handleClose}
+        />
+      )}
+      {!alert && (
+        <label htmlFor="icon-button-file">
+          <RoundButton>
+            <span aria-label="upload picture">
+              <img src={camera} className={classes.icon} />
+            </span>
+          </RoundButton>
+        </label>
+      )}
     </div>
   );
 };

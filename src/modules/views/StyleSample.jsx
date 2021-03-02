@@ -13,16 +13,19 @@ const StyleSample = props => {
   const [state, dispatch] = useContext(AppContext);
   const { colors, shadows, gradients, fonts } = state.theme;
   
+  const checkReady = () => {
+    console.log("testing modal for ImageCapture")
+  }
   return (
     <PageContainer>
       <TitleContainer>
       <Logo />
         <h1>Style Guide</h1>
       </TitleContainer>
-      <Modal title={"Secret Agent Message"} message={"Remember, Agent Calvin, do not take photos of yourself or family. A secret agent must always keep their identity...secret!"} buttonText={"Secret Message!"}/>
-      <ModalWrapper><ImageCapture /></ModalWrapper>
+      {/* <Modal title={"Secret Agent Message"} message={"Remember, Agent Calvin, do not take photos of yourself or family. A secret agent must always keep their identity...secret!"} buttonText={"Secret Message!"}/> */}
+      <ModalWrapper><ImageCapture checkReady={checkReady}/></ModalWrapper>
       <ModalWrapper><AgentDetails/></ModalWrapper>
-      <ImageCapture />
+      <ImageCapture checkReady={checkReady}/>
       {/* <div style={{ display: "flex", justifyContent: 'space-evenly' }}>
         <div style={{ display:'flex', flexDirection:'column' }}>
           <h1 style={{ color: colors.green, fontFamily: fonts.primary }}>
