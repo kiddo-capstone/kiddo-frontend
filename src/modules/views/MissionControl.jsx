@@ -64,7 +64,7 @@ const MissionControl = props => {
   const makeMissionList = () => {
     if (state.currentUser === "" || state.currentUser === null) {
       // for when no user is selected, will display all missions in the DB
-      return state.missions.map(mission => {
+      return state.missions.sort((a, b)=> b.id-a.id).map(mission => {
         return <Mission
         key={mission.id}
         props={mission}
