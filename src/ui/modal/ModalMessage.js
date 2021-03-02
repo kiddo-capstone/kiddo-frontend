@@ -4,7 +4,7 @@ import Slide from "@material-ui/core/Slide";
 import RoundButton from "../button/RoundButton";
 import Button from "../button/Button";
 import { makeStyles } from "@material-ui/core";
-import theme from "../../ui/common/theme";
+import theme from "../common/theme";
 
 const appStyles = theme;
 
@@ -16,11 +16,11 @@ const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
     flexDirection: "column",
-    backgroundColor: appStyles.colors.blue,
+    backgroundColor: appStyles.colors.grey2,
     padding: "0 1em 0 1em",
-    color: "white",
+    // color: appStyles.colors.black,
     // border: `2px solid ${appStyles.colors.background}`,
-    boxShadow: `inset 5em 2em ${appStyles.colors.background}`,
+    boxShadow: `inset 1em 0em ${appStyles.colors.background}`,
     // minWidth: "100%",
     // maxWidth: "100%",
 
@@ -44,10 +44,10 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: "1em 1em 1em 2em",
+    padding: "1em 1em 2em 2em",
     backgroundColor: appStyles.colors.background,
     color: appStyles.colors.white,
-    fontSize: 16,
+    fontSize: "1.3em",
     fontFamily: appStyles.fonts.secondary,
   },
   icon: {
@@ -56,33 +56,30 @@ const useStyles = makeStyles(() => ({
     height: "20%",
     borderRadius: "50%",
     overflow: "hidden",
-    backgroundColor: appStyles.colors.white,
+    backgroundColor: appStyles.colors.grey,
     "& img": {
       width: "100%",
       height: "100%",
       // objectFit: "cover"
     },
-    button: {
-      textAlign: "center",
-    },
   },
 }));
 
-const Modal = ({ title, message, buttonText }) => {
-  const [open, setOpen] = React.useState(false);
+const ModalMessage = ({
+  title,
+  message,
+  buttonText,
+  open,
+  handleClose,
+  handleClickOpen,
+}) => {
   const classes = useStyles();
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   return (
     <div>
-      <Button onClick={handleClickOpen}>{buttonText}</Button>
+      {/* <button className={classes.button} onClick={handleClickOpen}>
+        {buttonText}
+      </button> */}
       <Dialog
         open={open}
         TransitionComponent={Transition}
@@ -103,7 +100,7 @@ const Modal = ({ title, message, buttonText }) => {
           </div>
           <div className={classes.content} id="message-content">
             {message}
-            <div className={classes.button} onClick={handleClose}>
+            <div classes={classes.button} onClick={handleClose}>
               <RoundButton>OK!</RoundButton>
             </div>
           </div>
@@ -112,4 +109,4 @@ const Modal = ({ title, message, buttonText }) => {
     </div>
   );
 };
-export default React.memo(Modal);
+export default React.memo(ModalMessage);

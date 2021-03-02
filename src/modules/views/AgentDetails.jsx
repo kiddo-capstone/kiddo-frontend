@@ -3,12 +3,11 @@ import AppContext from "../app/AppContext";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
 import kids from "../../assets/kids_trio.png";
-import bubbles from "../../assets/bubbles.svg";
+// import bubbles from "../../assets/bubbles.svg";
 import ProgressBar from "../../ui/progressBar/ProgressBar";
 import MiniAuth from "../auth/MiniAuth";
 import { useAuth0 } from "@auth0/auth0-react";
 import StatusForm from "./StatusForm";
-import ModalWrapper from "../../ui/modal/ModalWrapper";
 
 const appStyles = theme;
 
@@ -23,7 +22,7 @@ const useStyles = makeStyles(() => ({
     height: "auto",
     overflow: "hidden",
     //                        **  PASS IN VAR FOR MOOD COLORING  **
-    backgroundImage: `linear-gradient(1deg, #3E4452, #00f2424f), url(${bubbles})`,
+    // backgroundImage: `linear-gradient(1deg, #3E4452, #00f2424f), url(${bubbles})`,
     backgroundPosition: 'center',
   },
   cardHeader: {
@@ -45,7 +44,7 @@ const useStyles = makeStyles(() => ({
     // border: `5px solid ${appStyles.colors.darkGrey}`,
     margin: "auto",
     position: "relative",
-    backgroundImage: 'radial-gradient(#00fde6, transparent)',
+    // backgroundImage: 'radial-gradient(#00fde6, transparent)',
     width: "220px",
     height: "200px",
     borderRadius: "50%",
