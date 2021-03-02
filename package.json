@@ -29,6 +29,7 @@
     "start": "PORT=8000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "cy:test": "$(npm bin)/cypress run",
     "eject": "react-scripts eject",
     "start-sw": "http-server ./build"
   },
