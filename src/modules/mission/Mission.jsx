@@ -126,18 +126,42 @@ const Mission = props => {
   useEffect(async() => {
     return await getTasksByMissionId(props.props.id)
     .then(response => setThisMission(response.data))
-    .then(getTotalPoints())
     .catch(error => console.log(error))
+    // .then(response => getTotalPoints())
   }, [])
 
   const getTotalPoints = () => {
-    console.log(thisMission);
-    const total = thisMission.reduce((acc, task) => {
-      let points = task.attributes.points
-      acc += points
-      return acc
+    const total = thisMission.reduce((missionPoints, task) => {
+      let taskPoints = task.attributes.points
+      missionPoints += taskPoints
+      return missionPoints
     }, 0)
     setTotalPoints(total)
+  }
+
+  const getTaskBadges = () => {
+    return thisMission.map(task => {
+      let category = task.attributes.task_category
+      if (category === 'Brain Training') {
+        return(
+          <BadgeContainer>
+            {<img className={classes.icon} src={intelligence} />}
+          </BadgeContainer>
+        )
+      } else if (category === 'Creativity Training') {
+        return(
+          <BadgeContainer>
+            {<img className={classes.icon} src={creativity} />}
+          </BadgeContainer>
+        )
+      } else if (category === 'Health Training') {
+        return(
+          <BadgeContainer>
+            {<img className={classes.icon} src={activity} />}
+          </BadgeContainer>
+        )
+      }
+    })
   }
 
   return (
@@ -147,7 +171,7 @@ const Mission = props => {
           <p>{assignedDay}</p>
           <p>{assignedDate}</p>
           <span className={classes.category}>
-            <p>💰 X {totalPoints}</p>
+            <p>💰 X {totalPoints && totalPoints}</p>
           </span>
         </div>
         <div>
@@ -159,15 +183,7 @@ const Mission = props => {
             <p>{name}</p>
           </span>
           <BadgeBG>
-            <BadgeContainer>
-              {<img className={classes.icon} src={intelligence} />}
-            </BadgeContainer>
-            <BadgeContainer>
-              {<img className={classes.icon} src={creativity} />}
-            </BadgeContainer>
-            <BadgeContainer>
-              {<img className={classes.icon} src={activity} />}
-            </BadgeContainer>
+            {thisMission && getTaskBadges()}         
           </BadgeBG>
         </div>
         <div className={classes.right}>
