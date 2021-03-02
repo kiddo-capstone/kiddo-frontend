@@ -47,7 +47,7 @@ const Login = () => {
 
   const generateUsers = () => {
     const allUsers = state.users
-    return allUsers.map(u => (<MenuItem value={u}>{u.attributes.name}</MenuItem>))
+    return allUsers.map(u => (<MenuItem key={u.id} value={u}>{u.attributes.name}</MenuItem>))
   }
 
   return (
