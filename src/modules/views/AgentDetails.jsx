@@ -3,9 +3,7 @@ import AppContext from "../App/AppContext";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
 import kids from "../../assets/kids_trio.png";
-// import bubbles from "../../assets/bubbles.svg";
-import ProgressBar from "../../ui/progressBar/progressBar";
-import MiniAuth from "../auth/MiniAuth";
+import ProgressBar from "../../ui/progressBar/ProgressBar";
 import { useAuth0 } from "@auth0/auth0-react";
 import StatusForm from "./StatusForm";
 
@@ -18,11 +16,8 @@ const useStyles = makeStyles(() => ({
     justifyContent: "spaceAround",
   },
   card: {
-    // boxShadow: "0 10px 25px 5px rgba(0, 0, 0, 0.2)",
     height: "auto",
     overflow: "hidden",
-    //                        **  PASS IN VAR FOR MOOD COLORING  **
-    // backgroundImage: `linear-gradient(1deg, #3E4452, #00f2424f), url(${bubbles})`,
     backgroundPosition: 'center',
   },
   cardHeader: {
