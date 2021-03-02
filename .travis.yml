@@ -3,8 +3,12 @@ node_js:
 - node
 notifications:
   email: false
+before_script:
+- npm i
 deploy:
-  provider: heroku
+  provider: github
   app: kiddo-frontend
   skip_cleanup: true
   on: main
+  api_key:
+    secure: pj8tIIPMPprMHhrsDR7w0MDKHG5xgm7j6+A/tPbv0EarasXJiyZhO1fhBtdYktgSeAmhCAgjA2bDoZUrFSpbicOfNObAnPBt/UidRrUtADXZ+t8OB3L94pIOhek7AOlW5t+a8yfJ221RtPtx7uspYxoRuliKEOkoIfdCCoLhw1bWEQyhPh8sMdVsQj73okmbnPUUFG6cL9gUY5G5l7kP9ik67qSQH/AS1u/rm2T7d8SDx1H8y2F3yXZURGpge8x/Xxuqr54XBm9CSFvnoaO7sR7FEw2cqmDC4ikVzPArUB1/C4TN3rNleVrEBbQN9jRdduoBPjNNVqSCcxAPSVpa7yYCk485+TNNnTv9/TUx8kmXe6uHU44jj2LLiFn/jdSsFQzaNTAzT60D/lxOqQtQpQ//yObyWUlaBExFvFUOgNLyDf4NVRbDZ1MzSb6LbxvlbDQGpD4gi1VhGYZNTXRgb82pNJwmygjTYWhVslcOlT4Ixl9j0tYW8+/VFmMGR6ogJv6AYIXWd9VfaIeKMPuOQrNFT4B1roY1RSU/2OJjA5szQNp0g1NjOCqssUAriGzDSX7+/5v+PM2M+f0Eh/RctNwL5A1YGUuYhL17t0180o+AVGLCvOlfXnkryY9zfMQjhJFOvSZkX/B96o/Jcc/yMHExqc0jMlK1sDOJF522xDw=
