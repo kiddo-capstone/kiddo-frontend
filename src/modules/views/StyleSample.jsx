@@ -4,7 +4,7 @@ import Button from "../../ui/button/Button";
 import PageContainer from "../../ui/containers/PageContainer";
 import TitleContainer from "../../ui/containers/TitleContainer";
 import ImageCapture from '../tasks/ImageCapture'
-import Modal from "../../ui/modal/Modal"
+import ModalMessage from "../../ui/modal/ModalMessage"
 import ModalWrapper from "../../ui/modal/ModalWrapper"
 import AgentDetails from "../views/AgentDetails"
 import Logo from '../common/logo/Logo'
@@ -22,9 +22,7 @@ const StyleSample = props => {
       <Logo />
         <h1>Style Guide</h1>
       </TitleContainer>
-      {/* <Modal title={"Secret Agent Message"} message={"Remember, Agent Calvin, do not take photos of yourself or family. A secret agent must always keep their identity...secret!"} buttonText={"Secret Message!"}/> */}
-      {/* <ModalWrapper><ImageCapture checkReady={checkReady}/></ModalWrapper>
-      <ModalWrapper><AgentDetails/></ModalWrapper> */}
+      {/* <ModalMessage title={"Secret Agent Message"} message={"Remember, Agent Calvin, do not take photos of yourself or family. A secret agent must always keep their identity...secret!"} buttonText={"Secret Message!"}/> */}
       <ImageCapture checkReady={checkReady}/>
       {/* <div style={{ display: "flex", justifyContent: 'space-evenly' }}>
         <div style={{ display:'flex', flexDirection:'column' }}>

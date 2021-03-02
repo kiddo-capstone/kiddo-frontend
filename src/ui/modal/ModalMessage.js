@@ -4,7 +4,7 @@ import Slide from "@material-ui/core/Slide";
 import RoundButton from "../button/RoundButton";
 import Button from "../button/Button";
 import { makeStyles } from "@material-ui/core";
-import theme from "../../ui/common/theme";
+import theme from "../common/theme";
 
 const appStyles = theme;
 
@@ -65,7 +65,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const Modal = ({
+const ModalMessage = ({
   title,
   message,
   buttonText,
@@ -109,4 +109,4 @@ const Modal = ({
     </div>
   );
 };
-export default React.memo(Modal);
+export default React.memo(ModalMessage);

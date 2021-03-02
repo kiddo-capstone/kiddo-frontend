@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import RoundButton from "../../ui/button/RoundButton";
 import camera from "../../assets/camera.png";
-import Modal from "../../ui/modal/Modal";
+import ModalMessage from "../../ui/modal/ModalMessage";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const useStyles = makeStyles(() => ({
@@ -109,7 +109,7 @@ const ImageCapture = ({ checkReady }) => {
       />
 
       {alert && (
-        <Modal
+        <ModalMessage
           open={open}
           title={"Secret Agent Message"}
           message={`Remember, ${
