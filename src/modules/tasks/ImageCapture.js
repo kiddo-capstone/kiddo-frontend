@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import RoundButton from "../../ui/button/RoundButton";
 import camera from "../../assets/camera.png";
 import Modal from "../../ui/modal/Modal";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -59,6 +60,7 @@ const ImageCapture = ({ checkReady }) => {
   const classes = useStyles();
   const [source, setSource] = useState("");
   const [sourceFile, setSourceFile] = useState(null);
+  const { user, isAuthenticated } = useAuth0();
   const [alert, setAlert] = useState(true);
   const [open, setOpen] = React.useState(true);
 
@@ -110,9 +112,9 @@ const ImageCapture = ({ checkReady }) => {
         <Modal
           open={open}
           title={"Secret Agent Message"}
-          message={
-            "Remember, Agent Calvin, do not take photos of yourself or family. A secret agent must always keep their identity...secret!"
-          }
+          message={`Remember, ${
+            !isAuthenticated ? "KidDo Agent" : "Agent" + " " + user.given_name
+          }, do not take photos of yourself or family. A secret agent must always keep their identity...secret!`}
           // handleClickOpen={handleClickOpen}
           handleClose={handleClose}
         />
