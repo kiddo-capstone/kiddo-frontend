@@ -1,16 +1,16 @@
 language: node_js
 node_js:
-- node
+  - node
 notifications:
   email: false
   
-before_script:
-- npm i
-- npm run build
+install:
+  - npm install
+
+script:
+  - http-server ./build
 
 deploy:
-  run:
-    - npm run start -sw
   provider: heroku
   app: kiddo-frontend
   skip_cleanup: true
