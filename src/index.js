@@ -4,7 +4,6 @@ import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./modules/app/App";
 import * as serviceWorkerRegistration from "./setup/serviceWorkerRegistration";
-import reportWebVitals from "./setup/reportWebVitals";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 ReactDOM.render(
