@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import RoundButton from "../../ui/button/RoundButton";
 import camera from "../../assets/camera.png";
+import ModalMessage from "../../ui/modal/ModalMessage";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -44,7 +46,7 @@ const useStyles = makeStyles(() => ({
     position: "relative",
     width: "80%",
     height: "80%",
-    paddingTop: "20px",
+    paddingTop: ".7em",
     // borderRadius: "50%",
     // overflow: "hidden",
     "& img": {
@@ -58,6 +60,18 @@ const ImageCapture = ({ checkReady }) => {
   const classes = useStyles();
   const [source, setSource] = useState("");
   const [sourceFile, setSourceFile] = useState(null);
+  const { user, isAuthenticated } = useAuth0();
+  const [alert, setAlert] = useState(true);
+  const [open, setOpen] = React.useState(true);
+
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
+
+  const handleClose = () => {
+    setAlert(false);
+    setOpen(!open);
+  };
 
   const handleCapture = (target) => {
     if (target.files) {
@@ -93,6 +107,19 @@ const ImageCapture = ({ checkReady }) => {
         capture="environment"
         onChange={(e) => handleCapture(e.target)}
       />
+
+      {alert && (
+        <ModalMessage
+          open={open}
+          title={"Secret Agent Message"}
+          message={`Remember, ${
+            !isAuthenticated ? "KidDo Agent" : "Agent" + " " + user.given_name
+          }, do not take photos of yourself or family. A secret agent must always keep their identity...secret!`}
+          // handleClickOpen={handleClickOpen}
+          handleClose={handleClose}
+        />
+      )}
+
       <label htmlFor="icon-button-file">
         <RoundButton>
           <span aria-label="upload picture">

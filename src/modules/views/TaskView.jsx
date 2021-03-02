@@ -8,8 +8,7 @@ import ImageCapture from "../tasks/ImageCapture";
 import AccentLine from "../../ui/decorative/AccentLine";
 import Button from "../../ui/button/Button";
 import ModalWrapper from "../../ui/modal/ModalWrapper";
-import { getTaskById, updateSelectedTaskAPI } from "../common/apiCalls";
-import { missionTasks } from "../../cannedData";
+import { updateSelectedTaskAPI } from "../common/apiCalls";
 
 const useStyles = makeStyles(theme => ({
   innerContainer: {
@@ -66,7 +65,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const TaskView = ({ id }) => {
+const TaskView = (props) => {
   const [state, dispatch] = useContext(AppContext);
   const [taskComplete , setTaskComplete] = useState(false);
   const [updatedTask, setUpdatedTask] = useState(null);
@@ -75,13 +74,12 @@ const TaskView = ({ id }) => {
   const {
     selectedTask: { attributes },
   } = state;
-  console.log(attributes);
 
-  useEffect(async () => {
-    await getTaskById(id)
-      .then(data => addTaskToState("selectedTask", data.data))
-      .catch(error => setError(error));
-  }, []);
+  useEffect(() => {
+    const currentTask = state.selectedMissionTasks.find(task => task.id === props.id)
+    console.log(props);
+    addTaskToState("selectedTask", currentTask)
+  }, [])
 
   const addTaskToState = (type, data) => {
     const action = { type: `FETCH_SELECTED_TASK`, selectedTask: data };
@@ -89,42 +87,40 @@ const TaskView = ({ id }) => {
   };
 
   const checkReady = (trueFalse, updatedTask) => {
-     console.log("updatedTask!:", updatedTask)
     if (taskComplete !== trueFalse) {
-      setTaskComplete(trueFalse)
-      
+      setTaskComplete(trueFalse)      
       setUpdatedTask(updatedTask)
-     
     }
   };
-    
+
   const handleClick = async () => {
     // only allowed to click when requirements have been met
       // taskComplete is already true
-    
       let data = new FormData();
       data.append("is_completed", true)
 
       if(updatedTask.message) {
+        console.log('message');
         data.append("message", updatedTask.message)
       }
       if(updatedTask.image) {
+        console.log('image');
         data.append("image", updatedTask.image)
       }
-    
-      await updateSelectedTaskAPI(id, data)
+      
+      console.log(data);
+      await updateSelectedTaskAPI(props.id, data)
       addTaskToState("selectedTask", {})
-    
   };
 
   const getTask = () => {
-    if (attributes?.category === "EQ") {
+    if (attributes?.task_category === "Health Training") {
       return(
         <div className={classes.actionContainer}>
           <Journal checkReady={checkReady} />
         </div>
       )
-    } else if (attributes?.category === "IQ") {
+    } else if (attributes?.task_category === "Creativity Training") {
       return (
         <div className={classes.actionContainer}>
           <ImageCapture checkReady={checkReady}/>
@@ -137,21 +133,19 @@ const TaskView = ({ id }) => {
     <PageContainer>
       <TitleContainer style={{ width: "100%" }}>
         <p>Agent Task:</p>
-        <h1>{attributes?.name}</h1>
+        <h1>{attributes?.task_name}</h1>
       </TitleContainer>
       <AccentLine color={state.theme.colors.blue} />
       <section className={classes.innerContainer}>
         <section className={classes.left}>
           <span className={classes.category}>
-            <p>{attributes?.category}</p>
+            <p>{attributes?.task_category}</p>
             <p>💰 X {attributes?.points}</p>
           </span>
           <div className={classes.descriptionContainer}>
             <p>
-              {attributes?.description} in{" "}
-              <b style={{ color: state.theme.colors.blue }}>15 words</b>. Here
-              is some more placeholder text, combined with a handful of model
-              sentence structures, to generate Lorem Ipsum.
+            <b style={{ color: state.theme.colors.blue }}>{attributes?.task_description.split(' ').slice(0, 4).join(' ') + ' '}</b>
+            {attributes?.task_description.split(' ').slice(4, attributes?.task_description.length -1).join(' ')}
             </p>
           </div>
         </section>

@@ -6,6 +6,7 @@ import Mission from '../mission/Mission'
 import { Link } from "react-router-dom";
 import {makeStyles} from '@material-ui/core'
 import AccentLine from '../../ui/decorative/AccentLine'
+import Login from '../login/Login'
 
 const useStyles = makeStyles(theme => ({
   missions: {
@@ -28,6 +29,26 @@ const useStyles = makeStyles(theme => ({
       minWidth: '20px',
     },
   },
+  login: {
+    position: 'fixed',
+    right: '8%',
+    top: '5%',
+    [theme.breakpoints.down('1200')]: {
+      right: '2%',
+      top: '1%',
+    },
+    [theme.breakpoints.down('600')]: {
+      right: '2%',
+      top: '15%',
+      opacity: 0,
+      '&:hover': {
+        opacity: 1,
+      },
+      '&:focus': {
+        opacity: 1,
+      },
+    },
+  },
 }))
 
 const MissionControl = props => {
@@ -37,16 +58,28 @@ const MissionControl = props => {
   const classes = useStyles()
 
   const makeMissionList = () => {
-    return state.missions.map(mission => {
-      return <Mission
+    if (state.currentUser === "" || state.currentUser === null) {
+      // for when no user is selected, will display all missions in the DB
+      return state.missions.map(mission => {
+        return <Mission
         key={mission.id}
         props={mission}
-      />
-    })
+        />
+      })
+    } else {
+      // since we don't have an API call to get missions by userID
+      const userID = state.currentUser.id
+      const userMissions = state.missions.filter(m => m.attributes.user_id === +userID)
+      console.log('user missions:',userMissions, 'all missions:', state.missions,'currentuserinstate:',state.currentUser, 'userid:', userID);
+      return userMissions.map(m => (<Mission key={m.id} props={m} />))
+    }
   }
 
   return (
     <PageContainer>
+      <div className={classes.login}>
+        <Login />
+      </div>
       <TitleContainer>
         <p>Welcome back to</p>
         <h1>Mission Control</h1>

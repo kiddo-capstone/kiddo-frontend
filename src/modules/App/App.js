@@ -10,7 +10,7 @@ import StyleSample from "../views/StyleSample";
 import Error400 from "../common/error/Error400";
 import Error500 from "../common/error/Error500";
 import AppContainer from "../../ui/containers/AppContainer";
-import { getAllMissions, getAllTasks } from "../common/apiCalls";
+import { getAllMissions, getAllTasks, getAllUsers } from "../common/apiCalls";
 import Auth from '../auth/Auth'
 
 const App = () => {
@@ -26,6 +26,12 @@ const App = () => {
   useEffect(async () => {
     await getAllTasks()
       .then(data => addDataToState('tasks', data.data))
+      .catch(error => setError(error))
+  }, [])
+
+  useEffect(async () => {
+    await getAllUsers()
+      .then(data => addDataToState('users', data.data))
       .catch(error => setError(error))
   }, [])
 

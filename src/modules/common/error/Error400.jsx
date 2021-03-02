@@ -14,36 +14,19 @@ const useStyles = makeStyles(() => ({
   img: {
     willChange: 'transform',
     width: '14em',
-    animation: '$ufo infinite alternate 4s ease',
+    animation: '$ufo infinite ease 4s',
   },
   '@keyframes ufo': {
     '0%': {
       transform: 'translate(-3em, 0em) rotate(10deg)',
     },
-    // '25%': {
-    //   transform: 'translate(-1em, -2.2em) rotate(2deg)',
-    // },
-    // '50%': {
-    //   transform: 'translate(1em, -2em) rotate(-2deg)',
-    // },
-    '100%': {
-      transform: 'translate(3em, -.2em) rotate(-10deg)',
+
+    '50%': {
+      transform: 'translate(3em, 0em) rotate(-10deg)',
     },
-    // '25%': {
-    //   transform: 'translate(0em, -2em) rotate(7deg)',
-    // },
-    // '50%': {
-    //   // transform: 'translateY(-1em)',
-    //   transform: 'translate(2em, -1em) rotate(2deg)',
-    // },
-    // '75%': {
-    //   transform: 'translate(1em, 0em) rotate(-5deg)',
-    //   // transform: 'translate(-10em, -5em)',
-    // },
-    // '100%': {
-    //   transform: 'translate(-1em, -1em) rotate(-15deg)',
-    //   // transform: 'rotate(360deg)',
-    // },
+    '100%': {
+      transform: 'translate(-3em, 0em) rotate(10deg)',
+    },
   },
 }))
 
