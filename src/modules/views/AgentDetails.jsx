@@ -137,7 +137,7 @@ const AgentDetails = (props) => {
           </div>
         ))}
       </div>
-      <MiniAuth />
+      {/* <MiniAuth /> */}
     </section>
   );
 };
