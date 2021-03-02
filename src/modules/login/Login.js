@@ -3,11 +3,13 @@ import AppContext from '../app/AppContext'
 import { makeStyles } from "@material-ui/core";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    borderColor: 'white',
+  },
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
@@ -15,6 +17,9 @@ const useStyles = makeStyles(theme => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  menu: {
+    color: 'white !important',
+  }
 }));
 
 const Login = () => {
@@ -43,15 +48,15 @@ const Login = () => {
   const generateUsers = () => {
     const allUsers = state.users
     return allUsers.map(u => (<MenuItem value={u}>{u.attributes.name}</MenuItem>))
-    // return allUsers.map(u => (<MenuItem value={u.attributes.name}>{u.attributes.name}</MenuItem>))
   }
 
   return (
     <FormControl variant="outlined" className={classes.formControl}>
-      <InputLabel id="demo-simple-select-outlined-label">Select User</InputLabel>
+      <InputLabel className={classes.menu} id="user-select-label">Select User</InputLabel>
       <Select
-        labelId="demo-simple-select-outlined-label"
-        id="demo-simple-select-outlined"
+        className={classes.menu}
+        labelId="user-select-label"
+        id="user-select"
         value={kiddoUser}
         onChange={handleChange}
         label="kiddoUser">
@@ -59,9 +64,6 @@ const Login = () => {
           <em>None</em>
         </MenuItem>
         {generateUsers()}
-        {/* <MenuItem value={10}>Ten</MenuItem>
-        <MenuItem value={20}>Twenty</MenuItem>
-        <MenuItem value={30}>Thirty</MenuItem> */}
       </Select>
     </FormControl>
   );
