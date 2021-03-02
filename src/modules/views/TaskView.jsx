@@ -8,7 +8,10 @@ import Journal from "../tasks/Journal";
 import ImageCapture from "../tasks/ImageCapture";
 import AccentLine from "../../ui/decorative/AccentLine";
 import Button from "../../ui/button/Button";
-import { updateSelectedTaskAPI, getMissionTaskById } from "../common/apiCalls";
+import ModalWrapper from "../../ui/modal/ModalWrapper";
+import { getTaskById, updateSelectedTaskAPI } from "../common/apiCalls";
+import { missionTasks } from "../../cannedData";
+import ReactPlayer from "react-player";
 
 const useStyles = makeStyles(theme => ({
   innerContainer: {
@@ -155,7 +158,17 @@ const TaskView = (props) => {
     }
   };
 
-  return loading ? <PageContainer>LOADING</PageContainer> : (
+  const formatResource = () => {
+    if (attributes?.resource_type === "video") {
+      return <ReactPlayer url={attributes.resource_link} /> 
+    } else if (attributes?.resource_type === "image") {
+      return <img src={attributes.resource_link} alt={attributes.resource_type}/>
+    } else if (attributes?.resource_type === "link") {
+      return <Link to={attributes.resource_link} />
+    }
+  }
+
+  return (
     <PageContainer>
       <TitleContainer style={{ width: "100%" }}>
         <p>Agent Task:</p>
@@ -183,7 +196,7 @@ const TaskView = (props) => {
           </span>
           {getTask()}
           <div>
-            <ReactPlayer url={attributes.resource_link} />
+            {formatResource()}
           </div>
         </section>
       </section>
