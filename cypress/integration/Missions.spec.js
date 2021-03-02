@@ -22,17 +22,17 @@ describe("MissionControl", () => {
     
     cy.url().should("include", "/task/")
 
-    cy.get(".makeStyles-textBox-91")
-      .type("Hello! ")
+    // cy.get(".makeStyles-textBox-91")
+    //   .type("Hello! ")
 
-    cy.get('a > .makeStyles-butt-41')
-      .should("be.disabled")
+    // cy.get('a > .makeStyles-butt-41')
+    //   .should("be.disabled")
 
-    cy.get(".makeStyles-textBox-91")
-      .type("So now I'm going to type at least fiften words because that's what the user has to do")
+    // cy.get(".makeStyles-textBox-91")
+    //   .type("So now I'm going to type at least fiften words because that's what the user has to do")
     
-    cy.get('a > .makeStyles-butt-41')
-      .should("not.be.disabled")
-      .click()
+    // cy.get('a > .makeStyles-butt-41')
+    //   .should("not.be.disabled")
+    //   .click()
   });
 });
