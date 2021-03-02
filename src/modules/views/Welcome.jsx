@@ -4,20 +4,6 @@ import PageContainer from "../../ui/containers/PageContainer";
 import { brainTraining, healthTraining, creativityTraining, basicTraining } from "../../assets/index"
 import Task from "../task/Task";
 
-const sampleTask = {
-      "id": "26",
-      "type": "task",
-      "attributes": {
-        "name": "Build a rubber band guitar 🎸 ",
-        "description": "For this task, you'll need a shoebox or tissue box and some rubber bands. Place the rubber bands around the cup and start strumming! Take a picture of your creation to fulfill this task!",
-        "category": "Creativity Training",
-        "points": 10,
-        "photo": true,
-        "resource_alt": "Rubber Band Guitar physics",
-        "resource_link": "https://www.youtube.com/watch?v=ZAw-cqPWfe8",
-        "resource_type": "video"
-      }
-    }
 
 const useStyles = makeStyles(() => ({
   taskTypes: {
@@ -47,10 +33,7 @@ const Welcome = () => {
       <section>
         <h1>Welcome to KidDo!</h1>
         <h3>As a KidDo agent, it’s your job to complete missions <br/> that help you work towards being the best version of yourself. </h3>
-        <>
-          <p>A mission is made up of up to four tasks. When you click start</p>
-          <Task props={sampleTask}/>
-        </>
+        <p>A mission is made up of up to four tasks. When you click start</p>
         <p></p>
         <div className={classes.taskTypes}>
           <div className={classes.category}>
