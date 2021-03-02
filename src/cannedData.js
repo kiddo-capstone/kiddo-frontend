@@ -37,11 +37,15 @@ export const cannedData = {
       id: "4",
       type: "task",
       attributes: {
-        name: "test",
-        description: "testing",
+        name: "test completed task",
+        description: "testing description",
         category: "test",
         points: 3,
+        is_completed: true,
+        message: 'I entered a message',
+        image: '',
       },
+
     },
   ],
 };

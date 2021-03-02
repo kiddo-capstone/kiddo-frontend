@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
-
-const useStyles = makeStyles((theme) => ({
+import { Link } from "react-router-dom";
+const useStyles = makeStyles(props => ({
   taskWrapper: {
     marginBottom: ".2em",
     width: "90%",
@@ -9,11 +9,12 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "flex-start",
     flexDirection: "column",
-    transition: "ease .3s",
+    transition: props => (props.attributes.is_completed ? "" : "ease .3s"),
     willChange: "transform",
-    cursor: "pointer",
+    cursor: props => (props.attributes.is_completed ? "default" : "cursor"),
     "&:hover": {
-      transform: "translateY(-.3em)",
+      transform: props =>
+        props.attributes.is_completed ? "" : "translateY(-.3em)",
       "& $task": {
         transition:
           "border ease 2s, background-color 1s, color 1s, box-shadow 1.5s",
@@ -24,10 +25,8 @@ const useStyles = makeStyles((theme) => ({
       },
       "& $category": {
         "& p": {
-          color: "black !important",
+          color: "black",
         },
-
-        // opacity: 0,
       },
     },
   },
@@ -38,11 +37,23 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 1,
     transition: "ease .3s",
     "& p": {
-      willChange: "color",
+      willChange: "color transform",
       transition: "color .35s",
       color: "gold",
       margin: 0,
       marginRight: ".4em",
+    },
+  },
+  pulse: {
+    animation: "$pulse infinite alternate .75s ease",
+    color: "lightgreen !important",
+  },
+  "@keyframes pulse": {
+    "0%": {
+      transform: "scale(1.1)",
+    },
+    "100%": {
+      transform: "scale(1.4)",
     },
   },
   task: {
@@ -53,15 +64,26 @@ const useStyles = makeStyles((theme) => ({
     border: "solid 4px lightgrey",
     borderRadius: "5px",
     backgroundColor: "#3e445296",
-    // backgroundColor: "#3e4452",
-    // backgroundColor: "#7367f07a;",
     textAlign: "center",
     height: "100%",
     fontSize: "clamp(10px, 1.75rem, 4vmin)",
     color: "white",
-    border: "solid 4px lightgrey",
     padding: "1.5em",
     transition: "ease .3s",
+  },
+  completedTask: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center",
+    border: "solid 4px lightgreen",
+    borderRadius: "5px",
+    backgroundColor: "#3e445296",
+    textAlign: "center",
+    height: "100%",
+    fontSize: "clamp(10px, 1.75rem, 4vmin)",
+    color: "white",
+    padding: "1.5em",
   },
   titleContainer: {
     marginTop: 1,
@@ -88,30 +110,88 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "300",
     fontSize: "1rem",
   },
+  link: {
+    textDecoration: "none",
+    width: "inherit",
+    display: "flex",
+    justifyContent: "center",
+  },
 }));
 
 const Task = ({ props }) => {
-  const classes = useStyles();
+  const classes = useStyles(props);
   const {
-    attributes: { name, description, category, points },
+    attributes: {
+      mission_id,
+      task_name,
+      task_description,
+      task_category,
+      points,
+      photoIsRequired,
+      is_completed,
+      message,
+      image_path,
+    },
   } = props;
-  return (
+
+  const renderTitle = () => {
+    if (is_completed) {
+      return (
+        <span className={classes.taskText} style={{ color: "lightgreen" }}>
+          <h1 style={{ marginRight: ".5em" }}><u>{task_name}</u> Complete!</h1>
+          {/* <p>{task_name}</p> */}
+        </span>
+      );
+    } else {
+      return (
+        <span className={classes.taskText}>
+          <h1 style={{ marginRight: ".5em" }}>Agent Task</h1>
+          <p>{task_name}</p>
+        </span>
+      );
+    }
+  };
+
+  const renderTaskCard = () => {
+    if (!is_completed) {
+      return (
+        <Link className={classes.link} key={props.id} to={`/task/${props.id}`}>
+          {taskCard}
+        </Link>
+      )
+    } else {
+      return (
+        <div className={classes.link}>
+          {taskCard}
+        </div>
+      ) 
+    }
+  }
+
+  const taskCard = (
     <article className={classes.taskWrapper}>
       <span className={classes.category}>
-        <p>{category}</p>
-        {/* add a coin graphic here */}
-        <p>💰 X {points}</p>
+        <p style={is_completed ? { color: "lightgreen" } : null}>{task_category}</p>
+        <p className={is_completed ? classes.pulse : null}>💰 X {points}</p>
       </span>
-      <div className={classes.task}>
-        <div className={classes.titleContainer}>
-          <span className={classes.taskText}>
-            <h1 style={{ marginRight: ".5em" }}>Agent Task</h1>
-            <p>{name}</p>
-          </span>
-        </div>
-        <p className={classes.taskDescription}>{description}</p>
+      <div className={is_completed ? classes.completedTask : classes.task}>
+        <div className={classes.titleContainer}>{renderTitle()}</div>
+        <p className={classes.taskDescription}>
+        {is_completed ? (
+          <span style={{display: 'flex', flexDirection: 'column'}}>
+            <i style={{ color: "lightgreen", fontSize: "1em", margin: '1em' }}>
+              <b>Agent notes:</b>  " {message} "
+            </i>
+            <img src={image_path}/> 
+          </span>)
+          : (task_description)}
+        </p>
       </div>
     </article>
+  );
+
+  return (
+    renderTaskCard()
   );
 };
 

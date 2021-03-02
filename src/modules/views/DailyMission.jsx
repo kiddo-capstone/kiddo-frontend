@@ -1,10 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import AppContext from "../app/AppContext";
 import { makeStyles } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import { getMissionById } from "../common/apiCalls";
-import { cannedData } from "../../cannedData";
-import {getTasksByMissionId} from '../common/apiCalls'
+import { getMissionById, getTasksByMissionId } from "../common/apiCalls";
 
 import Task from "../task/Task";
 import PageContainer from "../../ui/containers/PageContainer";
@@ -25,7 +22,6 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     fontSize: "calc(10px + 2vmin)",
     color: "white",
-    // backgroundColor: "#282c34",
     [theme.breakpoints.down("600")]: {
       minWidth: "20px",
     },
@@ -47,32 +43,27 @@ const DailyMission = props => {
   const classes = useStyles();
 
   useEffect(async () => {
-
     await getMissionById(id)
-      .then(data => addDataToState("selectedMission", data.data))
-      .catch(error => setError(error));
-      //   NEED TO HOOK UP WITH BACKEND
-      //   await getTasksByMissionId(id)
-      //     .then(data => addDataToState('selectedMissionTasks', data.data))
-      //     .catch(error => setError(error))
-  }, []);
+    .then(data => addDataToState("selectedMission", data.data))
+    .catch(error => setError(error))
+    getMissionTasks(id)
+  }, [state.selectedMissionTasks]);
+  
+  const getMissionTasks = async (id) => {
+    await getTasksByMissionId(id)
+      .then(data => addDataToState("selectedMissionTasks", data.data))
+      .catch(error => setError(error))
+  };
 
   const addDataToState = (type, data) => {
-    const action = { type: `FETCH_${type.toUpperCase()}`, selectedMission: data };
+    const action = { type: `FETCH_${type.toUpperCase()}`, [type]: data };
     dispatch(action);
   };
 
   const makeTasksList = () => {
-    // swap canned data for real data in state w/BE link up (selected mission tasks)
-    return cannedData.data.map(task => {
-      return (
-        <Link
-          key={task.id}
-          to={`/task/${task.id}`}
-          style={{ textDecoration: "none", width: 'inherit', display: 'flex', justifyContent: 'center' }}>
-          <Task key={task.id} props={task} />
-        </Link>
-      );
+    const missionTasks = state.selectedMissionTasks
+    return missionTasks?.map(task => {
+      return <Task key={task.id} props={task} />;
     });
   };
 
@@ -84,7 +75,6 @@ const DailyMission = props => {
       </TitleContainer>
       <AccentLine color={state.theme.colors.purple}/>
       <section className={classes.tasks}>
-        {/* hardcoded canned data for tasks imported into file */}
         {makeTasksList()}
       </section>
     </PageContainer>
