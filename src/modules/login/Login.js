@@ -51,7 +51,7 @@ const Login = () => {
   }
 
   return (
-    <FormControl variant="outlined" className={classes.formControl}>
+    <FormControl variant="filled" className={classes.formControl} style={{backgroundColor: 'gray', borderRadius: '10px'}}>
       <InputLabel className={classes.menu} id="user-select-label">Select User</InputLabel>
       <Select
         className={classes.menu}

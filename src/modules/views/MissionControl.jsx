@@ -29,6 +29,26 @@ const useStyles = makeStyles(theme => ({
       minWidth: '20px',
     },
   },
+  login: {
+    position: 'fixed',
+    right: '8%',
+    top: '5%',
+    [theme.breakpoints.down('1200')]: {
+      right: '2%',
+      top: '1%',
+    },
+    [theme.breakpoints.down('600')]: {
+      right: '2%',
+      top: '15%',
+      opacity: 0,
+      '&:hover': {
+        opacity: 1,
+      },
+      '&:focus': {
+        opacity: 1,
+      },
+    },
+  },
 }))
 
 const MissionControl = props => {
@@ -57,7 +77,9 @@ const MissionControl = props => {
 
   return (
     <PageContainer>
-      <Login />
+      <div className={classes.login}>
+        <Login />
+      </div>
       <TitleContainer>
         <p>Welcome back to</p>
         <h1>Mission Control</h1>
