@@ -36,6 +36,14 @@ export const getTaskById = (id) => {
   );
 };
 
+export const getMissionTaskById = (id) => {
+  return (
+    fetch(`https://kiddo-backend.herokuapp.com/api/v1/mission_tasks/${id}`)
+      // fetch(`http://localhost:3000/api/v1/tasks/${id}`)
+      .then((res) => res.json())
+  );
+};
+
 export const getAllUsers = () => {
   return (
     fetch("https://kiddo-backend.herokuapp.com/api/v1/users")
