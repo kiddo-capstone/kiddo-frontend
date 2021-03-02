@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import AppContext from "../app/AppContext";
+import AppContext from "../App/AppContext";
 import { BadgeContainer } from "../../ui/containers/index";
 import BadgeBG from "../../ui/badges/BadgeBg";
 import RoundButton from "../../ui/button/RoundButton";
@@ -9,6 +9,7 @@ import creativity from "../../assets/creativity.png";
 import intelligence from "../../assets/intelligence.png";
 import activity from "../../assets/activity.png";
 import { convertDate } from "../common/convertDate";
+import theme from "../../ui/common/theme";
 
 const useStyles = makeStyles(theme => ({
   missionWrapper: {
@@ -119,10 +120,8 @@ const Mission = props => {
       attributes: { name, due_date, user_id, created_at, updated_at },
     },
   } = props;
-  const {
-    theme: { colors },
-  } = state;
-  const classes = useStyles(state.theme.colors);
+
+  const classes = useStyles(theme.colors);
 
   const assignedDate = convertDate(created_at).stringDate;
   const assignedDay = convertDate(created_at).stringDay;

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import AppContext from "../app/AppContext";
+import AppContext from "../App/AppContext";
 import Button from "../../ui/button/Button";
 import PageContainer from "../../ui/containers/PageContainer";
 import TitleContainer from "../../ui/containers/TitleContainer";

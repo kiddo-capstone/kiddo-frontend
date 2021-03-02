@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from "react";
-import AppContext from '../app/AppContext'
+import AppContext from '../App/AppContext'
 import { makeStyles } from "@material-ui/core";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -47,7 +47,7 @@ const Login = () => {
 
   const generateUsers = () => {
     const allUsers = state.users
-    return allUsers.map(u => (<MenuItem value={u}>{u.attributes.name}</MenuItem>))
+    return allUsers.map(u => (<MenuItem key={u.id} value={u}>{u.attributes.name}</MenuItem>))
   }
 
   return (

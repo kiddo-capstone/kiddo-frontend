@@ -1,0 +1,10 @@
+{
+  "id": "4",
+  "type": "task",
+  "attributes": {
+    "name": "test",
+    "description": "testing",
+    "category": "test",
+    "points": 3
+  }
+}

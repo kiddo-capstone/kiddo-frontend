@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import {Link } from 'react-router-dom'
-import AppContext from "../app/AppContext";
+import AppContext from "../App/AppContext";
 import { makeStyles } from "@material-ui/core";
 import { PageContainer, TitleContainer } from "../../ui/containers/index";
 import Journal from "../tasks/Journal";

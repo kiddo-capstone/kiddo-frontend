@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import AppContext from "../app/AppContext";
+import AppContext from "../App/AppContext";
 import {PageContainer, TitleContainer, SmallContainer, MediumContainer} from "../../ui/containers/index";
 import Button from "../../ui/button/Button";
 import Mission from '../mission/Mission'
@@ -53,7 +53,7 @@ const useStyles = makeStyles(theme => ({
 
 const MissionControl = props => {
   const [state, dispatch] = useContext(AppContext);
-  const { colors, shadows, gradients, fonts } = state.theme;
+  // const { colors, shadows, gradients, fonts } = state.theme;
   
   const classes = useStyles()
 

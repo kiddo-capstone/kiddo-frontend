@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import AppContext from "../app/AppContext";
+import AppContext from "../App/AppContext";
 import { makeStyles } from "@material-ui/core";
 import { getMissionById, getTasksByMissionId } from "../common/apiCalls";
 

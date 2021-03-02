@@ -1,0 +1,8 @@
+{
+  "id": "1",
+  "type": "user",
+  "attributes": {
+    "name": "Calvin",
+    "email": "Calvin@example.com"
+  }
+}
