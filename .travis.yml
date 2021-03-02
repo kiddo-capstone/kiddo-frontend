@@ -3,10 +3,15 @@ node_js:
 - node
 notifications:
   email: false
+  
 before_script:
 - npm i
+- npm run build
+
 deploy:
-  provider: github
+  run:
+    - npm run start -sw
+  provider: heroku
   app: kiddo-frontend
   skip_cleanup: true
   on: main
