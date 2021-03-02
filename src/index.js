@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import "./index.css";
-import App from "./modules/app/App.js";
+import App from "./modules/App/App";
 import * as serviceWorkerRegistration from "./setup/serviceWorkerRegistration";
 import { Auth0Provider } from "@auth0/auth0-react";
 

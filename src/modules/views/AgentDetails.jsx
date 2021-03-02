@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import AppContext from "../app/AppContext";
+import AppContext from "../App/AppContext";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
 import kids from "../../assets/kids_trio.png";

@@ -1,4 +1,4 @@
-import AppContext from "../modules/app/AppContext";
+import AppContext from "../modules/App/AppContext";
 import MissionControl from "../modules/views/MissionControl";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";

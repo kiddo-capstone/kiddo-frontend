@@ -4,7 +4,7 @@ import { renderHook, act } from "@testing-library/react-hooks";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
 import "@testing-library/jest-dom";
-import App from "../modules/app/App";
+import App from "../modules/App/App";
 import appReducer from "../modules/common/appReducer";
 import { missionsData, tasksData, usersData } from "./testData";
 

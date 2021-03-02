@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import AppContext from "../app/AppContext";
+import AppContext from "../App/AppContext";
 import { BadgeContainer } from "../../ui/containers/index";
 import BadgeBG from "../../ui/badges/BadgeBg";
 import RoundButton from "../../ui/button/RoundButton";

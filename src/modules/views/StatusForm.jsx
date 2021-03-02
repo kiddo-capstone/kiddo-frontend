@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import ModalWrapper from "../../ui/modal/ModalWrapper";
 import { makeStyles } from "@material-ui/core";
-import AppContext from "../app/AppContext";
+import AppContext from "../App/AppContext";
 import Button from "../../ui/button/Button";
 
 const useStyles = makeStyles(() => ({
