@@ -100,24 +100,27 @@ const TaskView = (props) => {
       data.append("is_completed", true)
 
       if(updatedTask.message) {
+        console.log('message');
         data.append("message", updatedTask.message)
       }
       if(updatedTask.image) {
+        console.log('image');
         data.append("image", updatedTask.image)
       }
-    
+      
+      console.log(data);
       await updateSelectedTaskAPI(props.id, data)
       addTaskToState("selectedTask", {})
   };
 
   const getTask = () => {
-    if (attributes?.task_category === "EQ") {
+    if (attributes?.task_category === "Health Training") {
       return(
         <div className={classes.actionContainer}>
           <Journal checkReady={checkReady} />
         </div>
       )
-    } else if (attributes?.task_category === "IQ") {
+    } else if (attributes?.task_category === "Creativity Training") {
       return (
         <div className={classes.actionContainer}>
           <ImageCapture checkReady={checkReady}/>
