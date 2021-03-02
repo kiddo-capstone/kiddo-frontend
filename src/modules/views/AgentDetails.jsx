@@ -7,6 +7,8 @@ import ProgressBar from "../../ui/progressBar/ProgressBar";
 // import { useAuth0 } from "@auth0/auth0-react";
 import StatusForm from "./StatusForm";
 import SignUp from "../login/SignUp.js";
+import ModalWrapper from "../../ui/modal/ModalWrapper";
+import { basicTraining, creativityTraining, healthTraining, brainTraining } from "../../assets/index";
 
 const appStyles = theme;
 
@@ -51,7 +53,9 @@ const useStyles = makeStyles(() => ({
     },
   },
   icon: {
-    alignSelf: "center",
+    margin: "0.6em",
+    height: "3.5em",
+    alignItems: "flex-start",
   },
   details: {
     display: "flex",
@@ -75,17 +79,25 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const stats = [
-  { barColor: 'gold', completed: 60 },
-  { barColor: 'gold', completed: 30 },
-  { barColor: 'gold', completed: 53 },
-];
-
 const AgentDetails = (props) => {
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
-  // const { user, isAuthenticated } = useAuth0();
-  
+  const { user, isAuthenticated } = useAuth0();
+
+  const stats = [
+    { icon: brainTraining, barColor: 'gold', completed: 60 },
+    { icon: creativityTraining, barColor: 'gold', completed: 30 },
+    { icon: healthTraining, barColor: 'gold', completed: 53 },
+    { icon: basicTraining, barColor: 'gold', completed: 53 },
+  ];
+
+  const returnTaskCategoryLength = (category) => {
+    if (state.tasks.length > 0) {
+      return state.tasks.filter(task => {
+        return task.attributes.category === category
+      }).length
+    }
+  }
   
   return (
     <section className={classes.section}>
@@ -120,22 +132,17 @@ const AgentDetails = (props) => {
       </div>
       {state.currentUser !== null && (
       <div>
-        <span style={{ textAlign: "center", color: appStyles.colors.yellow }}>
-          <h2>STATS</h2>
-        </span>
-        
-          <div>
-            {stats.map((item, idx) => (
-              <div className={classes.statRow} key={`statRow-${idx}`}>
-                <div className={classes.icon} key={`icon-${idx}`}>❤️</div>
-                <ProgressBar
-                  key={idx}
-                  barColor={item.barColor}
-                  completed={item.completed}
-                />
-              </div>
-            ))}
-        </div> 
+        {stats.map((item, idx) => (
+          <div className={classes.statRow} key={`statRow-${idx}`}>
+            <img src={item.icon.img} className={classes.icon} key={`icon-${idx}`}/>
+            <p>0/{returnTaskCategoryLength(item.icon.desc)}</p>
+            {/* <ProgressBar
+              key={idx}
+              barColor={item.barColor}
+              completed={item.completed}
+            /> */}
+          </div>
+        ))}
       </div>
       )}
     </section>
