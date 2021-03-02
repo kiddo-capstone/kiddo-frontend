@@ -1,13 +1,10 @@
 // React Imports
 import React from "react";
-import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
-import Logo from "../../modules/common/logo/Logo";
 
 // Material-ui Imports
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
 import IconButton from "@material-ui/core/IconButton";
@@ -15,7 +12,6 @@ import Toolbar from "@material-ui/core/Toolbar";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 // App Imports
-import Button from "../button/Button";
 import theme from "../common/theme";
 import AgentDetails from "../../modules/views/AgentDetails";
 import PageContainer from "./PageContainer";
@@ -23,7 +19,6 @@ import magnifyingGlass from "../../assets/magnifying-glass.png";
 
 const appStyles = theme;
 const drawerWidth = 300;
-// "clamp(240px, 30%, 40%)"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor: "#3e4452",
+    backgroundColor: "#1c1c1c",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -48,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appBar: {
-    backgroundColor: "#3e4452",
+    backgroundColor: "#1c1c1c",
     fontSize: "calc(10px + 2vmin)",
     [theme.breakpoints.up("sm")]: {
       // width: `calc(100% - ${drawerWidth}px)`,
@@ -118,7 +113,7 @@ function AppContainer(props) {
               style={{ height: "2em" }}
             />
           </IconButton>
-          Welcome, Agent {isAuthenticated && user.given_name}!
+          Welcome{isAuthenticated && ` ${user.given_name}`}!
         </Toolbar>
       </AppBar>
       <div className={classes.drawer}>
