@@ -9,6 +9,9 @@ notifications:
 install:
   - npm install
 
+before_script:
+  - npm run build
+
 script:
   - npm run start -sw
 
