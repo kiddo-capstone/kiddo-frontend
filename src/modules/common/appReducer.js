@@ -3,6 +3,7 @@ import theme from "../../ui/common/theme";
 
 export const initialState = {
   users: [],
+  currentUser: null,
   missions: [],
   selectedMission: {},
   selectedMissionTasks: [],
@@ -30,6 +31,8 @@ export const appReducer = (state, action) => {
       return { ...state, users: action.users }
     case 'SET_STATUS':
       return { ...state, status: action.status }
+    case 'SET_CURRENT_USER':
+      return { ...state, currentUser: action.currentUser }
     default:
       return state;
   }
