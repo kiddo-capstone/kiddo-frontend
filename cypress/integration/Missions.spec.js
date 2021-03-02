@@ -6,13 +6,10 @@ describe("MissionControl", () => {
   it("should display information on a mission card", () => {
     cy.contains("Independence Day")
       .should("be.visible")
-
-    cy.get(':nth-child(1) > .makeStyles-mission-55 > .makeStyles-middle-57 > .makeStyles-BadgeBG-61')
-      .should("be.visible")
   })
 
   it("should allow a user to start a mission and submit a task", () => {
-    cy.get(":nth-child(1) > .makeStyles-mission-55 > .makeStyles-right-58 > a > .makeStyles-round-63")
+    cy.contains("START")
       .should("be.visible")
       .click()
 

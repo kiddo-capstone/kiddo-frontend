@@ -7,10 +7,6 @@ describe("App", () => {
   it("should render mission control", () => {
     cy.contains("Mission Control")
       .should("be.visible")
-
-    cy.get(":nth-child(1) > .makeStyles-mission-55")
-      .contains("Independence Day")
-      .should("be.visible")
   })
 
   it("should render sidebar", () => {
