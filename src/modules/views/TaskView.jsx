@@ -100,24 +100,27 @@ const TaskView = (props) => {
       data.append("is_completed", true)
 
       if(updatedTask.message) {
+        console.log('message');
         data.append("message", updatedTask.message)
       }
       if(updatedTask.image) {
+        console.log('image');
         data.append("image", updatedTask.image)
       }
-    
+      
+      console.log(data);
       await updateSelectedTaskAPI(props.id, data)
       addTaskToState("selectedTask", {})
   };
 
   const getTask = () => {
-    if (attributes?.task_category === "EQ") {
+    if (attributes?.task_category === "Health Training") {
       return(
         <div className={classes.actionContainer}>
           <Journal checkReady={checkReady} />
         </div>
       )
-    } else if (attributes?.task_category === "IQ") {
+    } else if (attributes?.task_category === "Creativity Training") {
       return (
         <div className={classes.actionContainer}>
           <ImageCapture checkReady={checkReady}/>
@@ -142,7 +145,7 @@ const TaskView = (props) => {
           <div className={classes.descriptionContainer}>
             <p>
             <b style={{ color: state.theme.colors.blue }}>{attributes?.task_description.split(' ').slice(0, 4).join(' ') + ' '}</b>
-            {attributes?.task_description.split(' ').slice(4, -1).join(' ')}
+            {attributes?.task_description.split(' ').slice(4, attributes?.task_description.length -1).join(' ')}
             </p>
           </div>
         </section>

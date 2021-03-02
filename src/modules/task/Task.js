@@ -83,7 +83,8 @@ const useStyles = makeStyles(props => ({
     height: "100%",
     fontSize: "clamp(10px, 1.75rem, 4vmin)",
     color: "white",
-    padding: "1.5em",
+    padding: "1em 0",
+    paddingTop: '2.3em',
   },
   titleContainer: {
     marginTop: 1,
@@ -180,7 +181,7 @@ const Task = ({ props }) => {
         {is_completed ? (
           <span style={{display: 'flex', flexDirection: 'column'}}>
             <i style={{ color: "lightgreen", fontSize: "1em", margin: '1em' }}>
-              <b>Agent notes:</b>  " {message} "
+              <b>Agent notes:</b>  {message}
             </i>
             <img src={image_path}/> 
           </span>)
