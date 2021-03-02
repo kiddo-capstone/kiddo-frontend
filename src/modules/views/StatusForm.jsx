@@ -35,7 +35,48 @@ const useStyles = makeStyles(() => ({
     padding: "0.5em",
     fontSize: "2em",
     transform: "scale(1.4)",
-  }
+  },
+  animate: {
+    willChange: 'transform',
+    animation: '$pulse infinite ease 5s',
+    filter: 'drop-shadow(1px 2px 2px black)',
+    transformOrigin: 'center',
+  },
+  animate2: {
+    willChange: 'transform',
+    animation: '$pulse2 infinite ease 8s',
+    filter: 'drop-shadow(1px 2px 2px black)',
+    transformOrigin: 'right',
+    transform: 'scale(1.3)',
+  },
+  '@keyframes pulse': {
+    '0%': {
+      transform: 'translate(0em, 0em)',
+      // filter: 'drop-shadow(1px 2px 2px black)',
+    },
+    '50%': {
+      transform: 'translate(0em, -.3em) scale(1.5)',
+      filter: 'drop-shadow(1px 3px 3px black)',
+    },
+    '100%': {
+      transform: 'translate(0em, 0em)',
+      // filter: 'drop-shadow(1px 2px 2px black)',
+    },
+  },
+  '@keyframes pulse2': {
+    '0%': {
+    transform: 'rotate(-25deg) scale(1.3)',
+      // filter: 'drop-shadow(1px 2px 2px black)',
+    },
+    '50%': {
+      transform: 'rotate(25deg) scale(1.3)',
+      filter: 'drop-shadow(1px 3px 3px black)',
+    },
+    '100%': {
+      transform: 'rotate(-25deg) scale(1.3)',
+      // filter: 'drop-shadow(1px 2px 2px black)',
+    },
+  },
 }))
 
 const StatusForm = () => {
@@ -108,7 +149,7 @@ const StatusForm = () => {
   return (
     <ModalWrapper 
       submitFunc={handleSubmit} 
-      btnMessage={<h3>{state.status ? state.status.emoji : "?"}</h3>} handleClickOpen={handleClickOpen} 
+      btnMessage={state.status ? <h2 className={classes.animate2} style={{fontSize:'2em', lineHeight: 0}}>{state.status.emoji}</h2> : <h2 className={classes.animate} style={{fontSize:'2em', lineHeight: 0}}>?</h2>} handleClickOpen={handleClickOpen} 
       handleClose={handleClose} 
       open={open}
       >
