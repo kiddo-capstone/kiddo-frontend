@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import AppContext from "../App/AppContext";
 import { BadgeContainer } from "../../ui/containers/index";
 import BadgeBG from "../../ui/badges/BadgeBg";
