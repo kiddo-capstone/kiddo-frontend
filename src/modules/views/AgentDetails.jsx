@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
 import kids from "../../assets/kids_trio.png";
 // import bubbles from "../../assets/bubbles.svg";
-import ProgressBar from "../../ui/progressBar/ProgressBar";
+import ProgressBar from "../../ui/progressBar/progressBar";
 import MiniAuth from "../auth/MiniAuth";
 import { useAuth0 } from "@auth0/auth0-react";
 import StatusForm from "./StatusForm";
