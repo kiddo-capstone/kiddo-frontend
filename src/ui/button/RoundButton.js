@@ -17,9 +17,9 @@ const useStyles = makeStyles((color) => ({
     // fontSize: 'clamp(20px, 1%, 280px)',
     // fontSize: '1em',
     borderRadius: "50%",
-    willChange: "transform filter",
+    willChange: "transform",
     cursor: "pointer",
-    transition: "transform ease .3s, background ease .2s, color ease .2s",
+    transition: "transform ease .3s, background ease .2s, color ease .2s, filter ease .2s",
     "&:hover": {
       filter: 'drop-shadow(1px 4px 3px black)',
       transform: "scale(1.05)",

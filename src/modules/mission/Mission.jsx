@@ -19,7 +19,6 @@ const useStyles = makeStyles(theme => ({
   },
   mission: {
     height: "clamp(60px, 7em, 25vmin)",
-    // minHeight: "6em",
     padding: "0",
     paddingRight: "1%",
     display: "flex",
@@ -52,6 +51,7 @@ const useStyles = makeStyles(theme => ({
       fontSize: "clamp(5px, 1.4em, 50px)",
     },
     "& span": {
+      filter: 'drop-shadow(0px 4px 4px grey)',
       fontSize: "clamp(7px, 1.75rem, 3.3vmin)",
       backgroundColor: "gold",
       marginRight: 4,
@@ -66,7 +66,6 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    // margin: '3% 0',
     "& span": {
       display: "flex",
       flexDirection: "column",
@@ -86,28 +85,11 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     justifyContent: "center",
     display: "flex",
+    willChange: 'filter',
   },
   icon: {
     height: "1.5em",
-  },
-  start: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    background: "gold",
-    color: "#575757",
-    height: "5em",
-    width: "5em",
-    borderRadius: "50%",
-    willChange: "transform",
-    cursor: "pointer",
-    transition: "transform ease .3s",
-    "&:hover": {
-      transform: "scale(1.05)",
-      '& $icon': {
-      
-      }
-    },
+    filter: 'drop-shadow(1px 4px 4px black)',
   },
 }));
 
@@ -155,7 +137,7 @@ const Mission = props => {
         )
       } else if (category === 'Creativity Training') {
         return(
-          <BadgeContainer key={i}>
+          <BadgeContainer className={classes.icon} key={i}>
             {<img className={classes.icon} src={creativity} />}
           </BadgeContainer>
         )
@@ -180,11 +162,9 @@ const Mission = props => {
           </span>
         </div>
         <div>
-          {/* <p>Mission</p> */}
         </div>
         <div className={classes.middle}>
           <span className={classes.title}>
-            {/* <p>Mission</p> */}
             <p>{name}</p>
           </span>
           <BadgeBG>
