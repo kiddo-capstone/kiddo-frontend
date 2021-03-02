@@ -115,7 +115,7 @@ const useStyles = makeStyles(theme => ({
 const Mission = props => {
   const [state, dispatch] = useContext(AppContext);
   const [thisMission, setThisMission] = useState(null)
-  const [totalPoints, setTotalPoints] = useState(null)
+  const [totalPoints, setTotalPoints] = useState(0)
 
   const {props: { attributes: { name, due_date, user_id, created_at, updated_at } } } = props;
   const { theme: { colors } } = state;
@@ -127,8 +127,13 @@ const Mission = props => {
     return await getTasksByMissionId(props.props.id)
     .then(response => setThisMission(response.data))
     .catch(error => console.log(error))
-    // .then(response => getTotalPoints())
   }, [])
+
+  useEffect(() => {
+    if (thisMission !== null) {
+      getTotalPoints()
+    }
+  }, [thisMission])
 
   const getTotalPoints = () => {
     const total = thisMission.reduce((missionPoints, task) => {
@@ -140,23 +145,23 @@ const Mission = props => {
   }
 
   const getTaskBadges = () => {
-    return thisMission.map(task => {
+    return thisMission.map((task,i) => {
       let category = task.attributes.task_category
       if (category === 'Brain Training') {
         return(
-          <BadgeContainer>
+          <BadgeContainer key={i}>
             {<img className={classes.icon} src={intelligence} />}
           </BadgeContainer>
         )
       } else if (category === 'Creativity Training') {
         return(
-          <BadgeContainer>
+          <BadgeContainer key={i}>
             {<img className={classes.icon} src={creativity} />}
           </BadgeContainer>
         )
       } else if (category === 'Health Training') {
         return(
-          <BadgeContainer>
+          <BadgeContainer key={i}>
             {<img className={classes.icon} src={activity} />}
           </BadgeContainer>
         )
