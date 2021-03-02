@@ -182,6 +182,9 @@ const TaskView = (props) => {
             <p>.</p>
           </span>
           {getTask()}
+          <div>
+            <ReactPlayer url={attributes.resource_link} />
+          </div>
         </section>
       </section>
 

@@ -19,6 +19,8 @@ const useStyles = makeStyles(() => ({
   card: {
     height: "auto",
     overflow: "hidden",
+    //                        **  PASS IN VAR FOR MOOD COLORING  **
+    // backgroundImage: `linear-gradient(1deg, #3E4452, #00f2424f), url(${bubbles})`,
     backgroundPosition: 'center',
   },
   cardHeader: {
