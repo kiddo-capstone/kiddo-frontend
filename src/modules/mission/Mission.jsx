@@ -9,7 +9,7 @@ import creativity from "../../assets/creativity.png";
 import intelligence from "../../assets/intelligence.png";
 import activity from "../../assets/activity.png";
 import { convertDate } from "../common/convertDate";
-import theme from "../../ui/common/theme";
+import {getTasksByMissionId} from '../common/apiCalls'
 
 const useStyles = makeStyles(theme => ({
   missionWrapper: {
@@ -114,17 +114,31 @@ const useStyles = makeStyles(theme => ({
 // it's strange, had to pull props out of props??
 const Mission = props => {
   const [state, dispatch] = useContext(AppContext);
+  const [thisMission, setThisMission] = useState(null)
+  const [totalPoints, setTotalPoints] = useState(null)
 
-  const {
-    props: {
-      attributes: { name, due_date, user_id, created_at, updated_at },
-    },
-  } = props;
-
-  const classes = useStyles(theme.colors);
-
+  const {props: { attributes: { name, due_date, user_id, created_at, updated_at } } } = props;
+  const { theme: { colors } } = state;
+  const classes = useStyles(state.theme.colors);
   const assignedDate = convertDate(created_at).stringDate;
   const assignedDay = convertDate(created_at).stringDay;
+
+  useEffect(async() => {
+    return await getTasksByMissionId(props.props.id)
+    .then(response => setThisMission(response.data))
+    .then(getTotalPoints())
+    .catch(error => console.log(error))
+  }, [])
+
+  const getTotalPoints = () => {
+    console.log(thisMission);
+    const total = thisMission.reduce((acc, task) => {
+      let points = task.attributes.points
+      acc += points
+      return acc
+    }, 0)
+    setTotalPoints(total)
+  }
 
   return (
     <div className={classes.missionWrapper}>
@@ -133,7 +147,7 @@ const Mission = props => {
           <p>{assignedDay}</p>
           <p>{assignedDate}</p>
           <span className={classes.category}>
-            <p>💰 X {(Math.random() * 100 + 1).toFixed(0)}</p>
+            <p>💰 X {totalPoints}</p>
           </span>
         </div>
         <div>
