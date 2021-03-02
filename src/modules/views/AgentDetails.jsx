@@ -38,6 +38,7 @@ const useStyles = makeStyles(() => ({
     color: 'gold',
   },
   avatar: {
+    filter: 'drop-shadow(2px 4px 6px black)',
     backgroundImage: 'linear-gradient(359deg, #e4572e9e, #00e7ff47)',
     margin: "auto",
     position: "relative",
