@@ -2,17 +2,17 @@ export const convertDate = date => {
   let stringDate = new Date(date).getUTCDate();
   let stringDay = new Date(date).getUTCDay();
   stringDay =
-    stringDay === 0
+    stringDay === 1
       ? "Monday"
-      : stringDay === 1
-      ? "Tuesday"
       : stringDay === 2
-      ? "Wednesday"
+      ? "Tuesday"
       : stringDay === 3
-      ? "Thursday"
+      ? "Wednesday"
       : stringDay === 4
-      ? "Friday"
+      ? "Thursday"
       : stringDay === 5
+      ? "Friday"
+      : stringDay === 6
       ? "Saturday"
       : "Sunday";
   return { stringDate, stringDay };
