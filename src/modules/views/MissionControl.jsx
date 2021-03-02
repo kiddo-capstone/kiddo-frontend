@@ -6,6 +6,7 @@ import Mission from '../mission/Mission'
 import { Link } from "react-router-dom";
 import {makeStyles} from '@material-ui/core'
 import AccentLine from '../../ui/decorative/AccentLine'
+import Login from '../login/Login'
 
 const useStyles = makeStyles(theme => ({
   missions: {
@@ -37,16 +38,26 @@ const MissionControl = props => {
   const classes = useStyles()
 
   const makeMissionList = () => {
-    return state.missions.map(mission => {
-      return <Mission
+    if (state.currentUser === "" || state.currentUser === null) {
+      // for when no user is selected, will display all missions in the DB
+      return state.missions.map(mission => {
+        return <Mission
         key={mission.id}
         props={mission}
-      />
-    })
+        />
+      })
+    } else {
+      // since we don't have an API call to get missions by userID
+      const userID = state.currentUser.id
+      const userMissions = state.missions.filter(m => m.attributes.user_id === +userID)
+      console.log('user missions:',userMissions, 'all missions:', state.missions,'currentuserinstate:',state.currentUser, 'userid:', userID);
+      return userMissions.map(m => (<Mission key={m.id} props={m} />))
+    }
   }
 
   return (
     <PageContainer>
+      <Login />
       <TitleContainer>
         <p>Welcome back to</p>
         <h1>Mission Control</h1>
