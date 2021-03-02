@@ -142,7 +142,7 @@ const TaskView = (props) => {
           <div className={classes.descriptionContainer}>
             <p>
             <b style={{ color: state.theme.colors.blue }}>{attributes?.task_description.split(' ').slice(0, 4).join(' ') + ' '}</b>
-            {attributes?.task_description.split(' ').slice(4, -1).join(' ')}
+            {attributes?.task_description.split(' ').slice(4, attributes?.task_description.length -1).join(' ')}
             </p>
           </div>
         </section>
