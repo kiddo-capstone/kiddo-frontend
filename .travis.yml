@@ -9,12 +9,6 @@ notifications:
 install:
   - npm install
 
-before_script:
-  - npm run build
-
-script:
-  - npm start
-
 deploy:
   provider: heroku
   app: kiddo-frontend
