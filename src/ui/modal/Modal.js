@@ -116,11 +116,9 @@ const Modal = ({
 
   return (
     <div>
-      {/* {buttonText && (
-        <button className={classes.button} onClick={handleClickOpen}>
-          {buttonText}
-        </button>
-      )} */}
+      {/* <button className={classes.button} onClick={handleClickOpen}>
+        {buttonText}
+      </button> */}
       <Dialog
         open={open}
         TransitionComponent={Transition}

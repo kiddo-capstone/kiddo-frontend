@@ -68,6 +68,7 @@ const ImageCapture = ({ checkReady }) => {
 
   const handleClose = () => {
     setAlert(false);
+    setOpen(!open);
   };
 
   const handleCapture = (target) => {
@@ -116,15 +117,14 @@ const ImageCapture = ({ checkReady }) => {
           handleClose={handleClose}
         />
       )}
-      {!alert && (
-        <label htmlFor="icon-button-file">
-          <RoundButton>
-            <span aria-label="upload picture">
-              <img src={camera} className={classes.icon} />
-            </span>
-          </RoundButton>
-        </label>
-      )}
+
+      <label htmlFor="icon-button-file">
+        <RoundButton>
+          <span aria-label="upload picture">
+            <img src={camera} className={classes.icon} />
+          </span>
+        </RoundButton>
+      </label>
     </div>
   );
 };
