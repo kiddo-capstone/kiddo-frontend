@@ -13,7 +13,7 @@ before_script:
   - npm run build
 
 script:
-  - npm run start -sw
+  - npm start
 
 deploy:
   provider: heroku
