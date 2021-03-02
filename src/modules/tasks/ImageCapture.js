@@ -45,7 +45,7 @@ const useStyles = makeStyles(() => ({
     position: "relative",
     width: "80%",
     height: "80%",
-    paddingTop: "20px",
+    paddingTop: ".7em",
     // borderRadius: "50%",
     // overflow: "hidden",
     "& img": {
