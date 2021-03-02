@@ -3,19 +3,25 @@ import MissionControl from "../modules/views/MissionControl";
 import { Router } from "react-router-dom";
 import { createMemoryHistory } from "history";
 import { screen, render } from "@testing-library/react";
-import { missionsData } from "./testData";
+import { missionsData, usersData } from "./testData";
 import "@testing-library/jest-dom";
 
 describe("MissionControl", () => {
   const history = createMemoryHistory()
   const mockState = {
-    missions: []
+    currentUser: {
+      "id": "2",
+      "type": "user",
+      "attributes": {
+        "name": "Hobbes",
+        "email": "Hobbes@example.com",
+        "points": 0
+      }
+    },
+    users: usersData,
+    missions: missionsData
   }
-  const mockDispatch = {
-    "FETCH_MISSIONS": () => jest.fn().mockImplementation(() => {
-      mockState.missions = missionsData
-    })
-  }
+  const mockDispatch = jest.fn()
 
   beforeEach(() => {
     render(
