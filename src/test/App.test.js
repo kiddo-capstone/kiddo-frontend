@@ -54,7 +54,7 @@ describe("App", () => {
   })
 
   it("should render the app", () => {
-    const header = screen.getByText("Welcome, Agent !")
+    const header = screen.getByText("Welcome!")
     expect(header).toBeInTheDocument()
   })
 

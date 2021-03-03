@@ -3,10 +3,14 @@ import AppContext from "../App/AppContext";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
 import kids from "../../assets/kids_trio.png";
-import ProgressBar from "../../ui/progressBar/ProgressBar";
-// import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 import StatusForm from "./StatusForm";
 import SignUp from "../login/SignUp.js";
+import ModalWrapper from "../../ui/modal/ModalWrapper";
+import { basicTraining, creativityTraining, healthTraining, brainTraining } from "../../assets/index";
+import { Link, useHistory } from "react-router-dom";
+import RoundButton from "../../ui/button/RoundButton";
+import UserIndex from "../login/UserIndex";
 
 const appStyles = theme;
 
@@ -42,6 +46,7 @@ const useStyles = makeStyles(() => ({
     height: "200px",
     borderRadius: "50%",
     overflow: "hidden",
+    cursor: "pointer",
     "& img": {
       width: "100%",
       height: "100%",
@@ -49,7 +54,9 @@ const useStyles = makeStyles(() => ({
     },
   },
   icon: {
-    alignSelf: "center",
+    margin: "0.6em",
+    height: "3.5em",
+    alignItems: "flex-start",
   },
   details: {
     display: "flex",
@@ -71,25 +78,45 @@ const useStyles = makeStyles(() => ({
     flexDirection: "row",
     justifyContent: "space-evenly",
   },
+  login: {
+    display: "flex",
+    flexDirection: "column",
+    color: "white",
+    alignItems: "center",
+    justifyContent: "space-around",
+    padding: "0.6em 1.5em",
+    "& h2:nth-child(1)": {
+      color: appStyles.colors.white,
+    }
+  }
 }));
 
-const stats = [
-  { barColor: 'gold', completed: 60 },
-  { barColor: 'gold', completed: 30 },
-  { barColor: 'gold', completed: 53 },
-];
-
 const AgentDetails = (props) => {
+  const history = useHistory()
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
-  // const { user, isAuthenticated } = useAuth0();
   
+  const stats = [
+    { icon: brainTraining, barColor: 'gold', completed: 60 },
+    { icon: creativityTraining, barColor: 'gold', completed: 30 },
+    { icon: healthTraining, barColor: 'gold', completed: 53 },
+    { icon: basicTraining, barColor: 'gold', completed: 53 },
+  ];
+
+  const determinePath = () => {
+    return !state.currentUser ? history.push("/welcome") : history.push("/mission-control") 
+  }
+
+  const logout = () => {
+    const action = { type: "SET_CURRENT_USER", currentUser: null }
+    dispatch(action)
+  }
   
   return (
     <section className={classes.section}>
       <div className={classes.card}>
         <div className={classes.cardHeader}>
-          <div className={classes.avatar}>
+          <div className={classes.avatar} onClick={() => determinePath()}>
             <img src={kids} />
           </div>
       
@@ -116,26 +143,26 @@ const AgentDetails = (props) => {
           </div>
         </div>
       </div>
-      {state.currentUser !== null && (
+      {/* {state.currentUser !== null && (
       <div>
-        <span style={{ textAlign: "center", color: appStyles.colors.yellow }}>
-          <h2>STATS</h2>
-        </span>
-        
-          <div>
-            {stats.map((item, idx) => (
-              <div className={classes.statRow} key={`statRow-${idx}`}>
-                <div className={classes.icon} key={`icon-${idx}`}>❤️</div>
-                <ProgressBar
-                  key={idx}
-                  barColor={item.barColor}
-                  completed={item.completed}
-                />
-              </div>
-            ))}
-        </div> 
+        {stats.map((item, idx) => (
+          <div className={classes.statRow} key={`statRow-${idx}`}>
+            <img src={item.icon.img} className={classes.icon} key={`icon-${idx}`}/>
+            <p>0/{returnTaskCategoryLength(item.icon.desc)}</p>
+          </div>
+        ))}
       </div>
-      )}
+      )} */}
+      {!state.currentUser ?
+      <div className={classes.login}>
+        <UserIndex />
+      </div> :
+      <div className={classes.login}>
+        <Link to="/welcome"><h2>About KidDo</h2></Link>
+        <Link to="/mission-control"><h2>Mission Control</h2></Link>
+        <button onClick={logout}>LOG OUT</button>
+      </div>
+      }
     </section>
   );
 };

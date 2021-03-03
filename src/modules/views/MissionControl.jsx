@@ -74,16 +74,15 @@ const MissionControl = props => {
       // since we don't have an API call to get missions by userID
       const userID = state.currentUser.id
       const userMissions = state.missions.filter(m => m.attributes.user_id === +userID)
-      console.log('user missions:',userMissions, 'all missions:', state.missions,'currentuserinstate:',state.currentUser, 'userid:', userID);
       return userMissions.map(m => (<Mission key={m.id} props={m} />))
     }
   }
 
   return (
     <PageContainer>
-      <div className={classes.login}>
+      {/* <div className={classes.login}>
         <Login />
-      </div>
+      </div> */}
       <TitleContainer>
         <p>Welcome back to</p>
         <h1>Mission Control</h1>

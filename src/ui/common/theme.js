@@ -1,6 +1,5 @@
 import * as colors from "./colors";
 import * as fonts from "./fonts";
-import * as gradients from "./gradients";
 import * as shadows from "./shadows";
 
 const theme = {
@@ -31,11 +30,6 @@ const theme = {
     primary: fonts.primary,
     secondary: fonts.secondary,
     tertiary: fonts.tertiary,
-  },
-  gradients: {
-    primary: gradients.primary,
-    secondary: gradients.secondary,
-    tertiary: gradients.tertiary,
   },
   shadows: {
     level0: shadows.level0,
