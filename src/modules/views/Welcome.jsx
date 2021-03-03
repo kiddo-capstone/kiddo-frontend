@@ -34,19 +34,19 @@ const Welcome = () => {
     <PageContainer>
       <section>
         <h1>Welcome to KidDo!</h1>
-        <h3>As a KidDo agent, it’s your job to complete missions <br/> that help you work towards being the best version of yourself. </h3>
-        <p>A mission is made up of up to four tasks. When you click start</p>
-        <p></p>
+        <p>
+          As a KidDo agent, it’s your job to complete missions that help you work towards being the best version of yourself. Mission Control is home to all the different missions you can do. Missions are built out of up to four tasks. Each task falls under one of these four categories:
+        </p>
         <div className={classes.taskTypes}>
           <div className={classes.category}>
             <img className={classes.img} src={brainTraining.img} alt={brainTraining.desc}/>
-            <h5>Brain Training</h5>
-            <p>Your brain</p>
+            <h2>Brain Training</h2>
+            <p>You may have heard that our brains are a muscle, but that’s not actually the case. Our brains are actually very complex organs that are responsible for everything, from the way we think to the way we move. Training your brain comes with many unique benefits, like improving memory, how quickly you understand things and something called executive functioning. Executive functioning is just a fancy way of saying the skills we use to understand tasks, break them down, and accomplish them step-by-step.</p>
           </div>
           <div className={classes.category}>
             <img className={classes.img} src={creativityTraining.img} alt={creativityTraining.desc}/>
             <h5>Creativity Training</h5>
-            <p>Creativity</p>
+            <p>When we practice creativity in what we do, it opens the door for self-expression and allows us to solve problems more openly. We can use our personal feelings and experiences to create something different or beautiful. Practicing creativity in our day-to-day lives is so good for us!</p>
           </div>
           <div className={classes.category}>
             <img className={classes.img} src={healthTraining.img} alt={healthTraining.desc}/>
