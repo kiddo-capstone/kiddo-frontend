@@ -10,6 +10,7 @@ import ModalWrapper from "../../ui/modal/ModalWrapper";
 import { basicTraining, creativityTraining, healthTraining, brainTraining } from "../../assets/index";
 import { Link } from "react-router-dom";
 import RoundButton from "../../ui/button/RoundButton";
+import UserIndex from "../login/UserIndex";
 
 const appStyles = theme;
 
@@ -85,15 +86,14 @@ const useStyles = makeStyles(() => ({
     padding: "0.6em 1.5em",
     "& h2:nth-child(1)": {
       color: appStyles.colors.white,
-    },
+    }
   }
 }));
 
 const AgentDetails = (props) => {
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
-  const { user, isAuthenticated } = useAuth0();
-
+  
   const stats = [
     { icon: brainTraining, barColor: 'gold', completed: 60 },
     { icon: creativityTraining, barColor: 'gold', completed: 30 },
@@ -101,12 +101,9 @@ const AgentDetails = (props) => {
     { icon: basicTraining, barColor: 'gold', completed: 53 },
   ];
 
-  const returnTaskCategoryLength = (category) => {
-    if (state.tasks.length > 0) {
-      return state.tasks.filter(task => {
-        return task.attributes.category === category
-      }).length
-    }
+  const logout = () => {
+    const action = { type: "SET_CURRENT_USER", currentUser: null }
+    dispatch(action)
   }
   
   return (
@@ -150,10 +147,17 @@ const AgentDetails = (props) => {
         ))}
       </div>
       )} */}
+      {!state.currentUser ?
       <div className={classes["🥸"]}>
-        <Link to="/welcome"><h2>Welcome</h2></Link>
+        <Link to="/welcome"><h2>About KidDo</h2></Link>
+        <UserIndex />
+      </div> :
+      <div className={classes["🥸"]}>
+        <Link to="/welcome"><h2>About KidDo</h2></Link>
         <Link to="/mission-control"><h2>Mission Control</h2></Link>
+        <button onClick={logout}>LOG OUT</button>
       </div>
+      }
     </section>
   );
 };
