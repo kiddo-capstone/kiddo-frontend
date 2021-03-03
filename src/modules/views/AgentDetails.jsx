@@ -9,6 +9,8 @@ import StatusForm from "./StatusForm";
 import SignUp from "../login/SignUp.js";
 import ModalWrapper from "../../ui/modal/ModalWrapper";
 import { basicTraining, creativityTraining, healthTraining, brainTraining } from "../../assets/index";
+import { Link } from "react-router-dom";
+import Button from "../../ui/button/Button";
 
 const appStyles = theme;
 
@@ -143,6 +145,9 @@ const AgentDetails = (props) => {
         ))}
       </div>
       )}
+      {/* <MiniAuth /> */}
+      <Link to="/welcome"><Button>Home</Button></Link>
+      <Link to="/mission-control"><Button>Mission Control</Button></Link>
     </section>
   );
 };
