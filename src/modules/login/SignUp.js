@@ -2,11 +2,26 @@ import React, { useContext, useEffect, useState } from "react";
 import AppContext from "../App/AppContext";
 import { makeStyles } from "@material-ui/core";
 import { createNewUser, getAllUsers } from "../common/apiCalls";
+import theme from "../../ui/common/theme";
 
 const useStyles = makeStyles(() => ({
   form: {
     display: "flex",
     flexDirection: "column",
+  },
+  input: {
+    padding: "0.4em",
+    margin: "2%",
+    outline: "none",
+  },
+  submit: {
+    fontFamily: theme.fonts.secondary,
+    margin: "10%",
+    padding: "0.5em",
+    outline: "none",
+    background: theme.colors.grey3,
+    cursor: "pointer",
+    color: "white",
   },
 }));
 
@@ -54,6 +69,7 @@ const SignUp = () => {
           placeholder="Name"
           name="username"
           value={username}
+          className={classes.input}
           onChange={handleInput}
         />
         <input
@@ -61,15 +77,17 @@ const SignUp = () => {
           placeholder="Email"
           name="email"
           value={email}
+          className={classes.input}
           onChange={handleInput}
         />
         {/* <input
           type="text"
           placeholder="Password"
           value={password}
+          className={classes.input}
           onChange={handleInput}
         /> */}
-      <button value="signup" onClick={handleSubmit}>SIGN UP</button>
+      <button value="signup" className={classes.submit} onClick={handleSubmit}>SIGN UP</button>
       </form>
     </div>
   );
