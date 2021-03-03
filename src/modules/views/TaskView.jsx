@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import {Link } from 'react-router-dom'
+import ReactPlayer from 'react-player'
 import AppContext from "../App/AppContext";
 import { makeStyles } from "@material-ui/core";
 import { PageContainer, TitleContainer } from "../../ui/containers/index";
@@ -30,6 +31,7 @@ const useStyles = makeStyles(theme => ({
     height: 'clamp(5em, 95%, 100%)',
     overflow: "auto",
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
   },
   actionContainer: {
@@ -62,6 +64,13 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
   },
+  taskImage: {
+    borderRadius: '10px',
+    maxHeight: "60vh",
+    maxwidth: "50vw",
+    filter: 'drop-shadow(2px 4px 6px black)',
+    marginTop: '1em',
+  },
 }));
 
 const TaskView = (props) => {
@@ -83,8 +92,9 @@ const TaskView = (props) => {
 
   const findTemplateTask = () => {
     const templateId = state.selectedTask.attributes.task_id
-    const template = state.tasks.find(t => +t.id === +templateId)
+    const template = state.tasks.find(t => +t.id === templateId)
     setTemplate(template)
+    console.log(template);
     setLoading(false)
   }
 
@@ -105,19 +115,28 @@ const TaskView = (props) => {
       data.append("is_completed", true)
 
       if(updatedTask.message) {
-        console.log('message');
         data.append("message", updatedTask.message)
       }
       if(updatedTask.image) {
-        console.log('image');
         data.append("image", updatedTask.image)
       }
       await updateSelectedTaskAPI(props.id, data)
       addTaskToState("selectedTask", {})
   };
 
+  const renderResources = () => {
+    const {resource_type, resource_link, resource_alt} = template.attributes
+    if (resource_type === 'video') {
+      return <div style={{borderRadius: '10px', overflow: 'hidden', marginTop: '1em'}}><ReactPlayer controls={true} url={resource_link} alt={resource_alt}/></div>
+    } else if (resource_type === 'image') {
+      return <img className={classes.taskImage} src={resource_link} alt={resource_alt}/>
+    } else {
+      return <Link style={{marginTop: '1em'}} to={resource_link}>Click here to learn more!</Link>
+    }
+  }
+
   const getTask = () => {
-    const {category, photo} = template.attributes
+    const {photo} = template.attributes
     if (!photo) {
       return(
         <div className={classes.actionContainer}>
@@ -151,6 +170,7 @@ const TaskView = (props) => {
             <b style={{ color: state.theme.colors.blue }}>{state.selectedTask.attributes.task_description.split(' ').slice(0, 4).join(' ') + ' '}</b>
             {state.selectedTask.attributes.task_description.split(' ').slice(4, state.selectedTask.attributes.task_description.length -1).join(' ')}
             </p>
+            {renderResources()}
           </div>
         </section>
         <div style={{ width: "1%" }} />

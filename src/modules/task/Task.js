@@ -2,6 +2,7 @@ import React, {useContext} from "react";
 import AppContext from '../App/AppContext'
 import { makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
+
 const useStyles = makeStyles(props => ({
   taskWrapper: {
     marginBottom: ".2em",
@@ -154,7 +155,6 @@ const Task = ({ props }) => {
       return (
         <span className={classes.taskText} style={{ color: "lightgreen" }}>
           <h1 style={{ marginRight: ".5em" }}><u>{task_name}</u> Complete!</h1>
-          {/* <p>{task_name}</p> */}
         </span>
       );
     } else {
