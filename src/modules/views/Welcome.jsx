@@ -1,14 +1,11 @@
 import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import PageContainer from "../../ui/containers/PageContainer";
-import SignUp from "../login/SignUp";
 import { brainTraining, healthTraining, creativityTraining, basicTraining } from "../../assets/index";
-import ModalWrapper from "../../ui/modal/ModalWrapper";
 import theme from "../../ui/common/theme";
-import RoundButton from "../../ui/button/RoundButton";
-import { Link, useHistory } from "react-router-dom";
-import LoginForm from "../login/LoginForm";
 import AppContext from "../App/AppContext";
+import { Link } from "react-router-dom";
+import UserIndex from "../login/UserIndex";
 
 
 const useStyles = makeStyles(() => ({
@@ -54,7 +51,6 @@ const useStyles = makeStyles(() => ({
 }))
 
 const Welcome = () => {
-  const history = useHistory()
   const [state, dispatch] = useContext(AppContext);
   const [signup, setSignup] = useState(true);
   const classes = useStyles();
@@ -95,24 +91,15 @@ const Welcome = () => {
             Depending on the task, you’ll either be asked to write a prompt or submit a picture. Remember, since we’re on the internet, never take pictures of yourself, your family, or anything that might reveal personal information! 
           </p>
           <p>Have fun and stay safe 😎.</p>
-        {!state.currentUser ?
+        {/* {!state.currentUser ?
         <div className={classes.userLogin}>
           <h3>To get started on your first mission, login or sign up below!</h3>
-          {signup ? 
-            <>
-              <SignUp />
-              <button className={classes.toggleSignup} onClick={() => setSignup(false)}>I already have an account</button>
-            </> : 
-            <>
-              <LoginForm />
-              <button className={classes.toggleSignup} onClick={() => setSignup(true)}>I need to make an account</button>
-            </>
-          }
+          <UserIndex />
         </div> :
         <>
-          <button onClick={() => history.push("/mission-control")}>Take me to mission control!</button>
+          <Link to="mission-control">Take me to mission control!</Link>
         </>
-        }
+        } */}
         </div>
       </section>
     </PageContainer>
