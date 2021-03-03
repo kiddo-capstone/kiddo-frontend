@@ -61,7 +61,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    padding: "0 1.5em",
+    padding: "0 1em",
     color: appStyles.colors.white,
     "& h2:nth-child(1)": {
       color: appStyles.colors.yellow,
@@ -105,10 +105,12 @@ const AgentDetails = (props) => {
               <h2>Date:</h2>
               <h3>{ new Date().toLocaleDateString() }</h3>
             </div>
+             {state.currentUser !== null && (
             <div className={classes.detailsChild}>
               <h2>Points:</h2>
-              <h3>{state.currentUser !== null ? state.currentUser.attributes.points : "Sign up to track your points!"}</h3>
+              <h3>{state.currentUser.attributes.points}</h3>
             </div>
+             )}
             <div className={classes.detailsChild}>
               <h2>Agent Status:</h2>
                 <StatusForm />
@@ -116,12 +118,12 @@ const AgentDetails = (props) => {
           </div>
         </div>
       </div>
-      
-         <div>
+      {state.currentUser !== null && (
+      <div>
         <span style={{ textAlign: "center", color: appStyles.colors.yellow }}>
           <h2>STATS</h2>
         </span>
-        {state.currentUser !== null && (
+        
           <div>
             {stats.map((item, idx) => (
               <div className={classes.statRow} key={`statRow-${idx}`}>
@@ -134,15 +136,12 @@ const AgentDetails = (props) => {
               </div>
             ))}
         </div> 
-          )}
       </div>
-
+      )}
       {state.currentUser === null && (
-       
-        <div>
+        <div style={{alignSelf: "center"}}>
           <SignUp />
         </div>
-        
       )}
       {/* <MiniAuth /> */}
     </section>

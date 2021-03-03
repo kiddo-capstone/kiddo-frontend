@@ -1,24 +1,22 @@
 import React, { useContext, useEffect, useState } from "react";
 import AppContext from "../App/AppContext";
 import { makeStyles } from "@material-ui/core";
-import ModalWrapper from "../../ui/modal/ModalWrapper";
+import { createNewUser } from "../common/apiCalls";
+
+const useStyles = makeStyles(() => ({
+  form: {
+    display: "flex",
+    flexDirection: "column",
+  },
+}));
 
 const SignUp = () => {
-  const [open, setOpen] = useState(false);
+  const classes = useStyles();
   const [username, setUsername] = useState("");
   const [email, setUserEmail] = useState("");
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    // setOpen(false);
-    console.log("closed!");
-  };
-
   const handleSubmit = () => {
-    console.log("make POST user call");
+    // createNewUser(data) where data = name, email
   };
 
   const handleNewUserName = (e) => {
@@ -31,36 +29,29 @@ const SignUp = () => {
   };
 
   return (
-    <ModalWrapper
-      btnMessage={"Sign up to check out your stats!"}
-      // handleClose={handleClose}
-      open={open}
-      handleClickOpen={handleClickOpen}
-    >
-      <div>
-        <form onSubmit={handleSubmit}>
-          {
-            //handle error condition
-          }
-          <label>User Name</label>
-          <input
-            type="text"
-            data-test="username"
-            name="username"
-            value={username}
-            onChange={handleNewUserName}
-          />
-          <label>Email</label>
-          <input
-            type="email"
-            data-test="email"
-            value={email}
-            onChange={handleNewUserEmail}
-          />
-          <input type="submit" value="Sign up" data-test="submit" />
-        </form>
-      </div>
-    </ModalWrapper>
+    <div>
+      <form className={classes.form} onSubmit={handleSubmit}>
+        {
+          //handle error condition
+        }
+        <label>User Name</label>
+        <input
+          type="text"
+          data-test="username"
+          name="username"
+          value={username}
+          onChange={handleNewUserName}
+        />
+        <label>Email</label>
+        <input
+          type="email"
+          data-test="email"
+          value={email}
+          onChange={handleNewUserEmail}
+        />
+        <input type="submit" value="Sign up" data-test="submit" />
+      </form>
+    </div>
   );
 };
 
