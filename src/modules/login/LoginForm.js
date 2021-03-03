@@ -2,6 +2,7 @@ import { makeStyles } from "@material-ui/core";
 import { useContext, useState } from "react";
 import AppContext from "../App/AppContext";
 import theme from "../../ui/common/theme";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
   form: {
@@ -27,6 +28,7 @@ const LoginForm = () => {
   const [state, dispatch] = useContext(AppContext);
   const [email, setEmail] = useState(null);
   const classes = useStyles()
+  const history = useHistory()
 
   const login = (e) => {
     e.preventDefault()
@@ -34,6 +36,7 @@ const LoginForm = () => {
       return user.attributes.email === email
     })
     if (user) {
+      // history.push("/mission-control")
       const action = { type: "SET_CURRENT_USER", currentUser: user }
       dispatch(action)
     } else {

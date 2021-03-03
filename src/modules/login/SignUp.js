@@ -3,6 +3,7 @@ import AppContext from "../App/AppContext";
 import { makeStyles } from "@material-ui/core";
 import { createNewUser, getAllUsers } from "../common/apiCalls";
 import theme from "../../ui/common/theme";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
   form: {
@@ -31,6 +32,7 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
   const classes = useStyles();
+  const history = useHistory()
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -44,6 +46,7 @@ const SignUp = () => {
           setEmail("")
         })
         .catch(error => console.log(error))
+      history.push("/mission-control")
     } else {
       alert("Please add your name and email to signup.")
     }

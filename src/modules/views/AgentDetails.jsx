@@ -8,7 +8,7 @@ import StatusForm from "./StatusForm";
 import SignUp from "../login/SignUp.js";
 import ModalWrapper from "../../ui/modal/ModalWrapper";
 import { basicTraining, creativityTraining, healthTraining, brainTraining } from "../../assets/index";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import RoundButton from "../../ui/button/RoundButton";
 import UserIndex from "../login/UserIndex";
 
@@ -46,6 +46,7 @@ const useStyles = makeStyles(() => ({
     height: "200px",
     borderRadius: "50%",
     overflow: "hidden",
+    cursor: "pointer",
     "& img": {
       width: "100%",
       height: "100%",
@@ -77,7 +78,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: "row",
     justifyContent: "space-evenly",
   },
-  "🥸": {
+  login: {
     display: "flex",
     flexDirection: "column",
     color: "white",
@@ -91,6 +92,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const AgentDetails = (props) => {
+  const history = useHistory()
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
   
@@ -101,6 +103,10 @@ const AgentDetails = (props) => {
     { icon: basicTraining, barColor: 'gold', completed: 53 },
   ];
 
+  const determinePath = () => {
+    return !state.currentUser ? history.push("/welcome") : history.push("/mission-control") 
+  }
+
   const logout = () => {
     const action = { type: "SET_CURRENT_USER", currentUser: null }
     dispatch(action)
@@ -110,7 +116,7 @@ const AgentDetails = (props) => {
     <section className={classes.section}>
       <div className={classes.card}>
         <div className={classes.cardHeader}>
-          <div className={classes.avatar}>
+          <div className={classes.avatar} onClick={() => determinePath()}>
             <img src={kids} />
           </div>
       
@@ -148,11 +154,10 @@ const AgentDetails = (props) => {
       </div>
       )} */}
       {!state.currentUser ?
-      <div className={classes["🥸"]}>
-        <Link to="/welcome"><h2>About KidDo</h2></Link>
+      <div className={classes.login}>
         <UserIndex />
       </div> :
-      <div className={classes["🥸"]}>
+      <div className={classes.login}>
         <Link to="/welcome"><h2>About KidDo</h2></Link>
         <Link to="/mission-control"><h2>Mission Control</h2></Link>
         <button onClick={logout}>LOG OUT</button>
