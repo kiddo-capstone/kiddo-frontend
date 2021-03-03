@@ -81,18 +81,20 @@ const stats = [
 const AgentDetails = (props) => {
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
-  const { user, isAuthenticated } = useAuth0();
+  // const { user, isAuthenticated } = useAuth0();
+  
   
   return (
     <section className={classes.section}>
       <div className={classes.card}>
         <div className={classes.cardHeader}>
           <div className={classes.avatar}>
-            <img src={!isAuthenticated ? kids : user.picture} />
+            {/* <img src={!isAuthenticated ? kids : user.picture} /> */}
+            <img src={kids} />
           </div>
-
+      
           <span className={classes.titleText}>
-            <h1>{!isAuthenticated ? 'Secret Agent' : user.name}</h1> 
+            <h1>{state.currentUser !== null ? state.currentUser.attributes.name : 'Secret Agent'}</h1> 
           </span>
 
           <hr />
@@ -103,18 +105,16 @@ const AgentDetails = (props) => {
             </div>
             <div className={classes.detailsChild}>
               <h2>Points:</h2>
-              <h4>###</h4>
+              <h4>{state.currentUser !== null ? state.currentUser.attributes.points : "Sign up to track your points!"}</h4>
             </div>
             <div className={classes.detailsChild}>
               <h2>Agent Status:</h2>
-              {/* <ModalWrapper btnMessage={<h3>{state.status ? state.status.emoji : "?"}</h3>}> */}
                 <StatusForm />
-              {/* </ModalWrapper> */}
             </div>
           </div>
         </div>
       </div>
-      <span style={{ textAlign: "center", color: appStyles.colors.white }}>
+      <span style={{ textAlign: "center", color: appStyles.colors.yellow }}>
         <h2>STATS</h2>
       </span>
       <div>
