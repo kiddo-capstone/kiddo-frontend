@@ -4,10 +4,9 @@ import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
 import kids from "../../assets/kids_trio.png";
 import ProgressBar from "../../ui/progressBar/ProgressBar";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 import StatusForm from "./StatusForm";
 import SignUp from "../login/SignUp.js";
-import ModalWrapper from "../../ui/modal/ModalWrapper";
 
 const appStyles = theme;
 
@@ -91,7 +90,6 @@ const AgentDetails = (props) => {
       <div className={classes.card}>
         <div className={classes.cardHeader}>
           <div className={classes.avatar}>
-            {/* <img src={!isAuthenticated ? kids : user.picture} /> */}
             <img src={kids} />
           </div>
       
@@ -138,12 +136,6 @@ const AgentDetails = (props) => {
         </div> 
       </div>
       )}
-      {state.currentUser === null && (
-        <div style={{alignSelf: "center"}}>
-          <SignUp />
-        </div>
-      )}
-      {/* <MiniAuth /> */}
     </section>
   );
 };

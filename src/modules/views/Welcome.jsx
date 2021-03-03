@@ -5,6 +5,7 @@ import intelligence from "../../assets/intelligence.png";
 import accomplishment from "../../assets/accomplishment.png";
 import creativity from "../../assets/creativity.png";
 import activity from "../../assets/activity.png";
+import SignUp from "../login/SignUp.js";
 
 const useStyles = makeStyles(() => ({
   taskTypes: {
