@@ -111,6 +111,13 @@ const useStyles = makeStyles(props => ({
     fontWeight: "300",
     fontSize: "1rem",
   },
+  taskImage: {
+    margin: "auto",
+    position: "relative",
+    width: "80%",
+    height: "80%",
+    paddingTop: ".7em",
+  },
   link: {
     textDecoration: "none",
     width: "inherit",
@@ -183,7 +190,7 @@ const Task = ({ props }) => {
             <i style={{ color: "lightgreen", fontSize: "1em", margin: '1em' }}>
               <b>Agent notes:</b>  {message}
             </i>
-            <img src={image_path}/> 
+            <img className={classes.taskImage} src={image_path}/> 
           </span>)
           : (task_description)}
         </p>

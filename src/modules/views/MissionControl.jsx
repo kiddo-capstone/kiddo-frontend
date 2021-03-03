@@ -33,6 +33,10 @@ const useStyles = makeStyles(theme => ({
     position: 'fixed',
     right: '8%',
     top: '5%',
+    opacity: 0,
+    '&:hover': {
+      opacity: 1,
+    },
     [theme.breakpoints.down('1200')]: {
       right: '2%',
       top: '1%',
@@ -40,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('600')]: {
       right: '2%',
       top: '15%',
-      opacity: 0,
+      // opacity: 0,
       '&:hover': {
         opacity: 1,
       },
@@ -60,7 +64,7 @@ const MissionControl = props => {
   const makeMissionList = () => {
     if (state.currentUser === "" || state.currentUser === null) {
       // for when no user is selected, will display all missions in the DB
-      return state.missions.map(mission => {
+      return state.missions.sort((a, b)=> b.id-a.id).map(mission => {
         return <Mission
         key={mission.id}
         props={mission}
