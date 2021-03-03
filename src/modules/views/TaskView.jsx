@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import {Link } from 'react-router-dom'
+import ReactPlayer from 'react-player'
 import AppContext from "../App/AppContext";
 import { makeStyles } from "@material-ui/core";
 import { PageContainer, TitleContainer } from "../../ui/containers/index";
@@ -7,8 +8,7 @@ import Journal from "../tasks/Journal";
 import ImageCapture from "../tasks/ImageCapture";
 import AccentLine from "../../ui/decorative/AccentLine";
 import Button from "../../ui/button/Button";
-import ModalWrapper from "../../ui/modal/ModalWrapper";
-import { updateSelectedTaskAPI } from "../common/apiCalls";
+import { updateSelectedTaskAPI, getMissionTaskById } from "../common/apiCalls";
 
 const useStyles = makeStyles(theme => ({
   innerContainer: {
@@ -31,6 +31,7 @@ const useStyles = makeStyles(theme => ({
     height: 'clamp(5em, 95%, 100%)',
     overflow: "auto",
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
   },
   actionContainer: {
@@ -41,6 +42,9 @@ const useStyles = makeStyles(theme => ({
     height: 'clamp(5em, 95%, 100%)',
     minHeight: '-webkit-fill-available',
     backgroundColor: "rgb(40,44,52, .5)",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
   category: {
     display: "flex",
@@ -63,25 +67,41 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
   },
+  taskImage: {
+    borderRadius: '10px',
+    maxHeight: "60vh",
+    maxWidth: "30vw",
+    filter: 'drop-shadow(2px 4px 6px black)',
+    marginTop: '1em',
+  },
 }));
 
 const TaskView = (props) => {
   const [state, dispatch] = useContext(AppContext);
   const [taskComplete , setTaskComplete] = useState(false);
   const [updatedTask, setUpdatedTask] = useState(null);
-  const [error, setError] = useState(null);
+  const [template, setTemplate] = useState(null)
+  const [loading, setLoading] = useState(true)
   const classes = useStyles(state.theme);
-  const {
-    selectedTask: { attributes },
-  } = state;
 
-  useEffect(() => {
-    const currentTask = state.selectedMissionTasks.find(task => task.id === props.id)
-    console.log(props);
-    addTaskToState("selectedTask", currentTask)
+  useEffect(async() => {
+    if (!state.selectedTask || props.id !== state.selectedTask.id) {
+      console.log('SYNC TASKS');
+      await getMissionTaskById(props.id)
+      .then(resp => addTaskToState(resp.data))
+    }
+    findTemplateTask()
   }, [])
 
-  const addTaskToState = (type, data) => {
+  const findTemplateTask = () => {
+    const templateId = state.selectedTask.attributes.task_id
+    const template = state.tasks.find(t => +t.id === templateId)
+    setTemplate(template)
+    console.log(template);
+    setLoading(false)
+  }
+
+  const addTaskToState = (data) => {
     const action = { type: `FETCH_SELECTED_TASK`, selectedTask: data };
     dispatch(action);
   };
@@ -94,33 +114,39 @@ const TaskView = (props) => {
   };
 
   const handleClick = async () => {
-    // only allowed to click when requirements have been met
-      // taskComplete is already true
       let data = new FormData();
       data.append("is_completed", true)
 
       if(updatedTask.message) {
-        console.log('message');
         data.append("message", updatedTask.message)
       }
       if(updatedTask.image) {
-        console.log('image');
         data.append("image", updatedTask.image)
       }
-      
-      console.log(data);
       await updateSelectedTaskAPI(props.id, data)
       addTaskToState("selectedTask", {})
   };
 
+  const renderResources = () => {
+    const {resource_type, resource_link, resource_alt} = template.attributes
+    if (resource_type === 'video') {
+      return <div style={{borderRadius: '10px', overflow: 'hidden', marginTop: '1em'}}><ReactPlayer controls={true} url={resource_link} alt={resource_alt}/></div>
+    } else if (resource_type === 'image') {
+      return <img className={classes.taskImage} src={resource_link} alt={resource_alt}/>
+    } else {
+      return <Link style={{marginTop: '1em'}} to={resource_link}>Click here to learn more!</Link>
+    }
+  }
+
   const getTask = () => {
-    if (attributes?.task_category === "Health Training") {
+    const {photo} = template.attributes
+    if (!photo) {
       return(
         <div className={classes.actionContainer}>
           <Journal checkReady={checkReady} />
         </div>
       )
-    } else if (attributes?.task_category === "Creativity Training") {
+    } else if (photo) {
       return (
         <div className={classes.actionContainer}>
           <ImageCapture checkReady={checkReady}/>
@@ -129,24 +155,25 @@ const TaskView = (props) => {
     }
   };
 
-  return (
+  return loading ? <PageContainer>LOADING</PageContainer> : (
     <PageContainer>
       <TitleContainer style={{ width: "100%" }}>
         <p>Agent Task:</p>
-        <h1>{attributes?.task_name}</h1>
+        <h1>{state.selectedTask.attributes.task_name}</h1>
       </TitleContainer>
       <AccentLine color={state.theme.colors.blue} />
       <section className={classes.innerContainer}>
         <section className={classes.left}>
           <span className={classes.category}>
-            <p>{attributes?.task_category}</p>
-            <p>💰 X {attributes?.points}</p>
+            <p>{state.selectedTask.attributes.task_category}</p>
+            <p>💰 X {state.selectedTask.attributes.points}</p>
           </span>
           <div className={classes.descriptionContainer}>
             <p>
-            <b style={{ color: state.theme.colors.blue }}>{attributes?.task_description.split(' ').slice(0, 4).join(' ') + ' '}</b>
-            {attributes?.task_description.split(' ').slice(4, attributes?.task_description.length -1).join(' ')}
+            <b style={{ color: state.theme.colors.blue }}>{state.selectedTask.attributes.task_description.split(' ').slice(0, 4).join(' ') + ' '}</b>
+            {state.selectedTask.attributes.task_description.split(' ').slice(4, state.selectedTask.attributes.task_description.length -1).join(' ')}
             </p>
+            {renderResources()}
           </div>
         </section>
         <div style={{ width: "1%" }} />

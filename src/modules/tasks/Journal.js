@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
     height: "12em",
   },
   textBox: {
+    textAlign: 'center',
     fontSize: "1em",
     width: "100%",
     border: "none",
@@ -47,7 +48,7 @@ const Journal = ({ checkReady }) => {
           type="text"
           value={entry}
           name="message"
-          placeholder="Write your answer here and click submit when you're done!"
+          placeholder="Write out at least 5 words to answer and click submit when you're done!"
           onChange={(event) => setEntry(event.target.value)}
         ></textarea>
       </form>

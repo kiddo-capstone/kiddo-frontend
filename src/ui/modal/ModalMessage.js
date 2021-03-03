@@ -17,13 +17,6 @@ const useStyles = makeStyles(() => ({
     display: "flex",
     flexDirection: "column",
     backgroundColor: appStyles.colors.grey2,
-    padding: "0 1em 0 1em",
-    // color: appStyles.colors.black,
-    // border: `2px solid ${appStyles.colors.background}`,
-    boxShadow: `inset 1em 0em ${appStyles.colors.background}`,
-    // minWidth: "100%",
-    // maxWidth: "100%",
-
     fontFamily: appStyles.fonts.secondary,
   },
   titleBar: {
@@ -60,7 +53,6 @@ const useStyles = makeStyles(() => ({
     "& img": {
       width: "100%",
       height: "100%",
-      // objectFit: "cover"
     },
   },
 }));
@@ -77,14 +69,10 @@ const ModalMessage = ({
 
   return (
     <div>
-      {/* <button className={classes.button} onClick={handleClickOpen}>
-        {buttonText}
-      </button> */}
       <Dialog
         open={open}
         TransitionComponent={Transition}
         keepMounted
-        // className={classes.root} ** This will display only the modal
         onClose={handleClose}
         aria-labelledby="agent-modal-container"
       >
