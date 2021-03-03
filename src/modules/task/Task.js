@@ -144,8 +144,6 @@ const Task = ({ props }) => {
     },
   } = props;
 
-  console.log(props)
-
   const addTaskToState = (data) => {
     const action = { type: `FETCH_SELECTED_TASK`, selectedTask: data };
     dispatch(action);
