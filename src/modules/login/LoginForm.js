@@ -1,22 +1,34 @@
-import Button from "../../ui/button/Button"
-import { makeStyles } from "@material-ui/core";
-
-const useStyles = makeStyles(theme => ({
-  form: {
-    display: "flex",
-    flexDirection: "column",
-  }
-}));
+import { useContext, useState } from "react";
+import AppContext from "../App/AppContext";
 
 const LoginForm = () => {
-  const classes = useStyles();
+  const [state, dispatch] = useContext(AppContext);
+  const [email, setEmail] = useState(null);
+
+  const login = () => {
+    const user = state.users.find(user => {
+      return user.attributes.email === email
+    })
+    if (user) {
+      const action = { type: "SET_CURRENT_USER", currentUser: user }
+      dispatch(action)
+    } else {
+      alert("We can't seem to find your account. If this is your first time using KidDo, please sign up!")
+    }
+  }
+
   return (
-    <form className={classes.form}>
-      <input type="text"/>
-      <input type="text" />
-      <Button>Login</Button>
+    <form>
+      <input
+        type="text"
+        placeholder="Email"
+        name="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <button onClick={login}>LOG IN</button>
     </form>
   )
 }
 
-export default LoginForm;
+export default LoginForm
