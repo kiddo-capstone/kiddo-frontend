@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useContext} from "react";
+import AppContext from '../App/AppContext'
 import { makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
 const useStyles = makeStyles(props => ({
@@ -127,6 +128,7 @@ const useStyles = makeStyles(props => ({
 }));
 
 const Task = ({ props }) => {
+  const [state, dispatch] = useContext(AppContext)
   const classes = useStyles(props);
   const {
     attributes: {
@@ -141,6 +143,13 @@ const Task = ({ props }) => {
       image_path,
     },
   } = props;
+
+  console.log(props)
+
+  const addTaskToState = (data) => {
+    const action = { type: `FETCH_SELECTED_TASK`, selectedTask: data };
+    dispatch(action);
+  };
 
   const renderTitle = () => {
     if (is_completed) {
@@ -163,20 +172,20 @@ const Task = ({ props }) => {
   const renderTaskCard = () => {
     if (!is_completed) {
       return (
-        <Link className={classes.link} key={props.id} to={`/task/${props.id}`}>
-          {taskCard}
+        <Link onClick={() => addTaskToState(props)} className={classes.link} key={props.id} to={`/task/${props.id}`}>
+          {taskCard()}
         </Link>
       )
     } else {
       return (
         <div className={classes.link}>
-          {taskCard}
+          {taskCard()}
         </div>
       ) 
     }
   }
 
-  const taskCard = (
+  const taskCard = () => (
     <article className={classes.taskWrapper}>
       <span className={classes.category}>
         <p style={is_completed ? { color: "lightgreen" } : null}>{task_category}</p>
