@@ -47,7 +47,7 @@ const DailyMission = props => {
     .then(data => addDataToState("selectedMission", data.data))
     .catch(error => setError(error))
     .then(getMissionTasks(id))
-  }, [state.selectedMissionTasks]);
+  }, []);
   
   const getMissionTasks = async (id) => {
     await getTasksByMissionId(id)
