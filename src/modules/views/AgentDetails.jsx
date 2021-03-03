@@ -9,7 +9,7 @@ import SignUp from "../login/SignUp.js";
 import ModalWrapper from "../../ui/modal/ModalWrapper";
 import { basicTraining, creativityTraining, healthTraining, brainTraining } from "../../assets/index";
 import { Link } from "react-router-dom";
-import Button from "../../ui/button/Button";
+import RoundButton from "../../ui/button/RoundButton";
 
 const appStyles = theme;
 
@@ -76,6 +76,17 @@ const useStyles = makeStyles(() => ({
     flexDirection: "row",
     justifyContent: "space-evenly",
   },
+  "🥸": {
+    display: "flex",
+    flexDirection: "column",
+    color: "white",
+    alignItems: "center",
+    justifyContent: "space-around",
+    padding: "0.6em 1.5em",
+    "& h2:nth-child(1)": {
+      color: appStyles.colors.white,
+    },
+  }
 }));
 
 const AgentDetails = (props) => {
@@ -129,7 +140,7 @@ const AgentDetails = (props) => {
           </div>
         </div>
       </div>
-      {state.currentUser !== null && (
+      {/* {state.currentUser !== null && (
       <div>
         {stats.map((item, idx) => (
           <div className={classes.statRow} key={`statRow-${idx}`}>
@@ -138,10 +149,11 @@ const AgentDetails = (props) => {
           </div>
         ))}
       </div>
-      )}
-      {/* <MiniAuth /> */}
-      <Link to="/welcome"><Button>Home</Button></Link>
-      <Link to="/mission-control"><Button>Mission Control</Button></Link>
+      )} */}
+      <div className={classes["🥸"]}>
+        <Link to="/welcome"><h2>Welcome</h2></Link>
+        <Link to="/mission-control"><h2>Mission Control</h2></Link>
+      </div>
     </section>
   );
 };

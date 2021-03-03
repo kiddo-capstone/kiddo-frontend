@@ -86,6 +86,7 @@ const StatusForm = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   
+  useEffect(() => {}, [status])
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -93,9 +94,7 @@ const StatusForm = () => {
 
   const handleClose = () => {
     setOpen(false);
-    console.log("closed!");
   };
-  useEffect(() => {}, [status])
   
   const determineEmotion = (emoji) => {
     let emotion;
@@ -143,7 +142,6 @@ const StatusForm = () => {
     }
     dispatch(action)
     handleClose()
-    // how can we close the modal after submit?
   }
   
   return (
