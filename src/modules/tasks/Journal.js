@@ -7,6 +7,7 @@ const useStyles = makeStyles((theme) => ({
     height: "12em",
   },
   textBox: {
+    textAlign: 'center',
     fontSize: "1em",
     width: "100%",
     border: "none",

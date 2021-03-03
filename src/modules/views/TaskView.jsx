@@ -42,6 +42,9 @@ const useStyles = makeStyles(theme => ({
     height: 'clamp(5em, 95%, 100%)',
     minHeight: '-webkit-fill-available',
     backgroundColor: "rgb(40,44,52, .5)",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
   category: {
     display: "flex",
@@ -67,7 +70,7 @@ const useStyles = makeStyles(theme => ({
   taskImage: {
     borderRadius: '10px',
     maxHeight: "60vh",
-    maxwidth: "50vw",
+    maxWidth: "30vw",
     filter: 'drop-shadow(2px 4px 6px black)',
     marginTop: '1em',
   },
