@@ -131,7 +131,7 @@ const TaskView = (props) => {
   const renderResources = () => {
     const {resource_type, resource_link, resource_alt} = template.attributes
     if (resource_type === 'video') {
-      return <div style={{borderRadius: '10px', overflow: 'hidden', marginTop: '1em'}}><ReactPlayer controls={true} url={resource_link} alt={resource_alt}/></div>
+      return <div style={{borderRadius: '10px', overflow: 'hidden', marginTop: '1em', filter: 'drop-shadow(2px 8px 8px black)'}}><ReactPlayer controls={true} url={resource_link} alt={resource_alt}/></div>
     } else if (resource_type === 'image') {
       return <img className={classes.taskImage} src={resource_link} alt={resource_alt}/>
     } else {
@@ -155,16 +155,6 @@ const TaskView = (props) => {
       )
     }
   };
-
-  // const formatResource = () => {
-  //   if (attributes?.resource_type === "video") {
-  //     return <ReactPlayer url={attributes.resource_link} /> 
-  //   } else if (attributes?.resource_type === "image") {
-  //     return <img src={attributes.resource_link} alt={attributes.resource_type}/>
-  //   } else if (attributes?.resource_type === "link") {
-  //     return <Link to={attributes.resource_link} />
-  //   }
-  // }
 
   return loading ? <PageContainer>LOADING</PageContainer> : (
     <PageContainer>
