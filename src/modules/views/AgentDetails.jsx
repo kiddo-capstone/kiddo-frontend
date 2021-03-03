@@ -6,6 +6,8 @@ import kids from "../../assets/kids_trio.png";
 import ProgressBar from "../../ui/progressBar/ProgressBar";
 import { useAuth0 } from "@auth0/auth0-react";
 import StatusForm from "./StatusForm";
+import SignUp from "../login/SignUp.js";
+import ModalWrapper from "../../ui/modal/ModalWrapper";
 
 const appStyles = theme;
 
@@ -136,9 +138,11 @@ const AgentDetails = (props) => {
       </div>
 
       {state.currentUser === null && (
+       
         <div>
-          Sign up to check out your stats!
+          <SignUp />
         </div>
+        
       )}
       {/* <MiniAuth /> */}
     </section>

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import AppContext from "../app/AppContext";
+import AppContext from "../App/AppContext";
 import { makeStyles } from "@material-ui/core";
 import ModalWrapper from "../../ui/modal/ModalWrapper";
 
@@ -32,7 +32,7 @@ const SignUp = () => {
 
   return (
     <ModalWrapper
-      btnMessage={"Sign up"}
+      btnMessage={"Sign up to check out your stats!"}
       // handleClose={handleClose}
       open={open}
       handleClickOpen={handleClickOpen}

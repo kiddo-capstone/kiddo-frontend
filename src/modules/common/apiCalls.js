@@ -74,3 +74,16 @@ export const updateSelectedTaskAPI = (id, updates) => {
     })
     .catch((error) => console.log(error, "Encountered an error"));
 };
+
+export const createNewUser = (data) => {
+  return fetch(`https://kiddo-backend.herokuapp.com/api/v1/users`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .then((response) => console.log(response))
+    .catch((error) => console.log(error));
+};
