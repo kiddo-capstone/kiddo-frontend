@@ -57,9 +57,9 @@ const useStyles = makeStyles(() => ({
   detailsChild: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     alignItems: "center",
-    padding: "0 2em",
+    padding: "0 1.5em",
     color: appStyles.colors.white,
     "& h2:nth-child(1)": {
       color: appStyles.colors.yellow,
@@ -94,18 +94,18 @@ const AgentDetails = (props) => {
           </div>
       
           <span className={classes.titleText}>
-            <h1>{state.currentUser !== null ? state.currentUser.attributes.name : 'Secret Agent'}</h1> 
+            <h1>{state.currentUser !== null ? state.currentUser.attributes.name : 'KidDo Agent'}</h1> 
           </span>
 
           <hr />
           <div className={classes.details}>
             <div className={classes.detailsChild}>
               <h2>Date:</h2>
-              <h4>{ new Date().toLocaleDateString() }</h4>
+              <h3>{ new Date().toLocaleDateString() }</h3>
             </div>
             <div className={classes.detailsChild}>
               <h2>Points:</h2>
-              <h4>{state.currentUser !== null ? state.currentUser.attributes.points : "Sign up to track your points!"}</h4>
+              <h3>{state.currentUser !== null ? state.currentUser.attributes.points : "Sign up to track your points!"}</h3>
             </div>
             <div className={classes.detailsChild}>
               <h2>Agent Status:</h2>
@@ -114,21 +114,26 @@ const AgentDetails = (props) => {
           </div>
         </div>
       </div>
-      <span style={{ textAlign: "center", color: appStyles.colors.yellow }}>
-        <h2>STATS</h2>
-      </span>
-      <div>
-        {stats.map((item, idx) => (
-          <div className={classes.statRow} key={`statRow-${idx}`}>
-            <div className={classes.icon} key={`icon-${idx}`}>❤️</div>
-            <ProgressBar
-              key={idx}
-              barColor={item.barColor}
-              completed={item.completed}
-            />
-          </div>
-        ))}
+      {state.currentUser !== null && (
+         <div>
+        <span style={{ textAlign: "center", color: appStyles.colors.yellow }}>
+          <h2>STATS</h2>
+        </span>
+          <div>
+            {stats.map((item, idx) => (
+              <div className={classes.statRow} key={`statRow-${idx}`}>
+                <div className={classes.icon} key={`icon-${idx}`}>❤️</div>
+                <ProgressBar
+                  key={idx}
+                  barColor={item.barColor}
+                  completed={item.completed}
+                />
+              </div>
+            ))}
+       </div> 
+       
       </div>
+      )}
       {/* <MiniAuth /> */}
     </section>
   );
