@@ -3,8 +3,7 @@ import AppContext from "../App/AppContext";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
 import kids from "../../assets/kids_trio.png";
-import ProgressBar from "../../ui/progressBar/ProgressBar";
-// import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 import StatusForm from "./StatusForm";
 import SignUp from "../login/SignUp.js";
 import ModalWrapper from "../../ui/modal/ModalWrapper";
@@ -136,11 +135,6 @@ const AgentDetails = (props) => {
           <div className={classes.statRow} key={`statRow-${idx}`}>
             <img src={item.icon.img} className={classes.icon} key={`icon-${idx}`}/>
             <p>0/{returnTaskCategoryLength(item.icon.desc)}</p>
-            {/* <ProgressBar
-              key={idx}
-              barColor={item.barColor}
-              completed={item.completed}
-            /> */}
           </div>
         ))}
       </div>
