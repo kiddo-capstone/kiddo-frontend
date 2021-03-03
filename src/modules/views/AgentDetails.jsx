@@ -114,11 +114,12 @@ const AgentDetails = (props) => {
           </div>
         </div>
       </div>
-      {state.currentUser !== null && (
+      
          <div>
         <span style={{ textAlign: "center", color: appStyles.colors.yellow }}>
           <h2>STATS</h2>
         </span>
+        {state.currentUser !== null && (
           <div>
             {stats.map((item, idx) => (
               <div className={classes.statRow} key={`statRow-${idx}`}>
@@ -130,9 +131,14 @@ const AgentDetails = (props) => {
                 />
               </div>
             ))}
-       </div> 
-       
+        </div> 
+          )}
       </div>
+
+      {state.currentUser === null && (
+        <div>
+          Sign up to check out your stats!
+        </div>
       )}
       {/* <MiniAuth /> */}
     </section>
