@@ -4,8 +4,9 @@ import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
 import kids from "../../assets/kids_trio.png";
 import ProgressBar from "../../ui/progressBar/ProgressBar";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 import StatusForm from "./StatusForm";
+import SignUp from "../login/SignUp.js";
 
 const appStyles = theme;
 
@@ -57,9 +58,9 @@ const useStyles = makeStyles(() => ({
   detailsChild: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     alignItems: "center",
-    padding: "0 2em",
+    padding: "0 1em",
     color: appStyles.colors.white,
     "& h2:nth-child(1)": {
       color: appStyles.colors.yellow,
@@ -81,55 +82,60 @@ const stats = [
 const AgentDetails = (props) => {
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
-  const { user, isAuthenticated } = useAuth0();
+  // const { user, isAuthenticated } = useAuth0();
+  
   
   return (
     <section className={classes.section}>
       <div className={classes.card}>
         <div className={classes.cardHeader}>
           <div className={classes.avatar}>
-            <img src={!isAuthenticated ? kids : user.picture} />
+            <img src={kids} />
           </div>
-
+      
           <span className={classes.titleText}>
-            <h1>{!isAuthenticated ? 'Secret Agent' : user.name}</h1> 
+            <h1>{state.currentUser !== null ? state.currentUser.attributes.name : 'KidDo Agent'}</h1> 
           </span>
 
           <hr />
           <div className={classes.details}>
             <div className={classes.detailsChild}>
               <h2>Date:</h2>
-              <h4>{ new Date().toLocaleDateString() }</h4>
+              <h3>{ new Date().toLocaleDateString() }</h3>
             </div>
+             {state.currentUser !== null && (
             <div className={classes.detailsChild}>
               <h2>Points:</h2>
-              <h4>###</h4>
+              <h3>{state.currentUser.attributes.points}</h3>
             </div>
+             )}
             <div className={classes.detailsChild}>
               <h2>Agent Status:</h2>
-              {/* <ModalWrapper btnMessage={<h3>{state.status ? state.status.emoji : "?"}</h3>}> */}
                 <StatusForm />
-              {/* </ModalWrapper> */}
             </div>
           </div>
         </div>
       </div>
-      <span style={{ textAlign: "center", color: appStyles.colors.white }}>
-        <h2>STATS</h2>
-      </span>
+      {state.currentUser !== null && (
       <div>
-        {stats.map((item, idx) => (
-          <div className={classes.statRow} key={`statRow-${idx}`}>
-            <div className={classes.icon} key={`icon-${idx}`}>❤️</div>
-            <ProgressBar
-              key={idx}
-              barColor={item.barColor}
-              completed={item.completed}
-            />
-          </div>
-        ))}
+        <span style={{ textAlign: "center", color: appStyles.colors.yellow }}>
+          <h2>STATS</h2>
+        </span>
+        
+          <div>
+            {stats.map((item, idx) => (
+              <div className={classes.statRow} key={`statRow-${idx}`}>
+                <div className={classes.icon} key={`icon-${idx}`}>❤️</div>
+                <ProgressBar
+                  key={idx}
+                  barColor={item.barColor}
+                  completed={item.completed}
+                />
+              </div>
+            ))}
+        </div> 
       </div>
-      {/* <MiniAuth /> */}
+      )}
     </section>
   );
 };
