@@ -52,7 +52,6 @@ const useStyles = makeStyles(() => ({
   '@keyframes pulse': {
     '0%': {
       transform: 'translate(0em, 0em)',
-      // filter: 'drop-shadow(1px 2px 2px black)',
     },
     '50%': {
       transform: 'translate(0em, -.3em) scale(1.5)',
@@ -60,13 +59,11 @@ const useStyles = makeStyles(() => ({
     },
     '100%': {
       transform: 'translate(0em, 0em)',
-      // filter: 'drop-shadow(1px 2px 2px black)',
     },
   },
   '@keyframes pulse2': {
     '0%': {
     transform: 'rotate(-25deg) scale(1.3)',
-      // filter: 'drop-shadow(1px 2px 2px black)',
     },
     '50%': {
       transform: 'rotate(25deg) scale(1.3)',
@@ -74,7 +71,6 @@ const useStyles = makeStyles(() => ({
     },
     '100%': {
       transform: 'rotate(-25deg) scale(1.3)',
-      // filter: 'drop-shadow(1px 2px 2px black)',
     },
   },
 }))

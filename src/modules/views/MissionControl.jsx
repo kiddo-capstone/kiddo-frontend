@@ -1,12 +1,9 @@
 import React, { useContext } from "react";
 import AppContext from "../App/AppContext";
-import {PageContainer, TitleContainer, SmallContainer, MediumContainer} from "../../ui/containers/index";
-import Button from "../../ui/button/Button";
+import {PageContainer, TitleContainer } from "../../ui/containers/index";
 import Mission from '../mission/Mission'
-import { Link } from "react-router-dom";
 import {makeStyles} from '@material-ui/core'
 import AccentLine from '../../ui/decorative/AccentLine'
-import Login from '../login/Login'
 
 const useStyles = makeStyles(theme => ({
   missions: {
@@ -23,8 +20,6 @@ const useStyles = makeStyles(theme => ({
     fontSize: "calc(10px + 2vmin)",
     color: "white",
     padding: '1.5em .5em',
-    // background: "none",
-    // backgroundColor: "#282c34",
     [theme.breakpoints.down('600')]: {
       minWidth: '20px',
     },
@@ -44,7 +39,6 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('600')]: {
       right: '2%',
       top: '15%',
-      // opacity: 0,
       '&:hover': {
         opacity: 1,
       },
@@ -57,7 +51,6 @@ const useStyles = makeStyles(theme => ({
 
 const MissionControl = props => {
   const [state, dispatch] = useContext(AppContext);
-  // const { colors, shadows, gradients, fonts } = state.theme;
   
   const classes = useStyles()
 
@@ -71,7 +64,6 @@ const MissionControl = props => {
         />
       })
     } else {
-      // since we don't have an API call to get missions by userID
       const userID = state.currentUser.id
       const userMissions = state.missions.filter(m => m.attributes.user_id === +userID)
       return userMissions.map(m => (<Mission key={m.id} props={m} />))
@@ -80,9 +72,6 @@ const MissionControl = props => {
 
   return (
     <PageContainer>
-      {/* <div className={classes.login}>
-        <Login />
-      </div> */}
       <TitleContainer>
         <p>Welcome back to</p>
         <h1>Mission Control</h1>
