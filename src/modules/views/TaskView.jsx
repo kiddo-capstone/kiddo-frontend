@@ -8,7 +8,6 @@ import Journal from "../tasks/Journal";
 import ImageCapture from "../tasks/ImageCapture";
 import AccentLine from "../../ui/decorative/AccentLine";
 import Button from "../../ui/button/Button";
-import ModalWrapper from "../../ui/modal/ModalWrapper";
 import { getMissionTaskById, updateSelectedTaskAPI } from "../common/apiCalls";
 import { useHistory } from "react-router-dom";
 import {backArrow} from '../../assets/backarrow'
@@ -150,7 +149,7 @@ const TaskView = (props) => {
     } else if (resource_type === 'image') {
       return <img className={classes.taskImage} src={resource_link} alt={resource_alt}/>
     } else {
-      return <Link style={{marginTop: '1em'}} to={resource_link}>Click here to learn more!</Link>
+      return <a style={{marginTop: '1em'}} target="_blank" href={resource_link}>Click here to learn more!</a>
     }
   }
 
