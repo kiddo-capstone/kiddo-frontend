@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
-import {Link } from 'react-router-dom'
-import ReactPlayer from 'react-player'
+import { Link } from "react-router-dom";
+import ReactPlayer from "react-player";
 import AppContext from "../App/AppContext";
 import { makeStyles } from "@material-ui/core";
 import { PageContainer, TitleContainer } from "../../ui/containers/index";
@@ -10,7 +10,7 @@ import AccentLine from "../../ui/decorative/AccentLine";
 import Button from "../../ui/button/Button";
 import { getMissionTaskById, updateSelectedTaskAPI } from "../common/apiCalls";
 import { useHistory } from "react-router-dom";
-import {backArrow} from '../../assets/backarrow'
+import { backArrow } from "../../assets/backarrow";
 
 const useStyles = makeStyles(theme => ({
   innerContainer: {
@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     padding: "0em 2em",
     flexWrap: "wrap",
-    marginBottom: '1em',
+    marginBottom: "1em",
     "& h1, h2, h3, h4, p": {
       margin: 0,
     },
@@ -29,24 +29,24 @@ const useStyles = makeStyles(theme => ({
     fontFamily: "monospace",
     padding: "1em 1em",
     minWidth: "350px",
-    minHeight: '-webkit-fill-available',
-    height: 'clamp(5em, 95%, 100%)',
+    minHeight: "-webkit-fill-available",
+    height: "clamp(5em, 95%, 100%)",
     overflow: "auto",
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   actionContainer: {
-    border: (theme => `solid 3px ${theme.colors.blue}`),
+    border: theme => `solid 3px ${theme.colors.blue}`,
     borderRadius: "10px",
     fontFamily: "monospace",
     minWidth: "350px",
-    height: 'clamp(5em, 95%, 100%)',
-    minHeight: '-webkit-fill-available',
+    height: "clamp(5em, 95%, 100%)",
+    minHeight: "-webkit-fill-available",
     backgroundColor: "rgb(40,44,52, .5)",
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
   },
   category: {
     display: "flex",
@@ -60,127 +60,151 @@ const useStyles = makeStyles(theme => ({
     },
   },
   left: {
-    margin: '2% 0',
+    margin: "2% 0",
     flex: 1,
   },
   right: {
-    margin: '2% 0',
+    margin: "2% 0",
     flex: 1,
     display: "flex",
     flexDirection: "column",
   },
   taskImage: {
-    borderRadius: '10px',
+    borderRadius: "10px",
     maxHeight: "60vh",
     maxWidth: "30vw",
-    filter: 'drop-shadow(2px 4px 6px black)',
-    marginTop: '1em',
+    filter: "drop-shadow(2px 4px 6px black)",
+    marginTop: "1em",
   },
   arrow: {
-    filter: 'drop-shadow(2px 4px 9px black)',
-    position: 'absolute',
-    top: '3%',
-    left: 'calc(300px + 2%)',
-    willChange: 'transform',
-    transition: 'ease .3s',
-    cursor: 'pointer',
+    filter: "drop-shadow(2px 4px 9px black)",
+    position: "absolute",
+    top: "3%",
+    left: "calc(300px + 2%)",
+    willChange: "transform",
+    transition: "ease .3s",
+    cursor: "pointer",
     zIndex: 10,
     [theme.breakpoints.down("600")]: {
-      top: '12%',
-      left: '2%',
-      '& svg': {
-        height: '4em',
-      }
+      top: "80px",
+      left: "2%",
+      "& svg": {
+        height: "4em",
+      },
     },
-    '&:hover': {
-      transform: 'scale(1.1)',
+    "&:hover": {
+      transform: "scale(1.1)",
     },
+  },
+  videoWrapper: {
+    borderRadius: "10px",
+    overflow: "hidden",
+    marginTop: "1em",
+    filter: "drop-shadow(2px 8px 8px black)",
+    width: '100%',
   },
 }));
 
-const TaskView = (props) => {
+const TaskView = props => {
   const [state, dispatch] = useContext(AppContext);
-  const [taskComplete , setTaskComplete] = useState(false);
+  const [taskComplete, setTaskComplete] = useState(false);
   const [updatedTask, setUpdatedTask] = useState(null);
-  const [template, setTemplate] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const history = useHistory()
+  const [template, setTemplate] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const history = useHistory();
   const classes = useStyles(state.theme);
 
-  useEffect(async() => {
+  useEffect(async () => {
     if (!state.selectedTask || props.id !== state.selectedTask.id) {
-      console.log('SYNC TASKS');
-      await getMissionTaskById(props.id)
-      .then(resp => addTaskToState(resp.data))
+      console.log("SYNC TASKS");
+      await getMissionTaskById(props.id).then(resp =>
+        addTaskToState(resp.data)
+      );
     }
-    findTemplateTask()
-  }, [])
+    findTemplateTask();
+  }, []);
 
   const findTemplateTask = () => {
-    const templateId = state.selectedTask.attributes.task_id
-    const template = state.tasks.find(t => +t.id === templateId)
-    setTemplate(template)
-    setLoading(false)
-  }
+    const templateId = state.selectedTask.attributes.task_id;
+    const template = state.tasks.find(t => +t.id === templateId);
+    setTemplate(template);
+    setLoading(false);
+  };
 
-  const addTaskToState = (data) => {
+  const addTaskToState = data => {
     const action = { type: `FETCH_SELECTED_TASK`, selectedTask: data };
     dispatch(action);
   };
 
   const checkReady = (trueFalse, updatedTask) => {
     if (taskComplete !== trueFalse) {
-      setTaskComplete(trueFalse)      
-      setUpdatedTask(updatedTask)
+      setTaskComplete(trueFalse);
+      setUpdatedTask(updatedTask);
     }
   };
 
   const handleClick = async () => {
-      let data = new FormData();
-      data.append("is_completed", true)
+    let data = new FormData();
+    data.append("is_completed", true);
 
-      if(updatedTask.message) {
-        data.append("message", updatedTask.message)
-      }
-      if(updatedTask.image) {
-        data.append("image", updatedTask.image)
-      }
-      await updateSelectedTaskAPI(props.id, data)
-      addTaskToState("selectedTask", {})
+    if (updatedTask.message) {
+      data.append("message", updatedTask.message);
+    }
+    if (updatedTask.image) {
+      data.append("image", updatedTask.image);
+    }
+    await updateSelectedTaskAPI(props.id, data);
+    addTaskToState("selectedTask", {});
   };
 
   const renderResources = () => {
-    const {resource_type, resource_link, resource_alt} = template.attributes
-    if (resource_type === 'video') {
-      return <div style={{borderRadius: '10px', overflow: 'hidden', marginTop: '1em', filter: 'drop-shadow(2px 8px 8px black)'}}><ReactPlayer controls={true} url={resource_link} alt={resource_alt}/></div>
-    } else if (resource_type === 'image') {
-      return <img className={classes.taskImage} src={resource_link} alt={resource_alt}/>
-    } else {
-      return <a style={{marginTop: '1em'}} target="_blank" href={resource_link}>Click here to learn more!</a>
-    }
-  }
-
-  const getTask = () => {
-    const {photo} = template.attributes
-    if (!photo) {
-      return(
-        <div className={classes.actionContainer}>
-          <Journal checkReady={checkReady} />
-        </div>
-      )
-    } else if (photo) {
+    const { resource_type, resource_link, resource_alt } = template.attributes;
+    if (resource_type === "video") {
       return (
-        <div className={classes.actionContainer}>
-          <ImageCapture checkReady={checkReady}/>
+        <div className={classes.videoWrapper}>
+          <ReactPlayer width='100%' controls={true} url={resource_link} alt={resource_alt} />
         </div>
-      )
+      );
+    } else if (resource_type === "image") {
+      return (
+        <img
+          className={classes.taskImage}
+          src={resource_link}
+          alt={resource_alt}
+        />
+      );
+    } else {
+      return (
+        <a style={{ marginTop: "1em" }} target="_blank" href={resource_link}>
+          Click here to learn more!
+        </a>
+      );
     }
   };
 
-  return loading ? <PageContainer>LOADING</PageContainer> : (
+  const getTask = () => {
+    const { photo } = template.attributes;
+    if (!photo) {
+      return (
+        <div className={classes.actionContainer}>
+          <Journal checkReady={checkReady} />
+        </div>
+      );
+    } else if (photo) {
+      return (
+        <div className={classes.actionContainer}>
+          <ImageCapture checkReady={checkReady} />
+        </div>
+      );
+    }
+  };
+
+  return loading ? (
+    <PageContainer>LOADING</PageContainer>
+  ) : (
     <PageContainer>
       <div className={classes.arrow} onClick={() => history.goBack()}>
-        {backArrow('cyan')}
+        {backArrow("cyan")}
       </div>
       <TitleContainer style={{ width: "100%" }}>
         <p>Agent Task:</p>
@@ -195,8 +219,19 @@ const TaskView = (props) => {
           </span>
           <div className={classes.descriptionContainer}>
             <p>
-            <b style={{ color: state.theme.colors.blue }}>{state.selectedTask.attributes.task_description.split(' ').slice(0, 4).join(' ') + ' '}</b>
-            {state.selectedTask.attributes.task_description.split(' ').slice(4, state.selectedTask.attributes.task_description.length -1).join(' ')}
+              <b style={{ color: state.theme.colors.blue }}>
+                {state.selectedTask.attributes.task_description
+                  .split(" ")
+                  .slice(0, 4)
+                  .join(" ") + " "}
+              </b>
+              {state.selectedTask.attributes.task_description
+                .split(" ")
+                .slice(
+                  4,
+                  state.selectedTask.attributes.task_description.length - 1
+                )
+                .join(" ")}
             </p>
             {renderResources()}
           </div>
@@ -207,19 +242,21 @@ const TaskView = (props) => {
             <p>.</p>
           </span>
           {getTask()}
-          <div>
-            {/* {formatResource()} */}
-          </div>
+          <div>{/* {formatResource()} */}</div>
         </section>
       </section>
 
-        <Link to={`/daily-mission/${state.selectedMission.id}`} style={{width: '100%'}}>
-          
-          <Button primary type="submit" onClick={handleClick} disabled={taskComplete ? false : true}>
+      <Link
+        to={`/daily-mission/${state.selectedMission.id}`}
+        style={{ width: "100%" }}>
+        <Button
+          primary
+          type="submit"
+          onClick={handleClick}
+          disabled={taskComplete ? false : true}>
           {taskComplete ? "All Done!" : "Complete Task to Submit"}
-          </Button>
-        </Link>
-  
+        </Button>
+      </Link>
     </PageContainer>
   );
 };
