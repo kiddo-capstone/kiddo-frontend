@@ -71,7 +71,7 @@ const Login = () => {
         onChange={handleChange}
         label="kiddoUser"
       >
-        <MenuItem value={null}>
+        <MenuItem value={""}>
           <em>None</em>
         </MenuItem>
         {generateUsers()}

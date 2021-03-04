@@ -12,6 +12,8 @@ import { Link, useHistory } from "react-router-dom";
 import RoundButton from "../../ui/button/RoundButton";
 import UserIndex from "../login/UserIndex";
 import MiniAuth from "../auth/MiniAuth";
+import { getUserById } from "../common/apiCalls"
+import ProgressBar from "../../ui/progressBar/ProgressBar"
 
 const appStyles = theme;
 
@@ -96,6 +98,7 @@ const AgentDetails = (props) => {
   const history = useHistory()
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
+  const [sessionUser, setSessionUser] = useState(state.currentUser)
   
   const stats = [
     { icon: brainTraining, barColor: 'gold', completed: 60 },
@@ -104,10 +107,26 @@ const AgentDetails = (props) => {
     { icon: basicTraining, barColor: 'gold', completed: 53 },
   ];
 
+    useEffect(() => {
+      if (state.currentUser !== null) {
+        setSessionUser(state.currentUser)
+      } 
+    }, [state.currentUser])
+
+    useEffect(() => {
+      if (sessionUser !== null) {
+        updateUserDetails()
+      }
+    }, [state.selectedMissionTasks])
+
+  const updateUserDetails = async () => {
+    await getUserById(+sessionUser.id).then(data => setSessionUser((data.data))).then(console.log("updated session user", sessionUser))
+  }
+
   const determinePath = () => {
     return !state.currentUser ? history.push("/welcome") : history.push("/mission-control") 
   }
-  
+    
   return (
     <section className={classes.section}>
       <div className={classes.card}>
@@ -115,9 +134,9 @@ const AgentDetails = (props) => {
           <div className={classes.avatar} onClick={() => determinePath()}>
             <img src={kids} />
           </div>
-      
+
           <span className={classes.titleText}>
-            <h1>{state.currentUser !== null ? state.currentUser.attributes.name : 'KidDo Agent'}</h1> 
+            <h1>{sessionUser !== null ? sessionUser.attributes.name : 'KidDo Agent'}</h1> 
           </span>
 
           <hr />
@@ -126,12 +145,12 @@ const AgentDetails = (props) => {
               <h2>Date:</h2>
               <h3>{ new Date().toLocaleDateString() }</h3>
             </div>
-             {state.currentUser !== null && (
+          {sessionUser !== null && (
             <div className={classes.detailsChild}>
               <h2>Points:</h2>
-              <h3>{state.currentUser.attributes.points}</h3>
+              <h3>{sessionUser.attributes.points}</h3>
             </div>
-             )}
+          )}
             <div className={classes.detailsChild}>
               <h2>Agent Status:</h2>
                 <StatusForm />
@@ -139,15 +158,6 @@ const AgentDetails = (props) => {
           </div>
         </div>
       </div>
-      {/* {state.currentUser !== null && (
-      <div>
-        {stats.map((item, idx) => (
-          <div className={classes.statRow} key={`statRow-${idx}`}>
-            <img src={item.icon.img} className={classes.icon} key={`icon-${idx}`}/>
-          </div>
-        ))}
-      </div>
-      )} */}
       <MiniAuth />
     </section>
   );
