@@ -134,7 +134,7 @@ const AgentDetails = (props) => {
           <div className={classes.avatar} onClick={() => determinePath()}>
             <img src={kids} />
           </div>
-      
+
           <span className={classes.titleText}>
             <h1>{sessionUser !== null ? sessionUser.attributes.name : 'KidDo Agent'}</h1> 
           </span>

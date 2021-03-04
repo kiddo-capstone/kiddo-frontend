@@ -2,16 +2,13 @@ import React from "react";
 import { makeStyles } from "@material-ui/core";
 import theme from "../common/theme";
 
-const appStyles = theme;
 const drawerWidth = 300;
 
-// const drawerWidth = 240;
 const drawerHeight = 40;
 const useStyles = makeStyles((theme) => ({
   pageContainer: {
     textAlign: "center",
-    // backgroundColor: appStyles.colors.background,
-    margin: ((theme) => theme.margin || 'default'),
+    margin: (theme) => theme.margin || "default",
     minHeight: "100%",
     display: "flex",
     flexDirection: "column",
@@ -20,12 +17,11 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "calc(10px + 2vmin)",
     color: "white",
     fontFamily: "'Russo One', sans-serif",
-    // media query for pushing page content past drawer
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("md")]: {
       marginLeft: drawerWidth,
       marginTop: drawerHeight - 20,
     },
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.down("md")]: {
       marginTop: "45px",
     },
   },
