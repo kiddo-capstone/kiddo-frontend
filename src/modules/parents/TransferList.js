@@ -62,7 +62,7 @@ export default function TransferList({getChoices}) {
   
   useEffect(() => {
     const taskIdList = right.reduce((acc, t) => {
-      acc.push(t.charAt(0))
+      acc.push(t.split(' ')[0])
       return acc
     }, [])
     
