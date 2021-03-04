@@ -107,19 +107,13 @@ const AgentDetails = (props) => {
     { icon: basicTraining, barColor: 'gold', completed: 53 },
   ];
 
-  // const selectedTasksByType = () => {
-  //   const taskStats = state.selectedMissionTasks.reduce((acc, task) => {
-  //     console.log(task.attributes.task_category)
-      
-  //   }, [])
-  //   console.log(taskStats)
-  // }
     useEffect(() => {
       if (state.currentUser !== null) {
         setSessionUser(state.currentUser)
-      } else {
-        setSessionUser(null)
-      }
+      } 
+      // else {
+      //   setSessionUser(null)
+      // }
     }, [state.currentUser])
 
     useEffect(() => {
