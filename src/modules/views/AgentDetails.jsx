@@ -3,17 +3,11 @@ import AppContext from "../App/AppContext";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
 import kids from "../../assets/kids_trio.png";
-import { useAuth0 } from "@auth0/auth0-react";
 import StatusForm from "./StatusForm";
-import SignUp from "../login/SignUp.js";
-import ModalWrapper from "../../ui/modal/ModalWrapper";
 import { basicTraining, creativityTraining, healthTraining, brainTraining } from "../../assets/index";
-import { Link, useHistory } from "react-router-dom";
-import RoundButton from "../../ui/button/RoundButton";
-import UserIndex from "../login/UserIndex";
+import { useHistory } from "react-router-dom";
 import MiniAuth from "../auth/MiniAuth";
-import { getUserById } from "../common/apiCalls"
-import ProgressBar from "../../ui/progressBar/ProgressBar"
+import { getUserById } from "../common/apiCalls";
 
 const appStyles = theme;
 
