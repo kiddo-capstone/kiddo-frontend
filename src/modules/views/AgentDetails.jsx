@@ -97,7 +97,7 @@ const AgentDetails = (props) => {
   const history = useHistory()
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
-  const [sessionUser, setSessionUser] = useState(state.currentUser)
+  const [sessionUser, setSessionUser] = useState(null)
   
   const stats = [
     { icon: brainTraining, barColor: 'gold', completed: 60 },
@@ -108,13 +108,25 @@ const AgentDetails = (props) => {
 
   useEffect(() => {
     getCurrentUser()
-  }, [sessionUser])
+  }, [state.currentUser])
+  
+   useEffect(() => {
+     if (state.currentUser !== null) {
+       console.log("user updated", sessionUser)
+        updateUserDetails()
+     }
+    
+  }, [])
+
   const getCurrentUser = () => {
     if (state.currentUser !== null) {
       setSessionUser(state.currentUser)
     }
   }
 
+  const updateUserDetails = async () => {
+    await getUserById(+sessionUser.id).then(data => console.log(data.data))
+  }
   const determinePath = () => {
     return !state.currentUser ? history.push("/welcome") : history.push("/mission-control") 
   }
