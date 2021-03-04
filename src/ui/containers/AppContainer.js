@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: drawerWidth,
     backgroundColor: "#1c1c1c",
-    filter: 'drop-shadow(2px 4px 6px black)',
+    filter: "drop-shadow(2px 4px 6px black)",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -118,26 +118,28 @@ function AppContainer(props) {
         </Toolbar>
       </AppBar>
       <div className={classes.drawer}>
-        {/* <Hidden smUp implementation="css"> */}
-        <Drawer
-          container={container}
-          variant="temporary"
-          anchor={theme.direction === "rtl" ? "right" : "left"}
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          classes={{
-            paper: classes.drawerPaper,
-          }}
-          ModalProps={{
-            keepMounted: true,
-          }}
-        >
-          {drawer}
-        </Drawer>
-        {/* </Hidden> */}
+        <Hidden smUp implementation="css">
+          <Drawer
+            container={container}
+            variant="temporary"
+            anchor={theme.direction === "rtl" ? "right" : "left"}
+            open={mobileOpen}
+            // disablePortal={true}
+            onClose={handleDrawerToggle}
+            classes={{
+              paper: classes.drawerPaper,
+            }}
+            ModalProps={{
+              keepMounted: true,
+            }}
+          >
+            {drawer}
+          </Drawer>
+        </Hidden>
 
         <Hidden xsDown implementation="css">
           <Drawer
+            container={container}
             classes={{
               paper: classes.drawerPaper,
             }}

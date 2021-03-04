@@ -13,6 +13,7 @@ import RoundButton from "../../ui/button/RoundButton";
 import UserIndex from "../login/UserIndex";
 import MiniAuth from "../auth/MiniAuth";
 import { getUserById } from "../common/apiCalls"
+import ProgressBar from "../../ui/progressBar/ProgressBar"
 
 const appStyles = theme;
 
@@ -105,6 +106,14 @@ const AgentDetails = (props) => {
     { icon: healthTraining, barColor: 'gold', completed: 53 },
     { icon: basicTraining, barColor: 'gold', completed: 53 },
   ];
+
+  // const selectedTasksByType = () => {
+  //   const taskStats = state.selectedMissionTasks.reduce((acc, task) => {
+  //     console.log(task.attributes.task_category)
+      
+  //   }, [])
+  //   console.log(taskStats)
+  // }
     useEffect(() => {
       if (state.currentUser !== null) {
         setSessionUser(state.currentUser)
@@ -115,6 +124,7 @@ const AgentDetails = (props) => {
 
     useEffect(() => {
       if (sessionUser !== null) {
+        // selectedTasksByType()
         updateUserDetails()
       }
     }, [state.selectedMissionTasks])
@@ -126,7 +136,13 @@ const AgentDetails = (props) => {
   const determinePath = () => {
     return !state.currentUser ? history.push("/welcome") : history.push("/mission-control") 
   }
-  
+
+  const logout = () => {
+    history.push("/welcome")
+    const action = { type: "SET_CURRENT_USER", currentUser: null }
+    dispatch(action)
+  }
+    
   return (
     <section className={classes.section}>
       <div className={classes.card}>
@@ -158,15 +174,25 @@ const AgentDetails = (props) => {
           </div>
         </div>
       </div>
-      {/* {sessionUser !== null && (
+      {sessionUser !== null && (
       <div>
-        {stats.map((item, idx) => (
+        {/* {stats.map((item, idx) => (
           <div className={classes.statRow} key={`statRow-${idx}`}>
             <img src={item.icon.img} className={classes.icon} key={`icon-${idx}`}/>
           </div>
-        ))}
+        ))} */}
       </div>
-      )} */}
+      )}
+      {!state.currentUser ?
+      <div className={classes.login}>
+        <UserIndex />
+      </div> :
+      <div className={classes.login}>
+        <Link to="/welcome"><h2>About KidDo</h2></Link>
+        <Link to="/mission-control"><h2>Mission Control</h2></Link>
+        <button onClick={logout}>LOG OUT</button>
+      </div>
+      }
       <MiniAuth />
     </section>
   );
