@@ -80,14 +80,21 @@ const useStyles = makeStyles(theme => ({
     filter: 'drop-shadow(2px 4px 9px black)',
     position: 'absolute',
     top: '3%',
-    left: '22%',
+    left: 'calc(300px + 2%)',
     willChange: 'transform',
     transition: 'ease .3s',
     cursor: 'pointer',
     zIndex: 10,
+    [theme.breakpoints.down("600")]: {
+      top: '12%',
+      left: '2%',
+      '& svg': {
+        height: '4em',
+      }
+    },
     '&:hover': {
       transform: 'scale(1.1)',
-    }
+    },
   },
 }));
 
