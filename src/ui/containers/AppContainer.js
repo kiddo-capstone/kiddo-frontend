@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
   drawerPaper: {
     width: drawerWidth,
     backgroundColor: "#1c1c1c",
+    filter: 'drop-shadow(2px 4px 6px black)',
   },
   menuButton: {
     marginRight: theme.spacing(2),

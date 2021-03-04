@@ -108,6 +108,7 @@ const AgentDetails = (props) => {
   }
 
   const logout = () => {
+    history.push("/welcome")
     const action = { type: "SET_CURRENT_USER", currentUser: null }
     dispatch(action)
   }

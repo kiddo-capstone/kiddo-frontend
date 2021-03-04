@@ -36,9 +36,9 @@ const LoginForm = () => {
       return user.attributes.email === email
     })
     if (user) {
-      // history.push("/mission-control")
       const action = { type: "SET_CURRENT_USER", currentUser: user }
       dispatch(action)
+      history.push("/mission-control")
     } else {
       alert("We can't seem to find your account. If this is your first time using KidDo, please sign up!")
     }

@@ -8,8 +8,9 @@ import Journal from "../tasks/Journal";
 import ImageCapture from "../tasks/ImageCapture";
 import AccentLine from "../../ui/decorative/AccentLine";
 import Button from "../../ui/button/Button";
-import ModalWrapper from "../../ui/modal/ModalWrapper";
 import { getMissionTaskById, updateSelectedTaskAPI } from "../common/apiCalls";
+import { useHistory } from "react-router-dom";
+import {backArrow} from '../../assets/backarrow'
 
 const useStyles = makeStyles(theme => ({
   innerContainer: {
@@ -75,6 +76,26 @@ const useStyles = makeStyles(theme => ({
     filter: 'drop-shadow(2px 4px 6px black)',
     marginTop: '1em',
   },
+  arrow: {
+    filter: 'drop-shadow(2px 4px 9px black)',
+    position: 'absolute',
+    top: '3%',
+    left: 'calc(300px + 2%)',
+    willChange: 'transform',
+    transition: 'ease .3s',
+    cursor: 'pointer',
+    zIndex: 10,
+    [theme.breakpoints.down("600")]: {
+      top: '12%',
+      left: '2%',
+      '& svg': {
+        height: '4em',
+      }
+    },
+    '&:hover': {
+      transform: 'scale(1.1)',
+    },
+  },
 }));
 
 const TaskView = (props) => {
@@ -83,6 +104,7 @@ const TaskView = (props) => {
   const [updatedTask, setUpdatedTask] = useState(null);
   const [template, setTemplate] = useState(null)
   const [loading, setLoading] = useState(true)
+  const history = useHistory()
   const classes = useStyles(state.theme);
 
   useEffect(async() => {
@@ -98,7 +120,6 @@ const TaskView = (props) => {
     const templateId = state.selectedTask.attributes.task_id
     const template = state.tasks.find(t => +t.id === templateId)
     setTemplate(template)
-    console.log(template);
     setLoading(false)
   }
 
@@ -131,11 +152,11 @@ const TaskView = (props) => {
   const renderResources = () => {
     const {resource_type, resource_link, resource_alt} = template.attributes
     if (resource_type === 'video') {
-      return <div style={{borderRadius: '10px', overflow: 'hidden', marginTop: '1em'}}><ReactPlayer controls={true} url={resource_link} alt={resource_alt}/></div>
+      return <div style={{borderRadius: '10px', overflow: 'hidden', marginTop: '1em', filter: 'drop-shadow(2px 8px 8px black)'}}><ReactPlayer controls={true} url={resource_link} alt={resource_alt}/></div>
     } else if (resource_type === 'image') {
       return <img className={classes.taskImage} src={resource_link} alt={resource_alt}/>
     } else {
-      return <Link style={{marginTop: '1em'}} to={resource_link}>Click here to learn more!</Link>
+      return <a style={{marginTop: '1em'}} target="_blank" href={resource_link}>Click here to learn more!</a>
     }
   }
 
@@ -156,18 +177,11 @@ const TaskView = (props) => {
     }
   };
 
-  // const formatResource = () => {
-  //   if (attributes?.resource_type === "video") {
-  //     return <ReactPlayer url={attributes.resource_link} /> 
-  //   } else if (attributes?.resource_type === "image") {
-  //     return <img src={attributes.resource_link} alt={attributes.resource_type}/>
-  //   } else if (attributes?.resource_type === "link") {
-  //     return <Link to={attributes.resource_link} />
-  //   }
-  // }
-
   return loading ? <PageContainer>LOADING</PageContainer> : (
     <PageContainer>
+      <div className={classes.arrow} onClick={() => history.goBack()}>
+        {backArrow('cyan')}
+      </div>
       <TitleContainer style={{ width: "100%" }}>
         <p>Agent Task:</p>
         <h1>{state.selectedTask.attributes.task_name}</h1>
