@@ -36,9 +36,11 @@ const LoginForm = () => {
       return user.attributes.email === email;
     });
     if (user) {
-      dispatch(action)
-      history.push("/mission-control")
-    } else {
+      const action = { type: "SET_CURRENT_USER", currentUser: user };
+      dispatch(action);
+      history.push("/mission-control");
+    }
+  };
 
   return (
     <form className={classes.form}>
