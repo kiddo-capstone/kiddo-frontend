@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import {createNewMission, addTasksToMission} from '../parents/parentApiCalls'
 import AppContext from '../../modules/App/AppContext'
 import { PageContainer, TitleContainer } from "../../ui/containers/index";
 import { makeStyles } from "@material-ui/core/styles";
@@ -48,9 +49,10 @@ const ParentView = () => {
   const [state, dispatch] = useContext(AppContext);
 
   useEffect(() => {
-    console.log(choices);
-    console.log(child);
-    console.log(missionName);
+    setReady(false)
+    if (choices && child && missionName) {
+      setReady(true)
+    }
   },[choices, missionName, child])
 
   const generateUsers = () => {
@@ -70,9 +72,24 @@ const ParentView = () => {
     setChoices(tasks)
   }
 
-  const handleClick = () => {
-
+  const composeData = async () => {
+    const mission = {"name": missionName, "due_date": "2025-02-03", "user_id": child.id}
+    const missionId = await createNewMission(mission)
+    // choices.forEach(async c => await console.log({"mission_id": +missionId.data.id, "task_id": +c.id}))
+    choices.forEach(async c => await addTasksToMission({"mission_id": +missionId.data.id, "task_id": +c.id}))
   }
+
+  const handleClick = () => {
+    composeData()
+    clearInputs()
+  }
+
+  const clearInputs = () => {
+    // setChoices([]);
+    setChild("");
+    setMissionName("");
+  }
+
   return (
     <div style={{ backgroundColor: "lightgray", height: "100vh" }}>
       <PageContainer>
