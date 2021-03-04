@@ -124,7 +124,6 @@ function AppContainer(props) {
             variant="temporary"
             anchor={theme.direction === "rtl" ? "right" : "left"}
             open={mobileOpen}
-            // disablePortal={true}
             onClose={handleDrawerToggle}
             classes={{
               paper: classes.drawerPaper,
