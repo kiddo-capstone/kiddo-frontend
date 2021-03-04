@@ -2,11 +2,12 @@ import React, { useContext, useState, useEffect } from "react";
 import AppContext from "../App/AppContext";
 import { makeStyles } from "@material-ui/core";
 import { getMissionById, getTasksByMissionId } from "../common/apiCalls";
-
+import {backArrow} from '../../assets/backarrow'
 import Task from "../task/Task";
 import PageContainer from "../../ui/containers/PageContainer";
 import TitleContainer from "../../ui/containers/TitleContainer";
 import AccentLine from '../../ui/decorative/AccentLine'
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
   tasks: {
@@ -33,6 +34,18 @@ const useStyles = makeStyles(theme => ({
     transform: "translateY(-2.8em)",
     zIndex: 0,
   },
+  arrow: {
+    filter: 'drop-shadow(2px 4px 9px black)',
+    position: 'absolute',
+    top: '3%',
+    left: '22%',
+    willChange: 'transform',
+    transition: 'ease .3s',
+    cursor: 'pointer',
+    '&:hover': {
+      transform: 'scale(1.1)',
+    }
+  },
 }));
 
 const DailyMission = props => {
@@ -40,6 +53,7 @@ const DailyMission = props => {
   const [error, setError] = useState(null);
   const { id } = props;
   const {selectedMission: { attributes }} = state;
+  const history = useHistory()
   const classes = useStyles();
 
   useEffect(async () => {
@@ -70,11 +84,14 @@ const DailyMission = props => {
 
   return (
     <PageContainer>
+      <div className={classes.arrow} onClick={() => history.push("/mission-control")}>
+        {backArrow(state.theme.colors.blue)}
+      </div>
       <TitleContainer style={{ width: "100%" }}>
         <p>Your mission:</p>
         <h1>{attributes?.name}</h1>
       </TitleContainer>
-      <AccentLine color={state.theme.colors.purple}/>
+      <AccentLine color={state.theme.colors.blue}/>
       <section className={classes.tasks}>
         {makeTasksList()}
       </section>

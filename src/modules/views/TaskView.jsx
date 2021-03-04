@@ -10,6 +10,8 @@ import AccentLine from "../../ui/decorative/AccentLine";
 import Button from "../../ui/button/Button";
 import ModalWrapper from "../../ui/modal/ModalWrapper";
 import { getMissionTaskById, updateSelectedTaskAPI } from "../common/apiCalls";
+import { useHistory } from "react-router-dom";
+import {backArrow} from '../../assets/backarrow'
 
 const useStyles = makeStyles(theme => ({
   innerContainer: {
@@ -75,6 +77,19 @@ const useStyles = makeStyles(theme => ({
     filter: 'drop-shadow(2px 4px 6px black)',
     marginTop: '1em',
   },
+  arrow: {
+    filter: 'drop-shadow(2px 4px 9px black)',
+    position: 'absolute',
+    top: '3%',
+    left: '22%',
+    willChange: 'transform',
+    transition: 'ease .3s',
+    cursor: 'pointer',
+    zIndex: 10,
+    '&:hover': {
+      transform: 'scale(1.1)',
+    }
+  },
 }));
 
 const TaskView = (props) => {
@@ -83,6 +98,7 @@ const TaskView = (props) => {
   const [updatedTask, setUpdatedTask] = useState(null);
   const [template, setTemplate] = useState(null)
   const [loading, setLoading] = useState(true)
+  const history = useHistory()
   const classes = useStyles(state.theme);
 
   useEffect(async() => {
@@ -98,7 +114,6 @@ const TaskView = (props) => {
     const templateId = state.selectedTask.attributes.task_id
     const template = state.tasks.find(t => +t.id === templateId)
     setTemplate(template)
-    console.log(template);
     setLoading(false)
   }
 
@@ -158,6 +173,9 @@ const TaskView = (props) => {
 
   return loading ? <PageContainer>LOADING</PageContainer> : (
     <PageContainer>
+      <div className={classes.arrow} onClick={() => history.goBack()}>
+        {backArrow('cyan')}
+      </div>
       <TitleContainer style={{ width: "100%" }}>
         <p>Agent Task:</p>
         <h1>{state.selectedTask.attributes.task_name}</h1>
