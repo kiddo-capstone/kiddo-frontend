@@ -111,14 +111,10 @@ const AgentDetails = (props) => {
       if (state.currentUser !== null) {
         setSessionUser(state.currentUser)
       } 
-      // else {
-      //   setSessionUser(null)
-      // }
     }, [state.currentUser])
 
     useEffect(() => {
       if (sessionUser !== null) {
-        // selectedTasksByType()
         updateUserDetails()
       }
     }, [state.selectedMissionTasks])
@@ -129,12 +125,6 @@ const AgentDetails = (props) => {
 
   const determinePath = () => {
     return !state.currentUser ? history.push("/welcome") : history.push("/mission-control") 
-  }
-
-  const logout = () => {
-    history.push("/welcome")
-    const action = { type: "SET_CURRENT_USER", currentUser: null }
-    dispatch(action)
   }
     
   return (
@@ -160,7 +150,7 @@ const AgentDetails = (props) => {
               <h2>Points:</h2>
               <h3>{sessionUser.attributes.points}</h3>
             </div>
-             )}
+          )}
             <div className={classes.detailsChild}>
               <h2>Agent Status:</h2>
                 <StatusForm />
@@ -168,25 +158,6 @@ const AgentDetails = (props) => {
           </div>
         </div>
       </div>
-      {sessionUser !== null && (
-      <div>
-        {/* {stats.map((item, idx) => (
-          <div className={classes.statRow} key={`statRow-${idx}`}>
-            <img src={item.icon.img} className={classes.icon} key={`icon-${idx}`}/>
-          </div>
-        ))} */}
-      </div>
-      )}
-      {!state.currentUser ?
-      <div className={classes.login}>
-        <UserIndex />
-      </div> :
-      <div className={classes.login}>
-        <Link to="/welcome"><h2>About KidDo</h2></Link>
-        <Link to="/mission-control"><h2>Mission Control</h2></Link>
-        <button onClick={logout}>LOG OUT</button>
-      </div>
-      }
       <MiniAuth />
     </section>
   );
