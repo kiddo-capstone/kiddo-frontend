@@ -12,6 +12,7 @@ import { Link, useHistory } from "react-router-dom";
 import RoundButton from "../../ui/button/RoundButton";
 import UserIndex from "../login/UserIndex";
 import MiniAuth from "../auth/MiniAuth";
+import { getUserById } from "../common/apiCalls"
 
 const appStyles = theme;
 
@@ -96,6 +97,7 @@ const AgentDetails = (props) => {
   const history = useHistory()
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
+  const [sessionUser, setSessionUser] = useState(state.currentUser)
   
   const stats = [
     { icon: brainTraining, barColor: 'gold', completed: 60 },
@@ -103,6 +105,15 @@ const AgentDetails = (props) => {
     { icon: healthTraining, barColor: 'gold', completed: 53 },
     { icon: basicTraining, barColor: 'gold', completed: 53 },
   ];
+
+  useEffect(() => {
+    getCurrentUser()
+  }, [sessionUser])
+  const getCurrentUser = () => {
+    if (state.currentUser !== null) {
+      setSessionUser(state.currentUser)
+    }
+  }
 
   const determinePath = () => {
     return !state.currentUser ? history.push("/welcome") : history.push("/mission-control") 
