@@ -49,7 +49,7 @@ KidDo is a secret-agent-themed skill-building app for kids ages ~9-12. KidDo gam
 
  <br>
 
-The [Silver Nest Backend Server](https://github.com/chadrick-d-dev/silver-nest-api), created by the original SilverNest team, is a database that enables this application to fetch specific information provided by the older adults who are participating in this program.
+The [KidDo Backend Repo](https://github.com/kiddo-capstone/kiddo-backend) and [server]() enables full CRUD methodology for our app
 
 From here, data is displayed in the app for students to find an older adult whose needs they feel most suited to assist with.
 
@@ -85,13 +85,13 @@ From here, data is displayed in the app for students to find an older adult whos
 
 #### Single Mission View:
 
-![View Resident Profile and Apply for Housing]()
-
-#### Single Mission View:
-
 ![Single Mission View]()
 
-#### Task View, Image Capture and Upload (mobile):
+#### Single Task View:
+
+![Single Task View]()
+
+#### Image Capture and Upload (mobile):
 
 ![Image Capture]()
 
@@ -101,17 +101,17 @@ With more time, we would like to include:
 
 ## Contributors
 
-<img src="https://media-exp1.licdn.com/dms/image/C4E03AQG9jZTOd0oUCQ/profile-displayphoto-shrink_800_800/0/1606070086923?e=1616025600&v=beta&t=WldtPrGc57mSEiAJkFaYGVq9Ksc0uqBmFLFR11fQUs4" alt="Lola Dolinsky"
+<img src="https://media-exp1.licdn.com/dms/image/C4E35AQGFrI0jpzcVjg/profile-framedphoto-shrink_800_800/0/1608389528155?e=1614967200&v=beta&t=xcKIE-FIneJvMGbr0motDDTRQ5C4Xp4HSxuB_qsBkmI" alt="Scott Brabson"
  width="150" height="auto" />
 
 - [Scott Brabson](https://github.com/brabbuss)
 
-<img src="https://media-exp1.licdn.com/dms/image/C4E03AQG9jZTOd0oUCQ/profile-displayphoto-shrink_800_800/0/1606070086923?e=1616025600&v=beta&t=WldtPrGc57mSEiAJkFaYGVq9Ksc0uqBmFLFR11fQUs4" alt="Lola Dolinsky"
+<img src="https://media-exp1.licdn.com/dms/image/C4E03AQH49lEHdFTI5w/profile-displayphoto-shrink_200_200/0/1613081146644?e=1620259200&v=beta&t=CIwlHX1W7yMwviGRg-2muu1blm3DJwPq7ab8c9JN2W4" alt="Lola Dolinsky"
  width="150" height="auto" />
 
 - [Lola Dolinsky](https://github.com/lo-la-do-li)
 
-<img src="https://media-exp1.licdn.com/dms/image/C4E03AQG9jZTOd0oUCQ/profile-displayphoto-shrink_800_800/0/1606070086923?e=1616025600&v=beta&t=WldtPrGc57mSEiAJkFaYGVq9Ksc0uqBmFLFR11fQUs4" alt="Lola Dolinsky"
+<img src="https://media-exp1.licdn.com/dms/image/C4E03AQEuMSUTjGqhTw/profile-displayphoto-shrink_800_800/0/1610774165519?e=1620259200&v=beta&t=noCk__mL75XEaJKwyC3kVlrnlKco7qGgxoWRxwOvgaM" alt="Bailey Dunning"
  width="150" height="auto" />
 
 - [Bailey Dunning](https://github.com/baileydunning)
