@@ -97,7 +97,7 @@ const AgentDetails = (props) => {
   const history = useHistory()
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
-  const [sessionUser, setSessionUser] = useState(null)
+  const [sessionUser, setSessionUser] = useState(state.currentUser)
   
   const stats = [
     { icon: brainTraining, barColor: 'gold', completed: 60 },
@@ -105,28 +105,22 @@ const AgentDetails = (props) => {
     { icon: healthTraining, barColor: 'gold', completed: 53 },
     { icon: basicTraining, barColor: 'gold', completed: 53 },
   ];
-
-  useEffect(() => {
-    getCurrentUser()
-  }, [state.currentUser])
-  
+    useEffect(() => {
+      if (state.currentUser !== null) {
+        console.log("hallelujah")
+        setSessionUser(state.currentUser)
+      } else {
+        setSessionUser(null)
+      }
+    }, [state.currentUser])
    useEffect(() => {
-     if (state.currentUser !== null) {
-        updateUserDetails()
-        console.log("user updated", sessionUser)
+     if(sessionUser !== null) {
+      updateUserDetails()
      }
-  }, [])
-
-  const getCurrentUser = () => {
-    if (state.currentUser !== null) {
-      setSessionUser(state.currentUser)
-    }
-  }
+  }, [state.selectedMissionTasks])
 
   const updateUserDetails = async () => {
-    await getUserById(+sessionUser.id).then(data => setSessionUser(data.data))
-    const action = { type: "SET_CURRENT_USER", currentUser: sessionUser }
-      dispatch(action)
+    await getUserById(+sessionUser.id).then(data => setSessionUser((data.data))).then(console.log(sessionUser))
   }
 
   const determinePath = () => {
@@ -142,7 +136,7 @@ const AgentDetails = (props) => {
           </div>
       
           <span className={classes.titleText}>
-            <h1>{sessionUser !== null ? sessionUser.attributes.name : 'KidDo Agent'}</h1> 
+            <h1>{state.currentUser ? state.currentUser.attributes.name : 'KidDo Agent'}</h1> 
           </span>
 
           <hr />
