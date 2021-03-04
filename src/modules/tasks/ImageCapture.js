@@ -25,8 +25,6 @@ const useStyles = makeStyles(() => ({
     color: "blanchedalmond",
   },
   imgBox: {
-    // maxWidth: "80%",
-    // maxHeight: "80%",
     marginRight: "2em",
     paddingBottom: "10px",
     display: "flex",
@@ -47,8 +45,6 @@ const useStyles = makeStyles(() => ({
     width: "80%",
     height: "80%",
     paddingTop: ".7em",
-    // borderRadius: "50%",
-    // overflow: "hidden",
     "& img": {
       width: "100%",
       height: "100%",
@@ -63,10 +59,6 @@ const ImageCapture = ({ checkReady }) => {
   const { user, isAuthenticated } = useAuth0();
   const [alert, setAlert] = useState(true);
   const [open, setOpen] = React.useState(true);
-
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
 
   const handleClose = () => {
     setAlert(false);
@@ -115,7 +107,6 @@ const ImageCapture = ({ checkReady }) => {
           message={`Remember, ${
             !isAuthenticated ? "KidDo Agent" : "Agent" + " " + user.given_name
           }, do not take photos of yourself or family. A secret agent must always keep their identity...secret!`}
-          // handleClickOpen={handleClickOpen}
           handleClose={handleClose}
         />
       )}
