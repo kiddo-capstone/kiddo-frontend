@@ -11,6 +11,7 @@ import { basicTraining, creativityTraining, healthTraining, brainTraining } from
 import { Link, useHistory } from "react-router-dom";
 import RoundButton from "../../ui/button/RoundButton";
 import UserIndex from "../login/UserIndex";
+import MiniAuth from "../auth/MiniAuth";
 
 const appStyles = theme;
 
@@ -106,12 +107,6 @@ const AgentDetails = (props) => {
   const determinePath = () => {
     return !state.currentUser ? history.push("/welcome") : history.push("/mission-control") 
   }
-
-  const logout = () => {
-    history.push("/welcome")
-    const action = { type: "SET_CURRENT_USER", currentUser: null }
-    dispatch(action)
-  }
   
   return (
     <section className={classes.section}>
@@ -149,21 +144,11 @@ const AgentDetails = (props) => {
         {stats.map((item, idx) => (
           <div className={classes.statRow} key={`statRow-${idx}`}>
             <img src={item.icon.img} className={classes.icon} key={`icon-${idx}`}/>
-            <p>0/{returnTaskCategoryLength(item.icon.desc)}</p>
           </div>
         ))}
       </div>
       )} */}
-      {!state.currentUser ?
-      <div className={classes.login}>
-        <UserIndex />
-      </div> :
-      <div className={classes.login}>
-        <Link to="/welcome"><h2>About KidDo</h2></Link>
-        <Link to="/mission-control"><h2>Mission Control</h2></Link>
-        <button onClick={logout}>LOG OUT</button>
-      </div>
-      }
+      <MiniAuth />
     </section>
   );
 };
