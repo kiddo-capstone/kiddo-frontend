@@ -5,7 +5,6 @@ import { PageContainer, TitleContainer } from "../../ui/containers/index";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   FormControl,
-  Input,
   InputLabel,
   FormHelperText,
   TextField,
@@ -14,6 +13,7 @@ import Button from "@material-ui/core/Button";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import TransferList from '../parents/TransferList'
+import ExampleMission from '../mission/ExampleMission'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -75,7 +75,6 @@ const ParentView = () => {
   const composeData = async () => {
     const mission = {"name": missionName, "due_date": "2025-02-03", "user_id": child.id}
     const missionId = await createNewMission(mission)
-    // choices.forEach(async c => await console.log({"mission_id": +missionId.data.id, "task_id": +c.id}))
     choices.forEach(async c => await addTasksToMission({"mission_id": +missionId.data.id, "task_id": +c.id}))
   }
 
@@ -85,15 +84,27 @@ const ParentView = () => {
   }
 
   const clearInputs = () => {
-    // setChoices([]);
     setChild("");
     setMissionName("");
   }
 
+  const placeholderMission = {
+      "id": "32",
+      "type": "mission",
+      "attributes": {
+          "name": missionName || 'Add a Title Above',
+          "due_date": "2025-02-03",
+          "user_id": 7,
+          "created_at": new Date(),
+          "updated_at": "2021-03-04T05:26:39.507Z"
+    }
+  }
+
   return (
-    <div style={{ backgroundColor: "lightgray", height: "100vh" }}>
+    <div style={{ backgroundColor: "lightgray", height: "70em" }}>
       <PageContainer>
-        <TitleContainer>Howdy Parents</TitleContainer>       
+        <TitleContainer>Parent Dashboard</TitleContainer>      
+        <br/> 
         <FormControl>
           <TextField
             id="outlined-basic"
@@ -105,10 +116,10 @@ const ParentView = () => {
           <FormHelperText style={{margin:'1em'}}id="my-helper-text">
             This is the name of the mission your child will see 🥳 
           </FormHelperText>
-          <TransferList getChoices={getChoices}/>
-          <FormHelperText style={{margin:'1em'}}id="my-helper-text">
-            Pick at least one, but we recommend no more than four tasks per mission!
-          </FormHelperText>
+            <TransferList getChoices={getChoices}/>
+            <FormHelperText style={{margin:'1em'}}id="my-helper-text">
+              Pick at least one, but we recommend no more than four tasks per mission!
+            </FormHelperText>
         </FormControl>
         <FormControl className={classes.formControl}>
         <InputLabel id="demo-simple-select-helper-label">Child</InputLabel>
@@ -125,9 +136,13 @@ const ParentView = () => {
         </Select>
         <FormHelperText>Which child is this mission for?</FormHelperText>
       </FormControl>
-      <Button onClick={handleClick} disabled={ready ? false : true} variant="contained" color="primary">
-        Add Mission!
+      <Button style={{margin: '1em'}} onClick={handleClick} disabled={ready ? false : true} variant="contained" color="primary">
+        {ready ? 'Add Mission!' : 'add more to the mission!'}
       </Button>        
+        <div style={{width:'80%', justifyContent:'center', display:'flex', backgroundColor:'darkgrey', marginTop: '1em'}}>
+          <ExampleMission tasks={choices} props={placeholderMission} />
+        </div>
+        <FormHelperText>This is how your child's mission will look!</FormHelperText>
       </PageContainer>
     </div>
   );
