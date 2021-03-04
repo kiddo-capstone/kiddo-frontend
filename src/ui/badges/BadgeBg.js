@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((props) => ({
   BadgeBG: {
-    width: '50%',
+    width: '60%',
     background: '#ffffff29',
     borderRadius: '3em',
     display: "flex",
