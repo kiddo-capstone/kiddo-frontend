@@ -112,10 +112,9 @@ const AgentDetails = (props) => {
   
    useEffect(() => {
      if (state.currentUser !== null) {
-       console.log("user updated", sessionUser)
         updateUserDetails()
+        console.log("user updated", sessionUser)
      }
-    
   }, [])
 
   const getCurrentUser = () => {
@@ -125,8 +124,11 @@ const AgentDetails = (props) => {
   }
 
   const updateUserDetails = async () => {
-    await getUserById(+sessionUser.id).then(data => console.log(data.data))
+    await getUserById(+sessionUser.id).then(data => setSessionUser(data.data))
+    const action = { type: "SET_CURRENT_USER", currentUser: sessionUser }
+      dispatch(action)
   }
+
   const determinePath = () => {
     return !state.currentUser ? history.push("/welcome") : history.push("/mission-control") 
   }
@@ -140,7 +142,7 @@ const AgentDetails = (props) => {
           </div>
       
           <span className={classes.titleText}>
-            <h1>{state.currentUser !== null ? state.currentUser.attributes.name : 'KidDo Agent'}</h1> 
+            <h1>{sessionUser !== null ? sessionUser.attributes.name : 'KidDo Agent'}</h1> 
           </span>
 
           <hr />
@@ -149,10 +151,10 @@ const AgentDetails = (props) => {
               <h2>Date:</h2>
               <h3>{ new Date().toLocaleDateString() }</h3>
             </div>
-             {state.currentUser !== null && (
+             {sessionUser !== null && (
             <div className={classes.detailsChild}>
               <h2>Points:</h2>
-              <h3>{state.currentUser.attributes.points}</h3>
+              <h3>{sessionUser.attributes.points}</h3>
             </div>
              )}
             <div className={classes.detailsChild}>
