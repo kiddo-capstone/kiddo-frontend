@@ -49,9 +49,7 @@ KidDo is a secret-agent-themed skill-building app for kids ages ~9-12. KidDo gam
 
  <br>
 
-The [KidDo Backend Repo](https://github.com/kiddo-capstone/kiddo-backend) and [server]() enables full CRUD methodology for our app
-
-From here, data is displayed in the app for students to find an older adult whose needs they feel most suited to assist with.
+Visit the [KidDo Backend Repo](https://github.com/kiddo-capstone/kiddo-backend) designed by our amazing Backend team! The server enables full CRUD methodology for our app.
 
 ## Technologies And Tools
 
