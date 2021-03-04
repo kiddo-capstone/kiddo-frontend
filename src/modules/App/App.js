@@ -7,6 +7,7 @@ import MissionControl from "../views/MissionControl";
 import DailyMission from "../views/DailyMission";
 import TaskView from "../views/TaskView";
 import StyleSample from "../views/StyleSample";
+import ParentView from "../views/ParentView";
 import Error400 from "../common/error/Error400";
 import Error500 from "../common/error/Error500";
 import AppContainer from "../../ui/containers/AppContainer";
@@ -63,6 +64,7 @@ const App = () => {
                 return <TaskView id={id} />;
               }}
             />
+            <Route exact path="/parent-view" component={ParentView} />
             <Route exact path="/style-guide" component={StyleSample} />
             <Route exact path="/mission-control" component={MissionControl} />
             <Route exact path="/welcome" component={Auth} />
