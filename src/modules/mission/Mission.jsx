@@ -5,9 +5,7 @@ import BadgeBG from "../../ui/badges/BadgeBg";
 import RoundButton from "../../ui/button/RoundButton";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core";
-import creativity from "../../assets/creativity.png";
-import intelligence from "../../assets/intelligence.png";
-import activity from "../../assets/activity.png";
+import {basicTraining, healthTraining, creativityTraining, brainTraining} from "../../assets/index";
 import { convertDate } from "../common/convertDate";
 import {getTasksByMissionId} from '../common/apiCalls'
 
@@ -132,19 +130,25 @@ const Mission = props => {
       if (category === 'Brain Training') {
         return(
           <BadgeContainer key={i}>
-            {<img className={classes.icon} src={intelligence} />}
+            {<img className={classes.icon} src={brainTraining.img} alt={brainTraining.desc}/>}
           </BadgeContainer>
         )
       } else if (category === 'Creativity Training') {
         return(
           <BadgeContainer className={classes.icon} key={i}>
-            {<img className={classes.icon} src={creativity} />}
+            {<img className={classes.icon} src={creativityTraining.img} alt={creativityTraining.desc}/>}
           </BadgeContainer>
         )
       } else if (category === 'Health Training') {
         return(
           <BadgeContainer key={i}>
-            {<img className={classes.icon} src={activity} />}
+            {<img className={classes.icon} src={healthTraining.img} alt={healthTraining.desc}/>}
+          </BadgeContainer>
+        )
+      } else if (category === 'Basic Training') {
+        return(
+          <BadgeContainer key={i}>
+            {<img className={classes.icon} src={basicTraining.img} alt={basicTraining.desc}/>}
           </BadgeContainer>
         )
       }
