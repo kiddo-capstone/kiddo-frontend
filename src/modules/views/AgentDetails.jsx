@@ -107,20 +107,20 @@ const AgentDetails = (props) => {
   ];
     useEffect(() => {
       if (state.currentUser !== null) {
-        console.log("hallelujah")
         setSessionUser(state.currentUser)
       } else {
         setSessionUser(null)
       }
     }, [state.currentUser])
-   useEffect(() => {
-     if(sessionUser !== null) {
-      updateUserDetails()
-     }
-  }, [state.selectedMissionTasks])
+
+    useEffect(() => {
+      if (sessionUser !== null) {
+        updateUserDetails()
+      }
+    }, [state.selectedMissionTasks])
 
   const updateUserDetails = async () => {
-    await getUserById(+sessionUser.id).then(data => setSessionUser((data.data))).then(console.log(sessionUser))
+    await getUserById(+sessionUser.id).then(data => setSessionUser((data.data))).then(console.log("updated session user", sessionUser))
   }
 
   const determinePath = () => {
@@ -136,7 +136,7 @@ const AgentDetails = (props) => {
           </div>
       
           <span className={classes.titleText}>
-            <h1>{state.currentUser ? state.currentUser.attributes.name : 'KidDo Agent'}</h1> 
+            <h1>{sessionUser !== null ? sessionUser.attributes.name : 'KidDo Agent'}</h1> 
           </span>
 
           <hr />
@@ -145,7 +145,7 @@ const AgentDetails = (props) => {
               <h2>Date:</h2>
               <h3>{ new Date().toLocaleDateString() }</h3>
             </div>
-             {sessionUser !== null && (
+          {sessionUser !== null && (
             <div className={classes.detailsChild}>
               <h2>Points:</h2>
               <h3>{sessionUser.attributes.points}</h3>
@@ -158,7 +158,7 @@ const AgentDetails = (props) => {
           </div>
         </div>
       </div>
-      {/* {state.currentUser !== null && (
+      {/* {sessionUser !== null && (
       <div>
         {stats.map((item, idx) => (
           <div className={classes.statRow} key={`statRow-${idx}`}>
