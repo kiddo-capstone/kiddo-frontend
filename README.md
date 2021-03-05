@@ -49,7 +49,7 @@ KidDo is a secret-agent-themed skill-building app for kids ages ~9-12. KidDo gam
 
  <br>
 
-Visit the [KidDo Backend Repo](https://github.com/kiddo-capstone/kiddo-backend) designed by our amazing Backend team! The server enables full CRUD methodology for our app.
+Visit the [KidDo Backend Repo](https://github.com/kiddo-capstone/kiddo-backend) to see the server, data schema, and API contracts developed by our amazing Backend team! The server enables full CRUD methodology for our app.
 
 ## Technologies And Tools
 
@@ -102,14 +102,15 @@ With more time, we would like to include:
 <img src="https://media-exp1.licdn.com/dms/image/C4E35AQGFrI0jpzcVjg/profile-framedphoto-shrink_800_800/0/1608389528155?e=1614967200&v=beta&t=xcKIE-FIneJvMGbr0motDDTRQ5C4Xp4HSxuB_qsBkmI" alt="Scott Brabson"
  width="150" height="auto" />
 
-- [Scott Brabson](https://github.com/brabbuss)
+- Scott Brabson - [![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/scott-brabson/) - [![GitHub][github-shield]](https://github.com/brabbuss)
+
 
 <img src="https://media-exp1.licdn.com/dms/image/C4E03AQH49lEHdFTI5w/profile-displayphoto-shrink_200_200/0/1613081146644?e=1620259200&v=beta&t=CIwlHX1W7yMwviGRg-2muu1blm3DJwPq7ab8c9JN2W4" alt="Lola Dolinsky"
  width="150" height="auto" />
 
-- [Lola Dolinsky](https://github.com/lo-la-do-li)
+- Lola Dolinsky - [![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/lola-dolinsky-15b5b01ba/) - [![GitHub][github-shield]](https://github.com/lo-la-do-li)
 
 <img src="https://media-exp1.licdn.com/dms/image/C4E03AQEuMSUTjGqhTw/profile-displayphoto-shrink_800_800/0/1610774165519?e=1620259200&v=beta&t=noCk__mL75XEaJKwyC3kVlrnlKco7qGgxoWRxwOvgaM" alt="Bailey Dunning"
  width="150" height="auto" />
-
-- [Bailey Dunning](https://github.com/baileydunning)
+ 
+- Bailey Dunning - [![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/baileydunning/) - [![GitHub][github-shield]](https://github.com/baileydunning)
