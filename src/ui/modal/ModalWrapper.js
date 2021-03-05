@@ -4,6 +4,8 @@ import Slide from "@material-ui/core/Slide";
 import Button from "../button/Button";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
+import * as fonts from "../common/fonts";
+import * as colors from "../common/colors";
 
 const appStyles = theme;
 
@@ -15,12 +17,11 @@ const useStyles = makeStyles(() => ({
   root: {
     display: "flex",
     flexDirection: "column",
-    backgroundColor: "#3e4452",
+    backgroundColor: "#232323",
     border: `3px solid ${appStyles.colors.yellow}`,
     padding: ".2em",
     color: "white",
     minWidth: "100%",
-    // maxWidth: "100%",
     fontFamily: appStyles.fonts.primary,
     fontSize: "20px",
   },
@@ -30,6 +31,20 @@ const useStyles = makeStyles(() => ({
     fontSize: 16,
     fontFamily: appStyles.fonts.secondary,
   },
+  button: {
+    fontFamily: fonts.secondary,
+    fontSize: ".8em",
+    background: "transparent",
+    outline: "none",
+    willChange: "transform",
+    margin: "2%",
+    cursor: "pointer",
+    transition:
+      "transform ease .3s, border ease 2s, background ease .3s, color ease .3s",
+    "&:hover": {
+      transform: "translateY(-5%)",
+    },
+  },
 }));
 
 export default function ModalWrapper({
@@ -38,18 +53,22 @@ export default function ModalWrapper({
   open,
   handleClose,
   handleClickOpen,
+  id,
 }) {
   const classes = useStyles();
 
   return (
     <div>
-      <Button
+      <button
+        className={classes.button}
+        id={id}
         style={{ border: "none", background: "transparent", color: "#ffd602" }}
         onClick={handleClickOpen}
       >
         {btnMessage}
-      </Button>
+      </button>
       <Dialog
+        id={id}
         open={open}
         TransitionComponent={Transition}
         keepMounted
