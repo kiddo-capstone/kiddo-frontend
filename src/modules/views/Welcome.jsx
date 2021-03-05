@@ -55,31 +55,36 @@ const Welcome = () => {
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
   const [signup, setSignup] = useState(true);
-  const [openB, setOpenB] = useState(false);
-  const [openC, setOpenC] = useState(false);
+  const [openBrain, setOpenBrain] = useState(false);
+  const [openCreativity, setOpenCreativity] = useState(false);
+  const [openHealth, setOpenHealth] = useState(false);
+  const [openBasic, setOpenBasic] = useState(false);
   const [type, setType] = useState("");
 
   const handleClickOpen = (e, id) => {
     if (e.target.id === "brain") {
       // setOpenC(false)
-      setOpenB(true)
+      setOpenBrain(true)
     }
     if (e.target.id === "creativity") {
-        setOpenC(true)
+        setOpenCreativity(true)
       }
     if (e.target.id === "health") {
       // setOpenC(false)
-      setOpenB(true)
+      setOpenHealth(true)
     }
     if (e.target.id === "basic") {
       // setOpenC(false)
-      setOpenB(true)
+      setOpenBasic(true)
     }
     console.log("id:", e.target.id, "type:", type)
   };
 
   const handleClose = () => {
-    setOpenB(false);
+    setOpenBrain(false);
+    setOpenCreativity(false);
+    setOpenHealth(false);
+    setOpenBasic(false);
   };
 
   const categories = {
@@ -113,7 +118,7 @@ const Welcome = () => {
 
             <ModalWrapper 
               id={categories.brain.id} 
-              open={openB} 
+              open={openBrain} 
               btnMessage={<img id={categories.brain.id} className={classes.img} src={brainTraining.img} alt={brainTraining.desc}/>} 
               handleClose={handleClose}
               handleClickOpen={handleClickOpen}
@@ -128,7 +133,7 @@ const Welcome = () => {
             <h3>Creativity Training</h3>
             <ModalWrapper 
               id={categories.creativity.id} 
-              open={openC} 
+              open={openCreativity} 
               btnMessage={<img id={categories.creativity.id} className={classes.img} src={creativityTraining.img} alt={creativityTraining.desc}/>} 
               handleClose={handleClose}
               handleClickOpen={handleClickOpen}
@@ -143,7 +148,7 @@ const Welcome = () => {
             <h3>Health Training</h3>
             <ModalWrapper 
               id={categories.health.id} 
-              // open={open} 
+              open={openHealth} 
               btnMessage={<img id={categories.health.id} className={classes.img} src={healthTraining.img} alt={healthTraining.desc}/>} 
               handleClose={handleClose}
               handleClickOpen={handleClickOpen}
@@ -158,8 +163,8 @@ const Welcome = () => {
             <h3>Basic Training</h3>
             <ModalWrapper 
               id={categories.basic.id} 
-              // open={open} 
-              btnMessage={<img className={classes.img} src={basicTraining.img} alt={basicTraining.desc}/>} 
+              open={openBasic} 
+              btnMessage={<img id={categories.basic.id} className={classes.img} src={basicTraining.img} alt={basicTraining.desc}/>} 
               handleClose={handleClose}
               handleClickOpen={handleClickOpen}
               >
