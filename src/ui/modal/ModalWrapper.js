@@ -38,18 +38,21 @@ export default function ModalWrapper({
   open,
   handleClose,
   handleClickOpen,
+  id,
 }) {
   const classes = useStyles();
 
   return (
     <div>
       <Button
+        id={id}
         style={{ border: "none", background: "transparent", color: "#ffd602" }}
         onClick={handleClickOpen}
       >
         {btnMessage}
       </Button>
       <Dialog
+        id={id}
         open={open}
         TransitionComponent={Transition}
         keepMounted

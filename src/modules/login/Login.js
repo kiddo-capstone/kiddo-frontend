@@ -69,7 +69,7 @@ const Login = () => {
         id="user-select"
         value={kiddoUser}
         onChange={handleChange}
-        label="kiddoUser"
+        aria-label="select kiddoUser"
       >
         <MenuItem value={""}>
           <em>None</em>

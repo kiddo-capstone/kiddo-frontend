@@ -6,6 +6,7 @@ import theme from "../../ui/common/theme";
 import AppContext from "../App/AppContext";
 import { Link } from "react-router-dom";
 import UserIndex from "../login/UserIndex";
+import ModalWrapper from "../../ui/modal/ModalWrapper";
 
 
 const useStyles = makeStyles(() => ({
@@ -51,10 +52,30 @@ const useStyles = makeStyles(() => ({
 }))
 
 const Welcome = () => {
+  const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
   const [signup, setSignup] = useState(true);
-  const classes = useStyles();
+  const [open, setOpen] = useState(false);
+  
+  const handleClickOpen = (e) => {
+    if(e.target.id === "brain") {
+      console.log(e.target)
+      setOpen(true);
+    }
+    console.log(e.target)
+  };
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const categories = {
+      brain: {
+      id: "brain",
+      description: "Our brains are very complex organs that are responsible for everything, from the way we think to the way we move. Training your brain comes with many unique benefits, like improving memory, how quickly you understand things and something called executive functioning. Executive functioning is just a fancy way of saying the skills we use to understand tasks, break them down, and accomplish them step-by-step."
+    },
+  }
+  
 
   return (
     <PageContainer>
@@ -63,12 +84,18 @@ const Welcome = () => {
         <p>As a KidDo agent, it’s your job to complete missions that help you work towards being the best version of yourself. Mission Control is home to all the different missions you can do. Missions are built out of up to four tasks that can earn you points. Each task falls under one of these four categories:</p>
         <div className={classes.taskTypes}>
           <div className={classes.category}>
-            <div>
+            <ModalWrapper 
+              id={categories.brain.id} 
+              open={open} btnMessage={"Brain Training"} 
+              handleClose={handleClose}
+              handleClickOpen={handleClickOpen}>
+            <div onClick={(e) => handleClickOpen(e)}>
               <img className={classes.img} src={brainTraining.img} alt={brainTraining.desc}/>
 
             </div>
+            </ModalWrapper>
             <h3>Brain Training</h3>
-            <p className={classes.categoryDesc}>Our brains are very complex organs that are responsible for everything, from the way we think to the way we move. Training your brain comes with many unique benefits, like improving memory, how quickly you understand things and something called executive functioning. Executive functioning is just a fancy way of saying the skills we use to understand tasks, break them down, and accomplish them step-by-step.</p>
+            <p className={classes.categoryDesc}>{categories.brain.description}</p>
           </div>
           <div className={classes.category}>
             <img className={classes.img} src={creativityTraining.img} alt={creativityTraining.desc}/>
