@@ -104,7 +104,6 @@ With more time, we would like to include:
 
 - Scott Brabson - [![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/scott-brabson/) - [![GitHub][github-shield]](https://github.com/brabbuss)
 
-
 <img src="https://media-exp1.licdn.com/dms/image/C4E03AQH49lEHdFTI5w/profile-displayphoto-shrink_200_200/0/1613081146644?e=1620259200&v=beta&t=CIwlHX1W7yMwviGRg-2muu1blm3DJwPq7ab8c9JN2W4" alt="Lola Dolinsky"
  width="150" height="auto" />
 
@@ -114,3 +113,7 @@ With more time, we would like to include:
  width="150" height="auto" />
  
 - Bailey Dunning - [![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/baileydunning/) - [![GitHub][github-shield]](https://github.com/baileydunning)
+
+<!-- MARKDOWN LINKS & IMAGES -->
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=flat-square&logo=linkedin&colorB=555
+[github-shield]: https://img.shields.io/badge/-GitHub-black.svg?style=flat-square&logo=github&colorB=555
