@@ -58,7 +58,7 @@ const Welcome = () => {
   const [open, setOpen] = useState(false);
   
   const handleClickOpen = (e) => {
-    if(e.target.id === "brain") {
+    if (e.target.id === "brain") {
       console.log(e.target)
       setOpen(true);
     }
@@ -84,18 +84,22 @@ const Welcome = () => {
         <p>As a KidDo agent, it’s your job to complete missions that help you work towards being the best version of yourself. Mission Control is home to all the different missions you can do. Missions are built out of up to four tasks that can earn you points. Each task falls under one of these four categories:</p>
         <div className={classes.taskTypes}>
           <div className={classes.category}>
+            <h3>Brain Training</h3>
             <ModalWrapper 
               id={categories.brain.id} 
-              open={open} btnMessage={"Brain Training"} 
+              open={open} 
+              btnMessage={<img id={categories.brain.id} className={classes.img} src={brainTraining.img} alt={brainTraining.desc}/>} 
               handleClose={handleClose}
-              handleClickOpen={handleClickOpen}>
-            <div onClick={(e) => handleClickOpen(e)}>
-              <img className={classes.img} src={brainTraining.img} alt={brainTraining.desc}/>
-
-            </div>
+              handleClickOpen={handleClickOpen}
+              >
+              <div onClick={(e) => handleClickOpen(e)}>
+                <p className={classes.categoryDesc}>{categories.brain.description}</p>
+              </div>
             </ModalWrapper>
+
             <h3>Brain Training</h3>
-            <p className={classes.categoryDesc}>{categories.brain.description}</p>
+            <img className={classes.img} src={brainTraining.img} alt={brainTraining.desc}/>
+            {/* <p className={classes.categoryDesc}>{categories.brain.description}</p> */}
           </div>
           <div className={classes.category}>
             <img className={classes.img} src={creativityTraining.img} alt={creativityTraining.desc}/>
