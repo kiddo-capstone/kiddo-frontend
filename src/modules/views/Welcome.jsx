@@ -63,18 +63,15 @@ const Welcome = () => {
 
   const handleClickOpen = (e, id) => {
     if (e.target.id === "brain") {
-      // setOpenC(false)
       setOpenBrain(true)
     }
     if (e.target.id === "creativity") {
         setOpenCreativity(true)
       }
     if (e.target.id === "health") {
-      // setOpenC(false)
       setOpenHealth(true)
     }
     if (e.target.id === "basic") {
-      // setOpenC(false)
       setOpenBasic(true)
     }
     console.log("id:", e.target.id, "type:", type)
