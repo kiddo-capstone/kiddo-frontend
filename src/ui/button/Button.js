@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       borderColor: (theme) => (theme.primary ? colors.blue : colors.blue),
       background: (theme) => (theme.primary ? colors.blue : colors.blue),
-      color: (theme) => (theme.primary ? "#232323" : "#232323"),
+      color: (theme) => (theme.primary ? "#1c1c1c" : "#1c1c1c"),
       transform: "translateY(-3%)",
     },
     "&:disabled": {

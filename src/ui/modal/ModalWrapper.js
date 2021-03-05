@@ -33,6 +33,7 @@ const useStyles = makeStyles(() => ({
   },
   button: {
     fontFamily: fonts.secondary,
+    fontSize: ".8em",
     background: "transparent",
     outline: "none",
     willChange: "transform",
