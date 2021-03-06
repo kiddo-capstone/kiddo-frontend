@@ -114,7 +114,8 @@ function AppContainer(props) {
               style={{ height: "2em" }}
             />
           </IconButton>
-          Welcome{isAuthenticated && ` ${user.given_name}`}!
+          {/* Welcome {isAuthenticated && ` ${user.given_name}`}! */}
+          KidDo
         </Toolbar>
       </AppBar>
       <div className={classes.drawer}>
@@ -139,7 +140,6 @@ function AppContainer(props) {
 
         <Hidden smDown implementation="js">
           <Drawer
-            // container={container}
             classes={{
               paper: classes.drawerPaper,
               root: classes.root,

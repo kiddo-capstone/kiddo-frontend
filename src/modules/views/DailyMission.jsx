@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
     willChange: 'transform',
     transition: 'ease .3s',
     cursor: 'pointer',
-    [theme.breakpoints.down("800")]: {
+    [theme.breakpoints.down("960")]: {
       top: '80px',
       left: '2%',
       zIndex: '10',
