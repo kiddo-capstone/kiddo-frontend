@@ -118,7 +118,7 @@ function AppContainer(props) {
         </Toolbar>
       </AppBar>
       <div className={classes.drawer}>
-        <Hidden mdUp implementation="css">
+        <Hidden mdUp implementation="js">
           <Drawer
             container={container}
             variant="temporary"
@@ -128,7 +128,6 @@ function AppContainer(props) {
             classes={{
               paper: classes.drawerPaper,
               root: classes.root,
-              drawer: classes.drawer,
             }}
             ModalProps={{
               keepMounted: true,
@@ -138,7 +137,7 @@ function AppContainer(props) {
           </Drawer>
         </Hidden>
 
-        <Hidden smDown implementation="css">
+        <Hidden smDown implementation="js">
           <Drawer
             // container={container}
             classes={{
