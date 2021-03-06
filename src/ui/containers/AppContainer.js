@@ -128,6 +128,7 @@ function AppContainer(props) {
             classes={{
               paper: classes.drawerPaper,
               root: classes.root,
+              drawer: classes.drawer,
             }}
             ModalProps={{
               keepMounted: true,
@@ -142,6 +143,7 @@ function AppContainer(props) {
             // container={container}
             classes={{
               paper: classes.drawerPaper,
+              root: classes.root,
             }}
             variant="permanent"
             open
