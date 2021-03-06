@@ -127,6 +127,7 @@ function AppContainer(props) {
             onClose={handleDrawerToggle}
             classes={{
               paper: classes.drawerPaper,
+              root: classes.root,
             }}
             ModalProps={{
               keepMounted: true,
