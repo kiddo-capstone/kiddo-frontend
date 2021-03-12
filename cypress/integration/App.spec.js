@@ -15,9 +15,9 @@ describe("App", () => {
     cy.visit("/not-a-page");
     cy.contains("Looks like you got lost!").should("be.visible");
 
-    cy.get(".makeStyles-img-46");
+    cy.get(".makeStyles-img-13");
 
-    cy.get(".makeStyles-container-45 > .makeStyles-butt-41").click();
+    cy.get(".makeStyles-container-12 > .makeStyles-butt-16").click();
 
     cy.url().should("include", "/mission-control");
   });
