@@ -69,48 +69,15 @@ Visit the [KidDo Backend Repo](https://github.com/kiddo-capstone/kiddo-backend) 
 >   - GitHub Projects
 >   - Miro Wireframe Design
 
-## Features
-
-## KidDo in Action:
-
-#### Welcome Page and Agent Dashboard:
-
-![Welcome and Agent Dashboard]()
-
-#### Mission Control:
-
-![Mission Control]()
-
-#### Single Mission View:
-
-![Single Mission View]()
-
-#### Single Task View:
-
-![Single Task View]()
-
-#### Image Capture and Upload (mobile):
-
-![Image Capture]()
-
 ## Roadmap
 
 With more time, we would like to include:
 
 ## Contributors
 
-<img src="https://media-exp1.licdn.com/dms/image/C4E35AQGFrI0jpzcVjg/profile-framedphoto-shrink_800_800/0/1608389528155?e=1614967200&v=beta&t=xcKIE-FIneJvMGbr0motDDTRQ5C4Xp4HSxuB_qsBkmI" alt="Scott Brabson"
- width="150" height="auto" />
-
 - Scott Brabson - [![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/scott-brabson/) - [![GitHub][github-shield]](https://github.com/brabbuss)
 
-<img src="https://media-exp1.licdn.com/dms/image/C4E03AQH49lEHdFTI5w/profile-displayphoto-shrink_200_200/0/1613081146644?e=1620259200&v=beta&t=CIwlHX1W7yMwviGRg-2muu1blm3DJwPq7ab8c9JN2W4" alt="Lola Dolinsky"
- width="150" height="auto" />
-
 - Lola Dolinsky - [![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/lola-dolinsky-15b5b01ba/) - [![GitHub][github-shield]](https://github.com/lo-la-do-li)
-
-<img src="https://media-exp1.licdn.com/dms/image/C4E03AQEuMSUTjGqhTw/profile-displayphoto-shrink_800_800/0/1610774165519?e=1620259200&v=beta&t=noCk__mL75XEaJKwyC3kVlrnlKco7qGgxoWRxwOvgaM" alt="Bailey Dunning"
- width="150" height="auto" />
  
 - Bailey Dunning - [![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/baileydunning/) - [![GitHub][github-shield]](https://github.com/baileydunning)
 
