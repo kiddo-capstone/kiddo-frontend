@@ -63,9 +63,9 @@ const useStyles = makeStyles(() => ({
   detailsChild: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     alignItems: "center",
-    padding: "0 1em",
+    padding: "0 2em",
     color: appStyles.colors.white,
     "& h2:nth-child(1)": {
       color: appStyles.colors.yellow,
@@ -125,6 +125,8 @@ const AgentDetails = (props) => {
   const getPointsProgress = (points, target) => {
     if (points < target) {
       return (points / target) * 100
+    } else {
+      return "You did it!"
     }
   }
     
@@ -146,19 +148,25 @@ const AgentDetails = (props) => {
               <h2>Date:</h2>
               <h3>{ new Date().toLocaleDateString() }</h3>
             </div>
+            <div className={classes.detailsChild}>
+              <h2>Agent Status:</h2>
+                <StatusForm />
+            </div>
           {sessionUser !== null && (
             <>
               <div className={classes.detailsChild}>
                 <h2>Points:</h2>
                 <h3>{sessionUser.attributes.points}</h3>
               </div>
+              <span className={classes.statRow}>
               <ProgressBar barColor={appStyles.colors.blue} completed={getPointsProgress(sessionUser.attributes.points, 200)}/>
+              </span>
             </>
           )}
-            <div className={classes.detailsChild}>
+            {/* <div className={classes.detailsChild}>
               <h2>Agent Status:</h2>
                 <StatusForm />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
