@@ -122,7 +122,7 @@ const AgentDetails = (props) => {
     return !state.currentUser ? history.push("/welcome") : history.push("/mission-control") 
   }
 
-  const pointsProgress = (points, target) => {
+  const getPointsProgress = (points, target) => {
     if (points < target) {
       return (points / target) * 100
     }
@@ -152,7 +152,7 @@ const AgentDetails = (props) => {
                 <h2>Points:</h2>
                 <h3>{sessionUser.attributes.points}</h3>
               </div>
-              <ProgressBar barColor={'gold'} completed={sessionUser.attributes.points}/>
+              <ProgressBar barColor={appStyles.colors.blue} completed={getPointsProgress(sessionUser.attributes.points, 200)}/>
             </>
           )}
             <div className={classes.detailsChild}>
