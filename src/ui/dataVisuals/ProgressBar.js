@@ -19,7 +19,7 @@ const ProgressBar = (props) => {
     backgroundColor: barColor,
     borderRadius: "inherit",
     textAlign: "right",
-    "& :hover": { transition: "width 2s ease-in-out" },
+    transition: "width 1s ease-in-out",
   };
 
   const label = {
@@ -31,7 +31,7 @@ const ProgressBar = (props) => {
   return (
     <div style={container}>
       <div style={filler}>
-        <span style={label}>{`${completed}%`}</span>
+        <span style={label}>{`${completed}`}</span>
       </div>
     </div>
   );

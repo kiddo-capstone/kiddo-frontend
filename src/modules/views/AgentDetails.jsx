@@ -124,8 +124,12 @@ const AgentDetails = (props) => {
 
   const getPointsProgress = (points, target) => {
     if (points < target) {
-      return (points / target) * 100
-    } else {
+      return `${((points / target) * 100)}%`
+    } else if (points === target) {
+      // Could put a fun animation in here!
+      // Then it needs to either reload a progress bar,
+      // OR no progress bar and starts Points
+      // Back at 0 + the difference once user hits the target 
       return "You did it!"
     }
   }
@@ -159,14 +163,13 @@ const AgentDetails = (props) => {
                 <h3>{sessionUser.attributes.points}</h3>
               </div>
               <span className={classes.statRow}>
-              <ProgressBar barColor={appStyles.colors.blue} completed={getPointsProgress(sessionUser.attributes.points, 200)}/>
+                <ProgressBar 
+                  barColor={appStyles.colors.yellow} 
+                  completed={getPointsProgress(sessionUser.attributes.points, 200)}
+                />
               </span>
             </>
           )}
-            {/* <div className={classes.detailsChild}>
-              <h2>Agent Status:</h2>
-                <StatusForm />
-            </div> */}
           </div>
         </div>
       </div>
