@@ -112,7 +112,7 @@ const AgentDetails = (props) => {
       if (sessionUser !== null) {
         updateUserDetails()
       }
-    }, [state.selectedMissionTasks])
+    }, [state])
 
   const updateUserDetails = async () => {
     await getUserById(+sessionUser.id).then(data => setSessionUser((data.data))).then(console.log("updated session user", sessionUser))
@@ -124,7 +124,7 @@ const AgentDetails = (props) => {
 
   const getPointsProgress = (points, target) => {
     if (points < target) {
-      return `${((points / target) * 100)}%`
+      return ((points / target) * 100).toFixed(1)
     } else if (points === target) {
       // Could put a fun animation in here!
       // Then it needs to either reload a progress bar,
@@ -165,7 +165,7 @@ const AgentDetails = (props) => {
               <span className={classes.statRow}>
                 <ProgressBar 
                   barColor={appStyles.colors.yellow} 
-                  completed={getPointsProgress(sessionUser.attributes.points, 200)}
+                  completed={getPointsProgress(sessionUser.attributes.points, 300)}
                 />
               </span>
             </>
