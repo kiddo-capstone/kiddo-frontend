@@ -8,6 +8,7 @@ import { basicTraining, creativityTraining, healthTraining, brainTraining } from
 import { useHistory } from "react-router-dom";
 import MiniAuth from "../auth/MiniAuth";
 import { getUserById } from "../common/apiCalls";
+import ProgressBar from "../../ui/dataVisuals/ProgressBar";
 
 const appStyles = theme;
 
@@ -121,6 +122,12 @@ const AgentDetails = (props) => {
     return !state.currentUser ? history.push("/welcome") : history.push("/mission-control") 
   }
 
+  const pointsProgress = (points, target) => {
+    if (points < target) {
+      return (points / target) * 100
+    }
+  }
+    
   return (
     <section className={classes.section}>
       <div className={classes.card}>
@@ -140,10 +147,13 @@ const AgentDetails = (props) => {
               <h3>{ new Date().toLocaleDateString() }</h3>
             </div>
           {sessionUser !== null && (
-            <div className={classes.detailsChild}>
-              <h2>Points:</h2>
-              <h3>{sessionUser.attributes.points}</h3>
-            </div>
+            <>
+              <div className={classes.detailsChild}>
+                <h2>Points:</h2>
+                <h3>{sessionUser.attributes.points}</h3>
+              </div>
+              <ProgressBar barColor={'gold'} completed={sessionUser.attributes.points}/>
+            </>
           )}
             <div className={classes.detailsChild}>
               <h2>Agent Status:</h2>
