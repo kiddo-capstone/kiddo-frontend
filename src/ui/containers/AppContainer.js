@@ -114,11 +114,12 @@ function AppContainer(props) {
               style={{ height: "2em" }}
             />
           </IconButton>
-          Welcome{isAuthenticated && ` ${user.given_name}`}!
+          {/* Welcome {isAuthenticated && ` ${user.given_name}`}! */}
+          KidDo
         </Toolbar>
       </AppBar>
       <div className={classes.drawer}>
-        <Hidden mdUp implementation="css">
+        <Hidden mdUp implementation="js">
           <Drawer
             container={container}
             variant="temporary"
@@ -127,6 +128,7 @@ function AppContainer(props) {
             onClose={handleDrawerToggle}
             classes={{
               paper: classes.drawerPaper,
+              root: classes.root,
             }}
             ModalProps={{
               keepMounted: true,
@@ -136,11 +138,11 @@ function AppContainer(props) {
           </Drawer>
         </Hidden>
 
-        <Hidden smDown implementation="css">
+        <Hidden smDown implementation="js">
           <Drawer
-            // container={container}
             classes={{
               paper: classes.drawerPaper,
+              root: classes.root,
             }}
             variant="permanent"
             open
@@ -157,4 +159,4 @@ function AppContainer(props) {
   );
 }
 
-export default AppContainer;
+export default React.memo(AppContainer);
