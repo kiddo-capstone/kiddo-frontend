@@ -9,6 +9,7 @@ import { useHistory } from "react-router-dom";
 import MiniAuth from "../auth/MiniAuth";
 import { getUserById } from "../common/apiCalls";
 import ProgressBar from "../../ui/dataVisuals/ProgressBar";
+import GoldCoinRain from "../../ui/animations/GoldCoinRain";
 
 const appStyles = theme;
 
@@ -137,6 +138,7 @@ const AgentDetails = (props) => {
   return (
     <section className={classes.section}>
       <div className={classes.card}>
+        <GoldCoinRain />
         <div className={classes.cardHeader}>
           <div className={classes.avatar} onClick={() => determinePath()}>
             <img src={kids} />

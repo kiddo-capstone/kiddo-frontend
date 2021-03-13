@@ -37,7 +37,7 @@ const GoldCoinRain = () => {
   };
 
   const makeItRain = () => {
-    for (i = 1; i < nbLeft; i++) {
+    for (let i = 1; i < nbLeft; i++) {
       let dropLeft = randRange(0, 1600);
       let dropTop = randRange(-1000, 1400);
       const drop = document.createElement("div");
