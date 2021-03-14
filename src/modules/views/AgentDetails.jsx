@@ -138,7 +138,6 @@ const AgentDetails = (props) => {
   return (
     <section className={classes.section}>
       <div className={classes.card}>
-        <GoldCoinRain />
         <div className={classes.cardHeader}>
           <div className={classes.avatar} onClick={() => determinePath()}>
             <img src={kids} />
@@ -160,6 +159,7 @@ const AgentDetails = (props) => {
             </div>
           {sessionUser !== null && (
             <>
+            <GoldCoinRain />
               <div className={classes.detailsChild}>
                 <h2>Points:</h2>
                 <h3>{sessionUser.attributes.points}</h3>
