@@ -95,6 +95,7 @@ const AgentDetails = (props) => {
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
   const [sessionUser, setSessionUser] = useState(state.currentUser)
+  const [isRaining, setIsRaining] = useState(false)
   
   const stats = [
     { icon: brainTraining, barColor: 'gold', completed: 60 },
@@ -113,12 +114,12 @@ const AgentDetails = (props) => {
       if (sessionUser !== null) {
         updateUserDetails()
       }
-    }, [state])
+    }, [state.selectedTask])
 
   const updateUserDetails = async () => {
-    await getUserById(+sessionUser.id).then(data => setSessionUser((data.data))).then(console.log("updated session user", sessionUser))
+    await getUserById(+sessionUser.id).then(data => setSessionUser((data.data))).then(setIsRaining(true))
   }
-
+  
   const determinePath = () => {
     return !state.currentUser ? history.push("/welcome") : history.push("/mission-control") 
   }
@@ -131,6 +132,7 @@ const AgentDetails = (props) => {
       // Then it needs to either reload a progress bar,
       // OR no progress bar and starts Points
       // Back at 0 + the difference once user hits the target 
+      
       return "You did it!"
     }
   }
@@ -156,10 +158,10 @@ const AgentDetails = (props) => {
             <div className={classes.detailsChild}>
               <h2>Agent Status:</h2>
                 <StatusForm />
+                 {isRaining === true && <GoldCoinRain isRaining={isRaining}/>}
             </div>
           {sessionUser !== null && (
             <>
-            <GoldCoinRain />
               <div className={classes.detailsChild}>
                 <h2>Points:</h2>
                 <h3>{sessionUser.attributes.points}</h3>

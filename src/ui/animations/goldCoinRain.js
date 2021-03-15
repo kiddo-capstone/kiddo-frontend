@@ -9,36 +9,44 @@ const useStyles = makeStyles(() => ({
     position: "absolute",
   },
   drop: {
-    width: "100%",
-    // position: "absolute",
+    // width: "80%",
     overflow: "hidden",
     "& img": {
       position: "absolute",
-      // width: "100%",
       // animation: "fall 1.5s linear infinite",
       overflow: "hidden",
-      width: "35%",
-      height: "20%",
-      animation: "$fall 2.5s linear ",
+      width: "30%",
+      height: "15%",
+      animation: "$fall 5s linear",
     },
   },
   "@keyframes fall": {
     to: {
       marginTop: "900px",
     },
+    // "0%": {
+    //   transform: "translate(0em, 0em) rotate(50deg)",
+    // },
+
+    // "50%": {
+    //   transform: "translate(0em, 0em) rotate(-50deg)",
+    // },
+    "100%": {
+      transform: "rotate(50deg)",
+    },
   },
 }));
 
-const GoldCoinRain = () => {
+const GoldCoinRain = ({ isRaining }) => {
   const classes = useStyles();
-  const numDrop = 100;
+  const numDrop = 200;
 
-  const [isRaining, setIsRaining] = useState(true);
+  // const [isRaining, setIsRaining] = useState(false);
 
   useEffect(() => {
     if (isRaining) {
       makeItRain();
-    } else {
+    } else if ((isRaining = false)) {
       makeItStop();
     }
   }, [isRaining]);
@@ -55,6 +63,8 @@ const GoldCoinRain = () => {
       let dropLeft = randRange(0, 1600);
       let dropTop = randRange(-1000, 1400);
 
+      let rotate = randRange(-360, 360);
+
       let coinDrop = document.createElement("img");
       coinDrop.setAttribute("class", `${classes.drop}`);
       coinDrop.setAttribute("id", `drop${i}`);
@@ -62,13 +72,10 @@ const GoldCoinRain = () => {
       coinDrop.setAttribute("alt", `${coin.desc}`);
 
       rainSection.appendChild(coinDrop);
-      // drop = (
-      //   <div className={classes.drop} id={`drop${i}`}>
-      //     <img className={classes.drop} src={coin.img} />
-      //   </div>
-      // );
       coinDrop.style.left = `${dropLeft}px`;
       coinDrop.style.top = `${dropTop}px`;
+      coinDrop.style.transform = `translate(-8em, 0) rotate(${rotate}deg)`;
+      // coinDrop.style.transform = `translate(3em, 0em) rotate(${transformRight}deg)`;
     }
   };
 
@@ -80,7 +87,7 @@ const GoldCoinRain = () => {
     }
   };
 
-  return <div id={"Rain"} className={classes.drop}></div>;
+  return <div id={"Rain"} className={classes.drop} isRaining={isRaining}></div>;
 };
 
 export default React.memo(GoldCoinRain);
