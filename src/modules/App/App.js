@@ -11,7 +11,6 @@ import Error400 from "../common/error/Error400";
 import Error500 from "../common/error/Error500";
 import AppContainer from "../../ui/containers/AppContainer";
 import { getAllMissions, getAllTasks, getAllUsers } from "../common/apiCalls";
-import Auth from '../auth/Auth'
 
 const App = () => {
   const [state, dispatch] = useReducer(appReducer, initialState);
