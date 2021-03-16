@@ -65,7 +65,7 @@ const App = () => {
             />
             <Route exact path="/parent-view" component={ParentView} />
             <Route exact path="/mission-control" component={MissionControl} />
-            <Route exact path="/welcome" component={Auth} />
+            {/* <Route exact path="/welcome" component={Auth} /> */}
             <Route path="/" component={Error400} />
           </Switch>
         </AppContext.Provider> :
