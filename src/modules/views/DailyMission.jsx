@@ -63,14 +63,14 @@ const DailyMission = props => {
   const {selectedMission: { attributes }} = state;
   const history = useHistory()
   const classes = useStyles();
-
+  
   useEffect(async () => {
     await getMissionById(id)
     .then(data => addDataToState("selectedMission", data.data))
     .catch(error => setError(error))
     getMissionTasks(id)
-  }, []);
-
+    console.log('use effect daily mission view');
+  }, [state.selectedTask]);
   
   const getMissionTasks = async (id) => {
     await getTasksByMissionId(id)

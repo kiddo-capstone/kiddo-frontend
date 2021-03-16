@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import AppContext from "../App/AppContext";
 import {PageContainer, TitleContainer } from "../../ui/containers/index";
 import Mission from '../mission/Mission'
@@ -50,9 +50,12 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const MissionControl = props => {
-  const [state, dispatch] = useContext(AppContext);
-  
+  const [state, dispatch] = useContext(AppContext);  
   const classes = useStyles()
+
+  useEffect(() => {
+    console.log('effect');
+  })
 
   const makeMissionList = () => {
     if (state.currentUser === "" || state.currentUser === null) {
