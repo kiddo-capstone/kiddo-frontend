@@ -8,7 +8,7 @@
 
 <br>
 
-To view KidDo in the browser, visit our deployed site [here!](https://kiddo-frontend.herokuapp.com/)
+To view KidDo in the browser, visit our deployed site [here!](https://main.d308du7xm8oyif.amplifyapp.com/welcome)
 
 <br>
 
@@ -54,7 +54,7 @@ Visit the [KidDo Backend Repo](https://github.com/kiddo-capstone/kiddo-backend) 
 ## Technologies And Tools
 
 > - Progressive Web App
->   - Service Worker
+> - Service Worker
 > - React (w/ hooks)
 > - React Router
 > - JavaScript ES6
@@ -63,15 +63,11 @@ Visit the [KidDo Backend Repo](https://github.com/kiddo-capstone/kiddo-backend) 
 > - Auth0
 > - Cypress Testing
 > - Frontend Deployment:
->   - Heroku
+> - Heroku
 > - Project Management
->   - Git
->   - GitHub Projects
->   - Miro Wireframe Design
-
-## Roadmap
-
-With more time, we would like to include:
+> - Git
+> - GitHub Projects
+> - Miro Wireframe Design
 
 ## Contributors
 
