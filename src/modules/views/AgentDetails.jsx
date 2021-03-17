@@ -118,9 +118,10 @@ const AgentDetails = (props) => {
 
   const updateUserDetails = async () => {
     setIsRaining(true)
+    
     await setTimeout(() => {
     getUserById(+sessionUser.id).then(data => setSessionUser(data.data)).then(setIsRaining(false))
-    }, 5000)
+    }, 4000)
   }
 
   const determinePath = () => {
@@ -142,15 +143,14 @@ const AgentDetails = (props) => {
     
   return (
     <section className={classes.section}>
-        {isRaining === true && (
-          <GoldCoinRain />
-        )} 
       <div className={classes.card}>
         <div className={classes.cardHeader}>
           <div className={classes.avatar} onClick={() => determinePath()}>
             <img src={kids} />
           </div>
-
+          {isRaining === true && (
+            <GoldCoinRain />
+          )} 
           <span className={classes.titleText}>
             <h1>{sessionUser !== null ? sessionUser.attributes.name : 'KidDo Agent'}</h1> 
           </span>

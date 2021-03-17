@@ -17,7 +17,7 @@ const useStyles = makeStyles(() => ({
       overflow: "hidden",
       width: "30%",
       height: "15%",
-      animation: "$fall 5s linear",
+      animation: "$fall 5s linear infinite",
     },
   },
   "@keyframes fall": {
@@ -44,14 +44,10 @@ const GoldCoinRain = () => {
 
   const makeItRain = () => {
     const rainSection = document.getElementById("Rain");
-    console.log(rainSection);
-
-    // rainSection.style.display = "block";
 
     for (let i = 1; i < numDrop; i++) {
       let dropLeft = randRange(0, 1600);
       let dropTop = randRange(-1000, 1400);
-
       let rotate = randRange(-360, 360);
 
       let coinDrop = document.createElement("img");
@@ -61,15 +57,11 @@ const GoldCoinRain = () => {
       coinDrop.setAttribute("alt", `${coin.desc}`);
 
       rainSection.appendChild(coinDrop);
+
       coinDrop.style.left = `${dropLeft}px`;
       coinDrop.style.top = `${dropTop}px`;
       coinDrop.style.transform = `translate(-8em, 0) rotate(${rotate}deg)`;
     }
-  };
-
-  const makeItStop = () => {
-    const rainSection = document.getElementById("Rain");
-    rainSection.style.display = "none";
   };
 
   return <div id={"Rain"} className={classes.drop}></div>;
