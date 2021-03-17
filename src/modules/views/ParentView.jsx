@@ -39,11 +39,15 @@ const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(0.5, 0),
   },
+  add: {
+    margin: theme.spacing(0.5, 0),
+  },
 }));
 
 const ParentView = () => {
   const classes = useStyles();
   const [child, setChild] = React.useState("");
+  const [newChildName, setNewChildName] = React.useState("");
   const [paChildren, setPaChildren] = React.useState([]);
   const [ready, setReady] = React.useState(false);
   const [missionName, setMissionName] = useState("");
@@ -52,13 +56,12 @@ const ParentView = () => {
 
 
   useEffect(async () => {
-    if (!state.currentUser || +state.currentUser.id !== 4) {
-      const user = await getParentById(4)
-      const action = { type: `SET_CURRENT_USER`, currentUser: user.data }
-      dispatch(action)
-    }
-
     setReady(false)
+    
+    if (!state.currentUser || +state.currentUser.id !== 4) {
+      updateUser()
+    }
+    
     if (choices.length && child && missionName) {
       setReady(true)
     }
@@ -68,9 +71,13 @@ const ParentView = () => {
     if (state.currentUser?.relationships) fetchChildren()
   },[state.currentUser])
 
-  
+  const updateUser = async () => {
+    const user = await getParentById(4)
+    const action = { type: `SET_CURRENT_USER`, currentUser: user.data }
+    dispatch(action)
+  }
+
   const generateChildList = () => {
-    console.log(paChildren)
     return paChildren.map((u) => (
       <MenuItem key={u.data.attributes.id} value={u.data}>
         {u.data.attributes.name}
@@ -89,9 +96,12 @@ const ParentView = () => {
     setPaChildren(fetchedKids)
   }
 
-  const addChild = (data) => {
-    const childInfo = {name: data.name, parent_id: data.pid}
+  const addChild = (name) => {
+    const childInfo = {name: name, parent_id: state.currentUser.id }
+    console.log(childInfo);
     addNewUserToParent(childInfo)
+    setNewChildName("")
+    updateUser()
   }
 
   const handleChange = event => {
@@ -132,11 +142,27 @@ const ParentView = () => {
   }
 
   return (
-    <div style={{ backgroundColor: "lightgray", height: "70em" }}>
+    <div style={{ backgroundColor: "lightgray", height: "100%" }}>
       <PageContainer>
-        <TitleContainer>Parent Dashboard</TitleContainer>      
-        <br/> 
+        <TitleContainer><h1 style={{fontSize: '2em', marginTop: '.4em', marginBottom: 0, color: 'gold' }}>Parent Dashboard</h1></TitleContainer>      
+        
+        <TitleContainer><h1 style={{fontSize: '1em', marginTop: '.4em', marginBottom: '1em' }}>Add a child</h1></TitleContainer>      
         <FormControl>
+        <TextField
+            id="outlined-basic"
+            label="KidDo Agent Name"
+            variant="outlined"
+            value={newChildName}
+            onChange={(event) => setNewChildName(event.target.value)}
+          />
+        <FormHelperText style={{margin:'1em'}}id="my-helper-text">
+          Add your KidDo Agents by name and we'll send them your missions! 
+        </FormHelperText>
+        <Button style={{margin: '1em'}} onClick={() => addChild(newChildName)} disabled={newChildName ? false : true} variant="contained" color="primary">
+          {newChildName ? 'Add KidDo Agent!' : 'Add Agent Details'}
+        </Button> 
+
+        <TitleContainer><h1 style={{fontSize: '1em', marginTop: '.4em', marginBottom: '1em' }}>Mission Creation</h1></TitleContainer>      
           <TextField
             id="outlined-basic"
             label="Mission Title"
@@ -152,7 +178,8 @@ const ParentView = () => {
               Pick at least one, but we recommend no more than four tasks per mission!
             </FormHelperText>
         </FormControl>
-        <FormControl className={classes.formControl}>
+        
+      <FormControl className={classes.formControl}>
         <InputLabel id="demo-simple-select-helper-label">Child</InputLabel>
         <Select
           labelId="demo-simple-select-helper-label"
@@ -167,13 +194,15 @@ const ParentView = () => {
         </Select>
         <FormHelperText>Which child is this mission for?</FormHelperText>
       </FormControl>
+
       <Button style={{margin: '1em'}} onClick={handleSubmit} disabled={ready ? false : true} variant="contained" color="primary">
         {ready ? 'Add Mission!' : 'add more to the mission!'}
-      </Button>        
+      </Button>  
+
         <div style={{width:'80%', justifyContent:'center', display:'flex', backgroundColor:'darkgrey', marginTop: '1em'}}>
           <ExampleMission tasks={choices} props={placeholderMission} />
         </div>
-        <FormHelperText>This is how your child's mission will look!</FormHelperText>
+        <FormHelperText style={{paddingBottom: '3em'}}>This is how your child's mission will look!</FormHelperText>
       </PageContainer>
     </div>
   );
