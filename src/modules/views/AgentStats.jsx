@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { getUserStats } from "../common/apiCalls";
 import ModalWrapper from "../../ui/modal/ModalWrapper";
 import { makeStyles } from "@material-ui/core";
 import AppContext from "../App/AppContext";
@@ -85,12 +86,14 @@ const AgentStats = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   
-  // const stats = [
-  //   { icon: brainTraining, barColor: 'gold', completed: 60 },
-  //   { icon: creativityTraining, barColor: 'gold', completed: 30 },
-  //   { icon: healthTraining, barColor: 'gold', completed: 53 },
-  //   { icon: basicTraining, barColor: 'gold', completed: 53 },
-  // ];
+
+  useEffect(() => {
+    updateStats()
+  }, [state.currentUser])
+
+  const updateStats = () => {
+     getUserStats(+1).then(data => console.log(data))
+  }
 
   const displayStats = () => {
     const stats = [

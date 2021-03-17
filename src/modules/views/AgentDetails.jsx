@@ -5,7 +5,6 @@ import theme from "../../ui/common/theme";
 import kids from "../../assets/kids_trio.png";
 import StatusForm from "./StatusForm";
 import AgentStats from "./AgentStats";
-// import { basicTraining, creativityTraining, healthTraining, brainTraining } from "../../assets/index";
 import { useHistory } from "react-router-dom";
 import MiniAuth from "../auth/MiniAuth";
 import { getUserById } from "../common/apiCalls";
@@ -122,7 +121,7 @@ const AgentDetails = (props) => {
     
     await setTimeout(() => {
       // Argument needs to be +sessionUser.id
-    getUserById(+3).then(data => setSessionUser(data.data)).then(setIsRaining(false))
+    getUserById(+1).then(data => setSessionUser(data.data)).then(setIsRaining(false))
     }, 4000)
   }
 
