@@ -63,7 +63,7 @@ export const getAllParents = () => {
 
 export const getUserById = (id) => {
   return (
-    fetch(`https://kiddo-backend.herokuapp.com/api/v1/users/${id}`)
+    fetch(`https://kiddo-backend.herokuapp.com/api/v1/users/${id}/stats`)
       // fetch(`http://localhost:3000/api/v1/users/${id}`)
       .then((res) => res.json())
   );
