@@ -4,7 +4,8 @@ import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
 import kids from "../../assets/kids_trio.png";
 import StatusForm from "./StatusForm";
-import { basicTraining, creativityTraining, healthTraining, brainTraining } from "../../assets/index";
+import AgentStats from "./AgentStats";
+// import { basicTraining, creativityTraining, healthTraining, brainTraining } from "../../assets/index";
 import { useHistory } from "react-router-dom";
 import MiniAuth from "../auth/MiniAuth";
 import { getUserById } from "../common/apiCalls";
@@ -97,12 +98,12 @@ const AgentDetails = (props) => {
   const [sessionUser, setSessionUser] = useState(state.currentUser)
   const [isRaining, setIsRaining] = useState(false)
   
-  const stats = [
-    { icon: brainTraining, barColor: 'gold', completed: 60 },
-    { icon: creativityTraining, barColor: 'gold', completed: 30 },
-    { icon: healthTraining, barColor: 'gold', completed: 53 },
-    { icon: basicTraining, barColor: 'gold', completed: 53 },
-  ];
+  // const stats = [
+  //   { icon: brainTraining, barColor: 'gold', completed: 60 },
+  //   { icon: creativityTraining, barColor: 'gold', completed: 30 },
+  //   { icon: healthTraining, barColor: 'gold', completed: 53 },
+  //   { icon: basicTraining, barColor: 'gold', completed: 53 },
+  // ];
 
     useEffect(() => {
       if (state.currentUser !== null && state.currentUser.type === 'user') { 
@@ -143,14 +144,14 @@ const AgentDetails = (props) => {
     
   return (
     <section className={classes.section}>
+      {isRaining === true && (
+            <GoldCoinRain />
+          )} 
       <div className={classes.card}>
         <div className={classes.cardHeader}>
           <div className={classes.avatar} onClick={() => determinePath()}>
             <img src={kids} />
           </div>
-          {isRaining === true && (
-            <GoldCoinRain />
-          )} 
           <span className={classes.titleText}>
             <h1>{sessionUser !== null ? sessionUser.attributes.name : 'KidDo Agent'}</h1> 
           </span>
@@ -177,6 +178,7 @@ const AgentDetails = (props) => {
                   completed={getPointsProgress(sessionUser.attributes.points, 300)}
                 />
               </span>
+              <AgentStats />
             </>
           )}
           </div>
