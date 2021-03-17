@@ -102,7 +102,7 @@ const AgentDetails = (props) => {
   ];
 
     useEffect(() => {
-      if (state.currentUser !== null) {
+      if (state.currentUser !== null && state.currentUser.type === 'user') { // added to not load sidebar with default parent signed in
         setSessionUser(state.currentUser)
       } 
     }, [state.currentUser])
