@@ -121,7 +121,8 @@ const AgentDetails = (props) => {
     setIsRaining(true)
     
     await setTimeout(() => {
-    getUserById(+sessionUser.id).then(data => setSessionUser(data.data)).then(setIsRaining(false))
+      // Argument needs to be +sessionUser.id
+    getUserById(+3).then(data => setSessionUser(data.data)).then(setIsRaining(false))
     }, 4000)
   }
 

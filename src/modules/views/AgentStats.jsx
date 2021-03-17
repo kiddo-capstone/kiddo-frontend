@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core";
 import AppContext from "../App/AppContext";
 import Button from "../../ui/button/Button";
 import { basicTraining, creativityTraining, healthTraining, brainTraining } from "../../assets/index";
+import ProgressBar from "../../ui/dataVisuals/ProgressBar";
 
 const useStyles = makeStyles(() => ({
   modalContent: {
@@ -82,17 +83,26 @@ const AgentStats = () => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   
-  const stats = [
+  // const stats = [
+  //   { icon: brainTraining, barColor: 'gold', completed: 60 },
+  //   { icon: creativityTraining, barColor: 'gold', completed: 30 },
+  //   { icon: healthTraining, barColor: 'gold', completed: 53 },
+  //   { icon: basicTraining, barColor: 'gold', completed: 53 },
+  // ];
+
+  const displayStats = () => {
+    const stats = [
     { icon: brainTraining, barColor: 'gold', completed: 60 },
     { icon: creativityTraining, barColor: 'gold', completed: 30 },
     { icon: healthTraining, barColor: 'gold', completed: 53 },
     { icon: basicTraining, barColor: 'gold', completed: 53 },
   ];
-
-  const displayStats = () => {
-    stats.map(stat => {
+    // setUserStats(stats)
+    return stats.map(stat => {
       return (
-        <div>{stat.icon}</div>
+        <div>
+        <img src={stat.icon.img}/>
+        </div>
       )
     })
   }
@@ -117,7 +127,7 @@ const AgentStats = () => {
         <section className={classes.modalContent}>
           <h2>Agent Stats</h2>
           <div className={classes.container}>
-           LOOK HERE! {displayStats()}
+           {displayStats()}
           </div>
         
           <Button onClick={handleClose}>
