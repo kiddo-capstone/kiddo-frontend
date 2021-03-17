@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import {createNewMission, addTasksToMission} from '../parents/parentApiCalls'
+import {createNewMission, addTasksToMission, addNewUserToParent} from '../parents/parentApiCalls'
+import {getUserById, getParentById} from '../common/apiCalls'
 import AppContext from '../../modules/App/AppContext'
 import { PageContainer, TitleContainer } from "../../ui/containers/index";
 import { makeStyles } from "@material-ui/core/styles";
@@ -43,28 +44,58 @@ const useStyles = makeStyles(theme => ({
 const ParentView = () => {
   const classes = useStyles();
   const [child, setChild] = React.useState("");
+  const [paChildren, setPaChildren] = React.useState([]);
   const [ready, setReady] = React.useState(false);
   const [missionName, setMissionName] = useState("");
   const [choices, setChoices] = React.useState([]);
   const [state, dispatch] = useContext(AppContext);
 
-  useEffect(() => {
+
+  useEffect(async () => {
+    if (!state.currentUser || +state.currentUser.id !== 4) {
+      const user = await getParentById(4)
+      const action = { type: `SET_CURRENT_USER`, currentUser: user.data }
+      dispatch(action)
+    }
+
     setReady(false)
-    if (choices && child && missionName) {
+    if (choices.length && child && missionName) {
       setReady(true)
     }
   },[choices, missionName, child])
 
-  const generateUsers = () => {
-    const allUsers = state.users;
-    return allUsers.map((u) => (
-      <MenuItem key={u.id} value={u}>
-        {u.attributes.name}
+  useEffect(() => {
+    if (state.currentUser?.relationships) fetchChildren()
+  },[state.currentUser])
+
+  
+  const generateChildList = () => {
+    console.log(paChildren)
+    return paChildren.map((u) => (
+      <MenuItem key={u.data.attributes.id} value={u.data}>
+        {u.data.attributes.name}
       </MenuItem>
     ));
   };
+  
+  const fetchChildren = async () => {
+    const childIds = state.currentUser.relationships.users.data
+    const fetchedKids = await childIds.reduce(async (promises, cid) => {
+      const allChildren = await promises
+      const child = await getUserById(cid.id)
+      allChildren.push(child)
+      return allChildren
+    }, [])
+    setPaChildren(fetchedKids)
+  }
+
+  const addChild = (data) => {
+    const childInfo = {name: data.name, parent_id: data.pid}
+    addNewUserToParent(childInfo)
+  }
 
   const handleChange = event => {
+    console.log(event.target.value)
     setChild(event.target.value);
   };
   
@@ -78,7 +109,7 @@ const ParentView = () => {
     choices.forEach(async c => await addTasksToMission({"mission_id": +missionId.data.id, "task_id": +c.id}))
   }
 
-  const handleClick = () => {
+  const handleSubmit = () => {
     composeData()
     clearInputs()
   }
@@ -132,11 +163,11 @@ const ParentView = () => {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          {generateUsers()}
+          {generateChildList()}
         </Select>
         <FormHelperText>Which child is this mission for?</FormHelperText>
       </FormControl>
-      <Button style={{margin: '1em'}} onClick={handleClick} disabled={ready ? false : true} variant="contained" color="primary">
+      <Button style={{margin: '1em'}} onClick={handleSubmit} disabled={ready ? false : true} variant="contained" color="primary">
         {ready ? 'Add Mission!' : 'add more to the mission!'}
       </Button>        
         <div style={{width:'80%', justifyContent:'center', display:'flex', backgroundColor:'darkgrey', marginTop: '1em'}}>
