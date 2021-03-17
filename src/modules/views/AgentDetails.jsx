@@ -112,15 +112,27 @@ const AgentDetails = (props) => {
 
     useEffect(() => {
       if (sessionUser !== null) {
+      
         updateUserDetails()
+
+      //   let timer1 = setTimeout(() => 
+      //   setIsRaining(true),
+      //   updateUserDetails(),
+        
+      //    3000);
+
+      //    console.log()
+
+      // return () => {
+      //   clearTimeout(timer1);
+      // };
       }
     }, [state.selectedTask])
 
     // useEffect(() => {
-    //   if (sessionUser !== null) {
-    //     animatePointsUpdate()
-    //   }
-    // }, [sessionUser])
+    //  console.log(isRaining)
+
+    // }, [isRaining])
 
 
     // useEffect(() => {
@@ -129,15 +141,19 @@ const AgentDetails = (props) => {
     // }, [isRaining])
 
   const updateUserDetails = async () => {
-    await getUserById(+sessionUser.id).then(data => setSessionUser((data.data))).then(animatePointsUpdate()).then(stopTheRain())
+    setIsRaining(true)
+    await setTimeout(() => {
+    getUserById(+sessionUser.id).then(data => setSessionUser(data.data)).then(setIsRaining(false))
+    }, 5000)
+  }
+  
+  // const stopTheRain = () => {
+  //   setIsRaining(false)
+  // }
+  // const animatePointsUpdate = () => {
     
-  }
-  const stopTheRain = () => {
-    setIsRaining(false)
-  }
-  const animatePointsUpdate = () => {
-    setTimeout(() => setIsRaining(true), 1000, console.log("cool"))
-  }
+  //   setTimeout(() => setIsRaining(true), 1000, console.log(isRaining))
+  // }
 
   const determinePath = () => {
     return !state.currentUser ? history.push("/welcome") : history.push("/mission-control") 
@@ -158,6 +174,11 @@ const AgentDetails = (props) => {
     
   return (
     <section className={classes.section}>
+        {isRaining === true && (
+                <GoldCoinRain 
+                  isRaining={isRaining}
+                  />
+              )} 
       <div className={classes.card}>
         <div className={classes.cardHeader}>
           <div className={classes.avatar} onClick={() => determinePath()}>
@@ -176,12 +197,7 @@ const AgentDetails = (props) => {
             </div>
             <div className={classes.detailsChild}>
               <h2>Agent Status:</h2>
-                <StatusForm />
-              {isRaining === true && (
-                <GoldCoinRain 
-                  isRaining={isRaining}
-                  />
-                  )} 
+                <StatusForm /> 
             </div>
           {sessionUser !== null && (
             <>

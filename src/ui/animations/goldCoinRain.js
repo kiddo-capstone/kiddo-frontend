@@ -42,16 +42,16 @@ const GoldCoinRain = ({ isRaining }) => {
   const numDrop = 200;
 
   useEffect(() => {
-    if (isRaining === true) {
-      // setTimeout(() => makeItRain(), 650);
-      console.log("yes", isRaining);
-      makeItRain();
-    }
-    if (isRaining === false) {
-      console.log("no", isRaining);
-      makeItStop();
-    }
-  }, [isRaining]);
+    // if (isRaining === true) {
+    // setTimeout(() => makeItRain(), 650);
+    console.log("yes", isRaining);
+    makeItRain();
+    // }
+    // if (isRaining === false) {
+    // console.log("no", isRaining);
+    // makeItStop();
+    // }
+  }, []);
 
   const randRange = (minNum, maxNum) => {
     return Math.floor(Math.random() * (maxNum - minNum + 1)) + minNum;
@@ -60,6 +60,8 @@ const GoldCoinRain = ({ isRaining }) => {
   const makeItRain = () => {
     const rainSection = document.getElementById("Rain");
     console.log(rainSection);
+
+    // rainSection.style.display = "block";
 
     for (let i = 1; i < numDrop; i++) {
       let dropLeft = randRange(0, 1600);
