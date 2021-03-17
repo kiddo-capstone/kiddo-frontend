@@ -179,7 +179,9 @@ const AgentDetails = (props) => {
                   completed={getPointsProgress(sessionUser.attributes.points, 300)}
                 />
               </span>
-              <AgentStats />
+              <span className={classes.titleText}>
+                <AgentStats />
+              </span>
             </>
           )}
           </div>

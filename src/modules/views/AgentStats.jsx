@@ -2,41 +2,43 @@ import React, { useEffect, useState, useContext } from "react";
 import ModalWrapper from "../../ui/modal/ModalWrapper";
 import { makeStyles } from "@material-ui/core";
 import AppContext from "../App/AppContext";
+import theme from "../../ui/common/theme";
 import Button from "../../ui/button/Button";
 import { basicTraining, creativityTraining, healthTraining, brainTraining } from "../../assets/index";
 import ProgressBar from "../../ui/dataVisuals/ProgressBar";
+
+const appStyles = theme
 
 const useStyles = makeStyles(() => ({
   modalContent: {
     textAlign: "center",
     overflow: "hidden",
+    width: "20em",
+    maxWidth: "100%"
   },
-  container: {
+  statBox : {
     display: "flex",
     flexDirection: "column",
-    // flexWrap: "wrap",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     alignItems: "center",
+    padding: "0 2em",
   },
-  label: {
-    padding: "0.5em",
-    fontSize: "2em",
-    "&:hover": {
-      cursor: "pointer",
-      transform: "scale(1.4)",
-      transitionDuration: "0.4s",
-    },
+  statsRow: {
+    display: "flex",
+    flexDirection: "row",
+    maxWidth: "100%",
+    justifyContent: "space-around",
+    alignItems: "center",
+    padding: "0 2em",
   },
-  input: {
-    display: "none",
-    "&:checked": {
-      background: "red",
-    },
+  taskIcon: {
+    borderRadius: "10px",
+    maxHeight: "10vh",
+    maxWidth: "5vw",
+    filter: "drop-shadow(2px 4px 6px black)",
   },
-  labelChecked: {
-    padding: "0.5em",
-    fontSize: "2em",
-    transform: "scale(1.4)",
+  button: {
+    paddingTop: "10em"
   },
   animate: {
     willChange: 'transform',
@@ -101,7 +103,13 @@ const AgentStats = () => {
     return stats.map(stat => {
       return (
         <div>
-        <img src={stat.icon.img}/>
+          <span className={classes.statsRow}>
+            <img src={stat.icon.img} className={classes.taskIcon}/>
+            <ProgressBar 
+              barColor={appStyles.colors.yellow} 
+              completed={50}
+            />
+          </span>
         </div>
       )
     })
@@ -119,20 +127,21 @@ const AgentStats = () => {
   return (
     <ModalWrapper 
       // submitFunc={handleSubmit} 
-      btnMessage={<h2 className={classes.animate} style={{fontSize:'2em', lineHeight: 0}}>Agent Stats!</h2>}
+      btnMessage={<h2 className={classes.animate} style={{color: appStyles.colors.blue}}>Agent Stats!</h2>}
       handleClickOpen={handleClickOpen}
       handleClose={handleClose} 
       open={open}
       >
         <section className={classes.modalContent}>
           <h2>Agent Stats</h2>
-          <div className={classes.container}>
-           {displayStats()}
+          <div>
+            {displayStats()}
           </div>
-        
-          <Button onClick={handleClose}>
-            Cool! I'm Done
-          </Button>
+          <span className={classes.button}>
+            <Button onClick={handleClose}>
+              Got it!
+            </Button>
+          </span>
         </section>
     </ModalWrapper>
   )
