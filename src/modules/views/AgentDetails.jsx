@@ -112,33 +112,9 @@ const AgentDetails = (props) => {
 
     useEffect(() => {
       if (sessionUser !== null) {
-      
         updateUserDetails()
-
-      //   let timer1 = setTimeout(() => 
-      //   setIsRaining(true),
-      //   updateUserDetails(),
-        
-      //    3000);
-
-      //    console.log()
-
-      // return () => {
-      //   clearTimeout(timer1);
-      // };
       }
     }, [state.selectedTask])
-
-    // useEffect(() => {
-    //  console.log(isRaining)
-
-    // }, [isRaining])
-
-
-    // useEffect(() => {
-     
-  
-    // }, [isRaining])
 
   const updateUserDetails = async () => {
     setIsRaining(true)
@@ -146,14 +122,6 @@ const AgentDetails = (props) => {
     getUserById(+sessionUser.id).then(data => setSessionUser(data.data)).then(setIsRaining(false))
     }, 5000)
   }
-  
-  // const stopTheRain = () => {
-  //   setIsRaining(false)
-  // }
-  // const animatePointsUpdate = () => {
-    
-  //   setTimeout(() => setIsRaining(true), 1000, console.log(isRaining))
-  // }
 
   const determinePath = () => {
     return !state.currentUser ? history.push("/welcome") : history.push("/mission-control") 
@@ -175,10 +143,8 @@ const AgentDetails = (props) => {
   return (
     <section className={classes.section}>
         {isRaining === true && (
-                <GoldCoinRain 
-                  isRaining={isRaining}
-                  />
-              )} 
+          <GoldCoinRain />
+        )} 
       <div className={classes.card}>
         <div className={classes.cardHeader}>
           <div className={classes.avatar} onClick={() => determinePath()}>

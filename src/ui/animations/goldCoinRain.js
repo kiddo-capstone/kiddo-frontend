@@ -24,33 +24,18 @@ const useStyles = makeStyles(() => ({
     to: {
       marginTop: "900px",
     },
-    // "0%": {
-    //   transform: "translate(0em, 0em) rotate(50deg)",
-    // },
-
-    // "50%": {
-    //   transform: "translate(0em, 0em) rotate(-50deg)",
-    // },
     "100%": {
       transform: "rotate(50deg)",
     },
   },
 }));
 
-const GoldCoinRain = ({ isRaining }) => {
+const GoldCoinRain = () => {
   const classes = useStyles();
   const numDrop = 200;
 
   useEffect(() => {
-    // if (isRaining === true) {
-    // setTimeout(() => makeItRain(), 650);
-    console.log("yes", isRaining);
     makeItRain();
-    // }
-    // if (isRaining === false) {
-    // console.log("no", isRaining);
-    // makeItStop();
-    // }
   }, []);
 
   const randRange = (minNum, maxNum) => {
@@ -79,18 +64,12 @@ const GoldCoinRain = ({ isRaining }) => {
       coinDrop.style.left = `${dropLeft}px`;
       coinDrop.style.top = `${dropTop}px`;
       coinDrop.style.transform = `translate(-8em, 0) rotate(${rotate}deg)`;
-      // coinDrop.style.transform = `translate(3em, 0em) rotate(${transformRight}deg)`;
     }
   };
 
   const makeItStop = () => {
     const rainSection = document.getElementById("Rain");
-
-    // while (rainSection.hasChildNodes()) {
-    //   rainSection.removeChild(rainSection.lastChild);
-    // }
     rainSection.style.display = "none";
-    console.log("makeItStop: removed child node");
   };
 
   return <div id={"Rain"} className={classes.drop}></div>;
