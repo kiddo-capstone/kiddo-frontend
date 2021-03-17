@@ -9,7 +9,7 @@ import { useHistory } from "react-router-dom";
 import MiniAuth from "../auth/MiniAuth";
 import { getUserById } from "../common/apiCalls";
 import ProgressBar from "../../ui/dataVisuals/ProgressBar";
-import GoldCoinRain from "../../ui/animations/GoldCoinRain";
+import GoldCoinRain from "../../ui/animations/goldCoinRain";
 
 const appStyles = theme;
 
