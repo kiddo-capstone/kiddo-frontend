@@ -10,7 +10,7 @@ import ParentView from "../views/ParentView";
 import Error400 from "../common/error/Error400";
 import Error500 from "../common/error/Error500";
 import AppContainer from "../../ui/containers/AppContainer";
-import { getAllMissions, getAllTasks, getAllUsers } from "../common/apiCalls";
+import { getAllMissions, getAllTasks, getAllUsers, getAllParents } from "../common/apiCalls";
 
 const App = () => {
   const [state, dispatch] = useReducer(appReducer, initialState);
@@ -31,6 +31,12 @@ const App = () => {
   useEffect(async () => {
     await getAllUsers()
       .then(data => addDataToState('users', data.data))
+      .catch(error => setError(error))
+  }, [])
+
+  useEffect(async () => {
+    await getAllParents()
+      .then(data => addDataToState('parents', data.data))
       .catch(error => setError(error))
   }, [])
 
