@@ -41,12 +41,14 @@ const GoldCoinRain = ({ isRaining }) => {
   const classes = useStyles();
   const numDrop = 200;
 
-  // const [isRaining, setIsRaining] = useState(false);
-
   useEffect(() => {
-    if (isRaining) {
+    if (isRaining === true) {
+      // setTimeout(() => makeItRain(), 650);
+      console.log("yes", isRaining);
       makeItRain();
-    } else if ((isRaining = false)) {
+    }
+    if (isRaining === false) {
+      console.log("no", isRaining);
       makeItStop();
     }
   }, [isRaining]);
@@ -82,12 +84,14 @@ const GoldCoinRain = ({ isRaining }) => {
   const makeItStop = () => {
     const rainSection = document.getElementById("Rain");
 
-    while (rainSection.hasChildNodes()) {
-      rainSection.removeChild(rainSection.lastChild);
-    }
+    // while (rainSection.hasChildNodes()) {
+    //   rainSection.removeChild(rainSection.lastChild);
+    // }
+    rainSection.style.display = "none";
+    console.log("makeItStop: removed child node");
   };
 
-  return <div id={"Rain"} className={classes.drop} isRaining={isRaining}></div>;
+  return <div id={"Rain"} className={classes.drop}></div>;
 };
 
 export default React.memo(GoldCoinRain);

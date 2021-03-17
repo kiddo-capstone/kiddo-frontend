@@ -116,10 +116,29 @@ const AgentDetails = (props) => {
       }
     }, [state.selectedTask])
 
-  const updateUserDetails = async () => {
-    await getUserById(+sessionUser.id).then(data => setSessionUser((data.data))).then(setIsRaining(true))
-  }
+    // useEffect(() => {
+    //   if (sessionUser !== null) {
+    //     animatePointsUpdate()
+    //   }
+    // }, [sessionUser])
+
+
+    // useEffect(() => {
+     
   
+    // }, [isRaining])
+
+  const updateUserDetails = async () => {
+    await getUserById(+sessionUser.id).then(data => setSessionUser((data.data))).then(animatePointsUpdate()).then(stopTheRain())
+    
+  }
+  const stopTheRain = () => {
+    setIsRaining(false)
+  }
+  const animatePointsUpdate = () => {
+    setTimeout(() => setIsRaining(true), 1000, console.log("cool"))
+  }
+
   const determinePath = () => {
     return !state.currentUser ? history.push("/welcome") : history.push("/mission-control") 
   }
@@ -158,7 +177,11 @@ const AgentDetails = (props) => {
             <div className={classes.detailsChild}>
               <h2>Agent Status:</h2>
                 <StatusForm />
-                 {isRaining === true && <GoldCoinRain isRaining={isRaining}/>}
+              {isRaining === true && (
+                <GoldCoinRain 
+                  isRaining={isRaining}
+                  />
+                  )} 
             </div>
           {sessionUser !== null && (
             <>
