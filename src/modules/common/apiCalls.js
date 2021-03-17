@@ -53,6 +53,14 @@ export const getAllUsers = () => {
   );
 };
 
+export const getAllParents = () => {
+  return (
+    fetch("https://kiddo-backend.herokuapp.com/api/v1/parents")
+      // fetch('http://localhost:3000/api/v1/users')
+      .then((res) => res.json())
+  );
+};
+
 export const getUserById = (id) => {
   return (
     fetch(`https://kiddo-backend.herokuapp.com/api/v1/users/${id}`)
