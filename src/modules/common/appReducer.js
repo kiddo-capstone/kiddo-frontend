@@ -10,6 +10,7 @@ export const initialState = {
   tasks: [],
   selectedTask: {},
   status: '',
+  parentId: null,
   theme,
 };
 
@@ -33,6 +34,8 @@ export const appReducer = (state, action) => {
       return { ...state, status: action.status }
     case 'SET_CURRENT_USER':
       return { ...state, currentUser: action.currentUser }
+    case 'SET_PARENT_ID':
+      return { ...state, parentId: action.parentId }
     default:
       return state;
   }
