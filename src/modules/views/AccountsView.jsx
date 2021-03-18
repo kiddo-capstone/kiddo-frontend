@@ -3,7 +3,6 @@ import AppContext from '../../modules/App/AppContext'
 import {getUserById, getParentById} from '../common/apiCalls'
 import { PageContainer, TitleContainer } from "../../ui/containers/index";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
 import KiddoCard from '../../ui/card/Card'
 
 const useStyles = makeStyles(theme => ({
@@ -18,8 +17,8 @@ const AccountsView = () => {
   const classes = useStyles()
 
   useEffect(() => {
-    if (!state.currentUser || +state.currentUser.id !== 4) { // TODO remove this code and update once user sign in flow complete
-      updateUser()
+    if (state.currentUser.type === 'user') {
+      updateParent()
     }
   },[])
 
@@ -27,9 +26,10 @@ const AccountsView = () => {
     if (state.currentUser?.relationships) fetchChildren()
   },[state.currentUser])
 
-  const updateUser = async () => {
-    const user = await getParentById(4)
-    const action = { type: `SET_CURRENT_USER`, currentUser: user.data }
+  const updateParent = async () => {
+    const parentId = state.currentUser.attributes.parent_id
+    const parent = await getParentById(parentId)
+    const action = { type: `SET_CURRENT_USER`, currentUser: parent.data }
     dispatch(action)
   }
 
