@@ -105,7 +105,7 @@ export const createNewUser = (data) => {
 };
 
 export const createNewParent = (data) => {
-  return fetch(`https://kiddo-backend.herokuapp.com/api/v1/users`, {
+  return fetch(`https://kiddo-backend.herokuapp.com/api/v1/parents`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
