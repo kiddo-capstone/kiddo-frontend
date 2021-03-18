@@ -1,4 +1,7 @@
 os: "-osx"
+env:
+ global:
+   - APPLICATION_NAME = kiddo-frontend
 language: node_js
 node_js:
 - node
