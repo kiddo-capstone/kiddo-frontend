@@ -11,7 +11,7 @@ import Error400 from "../common/error/Error400";
 import Error500 from "../common/error/Error500";
 import AppContainer from "../../ui/containers/AppContainer";
 import { getAllMissions, getAllTasks, getAllUsers } from "../common/apiCalls";
-import { useAuth0 } from "@auth0/auth0-react";
+import AccountsView from "../views/AccountsView";
 
 const App = () => {
   const [state, dispatch] = useReducer(appReducer, initialState);
@@ -70,9 +70,16 @@ const App = () => {
                 return <TaskView id={id} />;
               }}
             />
+            <Route 
+              exact 
+              path="/mission-control/:id" 
+              render={({ match }) => {
+                const id = +match.params.id;
+                return <MissionControl id={id}/>;
+               }}
+            />
             <Route exact path="/parent-view" component={ParentView} />
-            <Route exact path="/mission-control" component={MissionControl} />
-            {/* <Route exact path="/welcome" component={Auth} /> */}
+            <Route exact path="/accounts" component={AccountsView} />
             <Route path="/" component={Error400} />
           </Switch>
         </AppContext.Provider> :
