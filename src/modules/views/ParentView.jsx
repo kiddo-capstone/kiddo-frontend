@@ -71,7 +71,7 @@ const ParentView = () => {
   },[state.currentUser])
 
   const updateParent = async () => {
-    const parentId = state.currentUser.attributes.parent_id
+    const parentId = state.currentUser.id
     const parent = await getParentById(parentId)
     const action = { type: `SET_CURRENT_USER`, currentUser: parent.data }
     dispatch(action)
@@ -96,12 +96,12 @@ const ParentView = () => {
     setPaChildren(fetchedKids)
   }
 
-  const addChild = (name) => {
+  const addChild = async (name) => {
     const childInfo = {name: name, parent_id: state.currentUser.id }
-    console.log(childInfo);
-    addNewUserToParent(childInfo)
+    await addNewUserToParent(childInfo)
     setNewChildName("")
     updateParent()
+    await fetchChildren()
   }
 
   const handleChange = event => {
