@@ -5,6 +5,8 @@ import {PageContainer, TitleContainer } from "../../ui/containers/index";
 import Mission from '../mission/Mission'
 import {makeStyles} from '@material-ui/core'
 import AccentLine from '../../ui/decorative/AccentLine'
+import {backArrow} from '../../assets/backarrow'
+import {useHistory} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   missions: {
@@ -48,12 +50,33 @@ const useStyles = makeStyles(theme => ({
       },
     },
   },
+  arrow: {
+    filter: 'drop-shadow(2px 4px 9px black)',
+    position: 'absolute',
+    top: '3%',
+    left: 'calc(300px + 2%)',
+    willChange: 'transform',
+    transition: 'ease .3s',
+    cursor: 'pointer',
+    [theme.breakpoints.down("960")]: {
+      top: '80px',
+      left: '2%',
+      zIndex: '10',
+      '& svg': {
+        height: '4em',
+      }
+    },
+    '&:hover': {
+      transform: 'scale(1.1)',
+    }
+  },
 }))
 
 const MissionControl = props => {
   const [state, dispatch] = useContext(AppContext);  
   const [sessionUser, setSessionUser] = useState(null)
   const classes = useStyles()
+  const history = useHistory()
 
   useEffect(async () => {
     if (state.currentUser?.id !== props.id) {
@@ -74,6 +97,9 @@ const MissionControl = props => {
 
   return (
     <PageContainer>
+      <div className={classes.arrow} onClick={() => history.push(`/accounts`)}>
+        {backArrow(state.theme.colors.blue)}
+      </div>
       <TitleContainer>
         <p>Welcome back to</p>
         <h1>Mission Control</h1>
