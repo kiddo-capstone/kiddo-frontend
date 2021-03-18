@@ -108,6 +108,9 @@ const AgentDetails = (props) => {
       if (state.currentUser !== null && state.currentUser.type === 'user') { 
         setSessionUser(state.currentUser)
       } 
+      else if (state.currentUser === null) {
+        setTempUser()
+      }
     }, [state.currentUser])
 
     useEffect(() => {
@@ -115,13 +118,16 @@ const AgentDetails = (props) => {
         updateUserDetails()
       }
     }, [state.selectedTask])
-
+  
+  const setTempUser = async () => {
+    await getUserById(+1).then(data => setSessionUser(data.data))
+  }
   const updateUserDetails = async () => {
     setIsRaining(true)
     
     await setTimeout(() => {
       // Argument needs to be +sessionUser.id
-    getUserById(+1).then(data => setSessionUser(data.data)).then(setIsRaining(false))
+    getUserById(+sessionUser.id).then(data => setSessionUser(data.data)).then(setIsRaining(false))
     }, 4000)
   }
 
