@@ -45,11 +45,4 @@ describe("Sidebar", () => {
   // it("should display stats", () => {
   // cy.contains("STATS");
   // });
-
-  it("should allow a user to login using Auth0", () => {
-    cy.contains("Log In").click();
-    // cy.get(".c8148305b").click();
-    // cy.get(".cc2c4efb1").click(); Continue with Google button
-    // set to set up configuration in Auth0
-  });
 });
