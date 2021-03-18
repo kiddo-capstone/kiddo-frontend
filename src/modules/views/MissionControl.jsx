@@ -1,9 +1,12 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AppContext from "../App/AppContext";
+import {getUserById} from '../common/apiCalls'
 import {PageContainer, TitleContainer } from "../../ui/containers/index";
 import Mission from '../mission/Mission'
 import {makeStyles} from '@material-ui/core'
 import AccentLine from '../../ui/decorative/AccentLine'
+import {backArrow} from '../../assets/backarrow'
+import {useHistory} from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   missions: {
@@ -47,34 +50,56 @@ const useStyles = makeStyles(theme => ({
       },
     },
   },
+  arrow: {
+    filter: 'drop-shadow(2px 4px 9px black)',
+    position: 'absolute',
+    top: '3%',
+    left: 'calc(300px + 2%)',
+    willChange: 'transform',
+    transition: 'ease .3s',
+    cursor: 'pointer',
+    [theme.breakpoints.down("960")]: {
+      top: '80px',
+      left: '2%',
+      zIndex: '10',
+      '& svg': {
+        height: '4em',
+      }
+    },
+    '&:hover': {
+      transform: 'scale(1.1)',
+    }
+  },
 }))
 
 const MissionControl = props => {
   const [state, dispatch] = useContext(AppContext);  
+  const [sessionUser, setSessionUser] = useState(null)
   const classes = useStyles()
+  const history = useHistory()
 
-  useEffect(() => {
-    console.log('effect');
-  })
+  useEffect(async () => {
+    if (state.currentUser?.id !== props.id) {
+      const matched = await getUserById(props.id)
+      const action = { type: `SET_CURRENT_USER`, currentUser: matched.data }
+      dispatch(action)
+      setSessionUser(matched)
+    }
+  },[sessionUser])
 
   const makeMissionList = () => {
-    if (state.currentUser === "" || state.currentUser === null) {
-      // for when no user is selected, will display all missions in the DB
-      return state.missions.sort((a, b)=> b.id-a.id).map(mission => {
-        return <Mission
-        key={mission.id}
-        props={mission}
-        />
-      })
-    } else {
+    if (sessionUser) {
       const userID = state.currentUser.id
       const userMissions = state.missions.filter(m => m.attributes.user_id === +userID)
-      return userMissions.map(m => (<Mission key={m.id} props={m} />))
+      return userMissions.sort((a, b)=> b.id-a.id).map(m => (<Mission key={m.id} props={m} />))
     }
   }
 
   return (
     <PageContainer>
+      <div className={classes.arrow} onClick={() => history.push(`/accounts`)}>
+        {backArrow(state.theme.colors.blue)}
+      </div>
       <TitleContainer>
         <p>Welcome back to</p>
         <h1>Mission Control</h1>

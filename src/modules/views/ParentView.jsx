@@ -57,9 +57,8 @@ const ParentView = () => {
 
   useEffect(async () => {
     setReady(false)
-    
-    if (!state.currentUser || +state.currentUser.id !== 4) {
-      updateUser()
+    if (state.currentUser?.type === 'user') {
+      updateParent()
     }
     
     if (choices.length && child && missionName) {
@@ -71,13 +70,14 @@ const ParentView = () => {
     if (state.currentUser?.relationships) fetchChildren()
   },[state.currentUser])
 
-  const updateUser = async () => {
-    const user = await getParentById(4)
-    const action = { type: `SET_CURRENT_USER`, currentUser: user.data }
+  const updateParent = async () => {
+    const parentId = state.currentUser.id
+    const parent = await getParentById(parentId)
+    const action = { type: `SET_CURRENT_USER`, currentUser: parent.data }
     dispatch(action)
   }
 
-  const generateChildList = () => {
+  const renderChildList = () => {
     return paChildren.map((u) => (
       <MenuItem key={u.data.attributes.id} value={u.data}>
         {u.data.attributes.name}
@@ -96,12 +96,12 @@ const ParentView = () => {
     setPaChildren(fetchedKids)
   }
 
-  const addChild = (name) => {
+  const addChild = async (name) => {
     const childInfo = {name: name, parent_id: state.currentUser.id }
-    console.log(childInfo);
-    addNewUserToParent(childInfo)
+    await addNewUserToParent(childInfo)
     setNewChildName("")
-    updateUser()
+    updateParent()
+    await fetchChildren()
   }
 
   const handleChange = event => {
@@ -190,7 +190,7 @@ const ParentView = () => {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          {generateChildList()}
+          {renderChildList()}
         </Select>
         <FormHelperText>Which child is this mission for?</FormHelperText>
       </FormControl>

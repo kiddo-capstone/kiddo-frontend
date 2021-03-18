@@ -66,8 +66,8 @@ const DailyMission = props => {
   
   useEffect(async () => {
     await getMissionById(id)
-    .then(data => addDataToState("selectedMission", data.data))
-    .catch(error => setError(error))
+      .then(data => addDataToState("selectedMission", data.data))
+      .catch(error => setError(error))
     getMissionTasks(id)
     console.log('use effect daily mission view');
   }, [state.selectedTask]);
@@ -92,7 +92,7 @@ const DailyMission = props => {
 
   return (
     <PageContainer>
-      <div className={classes.arrow} onClick={() => history.push("/mission-control")}>
+      <div className={classes.arrow} onClick={() => history.push(`/mission-control/${state.currentUser.id}`)}>
         {backArrow(state.theme.colors.blue)}
       </div>
       <TitleContainer style={{ width: "100%" }}>
