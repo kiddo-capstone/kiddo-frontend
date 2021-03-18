@@ -28,7 +28,7 @@ const MiniAuth = () => {
     // if (state.currentUser?.type === 'user') return
     if (isAuthenticated) {
       const userDetails = {
-        name: user.name,
+        name: user.name ? user.name : user.email.split('@')[0],
         email: user.email
       }
 
