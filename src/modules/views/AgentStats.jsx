@@ -138,7 +138,8 @@ const AgentStats = () => {
             <img src={stat.icon.img} className={classes.taskIcon}/>
             <ProgressBar 
               barColor={appStyles.colors.yellow} 
-              completed={stat.completed_tasks / stat.total_tasks * 100}
+              completed={stat.completed_tasks}
+              total={10}
             />
           </span>
         </div>

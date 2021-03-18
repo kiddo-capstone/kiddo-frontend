@@ -3,11 +3,11 @@ import theme from "../common/theme";
 const appStyles = theme;
 
 const ProgressBar = (props) => {
-  const { barColor, completed } = props;
+  const { barColor, completed, total } = props;
 
   const container = {
     height: 20,
-    width: "80%",
+    width: "100%",
     backgroundColor: appStyles.colors.grey1,
     borderRadius: 50,
     margin: 10,
@@ -15,7 +15,7 @@ const ProgressBar = (props) => {
 
   const filler = {
     height: "100%",
-    width: `${completed}%`,
+    width: `${(completed / total) * 100}%`,
     backgroundColor: barColor,
     borderRadius: "inherit",
     textAlign: "right",
@@ -31,7 +31,10 @@ const ProgressBar = (props) => {
   return (
     <div style={container}>
       <div style={filler}>
-        <span style={label}>{`${completed}%`}</span>
+        {total === undefined && <span style={label}>{`${completed}%`}</span>}
+        {total !== undefined && (
+          <span style={label}>{`${completed}/${total}`}</span>
+        )}
       </div>
     </div>
   );
