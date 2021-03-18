@@ -30,13 +30,14 @@ const useStyles = makeStyles(() => ({
     maxWidth: "100%",
     justifyContent: "space-around",
     alignItems: "center",
-    padding: "0 2em",
+    padding: ".5em 1em",
   },
   taskIcon: {
     borderRadius: "10px",
-    maxHeight: "10vh",
-    maxWidth: "5vw",
+    maxHeight: "8em",
+    maxWidth: "4em",
     filter: "drop-shadow(2px 4px 6px black)",
+    paddingRight: "inherit"
   },
   button: {
     paddingTop: "10em"
