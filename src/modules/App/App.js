@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import AppContext from "./AppContext";
 import { appReducer, initialState } from "../common/appReducer";
 import Welcome from "../views/Welcome";
@@ -11,10 +11,12 @@ import Error400 from "../common/error/Error400";
 import Error500 from "../common/error/Error500";
 import AppContainer from "../../ui/containers/AppContainer";
 import { getAllMissions, getAllTasks, getAllUsers } from "../common/apiCalls";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const App = () => {
   const [state, dispatch] = useReducer(appReducer, initialState);
   const [error, setError] = useState(null);
+  const { isAuthenticated } = useAuth0()
 
   useEffect(async () => {
     await getAllMissions()
@@ -34,6 +36,12 @@ const App = () => {
       .catch(error => setError(error))
   }, [])
 
+  useEffect(() => {
+    return !isAuthenticated ?
+      <Redirect to="/welcome" /> :
+      <Redirect to="/mission-control" />
+  }, [])
+
   const addDataToState = (type, data) => {
     const action = { type: `FETCH_${type.toUpperCase()}`, [type]: data }
     dispatch(action)
@@ -41,7 +49,7 @@ const App = () => {
 
   return (
     <>
-      { !error ?
+      { !error ? 
         <AppContext.Provider value={[state, dispatch]}>
           <AppContainer />
           <Switch>
