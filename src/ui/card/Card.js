@@ -39,7 +39,7 @@ function KiddoCard({child}) {
   // return userMissions.map(m => (<Mission key={m.id} props={m} />))
 
   return (
-    <Link style={{display: 'flex'}} to='/mission-control' onClick={() => handleClick()}>
+    <Link style={{display: 'flex'}} to={`/mission-control/${id}`} onClick={() => handleClick()}>
       <Card style={{margin: '.6em', filter: 'drop-shadow(2px 4px 6px black)'}} className={classes.root}>
         <CardActionArea>
           <CardMedia
