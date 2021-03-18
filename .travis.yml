@@ -7,9 +7,10 @@ notifications:
 install:
 - npm install
 deploy:
-  provider: heroku
+  provider: codedeploy
+  wait_until_deployed: true
   app: kiddo-frontend
   skip_cleanup: true
   on: main
-  api_key:
-    secure: b31rJY6fRtSIw/O1QoGkOFhlW9cRddRmbUvvzLPKW+BVWTXCrbLV7j7+K/t3qVVihR/VaSzAqk5LU4Rg8I4h/m+TF6qauwP0ZdFn8vxdz/fxroiTQeoOw+CKuQrlm3fuleEKywzq/LYtvrgIqsB0+5lDbtFEDVQvCfLfe1Bzo19VknlGBLrj4gp+Cb8EIKBgLwUBb4rlihnVR3jDsE0dH+Bu4sEmllrVzwg1PKOHvnrWEaY5xxR/pD1JcTrt8r9+IJuZuHaUlc0CPGvATMywII3CMAAXHET+kwL0yWtx5LwjYNKiKTIK7Npv0m6eXqxEFSoi0xfcETTm+Id/zBuJ8ufAvQxtkezOTPXzRpDzFNanLCxUqBWc8zEV+SAoWmh8OPXWWqyVbyIX2AnBfq4opb5XuqWd6KKUk2iV56d0sEwPVvXGcqj1d/YjvkUbKtRv0tyQqRv2tPFDZ9J/ltOWIILDwg0wi3+KGs3wDrrmGy0xjZmJYsT9n4lfQGoC6ojb3XuzVOqv9ARI67s4YPhCfSoN5Z90jH4057w042d8jKzzr9GxTEmai8MiDqbFsTE2PzPWjXjZiTWeddhEgLv+1LYCQgGdrLBfYqhGLzwn/oH28X+cmbaJNuyFOD97pEzyky60Nh4iwcPi8Mv0i5B+BaAbkp83NGJmpQgVsSUNnms=
+  access_key_id: "AKIAXO5P4GVWR5GJALVR"
+  secret_access_key: "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"
