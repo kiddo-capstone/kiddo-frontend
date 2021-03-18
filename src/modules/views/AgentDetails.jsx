@@ -100,9 +100,6 @@ const AgentDetails = (props) => {
     useEffect(() => {
       if (state.currentUser && state.currentUser.type === 'user') { 
         setSessionUser(state.currentUser)
-      // } 
-      // else if (state.currentUser === null) {
-      //   setTempUser()
       } else {
         setSessionUser(null)
       }
@@ -114,14 +111,10 @@ const AgentDetails = (props) => {
       }
     }, [state.selectedTask])
   
-  const setTempUser = async () => {
-    await getUserById(+1).then(data => setSessionUser(data.data))
-  }
   const updateUserDetails = async () => {
     setIsRaining(true)
     
     await setTimeout(() => {
-      // Argument needs to be +sessionUser.id
     getUserById(+sessionUser.id).then(data => setSessionUser(data.data)).then(setIsRaining(false))
     }, 4000)
   }
@@ -138,7 +131,6 @@ const AgentDetails = (props) => {
       // Then it needs to either reload a progress bar,
       // OR no progress bar and starts Points
       // Back at 0 + the difference once user hits the target 
-      
       return "You did it!"
     }
   }

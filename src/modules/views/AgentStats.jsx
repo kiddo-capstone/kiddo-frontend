@@ -90,13 +90,11 @@ const AgentStats = () => {
 
   useEffect(() => {
     updateStats()
-    console.log(userStats)
   }, [])
 
   const updateStats = async () => {
     const fetchedStats = await getUserStats(state.currentUser.id)
     if (fetchedStats) {
-      console.log(fetchedStats);
       createStats(fetchedStats)
     }
   }
@@ -123,7 +121,6 @@ const AgentStats = () => {
         return stat
       }
     })
-    console.log(statsWithIcons)
     return setUserStats(statsWithIcons)
   }
 
