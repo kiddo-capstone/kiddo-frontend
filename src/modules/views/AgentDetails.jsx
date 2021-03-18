@@ -98,11 +98,13 @@ const AgentDetails = (props) => {
   const [isRaining, setIsRaining] = useState(false)
 
     useEffect(() => {
-      if (state.currentUser !== null && state.currentUser.type === 'user') { 
+      if (state.currentUser && state.currentUser.type === 'user') { 
         setSessionUser(state.currentUser)
-      } 
-      else if (state.currentUser === null) {
-        setTempUser()
+      // } 
+      // else if (state.currentUser === null) {
+      //   setTempUser()
+      } else {
+        setSessionUser(null)
       }
     }, [state.currentUser])
 
