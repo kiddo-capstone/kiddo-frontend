@@ -73,7 +73,7 @@ const AccountsView = () => {
   if (!children.length) return firstUX()
 
   if (children.length) return ( 
-    <div style={{ backgroundColor: "lightgray", height: "100%", paddingBottom: '2em' }}>
+    <div style={{ height: "100%", paddingBottom: '2em' }}>
       <PageContainer justify={'flex-start'} className={classes.container}>
         <TitleContainer className={classes.title}><h1 style={{fontSize: '2em', marginTop: '.4em', marginBottom: '1em', color: 'gold' }}>Account Selection</h1></TitleContainer>
         <div style={{flexWrap: 'wrap', display: 'flex', background: '', width: '100%', justifyContent: 'center'}}>
