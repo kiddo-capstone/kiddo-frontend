@@ -89,35 +89,62 @@ const AgentStats = () => {
 
   useEffect(() => {
     updateStats()
-  }, [state.currentUser])
+    console.log(userStats)
+  }, [])
 
-  const updateStats = () => {
-     getUserStats(+1).then(data => console.log(data))
+  const updateStats = async () => {
+    await getUserStats(+1).then(data => createStats(data))
+  }
+  
+  // const findStatByType = (type) => {
+  //   return userStats.find(stat => stat.category === type)
+  // }
+
+  const createStats = (stats) => {
+    const statsWithIcons = stats.map(stat => {
+      if (stat.category === "IQ") {
+        stat.icon = brainTraining
+        return stat
+      }
+      if (stat.category === "EQ") {
+        stat.icon = healthTraining
+      }
+      if (stat.category === "Misc") {
+        stat.icon = creativityTraining
+        return stat
+      }
+      else {
+        stat.icon = basicTraining
+        return stat
+      }
+    })
+    console.log(statsWithIcons)
+    return setUserStats(statsWithIcons)
   }
 
   const displayStats = () => {
-    const stats = [
-    { icon: brainTraining, barColor: 'gold', completed: 60 },
-    { icon: creativityTraining, barColor: 'gold', completed: 30 },
-    { icon: healthTraining, barColor: 'gold', completed: 53 },
-    { icon: basicTraining, barColor: 'gold', completed: 53 },
-  ];
-    // setUserStats(stats)
-    return stats.map(stat => {
+  // This was just for development
+  //   const stats = [
+  //   { icon: brainTraining, barColor: 'gold', completed: 60 },
+  //   { icon: creativityTraining, barColor: 'gold', completed: 30 },
+  //   { icon: healthTraining, barColor: 'gold', completed: 53 },
+  //   { icon: basicTraining, barColor: 'gold', completed: 53 },
+  // ];
+    const statsDisplayed = userStats
+    return statsDisplayed.map(stat => {
       return (
-        <div>
+        <div key={stat.category}>
           <span className={classes.statsRow}>
             <img src={stat.icon.img} className={classes.taskIcon}/>
             <ProgressBar 
               barColor={appStyles.colors.yellow} 
-              completed={50}
+              completed={stat.completed_tasks / stat.total_tasks * 100}
             />
           </span>
         </div>
       )
     })
   }
-  // useEffect(() => {}, [])
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -137,9 +164,11 @@ const AgentStats = () => {
       >
         <section className={classes.modalContent}>
           <h2>Agent Stats</h2>
+          {userStats !== null && (
           <div>
             {displayStats()}
           </div>
+          )}
           <span className={classes.button}>
             <Button onClick={handleClose}>
               Got it!
