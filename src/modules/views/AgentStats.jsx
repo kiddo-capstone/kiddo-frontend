@@ -94,7 +94,11 @@ const AgentStats = () => {
   }, [])
 
   const updateStats = async () => {
-    await getUserStats(+1).then(data => createStats(data))
+    const fetchedStats = await getUserStats(state.currentUser.id)
+    if (fetchedStats) {
+      console.log(fetchedStats);
+      createStats(fetchedStats)
+    }
   }
   
   // const findStatByType = (type) => {

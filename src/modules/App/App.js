@@ -12,6 +12,7 @@ import Error500 from "../common/error/Error500";
 import AppContainer from "../../ui/containers/AppContainer";
 import { getAllMissions, getAllTasks, getAllUsers } from "../common/apiCalls";
 import AccountsView from "../views/AccountsView";
+import {useAuth0} from '@auth0/auth0-react'
 
 const App = () => {
   const [state, dispatch] = useReducer(appReducer, initialState);
@@ -39,7 +40,7 @@ const App = () => {
   useEffect(() => {
     return !isAuthenticated ?
       <Redirect to="/welcome" /> :
-      <Redirect to="/mission-control" />
+      <Redirect to="/accounts" />
   }, [])
 
   const addDataToState = (type, data) => {
