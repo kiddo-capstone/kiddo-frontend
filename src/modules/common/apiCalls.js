@@ -62,19 +62,19 @@ export const getAllParents = () => {
 };
 
 export const getUserById = (id) => {
-  return (
-    fetch(`https://kiddo-backend.herokuapp.com/api/v1/users/${id}`)
-      // fetch(`http://localhost:3000/api/v1/users/${id}`)
-      .then((res) => res.json())
-  );
+  return fetch(
+    `https://kiddo-backend.herokuapp.com/api/v1/users/${id}`
+  ).then((res) => res.json());
 };
 
 export const getParentById = (id) => {
-  return (
-    fetch(`https://kiddo-backend.herokuapp.com/api/v1/parents/${id}`)
-      // fetch(`http://localhost:3000/api/v1/users/${id}`)
-      .then((res) => res.json())
-  );
+  return fetch(`https://kiddo-backend.herokuapp.com/api/v1/parents/${id}`);
+};
+
+export const getUserStats = (id) => {
+  return fetch(
+    `https://kiddo-backend.herokuapp.com/api/v1/users/${id}/stats`
+  ).then((res) => res.json());
 };
 
 export const updateSelectedTaskAPI = (id, updates) => {

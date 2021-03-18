@@ -4,10 +4,12 @@ import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
 import kids from "../../assets/kids_trio.png";
 import StatusForm from "./StatusForm";
-import { basicTraining, creativityTraining, healthTraining, brainTraining } from "../../assets/index";
+import AgentStats from "./AgentStats";
 import { useHistory } from "react-router-dom";
 import MiniAuth from "../auth/MiniAuth";
 import { getUserById } from "../common/apiCalls";
+import ProgressBar from "../../ui/dataVisuals/ProgressBar";
+import GoldCoinRain from "../../ui/animations/goldCoinRain";
 
 const appStyles = theme;
 
@@ -62,9 +64,9 @@ const useStyles = makeStyles(() => ({
   detailsChild: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     alignItems: "center",
-    padding: "0 1em",
+    padding: "0 2em",
     color: appStyles.colors.white,
     "& h2:nth-child(1)": {
       color: appStyles.colors.yellow,
@@ -93,42 +95,62 @@ const AgentDetails = (props) => {
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
   const [sessionUser, setSessionUser] = useState(state.currentUser)
-  
-  const stats = [
-    { icon: brainTraining, barColor: 'gold', completed: 60 },
-    { icon: creativityTraining, barColor: 'gold', completed: 30 },
-    { icon: healthTraining, barColor: 'gold', completed: 53 },
-    { icon: basicTraining, barColor: 'gold', completed: 53 },
-  ];
+  const [isRaining, setIsRaining] = useState(false)
 
     useEffect(() => {
       if (state.currentUser !== null && state.currentUser.type === 'user') { 
         setSessionUser(state.currentUser)
       } 
+      else if (state.currentUser === null) {
+        setTempUser()
+      }
     }, [state.currentUser])
 
     useEffect(() => {
       if (sessionUser !== null) {
         updateUserDetails()
       }
-    }, [state.selectedMissionTasks])
-
+    }, [state.selectedTask])
+  
+  const setTempUser = async () => {
+    await getUserById(+1).then(data => setSessionUser(data.data))
+  }
   const updateUserDetails = async () => {
-    await getUserById(+sessionUser.id).then(data => setSessionUser((data.data))).then(console.log("updated session user", sessionUser))
+    setIsRaining(true)
+    
+    await setTimeout(() => {
+      // Argument needs to be +sessionUser.id
+    getUserById(+sessionUser.id).then(data => setSessionUser(data.data)).then(setIsRaining(false))
+    }, 4000)
   }
 
   const determinePath = () => {
     return !state.currentUser ? history.push("/welcome") : history.push("/mission-control") 
   }
 
+  const getPointsProgress = (points, target) => {
+    if (points < target) {
+      return ((points / target) * 100).toFixed(1)
+    } else if (points === target) {
+      // Could put a fun animation in here!
+      // Then it needs to either reload a progress bar,
+      // OR no progress bar and starts Points
+      // Back at 0 + the difference once user hits the target 
+      
+      return "You did it!"
+    }
+  }
+    
   return (
     <section className={classes.section}>
+      {isRaining === true && (
+            <GoldCoinRain />
+          )} 
       <div className={classes.card}>
         <div className={classes.cardHeader}>
           <div className={classes.avatar} onClick={() => determinePath()}>
             <img src={kids} />
           </div>
-
           <span className={classes.titleText}>
             <h1>{sessionUser !== null ? sessionUser.attributes.name : 'KidDo Agent'}</h1> 
           </span>
@@ -139,16 +161,28 @@ const AgentDetails = (props) => {
               <h2>Date:</h2>
               <h3>{ new Date().toLocaleDateString() }</h3>
             </div>
-          {sessionUser !== null && (
-            <div className={classes.detailsChild}>
-              <h2>Points:</h2>
-              <h3>{sessionUser.attributes.points}</h3>
-            </div>
-          )}
             <div className={classes.detailsChild}>
               <h2>Agent Status:</h2>
-                <StatusForm />
+                <StatusForm /> 
             </div>
+          {sessionUser !== null && (
+            <>
+              <div className={classes.detailsChild}>
+                <h2>Points:</h2>
+                <h3>{sessionUser.attributes.points}</h3>
+              </div>
+              <span className={classes.statRow}>
+                <ProgressBar 
+                  barColor={appStyles.colors.yellow} 
+                  completed={getPointsProgress(sessionUser.attributes.points, 300)}
+                  total={100}
+                />
+              </span>
+              <span className={classes.titleText}>
+                <AgentStats />
+              </span>
+            </>
+          )}
           </div>
         </div>
       </div>
