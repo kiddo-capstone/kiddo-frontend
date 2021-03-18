@@ -1,5 +1,6 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AppContext from "../App/AppContext";
+import {getUserById} from '../common/apiCalls'
 import {PageContainer, TitleContainer } from "../../ui/containers/index";
 import Mission from '../mission/Mission'
 import {makeStyles} from '@material-ui/core'
@@ -51,25 +52,23 @@ const useStyles = makeStyles(theme => ({
 
 const MissionControl = props => {
   const [state, dispatch] = useContext(AppContext);  
+  const [sessionUser, setSessionUser] = useState(null)
   const classes = useStyles()
 
-  useEffect(() => {
-    console.log('effect');
-  })
+  useEffect(async () => {
+    if (state.currentUser?.id !== props.id) {
+      const matched = await getUserById(props.id)
+      const action = { type: `SET_CURRENT_USER`, currentUser: matched.data }
+      dispatch(action)
+      setSessionUser(matched)
+    }
+  },[sessionUser])
 
   const makeMissionList = () => {
-    if (state.currentUser === "" || state.currentUser === null) {
-      // for when no user is selected, will display all missions in the DB
-      return state.missions.sort((a, b)=> b.id-a.id).map(mission => {
-        return <Mission
-        key={mission.id}
-        props={mission}
-        />
-      })
-    } else {
+    if (sessionUser) {
       const userID = state.currentUser.id
       const userMissions = state.missions.filter(m => m.attributes.user_id === +userID)
-      return userMissions.map(m => (<Mission key={m.id} props={m} />))
+      return userMissions.sort((a, b)=> b.id-a.id).map(m => (<Mission key={m.id} props={m} />))
     }
   }
 
