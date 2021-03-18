@@ -25,3 +25,15 @@ export const addTasksToMission = (data) => {
     .catch((error) => console.log(error))
   )
 };
+
+export const addNewUserToParent = (data) => {
+  return fetch(`https://kiddo-backend.herokuapp.com/api/v1/users`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .catch((error) => console.log(error));
+};

@@ -2,7 +2,8 @@ import React, { useContext, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Button from "../../ui/button/Button";
 import AppContext from "../App/AppContext";
-import { createNewUser } from "../common/apiCalls";
+import { createNewParent } from "../common/apiCalls";
+import {getAllParents} from '../common/apiCalls'
 
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
@@ -24,17 +25,32 @@ const MiniAuth = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [state, dispatch] = useContext(AppContext);
 
-  useEffect(() => {
-    if (user) {
+  useEffect(async () => {
+    if (isAuthenticated) { // TODO we should probably use isAuthenticated here, according to their docs
       const userDetails = {
         name: user.name,
         email: user.email
       }
-      createNewUser(userDetails)
-        .then(data => dispatch({ type: "SET_CURRENT_USER", currentUser: data.data }))
-        .catch(error => console.log(error))
+
+      const matchedParent = await checkRegistered()
+      console.log(matchedParent)
+      if (matchedParent) {
+        dispatch({ type: "SET_CURRENT_USER", currentUser: matchedParent })
+        return
+      } else {
+        createNewParent(userDetails)
+          .then(data => dispatch({ type: "SET_CURRENT_USER", currentUser: data.data }))
+          .catch(error => console.log(error))
+        console.log('created new parent', userDetails)
+      }
     }
   }, [isAuthenticated])
+
+  const checkRegistered = async () => {
+    const parents = await getAllParents()
+    const match = await parents.data.find(p => p.attributes.email.toLowerCase() === user.email.toLowerCase())
+    return match
+  }
 
   if (isLoading) {
     return <div>Loading ...</div>;

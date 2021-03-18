@@ -53,9 +53,25 @@ export const getAllUsers = () => {
   );
 };
 
+export const getAllParents = () => {
+  return (
+    fetch("https://kiddo-backend.herokuapp.com/api/v1/parents")
+      // fetch('http://localhost:3000/api/v1/users')
+      .then((res) => res.json())
+  );
+};
+
 export const getUserById = (id) => {
   return (
     fetch(`https://kiddo-backend.herokuapp.com/api/v1/users/${id}`)
+      // fetch(`http://localhost:3000/api/v1/users/${id}`)
+      .then((res) => res.json())
+  );
+};
+
+export const getParentById = (id) => {
+  return (
+    fetch(`https://kiddo-backend.herokuapp.com/api/v1/parents/${id}`)
       // fetch(`http://localhost:3000/api/v1/users/${id}`)
       .then((res) => res.json())
   );
@@ -77,6 +93,18 @@ export const updateSelectedTaskAPI = (id, updates) => {
 };
 
 export const createNewUser = (data) => {
+  return fetch(`https://kiddo-backend.herokuapp.com/api/v1/users`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .catch((error) => console.log(error));
+};
+
+export const createNewParent = (data) => {
   return fetch(`https://kiddo-backend.herokuapp.com/api/v1/users`, {
     method: "POST",
     headers: {
