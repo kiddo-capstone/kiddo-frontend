@@ -102,7 +102,7 @@ const AgentDetails = (props) => {
   ];
 
     useEffect(() => {
-      if (state.currentUser !== null && state.currentUser.type === 'user') { // added to not load sidebar with default parent signed in
+      if (state.currentUser !== null && state.currentUser.type === 'user') { 
         setSessionUser(state.currentUser)
       } 
     }, [state.currentUser])
@@ -120,7 +120,7 @@ const AgentDetails = (props) => {
   const determinePath = () => {
     return !state.currentUser ? history.push("/welcome") : history.push("/mission-control") 
   }
-    
+
   return (
     <section className={classes.section}>
       <div className={classes.card}>
