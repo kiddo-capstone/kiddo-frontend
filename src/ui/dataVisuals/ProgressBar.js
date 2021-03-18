@@ -31,10 +31,8 @@ const ProgressBar = (props) => {
   return (
     <div style={container}>
       <div style={filler}>
-        {total === undefined && <span style={label}>{`${completed}%`}</span>}
-        {total !== undefined && (
-          <span style={label}>{`${completed}/${total}`}</span>
-        )}
+        {total === 100 && <span style={label}>{`${completed}%`}</span>}
+        {total !== 100 && <span style={label}>{`${completed}/${total}`}</span>}
       </div>
     </div>
   );

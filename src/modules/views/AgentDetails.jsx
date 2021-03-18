@@ -96,13 +96,6 @@ const AgentDetails = (props) => {
   const [state, dispatch] = useContext(AppContext);
   const [sessionUser, setSessionUser] = useState(state.currentUser)
   const [isRaining, setIsRaining] = useState(false)
-  
-  // const stats = [
-  //   { icon: brainTraining, barColor: 'gold', completed: 60 },
-  //   { icon: creativityTraining, barColor: 'gold', completed: 30 },
-  //   { icon: healthTraining, barColor: 'gold', completed: 53 },
-  //   { icon: basicTraining, barColor: 'gold', completed: 53 },
-  // ];
 
     useEffect(() => {
       if (state.currentUser !== null && state.currentUser.type === 'user') { 
@@ -182,6 +175,7 @@ const AgentDetails = (props) => {
                 <ProgressBar 
                   barColor={appStyles.colors.yellow} 
                   completed={getPointsProgress(sessionUser.attributes.points, 300)}
+                  total={100}
                 />
               </span>
               <span className={classes.titleText}>
