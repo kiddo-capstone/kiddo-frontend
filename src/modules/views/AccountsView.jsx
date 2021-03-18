@@ -16,27 +16,30 @@ const useStyles = makeStyles(theme => ({
 
 const AccountsView = () => {
   const [children, setChildren] = React.useState([]);
+  const [sessionUser, setSessionUser] = useState(null)
   const [state, dispatch] = useContext(AppContext);
   const classes = useStyles()
 
   useEffect(() => {
-    if (state.currentUser?.id !== state.parentId) {
+    if (state.parentId) {
       updateParent()
     }
-  },[])
+  },[state.parentId])
 
   useEffect(() => {
-    if (state.currentUser?.relationships) fetchChildren()
-  },[state.currentUser])
+    if (sessionUser) fetchChildren()
+  },[sessionUser])
 
   const updateParent = async () => {
-    const parent = await getParentById(state.parentId)
+    const parent = await getParentById(+state.parentId)
+    console.log(parent.data)
     const action = { type: `SET_CURRENT_USER`, currentUser: parent.data }
     dispatch(action)
+    setSessionUser(parent.data)
   }
 
   const fetchChildren = async () => {
-    const childIds = state.currentUser.relationships.users?.data
+    const childIds = sessionUser.relationships.users.data
     if (childIds){
       const fetchedKids = await childIds.reduce(async (promises, cid) => {
         const allChildren = await promises

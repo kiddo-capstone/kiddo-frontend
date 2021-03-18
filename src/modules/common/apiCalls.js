@@ -68,7 +68,8 @@ export const getUserById = (id) => {
 };
 
 export const getParentById = (id) => {
-  return fetch(`https://kiddo-backend.herokuapp.com/api/v1/parents/${id}`);
+  return fetch(`https://kiddo-backend.herokuapp.com/api/v1/parents/${id}`
+  ).then((res) => res.json());
 };
 
 export const getUserStats = (id) => {
