@@ -14,7 +14,7 @@ const useStyles = makeStyles(() => ({
       overflow: "hidden",
       width: "30%",
       height: "15%",
-      animation: "$fall 6s linear infinite",
+      animation: "$fall 6s linear",
       opacity: '0',
     },
   },

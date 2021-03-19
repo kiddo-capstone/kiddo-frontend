@@ -116,14 +116,20 @@ const AgentDetails = props => {
   }, [state.selectedTask]);
 
   const updateUserDetails = async () => {
-    setIsRaining(true);
-
-    await setTimeout(() => {
-      getUserById(+sessionUser.id)
-        .then(data => setSessionUser(data.data))
-        .then(setIsRaining(false));
-    }, 6000);
+    const userPoints = sessionUser.attributes.points
+    const details = await getUserById(+sessionUser.id)
+    setSessionUser(details.data)
+    if (sessionUser.attributes.points > userPoints) {
+      makeItRain()
+    }
   };
+
+  const makeItRain = async () => {
+    setIsRaining(true);
+    await setTimeout(() => {
+      setIsRaining(false);
+    }, 6000);
+  }
 
   const determinePath = () => {
     return !state.currentUser
