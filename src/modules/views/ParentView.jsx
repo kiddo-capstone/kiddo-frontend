@@ -14,6 +14,7 @@ import ExampleMission from '../mission/ExampleMission'
 import RewardForm from "../parents/RewardForm";
 import NewChildForm from "../parents/NewChildForm";
 import ChildList from "../parents/ChildList";
+import TaskCreation from "../parents/TaskCreation";
 
 
 const ParentView = () => {
@@ -138,7 +139,12 @@ const ParentView = () => {
             value={missionName}
             onChange={(event) => setMissionName(event.target.value)}
           />
-            <FormHelperText style={{margin:'1em', textAlign: 'center'}}>
+          <FormHelperText style={{margin:'1em'}}id="my-helper-text">
+            This is the name of the mission your child will see 🥳 
+          </FormHelperText>
+            <TransferList getChoices={getChoices}/>
+            <TaskCreation />
+            <FormHelperText style={{margin:'1em'}}id="my-helper-text">
               Pick at least one, but we recommend no more than four tasks per mission!
             </FormHelperText>
             <TransferList getChoices={getChoices}/>
