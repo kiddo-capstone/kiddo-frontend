@@ -119,7 +119,7 @@ const AgentDetails = props => {
     const userPoints = sessionUser.attributes.points
     const details = await getUserById(+sessionUser.id)
     setSessionUser(details.data)
-    if (sessionUser.attributes.points > userPoints) {
+    if (details.data.attributes.points > userPoints) {
       makeItRain()
     }
   };
