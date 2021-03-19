@@ -33,7 +33,7 @@ const Journal = ({ checkReady }) => {
   useEffect(() => {
     let updatedTask = selectedTask;
     updatedTask.message = entry;
-    entry.split(" ").length > 5
+    entry.split(" ").length > 4
       ? checkReady(true, updatedTask)
       : checkReady(false, updatedTask);
   }, [entry]);
