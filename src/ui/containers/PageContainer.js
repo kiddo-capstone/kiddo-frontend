@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
   pageContainer: {
     textAlign: "center",
     margin: (theme) => theme.margin || "default",
+    marginTop: "45px",
     minHeight: "100%",
     display: "flex",
     flexDirection: "column",

@@ -40,7 +40,7 @@ const useStyles = makeStyles(() => ({
     paddingRight: "inherit"
   },
   button: {
-    paddingTop: "10em"
+    paddingTop: "2em"
   },
   animate: {
     willChange: 'transform',
@@ -89,7 +89,9 @@ const AgentStats = () => {
   
 
   useEffect(() => {
+    if (state.currentUser.type === "user") {
     updateStats()
+    }
   }, [])
 
   const updateStats = async () => {
@@ -105,19 +107,22 @@ const AgentStats = () => {
 
   const createStats = (stats) => {
     const statsWithIcons = stats.map(stat => {
-      if (stat.category === "IQ") {
+      if (stat.category === "Brain Training") {
         stat.icon = brainTraining
         return stat
       }
-      if (stat.category === "EQ") {
+      if (stat.category === "Health Training") {
         stat.icon = healthTraining
       }
-      if (stat.category === "Misc") {
+      if (stat.category === "Creativity Training") {
         stat.icon = creativityTraining
         return stat
       }
-      else {
+      if (stat.category === "Basic Training") {
         stat.icon = basicTraining
+        return stat
+      } else {
+        stat.icon = brainTraining
         return stat
       }
     })
@@ -125,13 +130,6 @@ const AgentStats = () => {
   }
 
   const displayStats = () => {
-  // This was just for development
-  //   const stats = [
-  //   { icon: brainTraining, barColor: 'gold', completed: 60 },
-  //   { icon: creativityTraining, barColor: 'gold', completed: 30 },
-  //   { icon: healthTraining, barColor: 'gold', completed: 53 },
-  //   { icon: basicTraining, barColor: 'gold', completed: 53 },
-  // ];
     const statsDisplayed = userStats
     return statsDisplayed.map(stat => {
       return (
@@ -141,7 +139,7 @@ const AgentStats = () => {
             <ProgressBar 
               barColor={appStyles.colors.yellow} 
               completed={stat.completed_tasks}
-              total={10}
+              total={stat.total_tasks}
             />
           </span>
         </div>
@@ -166,8 +164,9 @@ const AgentStats = () => {
       open={open}
       >
         <section className={classes.modalContent}>
-          <h2>Agent Stats</h2>
-          {userStats !== null && (
+          <h2 style={{color: appStyles.colors.blue}}>Agent Stats</h2>
+          <h3>Completed Mission Tasks By Type</h3>
+          {userStats !== null && state.currentUser.type === "user" && (
           <div>
             {displayStats()}
           </div>

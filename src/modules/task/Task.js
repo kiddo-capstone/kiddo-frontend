@@ -1,9 +1,9 @@
-import React, {useContext} from "react";
-import AppContext from '../App/AppContext'
+import React, { useContext } from "react";
+import AppContext from "../App/AppContext";
 import { makeStyles } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
-const useStyles = makeStyles(props => ({
+const useStyles = makeStyles((props) => ({
   taskWrapper: {
     marginBottom: ".2em",
     width: "90%",
@@ -11,11 +11,11 @@ const useStyles = makeStyles(props => ({
     display: "flex",
     justifyContent: "flex-start",
     flexDirection: "column",
-    transition: props => (props.attributes.is_completed ? "" : "ease .3s"),
+    transition: (props) => (props.attributes.is_completed ? "" : "ease .3s"),
     willChange: "transform",
-    cursor: props => (props.attributes.is_completed ? "default" : "cursor"),
+    cursor: (props) => (props.attributes.is_completed ? "default" : "cursor"),
     "&:hover": {
-      transform: props =>
+      transform: (props) =>
         props.attributes.is_completed ? "" : "translateY(-.3em)",
       "& $task": {
         transition:
@@ -86,7 +86,7 @@ const useStyles = makeStyles(props => ({
     fontSize: "clamp(10px, 1.75rem, 4vmin)",
     color: "white",
     padding: "1em 0",
-    paddingTop: '2.3em',
+    paddingTop: "2.3em",
   },
   titleContainer: {
     marginTop: 1,
@@ -129,7 +129,7 @@ const useStyles = makeStyles(props => ({
 }));
 
 const Task = ({ props }) => {
-  const [state, dispatch] = useContext(AppContext)
+  const [state, dispatch] = useContext(AppContext);
   const classes = useStyles(props);
   const {
     attributes: {
@@ -154,7 +154,9 @@ const Task = ({ props }) => {
     if (is_completed) {
       return (
         <span className={classes.taskText} style={{ color: "lightgreen" }}>
-          <h1 style={{ marginRight: ".5em" }}><u>{task_name}</u> Complete!</h1>
+          <h1 style={{ marginRight: ".5em" }}>
+            <u>{task_name}</u> Complete!
+          </h1>
         </span>
       );
     } else {
@@ -170,44 +172,49 @@ const Task = ({ props }) => {
   const renderTaskCard = () => {
     if (!is_completed) {
       return (
-        <Link onClick={() => addTaskToState(props)} className={classes.link} key={props.id} to={`/task/${props.id}`}>
+        <Link
+          onClick={() => addTaskToState(props)}
+          className={classes.link}
+          key={props.id}
+          to={`/task/${props.id}`}
+        >
           {taskCard()}
         </Link>
-      )
+      );
     } else {
-      return (
-        <div className={classes.link}>
-          {taskCard()}
-        </div>
-      ) 
+      return <div className={classes.link}>{taskCard()}</div>;
     }
-  }
+  };
 
   const taskCard = () => (
     <article className={classes.taskWrapper}>
       <span className={classes.category}>
-        <p style={is_completed ? { color: "lightgreen" } : null}>{task_category}</p>
+        <p style={is_completed ? { color: "lightgreen" } : null}>
+          {task_category}
+        </p>
         <p className={is_completed ? classes.pulse : null}>💰 X {points}</p>
       </span>
       <div className={is_completed ? classes.completedTask : classes.task}>
         <div className={classes.titleContainer}>{renderTitle()}</div>
         <p className={classes.taskDescription}>
-        {is_completed ? (
-          <span style={{display: 'flex', flexDirection: 'column'}}>
-            <i style={{ color: "lightgreen", fontSize: "1em", margin: '1em' }}>
-              <b>Agent notes:</b>  {message}
-            </i>
-            <img className={classes.taskImage} src={image_path}/> 
-          </span>)
-          : (task_description)}
+          {is_completed ? (
+            <span style={{ display: "flex", flexDirection: "column" }}>
+              <i
+                style={{ color: "lightgreen", fontSize: "1em", margin: "1em" }}
+              >
+                <b>Agent notes:</b> {message}
+              </i>
+              <img className={classes.taskImage} src={image_path} />
+            </span>
+          ) : (
+            task_description
+          )}
         </p>
       </div>
     </article>
   );
 
-  return (
-    renderTaskCard()
-  );
+  return renderTaskCard();
 };
 
 export default React.memo(Task);

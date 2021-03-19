@@ -79,7 +79,7 @@ const useStyles = makeStyles(theme => ({
   arrow: {
     filter: "drop-shadow(2px 4px 9px black)",
     position: "absolute",
-    top: "3%",
+    top: "10%",
     left: "calc(300px + 2%)",
     willChange: "transform",
     transition: "ease .3s",

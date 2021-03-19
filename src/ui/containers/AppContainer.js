@@ -1,5 +1,5 @@
 // React Imports
-import React from "react";
+import React, { useContext } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 // Material-ui Imports
@@ -16,6 +16,8 @@ import theme from "../common/theme";
 import AgentDetails from "../../modules/views/AgentDetails";
 import PageContainer from "./PageContainer";
 import magnifyingGlass from "../../assets/magnifying-glass.png";
+import { Link } from "react-router-dom";
+import AppContext from "../../modules/App/AppContext";
 
 const appStyles = theme;
 const drawerWidth = 300;
@@ -47,14 +49,15 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#1c1c1c",
     fontSize: "calc(10px + 2vmin)",
     [theme.breakpoints.up("md")]: {
-      // width: `calc(100% - ${drawerWidth}px)`,
-      display: "none",
+      width: `calc(100% - ${drawerWidth}px)`,
+      // display: "none",
     },
   },
   content: {
     flexGrow: 1,
-    marginTop: 0,
+    marginTop: 30,
     fontFamily: "'Russo One', sans-serif",
+
     [theme.breakpoints.up("sm")]: {
       marginLeft: drawerWidth,
     },
@@ -68,7 +71,19 @@ const useStyles = makeStyles((theme) => ({
     margin: ".4em",
     backgroundColor: "transparent",
   },
-
+  appBarNav: {
+    display: "flex",
+    justifyContent: "center",
+    "& a": {
+      color: appStyles.colors.white,
+      paddingRight: "2em",
+      textDecoration: "none",
+      cursor: "pointer",
+      "&:hover": {
+        color: appStyles.colors.blue,
+      },
+    },
+  },
   toolbar: {
     minHeight: theme.mixins.toolbar,
     textAlign: "center",
@@ -76,6 +91,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function AppContainer(props) {
+  const [state, dispatch] = useContext(AppContext);
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const { user, isAuthenticated, isLoading } = useAuth0();
   const { window } = props;
@@ -114,7 +130,22 @@ function AppContainer(props) {
               style={{ height: "2em" }}
             />
           </IconButton>
-          {/* Welcome {isAuthenticated && ` ${user.given_name}`}! */}
+          {state.currentUser?.type === "parent" && (
+            <div className={classes.appBarNav}>
+              <Link to="/welcome">About</Link>
+              <Link to="/parent-view">HQ</Link>
+              <Link to="/accounts">Accounts</Link>
+            </div>
+          )}
+          {state.currentUser?.type === "user" && (
+            <div className={classes.appBarNav}>
+              <Link to="/welcome">About</Link>
+              <Link to={`/mission-control/${state.currentUser.id}`}>
+                Mission Control
+              </Link>
+              <Link to="/accounts">Agents</Link>
+            </div>
+          )}
           KidDo
         </Toolbar>
       </AppBar>
