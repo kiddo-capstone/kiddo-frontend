@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../ui/button/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import ModalWrapper from "../../ui/modal/ModalWrapper";
@@ -17,21 +17,45 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
+const emptyTask = {
+  name: null,
+  description: null,
+  category: null,
+  points: 0,
+  photo: false,
+  resource_type: null,
+  resource_link: null,
+  resource_alt: null
+}
+
 const TaskCreation = () => {
   const [open, setOpen] = useState(false);
   const classes = useStyles();
+  const [task, setTask] = useState(emptyTask)
 
-  const handleSubmit = () => {
-    console.log("submit")
-  }
+
+  useEffect(() => {
+    console.log('task: ', task)
+  }, [task])
 
   const handleClickOpen = () => {
     setOpen(true);
-  };
-
+  }
+  
   const handleClose = () => {
     setOpen(false);
-  };
+  }
+  
+  const handleTaskChange = (e) => {
+    console.log(task[e.target.name])
+    const updatedTask = { ...task, [e.target.name]: e.target.value }
+    
+    setTask(updatedTask)
+  }
+  
+  const handleSubmit = () => {
+    console.log("submit")
+  }
 
   return (
     <ModalWrapper
@@ -45,7 +69,10 @@ const TaskCreation = () => {
         <form>
           <input 
             type="text"
-            placeholder="Name"
+            placeholder="Task Name"
+            name="name"
+            onChange={e => handleTaskChange(e)}
+
           />
         </form>
       </section>
