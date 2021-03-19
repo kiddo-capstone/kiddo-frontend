@@ -91,25 +91,25 @@ const useStyles = makeStyles(() => ({
 }));
 
 const AgentDetails = (props) => {
-  const history = useHistory()
+  const history = useHistory();
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
   const [sessionUser, setSessionUser] = useState(state.currentUser)
   const [isRaining, setIsRaining] = useState(false)
 
-    useEffect(() => {
-      if (state.currentUser && state.currentUser.type === 'user') { 
-        setSessionUser(state.currentUser)
-      } else {
-        setSessionUser(null)
-      }
-    }, [state.currentUser])
+  useEffect(() => {
+    if (state.currentUser && state.currentUser.type === 'user') { 
+      setSessionUser(state.currentUser)
+    } else {
+      setSessionUser(null)
+    }
+  }, [state.currentUser])
 
-    useEffect(() => {
-      if (sessionUser !== null) {
-        updateUserDetails()
-      }
-    }, [state.selectedTask])
+  useEffect(() => {
+    if (sessionUser !== null) {
+      updateUserDetails()
+    }
+  }, [state.selectedTask])
   
   const updateUserDetails = async () => {
     setIsRaining(true)
@@ -146,7 +146,7 @@ const AgentDetails = (props) => {
             <img src={kids} />
           </div>
           <span className={classes.titleText}>
-            <h1>{sessionUser !== null ? sessionUser.attributes.name : 'KidDo Agent'}</h1> 
+            <h1>{state.currentUser !== null ? state.currentUser.attributes.name : 'KidDo'}</h1> 
           </span>
 
           <hr />
@@ -168,7 +168,7 @@ const AgentDetails = (props) => {
               <span className={classes.statRow}>
                 <ProgressBar 
                   barColor={appStyles.colors.yellow} 
-                  completed={getPointsProgress(sessionUser.attributes.points, 300)}
+                  completed={getPointsProgress(sessionUser.attributes.points, 100)}
                   total={100}
                 />
               </span>

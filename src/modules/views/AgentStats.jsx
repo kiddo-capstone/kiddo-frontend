@@ -40,7 +40,7 @@ const useStyles = makeStyles(() => ({
     paddingRight: "inherit"
   },
   button: {
-    paddingTop: "10em"
+    paddingTop: "2em"
   },
   animate: {
     willChange: 'transform',
@@ -169,7 +169,8 @@ const AgentStats = () => {
       open={open}
       >
         <section className={classes.modalContent}>
-          <h2>Agent Stats</h2>
+          <h2 style={{color: appStyles.colors.blue}}>Agent Stats</h2>
+          <h3>Complete 10 Tasks and Earn a Special Agent Badge!</h3>
           {userStats !== null && (
           <div>
             {displayStats()}
