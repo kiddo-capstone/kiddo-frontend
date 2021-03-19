@@ -73,6 +73,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appBarNav: {
     display: "flex",
+    justifyContent: "center",
     "& a": {
       color: appStyles.colors.white,
       paddingRight: "2em",
@@ -142,6 +143,7 @@ function AppContainer(props) {
               <Link to={`/mission-control/${state.currentUser.id}`}>
                 Mission Control
               </Link>
+              <Link to="/accounts">Agents</Link>
             </div>
           )}
           KidDo
