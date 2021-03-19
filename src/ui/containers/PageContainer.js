@@ -3,13 +3,14 @@ import { makeStyles } from "@material-ui/core";
 import theme from "../common/theme";
 
 const drawerWidth = 300;
-
 const drawerHeight = 40;
+
 const useStyles = makeStyles((theme) => ({
   pageContainer: {
     textAlign: "center",
     margin: (theme) => theme.margin || "default",
     minHeight: "100%",
+    height: "100%",
     display: "flex",
     flexDirection: "column",
     justifyContent: (theme) => theme.justify || "center",

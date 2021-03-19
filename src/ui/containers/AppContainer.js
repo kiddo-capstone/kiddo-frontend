@@ -1,5 +1,5 @@
 // React Imports
-import React from "react";
+import React, { useContext } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 // Material-ui Imports
@@ -17,6 +17,7 @@ import AgentDetails from "../../modules/views/AgentDetails";
 import PageContainer from "./PageContainer";
 import magnifyingGlass from "../../assets/magnifying-glass.png";
 import { Link } from "react-router-dom";
+import AppContext from "../../modules/App/AppContext";
 
 const appStyles = theme;
 const drawerWidth = 300;
@@ -89,6 +90,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function AppContainer(props) {
+  const [state, dispatch] = useContext(AppContext);
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const { user, isAuthenticated, isLoading } = useAuth0();
   const { window } = props;
@@ -127,11 +129,18 @@ function AppContainer(props) {
               style={{ height: "2em" }}
             />
           </IconButton>
-          <div className={classes.appBarNav}>
-            <Link to="/welcome">About</Link>
-            <Link to="/parent-view">HQ</Link>
-            <Link to="/accounts">Accounts</Link>
-          </div>
+          {state.currentUser?.type === "parent" ? (
+            <div className={classes.appBarNav}>
+              <Link to="/welcome">About</Link>
+              <Link to="/parent-view">HQ</Link>
+              <Link to="/accounts">Accounts</Link>
+            </div>
+          ) : (
+            <div className={classes.appBarNav}>
+              <Link to="/welcome">About</Link>
+              <Link to="/mission-control">Mission Control</Link>
+            </div>
+          )}
           KidDo
         </Toolbar>
       </AppBar>
