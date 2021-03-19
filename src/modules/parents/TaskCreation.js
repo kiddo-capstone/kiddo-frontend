@@ -10,8 +10,7 @@ const useStyles = makeStyles(() => ({
   },
   form: {
     display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
+    flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "center",
   }
@@ -66,14 +65,28 @@ const TaskCreation = () => {
       open={open}
     >
       <section className={classes.modalContent}>
-        <form>
+        <form className={classes.form}>
           <input 
             type="text"
             placeholder="Task Name"
             name="name"
             onChange={e => handleTaskChange(e)}
-
           />
+          <input
+            type="text"
+            placeholder="Task Description"
+            name="description"
+            onChange={e => handleTaskChange(e)}
+          />
+          <label>
+            Category:
+          <select name="category" onChange={e => handleTaskChange(e)}>
+            <option name="category" value="Brain Training">Brain Training</option>
+            <option name="category" value="Health Training">Health Training</option>
+            <option name="category" value="Creativity Training">Creativity Training</option>
+            <option name="category" value="Basic Training">Basic Training</option>
+          </select>
+          </label>
         </form>
       </section>
     </ModalWrapper>
