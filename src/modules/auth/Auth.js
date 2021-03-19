@@ -13,7 +13,7 @@ const LogoutButton = () => {
   return (
     <Button
       primary={true}
-      onClick={() => logout({ returnTo: window.location.origin + "/welcome" })}>
+      onClick={() => logout({ returnTo: window.location.origin + "/" })}>
       Log Out
     </Button>
   );

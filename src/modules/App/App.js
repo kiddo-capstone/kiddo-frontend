@@ -39,7 +39,7 @@ const App = () => {
 
   useEffect(() => {
     return !isAuthenticated ?
-      <Redirect to="/welcome" /> :
+      <Redirect to="/" /> :
       <Redirect to="/accounts" />
   }, [])
 
@@ -54,7 +54,7 @@ const App = () => {
         <AppContext.Provider value={[state, dispatch]}>
           <AppContainer />
           <Switch>
-            <Route exact path="/welcome" component={Welcome} />
+            <Route exact path="/" component={Welcome} />
             <Route
               exact
               path="/daily-mission/:id"

@@ -120,7 +120,7 @@ const AgentDetails = (props) => {
   }
 
   const determinePath = () => {
-    return !state.currentUser ? history.push("/welcome") : history.push("/mission-control") 
+    return !state.currentUser ? history.push("/") : history.push("/mission-control") 
   }
 
   const getPointsProgress = (points, target) => {
