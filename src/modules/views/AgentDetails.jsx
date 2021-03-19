@@ -120,7 +120,7 @@ const AgentDetails = (props) => {
   }
 
   const determinePath = () => {
-    return !state.currentUser ? history.push("/welcome") : history.push("/mission-control") 
+    return !state.currentUser ? history.push("/") : history.push("/mission-control") 
   }
 
   const getPointsProgress = (points, target) => {
@@ -146,7 +146,7 @@ const AgentDetails = (props) => {
             <img src={kids} />
           </div>
           <span className={classes.titleText}>
-            <h1>{state.currentUser !== null ? state.currentUser.attributes.name : 'KidDo'}</h1> 
+            <h1>{sessionUser !== null ? sessionUser.attributes.name : 'KidDo'}</h1> 
           </span>
           <hr />
           <div className={classes.details}>
