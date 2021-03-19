@@ -14,34 +14,44 @@ import { getAllMissions, getAllTasks, getAllUsers } from "../common/apiCalls";
 import AccountsView from "../views/AccountsView";
 import {useAuth0} from '@auth0/auth0-react'
 
+const localState = JSON.parse(localStorage.getItem("kiddoInfo"));
+
 const App = () => {
-  const [state, dispatch] = useReducer(appReducer, initialState);
+  const [state, dispatch] = useReducer(appReducer, localState || initialState);
   const [error, setError] = useState(null);
   const { isAuthenticated } = useAuth0()
+
+  useEffect(() => {
+    localStorage.setItem("kiddoInfo", JSON.stringify(state));
+  }, [state]);
 
   useEffect(async () => {
     await getAllMissions()
       .then(data => addDataToState('missions', data.data))
       .catch(error => setError(error))
-  }, [])
-
-  useEffect(async () => {
-    await getAllTasks()
+      console.log('app effect')
+    }, [])
+    
+    useEffect(async () => {
+      await getAllTasks()
       .then(data => addDataToState('tasks', data.data))
       .catch(error => setError(error))
-  }, [])
-
-  useEffect(async () => {
-    await getAllUsers()
+      console.log('app effect')
+    }, [])
+    
+    useEffect(async () => {
+      await getAllUsers()
       .then(data => addDataToState('users', data.data))
       .catch(error => setError(error))
-  }, [])
-
-  useEffect(() => {
-    return !isAuthenticated ?
+      console.log('app effect')
+    }, [])
+    
+    useEffect(() => {
+      console.log('app effect')
+      return !isAuthenticated ?
       <Redirect to="/" /> :
       <Redirect to="/accounts" />
-  }, [])
+    }, [])
 
   const addDataToState = (type, data) => {
     const action = { type: `FETCH_${type.toUpperCase()}`, [type]: data }
