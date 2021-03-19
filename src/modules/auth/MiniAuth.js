@@ -25,7 +25,6 @@ const MiniAuth = () => {
   const [state, dispatch] = useContext(AppContext);
 
   useEffect(async () => {
-    // if (state.currentUser?.type === 'user') return
     if (isAuthenticated) {
       const userDetails = {
         name: user.name ? user.name : user.email.split('@')[0],
@@ -57,7 +56,7 @@ const MiniAuth = () => {
   }
 
   return (
-    <span style={{width: '100%',display: 'flex', justifyContent: 'center', marginTop: '1em'}}>
+    <span style={{width: '100%',display: 'flex', justifyContent: 'center'}}>
       {!isAuthenticated ? <LoginButton /> : <LogoutButton />}
     </span>
   );

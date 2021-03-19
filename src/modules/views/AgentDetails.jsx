@@ -22,23 +22,22 @@ const useStyles = makeStyles(() => ({
   card: {
     height: "auto",
     overflow: "hidden",
-    backgroundPosition: 'center',
+    backgroundPosition: "center",
   },
   cardHeader: {
     position: "relative",
     paddingTop: "50px",
-    paddingBottom: "20px",
     height: "30%",
   },
   titleText: {
     fontFamily: appStyles.fonts.primary,
     fontSize: "20px",
     textAlign: "center",
-    color: 'gold',
+    color: "gold",
   },
   avatar: {
-    filter: 'drop-shadow(2px 4px 6px black)',
-    backgroundImage: 'linear-gradient(359deg, #e4572e9e, #00e7ff47)',
+    filter: "drop-shadow(2px 4px 6px black)",
+    backgroundImage: "linear-gradient(359deg, #e4572e9e, #00e7ff47)",
     margin: "auto",
     position: "relative",
     width: "220px",
@@ -49,7 +48,7 @@ const useStyles = makeStyles(() => ({
     "& img": {
       width: "100%",
       height: "100%",
-      objectFit: "cover"
+      objectFit: "cover",
     },
   },
   icon: {
@@ -59,7 +58,7 @@ const useStyles = makeStyles(() => ({
   },
   details: {
     display: "flex",
-    flexDirection: "column"
+    flexDirection: "column",
   },
   detailsChild: {
     display: "flex",
@@ -86,97 +85,109 @@ const useStyles = makeStyles(() => ({
     padding: "0.6em 1.5em",
     "& h2:nth-child(1)": {
       color: appStyles.colors.white,
-    }
-  }
+    },
+  },
+  rainContainer: {
+    height: 'inherit',
+    width: 'inherit',
+    overflow: 'none',
+  },
 }));
 
-const AgentDetails = (props) => {
+const AgentDetails = props => {
   const history = useHistory();
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
-  const [sessionUser, setSessionUser] = useState(state.currentUser)
-  const [isRaining, setIsRaining] = useState(false)
+  const [sessionUser, setSessionUser] = useState(state.currentUser);
+  const [isRaining, setIsRaining] = useState(false);
 
   useEffect(() => {
-    if (state.currentUser && state.currentUser.type === 'user') { 
-      setSessionUser(state.currentUser)
+    if (state.currentUser && state.currentUser.type === "user") {
+      setSessionUser(state.currentUser);
     } else {
-      setSessionUser(null)
+      setSessionUser(null);
     }
-  }, [state.currentUser])
+  }, [state.currentUser]);
 
   useEffect(() => {
     if (sessionUser !== null) {
-      updateUserDetails()
+      updateUserDetails();
     }
-  }, [state.selectedTask])
-  
+  }, [state.selectedTask]);
+
   const updateUserDetails = async () => {
-    setIsRaining(true)
-    
+    setIsRaining(true);
+
     await setTimeout(() => {
-    getUserById(+sessionUser.id).then(data => setSessionUser(data.data)).then(setIsRaining(false))
-    }, 4000)
-  }
+      getUserById(+sessionUser.id)
+        .then(data => setSessionUser(data.data))
+        .then(setIsRaining(false));
+    }, 6000);
+  };
 
   const determinePath = () => {
-    return !state.currentUser ? history.push("/") : history.push("/mission-control") 
-  }
+    return !state.currentUser
+      ? history.push("/")
+      : history.push("/mission-control");
+  };
 
   const getPointsProgress = (points, target) => {
     if (points < target) {
-      return ((points / target) * 100).toFixed(1)
+      return ((points / target) * 100).toFixed(1);
     } else if (points === target) {
       // Could put a fun animation in here!
       // Then it needs to either reload a progress bar,
       // OR no progress bar and starts Points
-      // Back at 0 + the difference once user hits the target 
-      return "You did it!"
+      // Back at 0 + the difference once user hits the target
+      return "You did it!";
     }
-  }
-    
+  };
+
   return (
     <section className={classes.section}>
-      {isRaining === true && (
-            <GoldCoinRain />
-          )} 
+      <div className={classes.rainContainer}>{isRaining === true && <GoldCoinRain />}</div>
       <div className={classes.card}>
         <div className={classes.cardHeader}>
           <div className={classes.avatar} onClick={() => determinePath()}>
             <img src={kids} />
           </div>
           <span className={classes.titleText}>
-            <h1>{sessionUser !== null ? sessionUser.attributes.name : 'KidDo'}</h1> 
+            <h1>
+              {sessionUser !== null ? sessionUser.attributes.name : "KidDo"}
+            </h1>
           </span>
           <hr />
           <div className={classes.details}>
             <div className={classes.detailsChild}>
               <h2>Date:</h2>
-              <h3>{ new Date().toLocaleDateString() }</h3>
+              <h3>{new Date().toLocaleDateString()}</h3>
             </div>
             {/* {state.currentUser?.type === "user" ? ()} */}
             <div className={classes.detailsChild}>
               <h2>Agent Status:</h2>
-                <StatusForm /> 
+              <StatusForm />
             </div>
-          {sessionUser !== null && (
-            <>
-              <div className={classes.detailsChild}>
-                <h2>Points:</h2>
-                <h3>{sessionUser.attributes.points}</h3>
-              </div>
-              <span className={classes.statRow}>
-                <ProgressBar 
-                  barColor={appStyles.colors.yellow} 
-                  completed={getPointsProgress(sessionUser.attributes.points, 100)}
-                  total={100}
-                />
-              </span>
-              <span className={classes.titleText}>
-                <AgentStats />
-              </span>
-            </>
-          )}
+            {sessionUser !== null && (
+              <>
+                <div className={classes.detailsChild}>
+                  <h2>Points:</h2>
+                  <h3>{sessionUser.attributes.points}</h3>
+                </div>
+                <span className={classes.statRow}>
+                  <ProgressBar
+                    barColor={appStyles.colors.yellow}
+                    completed={getPointsProgress(
+                      sessionUser.attributes.points,
+                      100
+                    )}
+                    total={100}
+                  />
+                </span>
+                <span className={classes.titleText}>
+                  <AgentStats />
+                </span>
+              </>
+            )}
           </div>
         </div>
       </div>
