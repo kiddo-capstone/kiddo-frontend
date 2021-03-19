@@ -105,19 +105,22 @@ const AgentStats = () => {
 
   const createStats = (stats) => {
     const statsWithIcons = stats.map(stat => {
-      if (stat.category === "IQ") {
+      if (stat.category === "Brain Training") {
         stat.icon = brainTraining
         return stat
       }
-      if (stat.category === "EQ") {
+      if (stat.category === "Health Training") {
         stat.icon = healthTraining
       }
-      if (stat.category === "Misc") {
+      if (stat.category === "Creativity Training") {
         stat.icon = creativityTraining
         return stat
       }
-      else {
+      if (stat.category === "Basic Training") {
         stat.icon = basicTraining
+        return stat
+      } else {
+        stat.icon = brainTraining
         return stat
       }
     })
