@@ -37,12 +37,10 @@ const App = () => {
       await getAllUsers()
       .then(data => addDataToState('users', data.data))
       .catch(error => setError(error))
-      console.log('app effect')
-    }, [])
-    
-    useEffect(() => {
-      console.log('app effect')
-      return !isAuthenticated ?
+  }, [])
+
+  useEffect(() => {
+    return !isAuthenticated ?
       <Redirect to="/" /> :
       <Redirect to="/accounts" />
     }, [])
