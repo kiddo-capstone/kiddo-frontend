@@ -53,13 +53,13 @@ const useStyles = makeStyles(theme => ({
   arrow: {
     filter: 'drop-shadow(2px 4px 9px black)',
     position: 'absolute',
-    top: '3%',
+    top: '6%',
     left: 'calc(300px + 2%)',
     willChange: 'transform',
     transition: 'ease .3s',
     cursor: 'pointer',
     [theme.breakpoints.down("960")]: {
-      top: '80px',
+      // top: '80px',
       left: '2%',
       zIndex: '10',
       '& svg': {

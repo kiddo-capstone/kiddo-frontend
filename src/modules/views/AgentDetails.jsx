@@ -148,13 +148,13 @@ const AgentDetails = (props) => {
           <span className={classes.titleText}>
             <h1>{state.currentUser !== null ? state.currentUser.attributes.name : 'KidDo'}</h1> 
           </span>
-
           <hr />
           <div className={classes.details}>
             <div className={classes.detailsChild}>
               <h2>Date:</h2>
               <h3>{ new Date().toLocaleDateString() }</h3>
             </div>
+            {/* {state.currentUser?.type === "user" ? ()} */}
             <div className={classes.detailsChild}>
               <h2>Agent Status:</h2>
                 <StatusForm /> 

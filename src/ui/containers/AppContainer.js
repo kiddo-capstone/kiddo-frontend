@@ -138,7 +138,9 @@ function AppContainer(props) {
           ) : (
             <div className={classes.appBarNav}>
               <Link to="/welcome">About</Link>
-              <Link to="/mission-control">Mission Control</Link>
+              <Link to={`/mission-control/${state.currentUser.id}`}>
+                Mission Control
+              </Link>
             </div>
           )}
           KidDo
