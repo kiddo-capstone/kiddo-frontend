@@ -129,13 +129,14 @@ function AppContainer(props) {
               style={{ height: "2em" }}
             />
           </IconButton>
-          {state.currentUser?.type === "parent" ? (
+          {state.currentUser?.type === "parent" && (
             <div className={classes.appBarNav}>
               <Link to="/welcome">About</Link>
               <Link to="/parent-view">HQ</Link>
               <Link to="/accounts">Accounts</Link>
             </div>
-          ) : (
+          )}
+          {state.currentUser?.type === "user" && (
             <div className={classes.appBarNav}>
               <Link to="/welcome">About</Link>
               <Link to={`/mission-control/${state.currentUser.id}`}>
