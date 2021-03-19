@@ -89,7 +89,9 @@ const AgentStats = () => {
   
 
   useEffect(() => {
+    if (state.currentUser.type === "user") {
     updateStats()
+    }
   }, [])
 
   const updateStats = async () => {
@@ -170,8 +172,8 @@ const AgentStats = () => {
       >
         <section className={classes.modalContent}>
           <h2 style={{color: appStyles.colors.blue}}>Agent Stats</h2>
-          <h3>Complete 10 Tasks and Earn a Special Agent Badge!</h3>
-          {userStats !== null && (
+          <h3>Completed Mission Tasks By Type</h3>
+          {userStats !== null && state.currentUser.type === "user" && (
           <div>
             {displayStats()}
           </div>
