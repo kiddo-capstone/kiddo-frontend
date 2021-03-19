@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
     transition: 'ease .3s',
     cursor: 'pointer',
     [theme.breakpoints.down("960")]: {
-      top: '80px',
+      top: '10%',
       left: '2%',
       zIndex: '10',
       '& svg': {

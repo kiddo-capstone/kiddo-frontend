@@ -5,14 +5,18 @@ import "./index.css";
 import App from "./modules/App/App";
 import * as serviceWorkerRegistration from "./setup/serviceWorkerRegistration";
 import { Auth0Provider } from "@auth0/auth0-react";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
 ReactDOM.render(
   <Auth0Provider
     domain="dev-45kbuxp3.us.auth0.com"
     clientId="KBYokR5NYW0COpeCkQBGHXGdKGH3zhqj"
-    redirectUri={window.location.origin + "/accounts"}>
+    redirectUri={window.location.origin + "/accounts"}
+  >
     <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <App />
+      <CssBaseline>
+        <App />
+      </CssBaseline>
     </BrowserRouter>
   </Auth0Provider>,
   document.getElementById("root")

@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    marginTop: 0,
+    marginTop: 30,
     fontFamily: "'Russo One', sans-serif",
 
     [theme.breakpoints.up("sm")]: {
