@@ -130,13 +130,6 @@ const AgentStats = () => {
   }
 
   const displayStats = () => {
-  // This was just for development
-  //   const stats = [
-  //   { icon: brainTraining, barColor: 'gold', completed: 60 },
-  //   { icon: creativityTraining, barColor: 'gold', completed: 30 },
-  //   { icon: healthTraining, barColor: 'gold', completed: 53 },
-  //   { icon: basicTraining, barColor: 'gold', completed: 53 },
-  // ];
     const statsDisplayed = userStats
     return statsDisplayed.map(stat => {
       return (
@@ -146,7 +139,7 @@ const AgentStats = () => {
             <ProgressBar 
               barColor={appStyles.colors.yellow} 
               completed={stat.completed_tasks}
-              total={10}
+              total={stat.total_tasks}
             />
           </span>
         </div>
