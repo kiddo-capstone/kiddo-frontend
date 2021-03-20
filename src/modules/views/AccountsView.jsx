@@ -13,15 +13,17 @@ const useStyles = makeStyles(theme => ({
   title: {},
 }))
 
+const localParentId = JSON.parse(localStorage.getItem("kiddoParentId"));
 
 const AccountsView = () => {
   const [children, setChildren] = React.useState([]);
   const [sessionUser, setSessionUser] = useState(null)
   const [state, dispatch] = useContext(AppContext);
   const classes = useStyles()
-
+  
+    
   useEffect(() => {
-    if (state.parentId) {
+    if (state.parentId || localParentId) {
       updateParent()
     }
   },[state.parentId])
@@ -31,8 +33,7 @@ const AccountsView = () => {
   },[sessionUser])
 
   const updateParent = async () => {
-    const parent = await getParentById(+state.parentId)
-    console.log(parent.data)
+    const parent = await getParentById(+state.parentId ? +state.parentId : localParentId)
     const action = { type: `SET_CURRENT_USER`, currentUser: parent.data }
     dispatch(action)
     setSessionUser(parent.data)

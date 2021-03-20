@@ -9,22 +9,27 @@ const useStyles = makeStyles(() => ({
     position: "absolute",
   },
   drop: {
-    // width: "80%",
-    overflow: "hidden",
     "& img": {
       position: "absolute",
-      // animation: "fall 1.5s linear infinite",
       overflow: "hidden",
       width: "30%",
       height: "15%",
-      animation: "$fall 5s linear infinite",
+      animation: "$fall 6s linear",
+      opacity: '0',
     },
   },
   "@keyframes fall": {
     to: {
       marginTop: "900px",
     },
+    "25%": {
+      opacity: 1,
+    },
+    "85%": {
+      opacity: .8,
+    },
     "100%": {
+      opacity: .0,
       transform: "rotate(50deg)",
     },
   },

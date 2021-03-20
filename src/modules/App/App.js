@@ -14,16 +14,10 @@ import { getAllMissions, getAllTasks, getAllUsers } from "../common/apiCalls";
 import AccountsView from "../views/AccountsView";
 import {useAuth0} from '@auth0/auth0-react'
 
-const localState = JSON.parse(localStorage.getItem("kiddoInfo"));
-
 const App = () => {
-  const [state, dispatch] = useReducer(appReducer, localState || initialState);
+  const [state, dispatch] = useReducer(appReducer, initialState);
   const [error, setError] = useState(null);
   const { isAuthenticated } = useAuth0()
-
-  useEffect(() => {
-    localStorage.setItem("kiddoInfo", JSON.stringify(state));
-  }, [state]);
 
   useEffect(async () => {
     await getAllMissions()
