@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ModalWrapper from "../../ui/modal/ModalWrapper";
+import Button from "../../ui/button/Button";
 
 const useStyles = makeStyles(() => ({
   modalContent: {
@@ -18,10 +19,10 @@ const useStyles = makeStyles(() => ({
 const emptyTask = {
   name: null,
   description: null,
-  category: null,
-  points: 0,
+  category: "Brain Training",
+  points: 1,
   photo: false,
-  resource_type: null,
+  resource_type: "video",
   resource_link: null,
   resource_alt: null
 }
@@ -31,11 +32,6 @@ const TaskCreation = () => {
   const classes = useStyles();
   const [task, setTask] = useState(emptyTask);
   const [photoRequirement, setPhotoRequirement] = useState(false)
-
-
-  useEffect(() => {
-    console.log('task: ', task)
-  }, [task])
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -58,6 +54,14 @@ const TaskCreation = () => {
     let updatedTask = { ...task, [e.target.name]: newValue };
     
     setTask(updatedTask);
+  }
+
+  const checkValidTask = () => {
+    const nullValue = Object.values(task).find(value => {
+      return value === null
+    })
+
+    return nullValue === undefined ? true : false
   }
   
   const handleSubmit = () => {
@@ -141,6 +145,12 @@ const TaskCreation = () => {
               onChange={e => handleTaskChange(e)}
             />
           </label>
+          {
+            checkValidTask() === true && 
+            <Button>
+              Submit Task
+            </Button>
+          }
         </form>
       </section>
     </ModalWrapper>
