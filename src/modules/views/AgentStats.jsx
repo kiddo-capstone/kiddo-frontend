@@ -105,6 +105,7 @@ const AgentStats = () => {
       }
       if (stat.category === "Health Training") {
         stat.icon = healthTraining
+        return stat
       }
       if (stat.category === "Creativity Training") {
         stat.icon = creativityTraining
@@ -113,8 +114,9 @@ const AgentStats = () => {
       if (stat.category === "Basic Training") {
         stat.icon = basicTraining
         return stat
-      } else {
-        stat.icon = brainTraining
+      } 
+      else {
+        // stat.icon = brainTraining
         return stat
       }
     })
@@ -127,7 +129,7 @@ const AgentStats = () => {
       return (
         <div key={stat.category}>
           <span className={classes.statsRow}>
-            <img src={stat.icon.img} className={classes.taskIcon}/>
+            {stat.icon && <img src={stat.icon.img} className={classes.taskIcon}/>}
             <ProgressBar 
               barColor={appStyles.colors.yellow} 
               completed={stat.completed_tasks}
