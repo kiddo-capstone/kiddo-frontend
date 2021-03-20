@@ -147,7 +147,6 @@ const ParentView = () => {
             <FormHelperText style={{margin:'1em'}}id="my-helper-text">
               Pick at least one, but we recommend no more than four tasks per mission!
             </FormHelperText>
-            <TransferList getChoices={getChoices}/>
         </FormControl>
         
         <FormControl>
