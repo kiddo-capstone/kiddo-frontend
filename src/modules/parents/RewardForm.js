@@ -52,6 +52,7 @@ const RewardForm = ({parentId, children, childId, handleRewardSubmit}) => {
         Once they have enough points, they can purchase your reward!
       </FormHelperText>
       <TextField
+        style={{marginBottom: '.3em'}}
         id="outlined-basic"
         label="Reward Name"
         placeholder="Add a simple name for this reward"
@@ -60,6 +61,7 @@ const RewardForm = ({parentId, children, childId, handleRewardSubmit}) => {
         onChange={event => setRewardName(event.target.value)}
       />
       <TextField
+        style={{marginBottom: '.3em'}}
         id="outlined-basic"
         label="Reward Description"
         placeholder="What are the details of this reward?"
@@ -68,15 +70,20 @@ const RewardForm = ({parentId, children, childId, handleRewardSubmit}) => {
         onChange={event => setRewardDescription(event.target.value)}
       />
       <TextField
+        style={{marginBottom: '.3em'}}
         id="outlined-basic"
         type="number" 
         pattern="[0-9]+-"
         label="Reward Point Value"
-        placeholder="Add a simple name for this reward"
+        placeholder="Tasks average 5 points each"
         variant="outlined"
         value={rewardPoints}
         onChange={event => setRewardPoints(event.target.value)} //TODO no decimals allowed
       />
+      <FormHelperText style={{ textAlign: "center" }}>
+        Remember each preloaded task is worth between 5-10 points!
+      </FormHelperText>
+
       {children}
       <Button
         style={{ margin: "1em" }}
