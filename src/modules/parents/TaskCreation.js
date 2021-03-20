@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ModalWrapper from "../../ui/modal/ModalWrapper";
-import Button from "../../ui/button/Button";
 
 const useStyles = makeStyles(() => ({
   modalContent: {
@@ -30,7 +29,8 @@ const emptyTask = {
 const TaskCreation = () => {
   const [open, setOpen] = useState(false);
   const classes = useStyles();
-  const [task, setTask] = useState(emptyTask)
+  const [task, setTask] = useState(emptyTask);
+  const [photoRequirement, setPhotoRequirement] = useState(false)
 
 
   useEffect(() => {
@@ -46,15 +46,16 @@ const TaskCreation = () => {
   }
   
   const handleTaskChange = (e) => {
-    const updatedValue = () => {
-      if (e.target.name === "photo") {
-        return e.target.value === "true" ? true : false
-      } else {
-        return e.target.value
-      }
+    let newValue = e.target.value;
+
+    if (e.target.name === "photo") {
+      newValue = !photoRequirement
+      setPhotoRequirement(!photoRequirement)
+    } else if (e.target.name === "points") {
+      newValue = +newValue > 20 ? 20 : +newValue
     }
-    
-    const updatedTask = { ...task, [e.target.name]: updatedValue() };
+
+    let updatedTask = { ...task, [e.target.name]: newValue };
     
     setTask(updatedTask);
   }
@@ -111,26 +112,15 @@ const TaskCreation = () => {
             />
           </label>
           <label>
-            Photo Required
-            <label>
-              ❌
+            Photo Required:
               <input 
-                type="radio"
-                name="photo"
-                value={false}
-                onChange={(e) => handleTaskChange(e)}
-              />
-            </label>
-            <label>
-              ✅
-              <input
-                type="radio"
+                type="checkbox"
                 name="photo"
                 value={true}
+                checked={photoRequirement ? true : false}
                 onChange={(e) => handleTaskChange(e)}
               />
             </label>
-          </label>
           <label>
             Resource:
             <select name="resource_type" onChange={e => handleTaskChange(e)}>
