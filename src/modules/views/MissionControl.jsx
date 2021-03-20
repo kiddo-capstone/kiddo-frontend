@@ -85,9 +85,10 @@ const MissionControl = props => {
       dispatch(action)
       setSessionUser(matched)
     }
-  },[sessionUser])
+  },[setSessionUser])
 
   const makeMissionList = () => {
+    console.log('mission control list');
     if (sessionUser) {
       const userID = state.currentUser.id
       const userMissions = state.missions.filter(m => m.attributes.user_id === +userID)
