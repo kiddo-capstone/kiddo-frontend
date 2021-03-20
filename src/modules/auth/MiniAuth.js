@@ -35,11 +35,13 @@ const MiniAuth = () => {
       if (matchedParent) {
         dispatch({ type: "SET_CURRENT_USER", currentUser: matchedParent })
         dispatch({ type: "SET_PARENT_ID", parentId: matchedParent.id })
+        localStorage.setItem("kiddoParentId", JSON.stringify(matchedParent.id));
         return
       } else {
         const newParent = await createNewParent(userDetails)
         dispatch({ type: "SET_CURRENT_USER", currentUser: newParent.data })
         dispatch({ type: "SET_PARENT_ID", parentId: newParent.data.id })
+        localStorage.setItem("kiddoParentId", JSON.stringify(newParent.data.id));
         console.log('created new parent', userDetails)
       }
     }
