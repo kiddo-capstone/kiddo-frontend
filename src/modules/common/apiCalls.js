@@ -116,3 +116,15 @@ export const createNewParent = (data) => {
     .then((response) => response.json())
     .catch((error) => console.log(error));
 };
+
+export const createNewReward = (data) => {
+  return fetch(`https://kiddo-backend.herokuapp.com/api/v1/rewards`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => response.json())
+    .catch((error) => console.log(error));
+};
