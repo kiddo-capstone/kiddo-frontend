@@ -8,12 +8,12 @@ import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom'
 
 
+const kiddoParentId = JSON.parse(localStorage.getItem("kiddoParentId"));
+
 const useStyles = makeStyles(theme => ({
   container: {},
   title: {},
 }))
-
-const localParentId = JSON.parse(localStorage.getItem("kiddoParentId"));
 
 const AccountsView = () => {
   const [children, setChildren] = React.useState([]);
@@ -23,7 +23,11 @@ const AccountsView = () => {
   
     
   useEffect(() => {
-    if (state.parentId || localParentId) {
+    if (!state.parentId) {
+      const action = { type: `SET_PARENT_ID`, parentId: kiddoParentId }
+      dispatch(action)  
+    }
+    if (state.parentId || kiddoParentId) {
       updateParent()
     }
   },[state.parentId])

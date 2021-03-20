@@ -6,7 +6,11 @@ import { createNewParent, getAllParents } from "../common/apiCalls";
 
 const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
-  return <Button primary onClick={() => loginWithRedirect()}>Log In</Button>;
+  return (
+    <Button primary onClick={() => loginWithRedirect()}>
+      Log In
+    </Button>
+  );
 };
 
 const LogoutButton = () => {
@@ -27,38 +31,40 @@ const MiniAuth = () => {
   useEffect(async () => {
     if (isAuthenticated) {
       const userDetails = {
-        name: user.name ? user.name : user.email.split('@')[0],
-        email: user.email
-      }
+        name: user.name ? user.name : user.email.split("@")[0],
+        email: user.email,
+      };
 
-      const matchedParent = await checkRegistered()
+      const matchedParent = await checkRegistered();
       if (matchedParent) {
-        dispatch({ type: "SET_CURRENT_USER", currentUser: matchedParent })
-        dispatch({ type: "SET_PARENT_ID", parentId: matchedParent.id })
+        dispatch({ type: "SET_CURRENT_USER", currentUser: matchedParent });
+        dispatch({ type: "SET_PARENT_ID", parentId: matchedParent.id });
         localStorage.setItem("kiddoParentId", JSON.stringify(matchedParent.id));
-        return
+        return;
       } else {
-        const newParent = await createNewParent(userDetails)
-        dispatch({ type: "SET_CURRENT_USER", currentUser: newParent.data })
-        dispatch({ type: "SET_PARENT_ID", parentId: newParent.data.id })
+        const newParent = await createNewParent(userDetails);
+        dispatch({ type: "SET_CURRENT_USER", currentUser: newParent.data });
+        dispatch({ type: "SET_PARENT_ID", parentId: newParent.data.id });
         localStorage.setItem("kiddoParentId", JSON.stringify(newParent.data.id));
-        console.log('created new parent', userDetails)
+        console.log("created new parent", userDetails);
       }
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated]);
 
   const checkRegistered = async () => {
-    const parents = await getAllParents()
-    const match = await parents.data.find(p => p.attributes.email.toLowerCase() === user.email.toLowerCase())
-    return match
-  }
+    const parents = await getAllParents();
+    const match = await parents.data.find(
+      p => p.attributes.email.toLowerCase() === user.email.toLowerCase()
+    );
+    return match;
+  };
 
   if (isLoading) {
     return <div>Loading ...</div>;
   }
 
   return (
-    <span style={{width: '100%',display: 'flex', justifyContent: 'center'}}>
+    <span style={{ width: "100%", display: "flex", justifyContent: "center" }}>
       {!isAuthenticated ? <LoginButton /> : <LogoutButton />}
     </span>
   );
