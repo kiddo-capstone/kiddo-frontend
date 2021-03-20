@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import ModalWrapper from "../../ui/modal/ModalWrapper";
 import Button from "../../ui/button/Button";
+import { createNewTask } from "./parentApiCalls";
 
 const useStyles = makeStyles(() => ({
   modalContent: {
@@ -52,7 +53,6 @@ const TaskCreation = () => {
     }
 
     let updatedTask = { ...task, [e.target.name]: newValue };
-    
     setTask(updatedTask);
   }
 
@@ -64,8 +64,11 @@ const TaskCreation = () => {
     return nullValue === undefined ? true : false
   }
   
-  const handleSubmit = () => {
-    console.log("submit")
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    createNewTask(task)
+    .then(data => console.log(data))
+    .catch(error => console.log(error))
   }
 
   return (
@@ -84,6 +87,7 @@ const TaskCreation = () => {
             type="text"
             placeholder="Task Name"
             name="name"
+            value={task.name}
             onChange={e => handleTaskChange(e)}
           />
           </label>
@@ -93,6 +97,7 @@ const TaskCreation = () => {
             type="text"
             placeholder="Task Description"
             name="description"
+            value={task.description}
             onChange={e => handleTaskChange(e)}
           />
           </label>
@@ -110,6 +115,7 @@ const TaskCreation = () => {
             <input 
               type="number"
               name="points"
+              value={task.points}
               onChange={e => handleTaskChange(e)} 
               min={1} 
               max={20}
@@ -120,7 +126,7 @@ const TaskCreation = () => {
               <input 
                 type="checkbox"
                 name="photo"
-                value={true}
+                value={photoRequirement}
                 checked={photoRequirement ? true : false}
                 onChange={(e) => handleTaskChange(e)}
               />
@@ -132,24 +138,28 @@ const TaskCreation = () => {
               <option value="image">Image / Gif</option>
               <option value="link">Link</option>
             </select>
+            </label>
             <input
               type="text"
               placeholder="Description"
               name="resource_alt"
+              value={task.resource_alt}
               onChange={e => handleTaskChange(e)}
             />
             <input
               type="text"
               placeholder="Link"
               name="resource_link"
+              value={task.resource_link}
               onChange={e => handleTaskChange(e)}
             />
-          </label>
           {
             checkValidTask() === true && 
-            <Button>
+            <button
+              onClick={(e) => handleSubmit(e)}
+            >
               Submit Task
-            </Button>
+            </button>
           }
         </form>
       </section>
