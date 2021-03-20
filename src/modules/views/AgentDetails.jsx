@@ -110,7 +110,7 @@ const AgentDetails = props => {
   }, [state.currentUser]);
 
   useEffect(() => {
-    if (sessionUser !== null) {
+    if (sessionUser !== null && sessionUser.type === 'user') {
       updateUserDetails();
     }
   }, [state.selectedTask]);
