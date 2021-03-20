@@ -33,12 +33,12 @@ const App = () => {
       console.log('app effect')
     }, [])
     
-    useEffect(async () => {
-      await getAllUsers()
-      .then(data => addDataToState('users', data.data))
-      .catch(error => setError(error))
-      console.log('app effect')
-    }, [])
+    // useEffect(async () => {
+    //   await getAllUsers()
+    //   .then(data => addDataToState('users', data.data))
+    //   .catch(error => setError(error))
+    //   console.log('app effect')
+    // }, [])
     
     useEffect(() => {
       console.log('app effect')

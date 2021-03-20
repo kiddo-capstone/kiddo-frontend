@@ -5,6 +5,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import {getAllUsers} from '../common/apiCalls'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,8 +46,9 @@ const Login = () => {
     dispatch(action);
   };
 
-  const generateUsers = () => {
-    const allUsers = state.users;
+  const generateUsers = async () => {
+    // const allUsers = state.users;
+    const allUsers = await getAllUsers();
     return allUsers.map((u) => (
       <MenuItem key={u.id} value={u}>
         {u.attributes.name}
