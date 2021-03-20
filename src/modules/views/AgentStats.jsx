@@ -88,22 +88,14 @@ const AgentStats = () => {
   const [open, setOpen] = React.useState(false);
   
 
-  useEffect(() => {
+  useEffect(async () => {
     if (state.currentUser.type === "user") {
-    updateStats()
+      const fetchedStats = await getUserStats(state.currentUser.id)
+      if (fetchedStats && fetchedStats !== userStats) {
+        createStats(fetchedStats)
+      }
     }
-  }, [])
-
-  const updateStats = async () => {
-    const fetchedStats = await getUserStats(state.currentUser.id)
-    if (fetchedStats) {
-      createStats(fetchedStats)
-    }
-  }
-  
-  // const findStatByType = (type) => {
-  //   return userStats.find(stat => stat.category === type)
-  // }
+  }, [setUserStats])
 
   const createStats = (stats) => {
     const statsWithIcons = stats.map(stat => {
@@ -157,7 +149,6 @@ const AgentStats = () => {
   
   return (
     <ModalWrapper 
-      // submitFunc={handleSubmit} 
       btnMessage={<h2 className={classes.animate} style={{color: appStyles.colors.blue}}>Agent Stats!</h2>}
       handleClickOpen={handleClickOpen}
       handleClose={handleClose} 
