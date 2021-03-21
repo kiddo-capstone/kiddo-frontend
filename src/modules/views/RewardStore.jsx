@@ -11,9 +11,15 @@ import SpinningCoin from "../../ui/animations/SpinningCoin";
 const appStyles = theme;
 
 const useStyles = makeStyles(() => ({
+title: {
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "space-between"
+},
 coin: {
   height: "45px",
-  paddingLeft: "20px",
+  margin: "30px",
+  alignSelf: "center",
   animation: "spin 2s infinite"
   /* -moz-transition: all .2s linear,
   -webkit-transition: all .2s linear,
@@ -55,9 +61,12 @@ const RewardStore = ({ id }) => {
 
   return (
     <PageContainer>
+      <div className={classes.title}>
+        <img src={coin.img} alt="gold coin" className={classes.coin}/>
       <h1>Reward Store</h1>
-      <SpinningCoin/>
+      {/* <SpinningCoin/> */}
       <img src={coin.img} alt="gold coin" className={classes.coin}/>
+      </div>
       <h2>Click "Buy" to Purchase Your Reward!</h2>
       { makeRewardCards() }
     </PageContainer>
