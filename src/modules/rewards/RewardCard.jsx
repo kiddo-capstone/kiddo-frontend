@@ -85,9 +85,9 @@ const RewardCard = ({ reward }) => {
     <div className={classes.card}>
       <h3>{reward.attributes.title}</h3>
       <p>{reward.attributes.description}</p>
-      <p>X {reward.attributes.points_to_redeem}</p>
+      <p style={{color: appStyles.colors.yellow, fontSize: "18px"}}>💰 X {reward.attributes.points_to_redeem}</p>
       <div className={classes.pulse}>
-      { checkForPurchase(reward.attributes.points_to_redeem)}
+        {checkForPurchase(reward.attributes.points_to_redeem)}
       </div>
     </div>
   )
