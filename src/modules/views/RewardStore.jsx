@@ -4,13 +4,13 @@ import { PageContainer } from "../../ui/containers";
 import AppContext from "../App/AppContext";
 import RewardCard from "../rewards/RewardCard";
 import { coin } from "../../assets/index";
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, useTheme } from "@material-ui/core";
 import theme from "../../ui/common/theme";
 import SpinningCoin from "../../ui/animations/SpinningCoin";
 
 const appStyles = theme;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
 title: {
   display: "flex",
   flexDirection: "row",
@@ -23,9 +23,18 @@ container: {
   padding: "1em 1em 1em 1em",
   gridTemplateColumns: "repeat(3, 1fr)",
   gridGap: "50px",
+  // [theme.breakpoints.up("md")]: {
+  //    gridTemplateColumns: "repeat(3, 1fr)",
+  // },
+  [theme.breakpoints.down("sm")]: {
+     gridTemplateColumns: "repeat(2, 1fr)",
+  },
+  [theme.breakpoints.down("xs")]: {
+     gridTemplateColumns: "repeat(1, 1fr)",
+  },
 },
 coin: {
-  height: "45px",
+  height: "60px",
   margin: "30px",
   alignSelf: "center",
   animation: "spin 2s infinite"
