@@ -53,9 +53,10 @@ const SignUp = () => {
   };
 
   const updateUsers = () => {
-    getAllUsers()
-      .then(data => dispatch({ type: "FETCH_USERS", users: data.data }))
-      .catch(error => console.log(error))
+    // no longer in state
+    // getAllUsers()
+    //   .then(data => dispatch({ type: "FETCH_USERS", users: data.data }))
+    //   .catch(error => console.log(error))
   }
 
   const handleInput = (e) => {

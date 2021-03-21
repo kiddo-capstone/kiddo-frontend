@@ -10,14 +10,14 @@ import ParentView from "../views/ParentView";
 import Error400 from "../common/error/Error400";
 import Error500 from "../common/error/Error500";
 import AppContainer from "../../ui/containers/AppContainer";
-import { getAllMissions, getAllTasks, getAllUsers } from "../common/apiCalls";
+import { getAllMissions, getAllTasks } from "../common/apiCalls";
 import AccountsView from "../views/AccountsView";
-import {useAuth0} from '@auth0/auth0-react'
+// import {useAuth0} from '@auth0/auth0-react'
 
 const App = () => {
   const [state, dispatch] = useReducer(appReducer, initialState);
   const [error, setError] = useState(null);
-  const { isAuthenticated } = useAuth0()
+  // const { isAuthenticated } = useAuth0()
 
   useEffect(async () => {
     await getAllMissions()
@@ -33,19 +33,12 @@ const App = () => {
       console.log('app effect')
     }, [])
     
-    // useEffect(async () => {
-    //   await getAllUsers()
-    //   .then(data => addDataToState('users', data.data))
-    //   .catch(error => setError(error))
+    // useEffect(() => {
     //   console.log('app effect')
+    //   return !isAuthenticated ?
+    //   <Redirect to="/" /> :
+    //   <Redirect to="/accounts" />
     // }, [])
-    
-    useEffect(() => {
-      console.log('app effect')
-      return !isAuthenticated ?
-      <Redirect to="/" /> :
-      <Redirect to="/accounts" />
-    }, [])
 
   const addDataToState = (type, data) => {
     const action = { type: `FETCH_${type.toUpperCase()}`, [type]: data }
