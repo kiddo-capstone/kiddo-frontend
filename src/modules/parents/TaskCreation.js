@@ -24,7 +24,8 @@ const useStyles = makeStyles(() => ({
   form: {
     alignContent: 'left',
     // justifyContent: 'space-around',
-    height: '20em',
+    // height: '20em',
+    height: '100%',
     padding: '1em',
     display: "flex",
     flexDirection: "column",
@@ -32,6 +33,9 @@ const useStyles = makeStyles(() => ({
     fontFamily: 'Roboto',
     color: '#272727',
     // alignItems: "center",
+    '& input': {
+      marginBottom: '.5em',
+    }
   },
   button: {
     border: "solid 3px purple",
@@ -136,93 +140,92 @@ const TaskCreation = () => {
       backgroundColor='lightgray'
       border='none'
       minWidth='300px'
-      // width='100%'
       height='50%'
       minHeight='250px'
       maxHeight='800px'
       padding='2em'
     >
-    {/* <div style={{ backgroundColor: "lightgray", height: "100%" }}> */}
-
-      {/* <section className={classes.modalContent}> */}
-        <form className={classes.form}>
-          <label>
-            Name:
-            <input
-              type="text"
-              style={{ width: '100%'}}
-              placeholder="Task Name"
-              name="name"
-              value={task.name}
-              onChange={e => handleTaskChange(e)}
-            />
-          </label>
-          <label>
-            Description:
-            <input
-              style={{ width: '100%'}}
-              type="text"
-              placeholder="Task Description"
-              name="description"
-              value={task.description}
-              onChange={e => handleTaskChange(e)}
-            />
-          </label>
-          <label>
-            Category:
-            <select name="category" onChange={e => handleTaskChange(e)}>
-              <option value="Brain Training">Brain Training</option>
-              <option value="Health Training">Health Training</option>
-              <option value="Creativity Training">Creativity Training</option>
-              <option value="Basic Training">Basic Training</option>
-            </select>
-          </label>
-          <label>
-            Point Value:
-            <input
-              type="number"
-              name="points"
-              value={task.points}
-              onChange={e => handleTaskChange(e)}
-              min={1}
-              max={20}
-            />
-          </label>
-          <label>
-            Photo Required:
-            <input
-              type="checkbox"
-              name="photo"
-              value={photoRequirement}
-              checked={photoRequirement ? true : false}
-              onChange={e => handleTaskChange(e)}
-            />
-          </label>
-          <label>
-            Resource:
-            <select name="resource_type" onChange={e => handleTaskChange(e)}>
-              <option value="video">Youtube Video</option>
-              <option value="image">Image / Gif</option>
-              <option value="link">Link</option>
-            </select>
-          </label>
+      <form className={classes.form}>
+        <label>
+          Name:
           <input
             type="text"
-            placeholder="Description"
-            name="resource_alt"
-            value={task.resource_alt}
+            style={{ width: '100%'}}
+            placeholder="Task Name"
+            name="name"
+            value={task.name}
             onChange={e => handleTaskChange(e)}
           />
+        </label>
+        <label>
+          Description:
           <input
+            style={{ width: '100%'}}
             type="text"
-            placeholder="Link"
-            name="resource_link"
-            value={task.resource_link}
+            placeholder="Task Description"
+            name="description"
+            value={task.description}
             onChange={e => handleTaskChange(e)}
           />
-          <Button variant="contained" color="primary" style={{margin: '1em'}} disabled={!ready ? true : false} onClick={e => handleSubmit(e)}>Submit Task</Button>
-        </form>
-      {/* </section> */}
+        </label>
+        <label>
+          Category:
+          <select style={{ width: '100%'}} name="category" onChange={e => handleTaskChange(e)}>
+            <option value="Brain Training">Brain Training</option>
+            <option value="Health Training">Health Training</option>
+            <option value="Creativity Training">Creativity Training</option>
+            <option value="Basic Training">Basic Training</option>
+          </select>
+        </label>
+        <label>
+          Point Value:
+          <input
+            type="number"
+            name="points"
+            value={task.points}
+            onChange={e => handleTaskChange(e)}
+            min={1}
+            max={20}
+          />
+        </label>
+        <label>
+          Photo Required:
+          <input
+            type="checkbox"
+            name="photo"
+            value={photoRequirement}
+            checked={photoRequirement ? true : false}
+            onChange={e => handleTaskChange(e)}
+          />
+        </label>
+        <label>
+          Resource:
+          <select style={{ width: '100%'}} name="resource_type" onChange={e => handleTaskChange(e)}>
+            <option value="video">Youtube Video</option>
+            <option value="image">Image / Gif</option>
+            <option value="link">Link</option>
+          </select>
+        </label>
+        <input
+          type="text"
+          placeholder="Description"
+          name="resource_alt"
+          value={task.resource_alt}
+          onChange={e => handleTaskChange(e)}
+        />
+        <input
+          type="text"
+          placeholder="Link"
+          name="resource_link"
+          value={task.resource_link}
+          onChange={e => handleTaskChange(e)}
+        />
+        <Button variant="contained" color="primary" style={{margin: '1em'}} disabled={!ready ? true : false} onClick={e => handleSubmit(e)}>Submit Task</Button>
+        {ready && (<FormHelperText style={{textAlign: 'center', fontWeight: 'bold', color: 'navy'}}>
+          Your custom task will appear at <br/>
+          the bottom of the task list
+        </FormHelperText>)}
+      </form>
     </ModalWrapper>
   );
 };
