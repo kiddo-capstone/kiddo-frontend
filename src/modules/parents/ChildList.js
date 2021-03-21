@@ -46,4 +46,4 @@ const ChildList = ({children, childList, selection, updateSelection}) => {
    );
 }
  
-export default ChildList;
+export default React.memo(ChildList);

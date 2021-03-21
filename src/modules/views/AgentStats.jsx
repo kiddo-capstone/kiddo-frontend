@@ -88,22 +88,14 @@ const AgentStats = () => {
   const [open, setOpen] = React.useState(false);
   
 
-  useEffect(() => {
+  useEffect(async () => {
     if (state.currentUser.type === "user") {
-    updateStats()
+      const fetchedStats = await getUserStats(state.currentUser.id)
+      if (fetchedStats && fetchedStats !== userStats) {
+        createStats(fetchedStats)
+      }
     }
-  }, [])
-
-  const updateStats = async () => {
-    const fetchedStats = await getUserStats(state.currentUser.id)
-    if (fetchedStats) {
-      createStats(fetchedStats)
-    }
-  }
-  
-  // const findStatByType = (type) => {
-  //   return userStats.find(stat => stat.category === type)
-  // }
+  }, [setUserStats])
 
   const createStats = (stats) => {
     const statsWithIcons = stats.map(stat => {
@@ -113,6 +105,7 @@ const AgentStats = () => {
       }
       if (stat.category === "Health Training") {
         stat.icon = healthTraining
+        return stat
       }
       if (stat.category === "Creativity Training") {
         stat.icon = creativityTraining
@@ -121,8 +114,9 @@ const AgentStats = () => {
       if (stat.category === "Basic Training") {
         stat.icon = basicTraining
         return stat
-      } else {
-        stat.icon = brainTraining
+      } 
+      else {
+        // stat.icon = brainTraining
         return stat
       }
     })
@@ -135,7 +129,7 @@ const AgentStats = () => {
       return (
         <div key={stat.category}>
           <span className={classes.statsRow}>
-            <img src={stat.icon.img} className={classes.taskIcon}/>
+            {stat.icon && <img src={stat.icon.img} className={classes.taskIcon}/>}
             <ProgressBar 
               barColor={appStyles.colors.yellow} 
               completed={stat.completed_tasks}
@@ -157,7 +151,6 @@ const AgentStats = () => {
   
   return (
     <ModalWrapper 
-      // submitFunc={handleSubmit} 
       btnMessage={<h2 className={classes.animate} style={{color: appStyles.colors.blue}}>Agent Stats!</h2>}
       handleClickOpen={handleClickOpen}
       handleClose={handleClose} 

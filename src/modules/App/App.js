@@ -11,47 +11,42 @@ import RewardStore from "../views/RewardStore";
 import Error400 from "../common/error/Error400";
 import Error500 from "../common/error/Error500";
 import AppContainer from "../../ui/containers/AppContainer";
-import { getAllMissions, getAllTasks, getAllUsers } from "../common/apiCalls";
+import { getAllMissions, getAllTasks } from "../common/apiCalls";
 import AccountsView from "../views/AccountsView";
-import { useAuth0 } from "@auth0/auth0-react";
+// import {useAuth0} from '@auth0/auth0-react'
 
 const App = () => {
   const [state, dispatch] = useReducer(appReducer, initialState);
   const [error, setError] = useState(null);
-  const { isAuthenticated } = useAuth0()
+  // const { isAuthenticated } = useAuth0()
 
   useEffect(async () => {
     await getAllMissions()
-      .then(data => addDataToState('missions', data.data))
-      .catch(error => setError(error))
-    }, [])
-    
-    useEffect(async () => {
-      await getAllTasks()
-      .then(data => addDataToState('tasks', data.data))
-      .catch(error => setError(error))
-    }, [])
-    
-    useEffect(async () => {
-      await getAllUsers()
-      .then(data => addDataToState('users', data.data))
-      .catch(error => setError(error))
-  }, [])
+      .then((data) => addDataToState("missions", data.data))
+      .catch((error) => setError(error));
+  }, []);
 
-  useEffect(() => {
-    return !isAuthenticated ?
-      <Redirect to="/" /> :
-      <Redirect to="/accounts" />
-    }, [])
+  useEffect(async () => {
+    await getAllTasks()
+      .then((data) => addDataToState("tasks", data.data))
+      .catch((error) => setError(error));
+  }, []);
+
+  // useEffect(() => {
+  //   console.log('app effect')
+  //   return !isAuthenticated ?
+  //   <Redirect to="/" /> :
+  //   <Redirect to="/accounts" />
+  // }, [])
 
   const addDataToState = (type, data) => {
-    const action = { type: `FETCH_${type.toUpperCase()}`, [type]: data }
-    dispatch(action)
-  }
+    const action = { type: `FETCH_${type.toUpperCase()}`, [type]: data };
+    dispatch(action);
+  };
 
   return (
     <>
-      { !error ? 
+      {!error ? (
         <AppContext.Provider value={[state, dispatch]}>
           <AppContainer />
           <Switch>
@@ -72,13 +67,13 @@ const App = () => {
                 return <TaskView id={id} />;
               }}
             />
-            <Route 
-              exact 
-              path="/mission-control/:id" 
+            <Route
+              exact
+              path="/mission-control/:id"
               render={({ match }) => {
                 const id = +match.params.id;
-                return <MissionControl id={id}/>;
-               }}
+                return <MissionControl id={id} />;
+              }}
             />
             <Route
               exact
@@ -92,10 +87,12 @@ const App = () => {
             <Route exact path="/accounts" component={AccountsView} />
             <Route path="/" component={Error400} />
           </Switch>
-        </AppContext.Provider> :
-        <Error500 /> }
+        </AppContext.Provider>
+      ) : (
+        <Error500 />
+      )}
     </>
   );
-}
+};
 
 export default React.memo(App);

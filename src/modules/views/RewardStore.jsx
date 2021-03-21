@@ -14,6 +14,10 @@ const RewardStore = ({ id }) => {
       .catch(error => console.log(error))
   }, [])
 
+  const redeemRewardPoints = () => {
+    
+  }
+
   const makeRewardCards = () => {
     if (rewards.length > 0) {
       return rewards.map(reward => {

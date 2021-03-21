@@ -56,6 +56,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const kiddoKidUser = JSON.parse(localStorage.getItem("kiddoKidUser"));
+
 const DailyMission = props => {
   const [state, dispatch] = useContext(AppContext);
   const [error, setError] = useState(null);
@@ -69,9 +71,15 @@ const DailyMission = props => {
       .then(data => addDataToState("selectedMission", data.data))
       .catch(error => setError(error))
     getMissionTasks(id)
-    console.log('use effect daily mission view');
   }, [state.selectedTask]);
   
+  useEffect(() => {
+    if (!state.currentUser && kiddoKidUser) {
+      const action = { type: `SET_CURRENT_USER`, currentUser: kiddoKidUser };
+      dispatch(action);
+    }
+  }, [])
+
   const getMissionTasks = async (id) => {
     await getTasksByMissionId(id)
       .then(data => addDataToState("selectedMissionTasks", data.data))

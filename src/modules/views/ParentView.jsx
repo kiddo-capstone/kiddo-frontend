@@ -16,48 +16,59 @@ import NewChildForm from "../parents/NewChildForm";
 import ChildList from "../parents/ChildList";
 import TaskCreation from "../parents/TaskCreation";
 
+const kiddoParentId = JSON.parse(localStorage.getItem("kiddoParentId"));
 
 const ParentView = () => {
   const [child, setChild] = React.useState("");
+  const [sessionUser, setSessionUser] = React.useState([]);
   const [parentChildren, setParentChildren] = React.useState([]);
   const [missionName, setMissionName] = useState("");
   const [missionReady, setMissionReady] = React.useState(false);
   const [choices, setChoices] = React.useState([]);
   const [state, dispatch] = useContext(AppContext);
 
-  useEffect( () => {
-    if (state.currentUser?.type === 'user') {
+  useEffect(() => {
+    if (!state.parentId) {
+      const action = { type: `SET_PARENT_ID`, parentId: kiddoParentId }
+      dispatch(action)  
+    }
+    if (state.parentId || kiddoParentId) {
       updateParent()
     }
-  },[])
-
+  },[state.parentId])
+  
   useEffect(() => {
-    setMissionReady(false)
+    if (sessionUser) fetchChildren()
+    console.log(sessionUser);
+  },[sessionUser])
+  
+  useEffect(() => {
+    setMissionReady(false) 
     if (choices.length && child && missionName) {
       setMissionReady(true)
     }
-  },[choices, missionName, child])
-
-  useEffect(() => {
-    if (state.currentUser?.relationships) fetchChildren()
-  },[state.currentUser])
+  },[choices, child, missionName])
 
   const updateParent = async () => {
-    const parentId = state.currentUser.id
-    const parent = await getParentById(parentId)
-    const action = { type: `SET_CURRENT_USER`, currentUser: parent.data }
-    dispatch(action)
+    if (state.parentId) {
+      const parent = await getParentById(+state.parentId)
+      const action = { type: `SET_CURRENT_USER`, currentUser: parent.data }
+      dispatch(action)
+      setSessionUser(parent.data)
+    }
   }
   
   const fetchChildren = async () => {
-    const childIds = state.currentUser.relationships.users.data
-    const fetchedKids = await childIds.reduce(async (promises, cid) => {
-      const allChildren = await promises
-      const child = await getUserById(cid.id)
-      allChildren.push(child)
-      return allChildren
-    }, [])
-    setParentChildren(fetchedKids)
+    const childIds = sessionUser.relationships?.users.data
+    if (childIds){
+      const fetchedKids = await childIds.reduce(async (promises, cid) => {
+        const allChildren = await promises
+        const child = await getUserById(cid.id)
+        allChildren.push(child)
+        return allChildren
+      }, [])
+      setParentChildren(fetchedKids)
+    }
   }
 
   const addChild = async (name) => {
@@ -115,7 +126,7 @@ const ParentView = () => {
         </FormControl>
 
         <FormControl>
-          <RewardForm parentId={state.currentUser.id} childId={child?.id} handleRewardSubmit={handleRewardSubmit}>
+          <RewardForm parentId={state.currentUser?.id} childId={child?.id} handleRewardSubmit={handleRewardSubmit}>
             <FormControl>
               <ChildList childList={parentChildren} selection={child} updateSelection={updateSelection}>
                 Who is eligible for this reward?
@@ -130,7 +141,7 @@ const ParentView = () => {
             <h1 style={{fontSize: '1em', marginTop: '.4em', marginBottom: '.1em' }}>Mission Creation</h1>
           </TitleContainer>      
           <FormHelperText style={{margin:'1em', textAlign: 'center'}}>
-            This is the name of the mission your child will see 🥳 
+            Create a mission with custom or preloaded tasks so your KidDo Agent can earn points!
           </FormHelperText>
           <TextField
             id="outlined-basic"
@@ -142,10 +153,11 @@ const ParentView = () => {
           <FormHelperText style={{margin:'1em'}}id="my-helper-text">
             This is the name of the mission your child will see 🥳 
           </FormHelperText>
-            <TransferList getChoices={getChoices}/>
-            <TaskCreation />
-            <FormHelperText style={{margin:'1em'}}id="my-helper-text">
-              Pick at least one, but we recommend no more than four tasks per mission!
+            <TransferList getChoices={getChoices}>
+              <TaskCreation />
+            </TransferList>
+            <FormHelperText style={{margin:'1em', textAlign:'center'}}id="my-helper-text">
+              Pick at least one, but no more than four tasks per mission!
             </FormHelperText>
         </FormControl>
         
