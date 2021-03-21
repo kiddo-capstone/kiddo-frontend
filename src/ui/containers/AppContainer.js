@@ -143,6 +143,9 @@ function AppContainer(props) {
               <Link to={`/mission-control/${state.currentUser.id}`}>
                 Mission Control
               </Link>
+              <Link to={`/rewards/${state.currentUser.id}`}>
+                Rewards
+              </Link>
               <Link to="/accounts">Agents</Link>
             </div>
           )}

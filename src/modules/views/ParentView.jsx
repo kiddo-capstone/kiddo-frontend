@@ -14,6 +14,7 @@ import ExampleMission from '../mission/ExampleMission'
 import RewardForm from "../parents/RewardForm";
 import NewChildForm from "../parents/NewChildForm";
 import ChildList from "../parents/ChildList";
+import TaskCreation from "../parents/TaskCreation";
 
 const kiddoParentId = JSON.parse(localStorage.getItem("kiddoParentId"));
 
@@ -40,12 +41,21 @@ const ParentView = () => {
     if (sessionUser) fetchChildren()
     console.log(sessionUser);
   },[sessionUser])
+  
+  useEffect(() => {
+    setMissionReady(false) 
+    if (choices.length && child && missionName) {
+      setMissionReady(true)
+    }
+  },[choices, child, missionName])
 
   const updateParent = async () => {
-    const parent = await getParentById(+state.parentId)
-    const action = { type: `SET_CURRENT_USER`, currentUser: parent.data }
-    dispatch(action)
-    setSessionUser(parent.data)
+    if (state.parentId) {
+      const parent = await getParentById(+state.parentId)
+      const action = { type: `SET_CURRENT_USER`, currentUser: parent.data }
+      dispatch(action)
+      setSessionUser(parent.data)
+    }
   }
   
   const fetchChildren = async () => {
@@ -131,7 +141,7 @@ const ParentView = () => {
             <h1 style={{fontSize: '1em', marginTop: '.4em', marginBottom: '.1em' }}>Mission Creation</h1>
           </TitleContainer>      
           <FormHelperText style={{margin:'1em', textAlign: 'center'}}>
-            This is the name of the mission your child will see 🥳 
+            Create a mission with custom or preloaded tasks so your KidDo Agent can earn points!
           </FormHelperText>
           <TextField
             id="outlined-basic"
@@ -140,10 +150,15 @@ const ParentView = () => {
             value={missionName}
             onChange={(event) => setMissionName(event.target.value)}
           />
-            <FormHelperText style={{margin:'1em', textAlign: 'center'}}>
-              Pick at least one, but we recommend no more than four tasks per mission!
+          <FormHelperText style={{margin:'1em'}}id="my-helper-text">
+            This is the name of the mission your child will see 🥳 
+          </FormHelperText>
+            <TransferList getChoices={getChoices}>
+              <TaskCreation />
+            </TransferList>
+            <FormHelperText style={{margin:'1em', textAlign:'center'}}id="my-helper-text">
+              Pick at least one, but no more than four tasks per mission!
             </FormHelperText>
-            <TransferList getChoices={getChoices}/>
         </FormControl>
         
         <FormControl>

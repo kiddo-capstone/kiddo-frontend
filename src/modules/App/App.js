@@ -7,6 +7,7 @@ import MissionControl from "../views/MissionControl";
 import DailyMission from "../views/DailyMission";
 import TaskView from "../views/TaskView";
 import ParentView from "../views/ParentView";
+import RewardStore from "../views/RewardStore";
 import Error400 from "../common/error/Error400";
 import Error500 from "../common/error/Error500";
 import AppContainer from "../../ui/containers/AppContainer";
@@ -23,14 +24,12 @@ const App = () => {
     await getAllMissions()
       .then(data => addDataToState('missions', data.data))
       .catch(error => setError(error))
-      console.log('app effect')
     }, [])
     
     useEffect(async () => {
       await getAllTasks()
       .then(data => addDataToState('tasks', data.data))
       .catch(error => setError(error))
-      console.log('app effect')
     }, [])
     
     // useEffect(() => {
@@ -75,6 +74,14 @@ const App = () => {
                 const id = +match.params.id;
                 return <MissionControl id={id}/>;
                }}
+            />
+            <Route
+              exact
+              path="/rewards/:id"
+              render={({ match }) => {
+                const id = +match.params.id;
+                return <RewardStore id={id} />;
+              }}
             />
             <Route exact path="/parent-view" component={ParentView} />
             <Route exact path="/accounts" component={AccountsView} />

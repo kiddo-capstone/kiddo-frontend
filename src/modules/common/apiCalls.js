@@ -45,6 +45,26 @@ export const getMissionTaskById = (id) => {
   );
 };
 
+export const getRewardsByUserId = (id) => {
+  return (
+    fetch(`https://kiddo-backend.herokuapp.com/api/v1/rewards?user_id=${id}`)
+      .then((res) => res.json())
+  );
+};
+
+export const redeemReward = (rewardId, updates) => {
+  return (
+    fetch(`https://kiddo-backend.herokuapp.com/api/v1/rewards?id=${rewardId}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: updates,
+    })
+  ).then((res) => res.json())
+}
+
 export const getAllUsers = () => {
   return (
     fetch("https://kiddo-backend.herokuapp.com/api/v1/users")

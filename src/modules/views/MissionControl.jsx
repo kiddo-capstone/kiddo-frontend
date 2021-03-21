@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import AppContext from "../App/AppContext";
-import {getUserById} from '../common/apiCalls'
+import {getUserById, getAllMissions} from '../common/apiCalls'
 import {PageContainer, TitleContainer } from "../../ui/containers/index";
 import Mission from '../mission/Mission'
 import {makeStyles} from '@material-ui/core'
@@ -77,6 +77,12 @@ const MissionControl = props => {
   const [sessionUser, setSessionUser] = useState(null)
   const classes = useStyles()
   const history = useHistory()
+
+  useEffect(async() => {
+    const missions = await getAllMissions()
+    const action = {type:'FETCH_MISSIONS', missions: missions.data}
+    dispatch(action)
+  }, [])
 
   useEffect(async () => {
     if (state.currentUser?.id !== props.id) {

@@ -49,7 +49,7 @@ function union(a, b) {
   return [...a, ...not(b, a)];
 }
 
-export default function TransferList({getChoices}) {
+export default function TransferList({getChoices, children}) {
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
   const [checked, setChecked] = React.useState([]);
@@ -179,23 +179,30 @@ export default function TransferList({getChoices}) {
       <Grid item>{customList("Tasks", left)}</Grid>
       <Grid item>
         <Grid container direction="column" alignItems="center">
+          
+          {children}
+          
           <Button
+            style={{borderWidth: '3px', fontWeight: 'bold'}}
+            color='primary'
             variant="outlined"
             size="small"
             className={classes.button}
             onClick={handleCheckedRight}
             disabled={leftChecked.length === 0}
             aria-label="move selected right">
-            &gt;
+            Add Task
           </Button>
           <Button
+            style={{borderWidth: '3px', fontWeight: 'bold'}}
+            color='primary'
             variant="outlined"
             size="small"
             className={classes.button}
             onClick={handleCheckedLeft}
             disabled={rightChecked.length === 0}
             aria-label="move selected left">
-            &lt;
+            Remove Task
           </Button>
         </Grid>
       </Grid>
