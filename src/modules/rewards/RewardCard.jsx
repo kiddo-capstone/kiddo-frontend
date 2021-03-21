@@ -2,8 +2,12 @@ import { useContext } from "react"
 import RoundButton from "../../ui/button/RoundButton"
 import AppContext from "../App/AppContext"
 import { redeemReward } from "../common/apiCalls";
+import { makeStyles } from "@material-ui/core";
 
+const useStyles = makeStyles(() => ({
+  }))
 const RewardCard = ({ reward }) => {
+  const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
   const checkForPurchase = (pointValue) => {
     if (state.currentUser?.attributes.points >= pointValue) {
