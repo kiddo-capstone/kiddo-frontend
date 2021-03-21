@@ -74,7 +74,7 @@ export default function ModalWrapper({
         keepMounted
         // className={classes.root} ** This will display only the modal
         onClose={handleClose}
-        aria-labelledby="modal-wrapper"
+        aria-label="modal-wrapper"
       >
         <section className={classes.root}>{children}</section>
       </Dialog>
