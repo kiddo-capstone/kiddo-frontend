@@ -13,15 +13,20 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     flexDirection: "column",
-    backgroundColor: "#232323",
-    border: `3px solid ${appStyles.colors.yellow}`,
-    padding: ".2em",
+    backgroundColor: (theme) => (theme.backgroundColor ? theme.backgroundColor : "#232323"),
+    border: (theme) => (theme.border ? theme.border : `3px solid ${appStyles.colors.yellow}`),
+    padding: (theme) => (theme.padding ? theme.padding : '.3em 0'),
     color: "white",
-    minWidth: "100%",
+    minWidth: (theme) => (theme.minWidth ? theme.minWidth : "100%"),
+    maxWidth: (theme) => (theme.maxWidth ? theme.maxWidth : "1000px"),
+    width: (theme) => (theme.width ? theme.width : "inherit"),
+    minHeight: (theme) => (theme.minHeight ? theme.minHeight : "inherit"),
+    maxHeight: (theme) => (theme.maxHeight ? theme.maxHeight : "inherit"),
+    height: (theme) => (theme.height ? theme.height : "inherit"),
     fontFamily: appStyles.fonts.primary,
     fontSize: "20px",
   },
@@ -47,18 +52,25 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function ModalWrapper({
-  btnMessage,
-  children,
-  open,
-  handleClose,
-  handleClickOpen,
-  id,
-}) {
-  const classes = useStyles();
+// (theme) => (theme.primary ? colors.blue : colors.blue)
+// max-width: 1000px;
+// width: 50%;
+// min-width: 300px;
+// height: 50%;
+
+export default function ModalWrapper(props) {
+  const {
+    btnMessage,
+    children,
+    open,
+    handleClose,
+    handleClickOpen,
+    id,
+  } = props
+  const classes = useStyles(props);
 
   return (
-    <div>
+    <div >
       <button
         className={classes.button}
         id={id}

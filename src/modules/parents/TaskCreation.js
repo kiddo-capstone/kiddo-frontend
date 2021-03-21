@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import AppContext from '../App/AppContext'
 import { makeStyles } from "@material-ui/core/styles";
 import {
   FormControl,
@@ -8,17 +9,29 @@ import {
 } from "@material-ui/core";
 import ModalWrapper from "../../ui/modal/ModalWrapper";
 import { createNewTask } from "./parentApiCalls";
+import { getAllTasks } from "../common/apiCalls";
 
 const useStyles = makeStyles(() => ({
   modalContent: {
-    textAlign: "center",
+    // textAlign: "left",
     overflow: "hidden",
+    backgroundColor: "lightgray", 
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    height: '100%',
   },
   form: {
+    alignContent: 'left',
+    // justifyContent: 'space-around',
+    height: '20em',
+    padding: '1em',
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
-    alignItems: "center",
+    fontFamily: 'Roboto',
+    color: '#272727',
+    // alignItems: "center",
   },
   button: {
     border: "solid 3px purple",
@@ -33,21 +46,28 @@ const useStyles = makeStyles(() => ({
 }));
 
 const emptyTask = {
-  name: null,
-  description: null,
+  name: "",
+  description: "",
   category: "Brain Training",
   points: 1,
   photo: false,
   resource_type: "video",
-  resource_link: null,
-  resource_alt: null,
+  resource_link: "",
+  resource_alt: "",
 };
 
 const TaskCreation = () => {
+  const [state, dispatch] = useContext(AppContext)
   const [open, setOpen] = useState(false);
   const classes = useStyles();
   const [task, setTask] = useState(emptyTask);
+  const [ready, setReady] = useState(false);
   const [photoRequirement, setPhotoRequirement] = useState(false);
+
+  useEffect(() => {
+    checkValidTask()
+    console.log('check task');
+  }, [task])
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -66,27 +86,34 @@ const TaskCreation = () => {
     } else if (e.target.name === "points") {
       newValue = +newValue > 20 ? 20 : +newValue;
     }
-
     let updatedTask = { ...task, [e.target.name]: newValue };
     setTask(updatedTask);
   };
 
   const checkValidTask = () => {
     const nullValue = Object.values(task).find(value => {
-      return value === null;
+      return value === null || value === "";
     });
 
-    return nullValue === undefined ? true : false;
+    return nullValue === undefined ? setReady(true) : setReady(false);
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    createNewTask(task)
+    await createNewTask(task)
       .then(data => console.log(data))
       .catch(error => console.log(error));
+    setTask(emptyTask)
+    updateTasks()
   };
 
-  const button = (
+  const updateTasks = async () => {
+    const allTasks = await getAllTasks()
+    const action = {type: "FETCH_TASKS", tasks: allTasks.data}
+    dispatch(action)
+  }
+
+  const addTaskButton = (
     <Button
       className={classes.button}
       size="small"
@@ -97,7 +124,7 @@ const TaskCreation = () => {
     </Button>
   );
 
-  if (!open) return button;
+  if (!open) return addTaskButton;
 
   return (
     <ModalWrapper
@@ -105,13 +132,25 @@ const TaskCreation = () => {
       btnMessage=""
       handleClickOpen={handleClickOpen}
       handleClose={handleClose}
-      open={open}>
-      <section className={classes.modalContent}>
+      open={open}
+      backgroundColor='lightgray'
+      border='none'
+      minWidth='300px'
+      // width='100%'
+      height='50%'
+      minHeight='250px'
+      maxHeight='800px'
+      padding='2em'
+    >
+    {/* <div style={{ backgroundColor: "lightgray", height: "100%" }}> */}
+
+      {/* <section className={classes.modalContent}> */}
         <form className={classes.form}>
           <label>
             Name:
             <input
               type="text"
+              style={{ width: '100%'}}
               placeholder="Task Name"
               name="name"
               value={task.name}
@@ -121,6 +160,7 @@ const TaskCreation = () => {
           <label>
             Description:
             <input
+              style={{ width: '100%'}}
               type="text"
               placeholder="Task Description"
               name="description"
@@ -180,11 +220,9 @@ const TaskCreation = () => {
             value={task.resource_link}
             onChange={e => handleTaskChange(e)}
           />
-          {checkValidTask() === true && (
-            <button onClick={e => handleSubmit(e)}>Submit Task</button>
-          )}
+          <Button variant="contained" color="primary" style={{margin: '1em'}} disabled={!ready ? true : false} onClick={e => handleSubmit(e)}>Submit Task</Button>
         </form>
-      </section>
+      {/* </section> */}
     </ModalWrapper>
   );
 };
