@@ -6,10 +6,33 @@ import RewardCard from "../rewards/RewardCard";
 import { coin } from "../../assets/index";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
+import SpinningCoin from "../../ui/animations/SpinningCoin";
 
 const appStyles = theme;
+
 const useStyles = makeStyles(() => ({
-  }))
+coin: {
+  height: "45px",
+  paddingLeft: "20px",
+  animation: "spin 2s infinite"
+  /* -moz-transition: all .2s linear,
+  -webkit-transition: all .2s linear,
+  transition: all .2s linear, */
+
+  // "&:hover": {
+  //   paddingRight: "20px",
+  //   "-ms-transform": "rotate(-180deg)",
+  //   "-moz-transform": "rotate(-180deg)",
+  //   "-webkit-transform": "rotate(-180deg)",
+  //   transform: "rotate(-180deg)",
+  //   }
+  },
+  "@keyframes spin" : {
+    transform: "rotate(-180deg)"
+    
+  }
+
+}))
 
 const RewardStore = ({ id }) => {
   const classes = useStyles()
@@ -33,7 +56,8 @@ const RewardStore = ({ id }) => {
   return (
     <PageContainer>
       <h1>Reward Store</h1>
-      <img src={coin.img} alt="gold coin"/>
+      <SpinningCoin/>
+      <img src={coin.img} alt="gold coin" className={classes.coin}/>
       <h2>Click "Buy" to Purchase Your Reward!</h2>
       { makeRewardCards() }
     </PageContainer>
