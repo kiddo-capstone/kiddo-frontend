@@ -41,6 +41,13 @@ const ParentView = () => {
     if (sessionUser) fetchChildren()
     console.log(sessionUser);
   },[sessionUser])
+  
+  useEffect(() => {
+    setMissionReady(false) 
+    if (choices.length && child && missionName) {
+      setMissionReady(true)
+    }
+  },[choices, child, missionName])
 
   const updateParent = async () => {
     if (state.parentId) {
