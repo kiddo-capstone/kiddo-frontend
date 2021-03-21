@@ -37,7 +37,7 @@ const AccountsView = () => {
   },[sessionUser])
 
   const updateParent = async () => {
-    const parent = await getParentById(+state.parentId ? +state.parentId : localParentId)
+    const parent = await getParentById(+state.parentId ? +state.parentId : kiddoParentId)
     const action = { type: `SET_CURRENT_USER`, currentUser: parent.data }
     dispatch(action)
     setSessionUser(parent.data)
