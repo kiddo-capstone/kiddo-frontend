@@ -7,6 +7,7 @@ import {makeStyles} from '@material-ui/core'
 import AccentLine from '../../ui/decorative/AccentLine'
 import {backArrow} from '../../assets/backarrow'
 import {useHistory} from 'react-router-dom'
+import LoadingAnimation from '../common/LoadingAnimation'
 
 const useStyles = makeStyles(theme => ({
   missions: {
@@ -93,13 +94,32 @@ const MissionControl = props => {
     }
   },[setSessionUser])
 
+  const loadingMessage = (message) => {
+    return (
+      <div style={{display: 'flex', flexDirection:'column', alignItems: 'center'}}>
+        <div style={{width: '80%'}}>
+          <p>
+            {message}
+          </p>
+          <LoadingAnimation />
+        </div>        
+      </div>
+      )
+  }
+
   const makeMissionList = () => {
+    if (!sessionUser) return loadingMessage('Retrieving KidDo Agent Missions...')
+
     if (sessionUser) {
       const userID = state.currentUser.id
       const userMissions = state.missions.filter(m => m.attributes.user_id === +userID)
+      
+      if (!userMissions.length) return loadingMessage('No missions available - ask Parent to create some missions!')
+      
       return userMissions.sort((a, b)=> b.id-a.id).map(m => (<Mission key={m.id} props={m} />))
     }
   }
+
 
   return (
     <PageContainer>
