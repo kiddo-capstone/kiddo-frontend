@@ -5,6 +5,18 @@ import { redeemReward } from "../common/apiCalls";
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
+  card: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-around",
+    boxSizing: "border-box",
+    textAlign: "left",
+    backgroundColor: "#665c5c",
+    borderRadius: "10px",
+    color: "white",
+    fontSize: "16px",
+    padding: "30px 10px 20px 10px",
+}
   }))
 const RewardCard = ({ reward }) => {
   const classes = useStyles();
@@ -29,7 +41,7 @@ const RewardCard = ({ reward }) => {
   }
 
   return (
-    <div>
+    <div className={classes.card}>
       <h3>{reward.attributes.title}</h3>
       <p>{reward.attributes.description}</p>
       <p>X {reward.attributes.points_to_redeem}</p>
