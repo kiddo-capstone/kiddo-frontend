@@ -43,10 +43,12 @@ const ParentView = () => {
   },[sessionUser])
 
   const updateParent = async () => {
-    const parent = await getParentById(+state.parentId)
-    const action = { type: `SET_CURRENT_USER`, currentUser: parent.data }
-    dispatch(action)
-    setSessionUser(parent.data)
+    if (state.parentId) {
+      const parent = await getParentById(+state.parentId)
+      const action = { type: `SET_CURRENT_USER`, currentUser: parent.data }
+      dispatch(action)
+      setSessionUser(parent.data)
+    }
   }
   
   const fetchChildren = async () => {
@@ -132,7 +134,7 @@ const ParentView = () => {
             <h1 style={{fontSize: '1em', marginTop: '.4em', marginBottom: '.1em' }}>Mission Creation</h1>
           </TitleContainer>      
           <FormHelperText style={{margin:'1em', textAlign: 'center'}}>
-            This is the name of the mission your child will see 🥳 
+            Create a mission with custom or preloaded tasks so your KidDo Agent can earn points!
           </FormHelperText>
           <TextField
             id="outlined-basic"
@@ -144,10 +146,11 @@ const ParentView = () => {
           <FormHelperText style={{margin:'1em'}}id="my-helper-text">
             This is the name of the mission your child will see 🥳 
           </FormHelperText>
-            <TransferList getChoices={getChoices}/>
-            <TaskCreation />
-            <FormHelperText style={{margin:'1em'}}id="my-helper-text">
-              Pick at least one, but we recommend no more than four tasks per mission!
+            <TransferList getChoices={getChoices}>
+              <TaskCreation />
+            </TransferList>
+            <FormHelperText style={{margin:'1em', textAlign:'center'}}id="my-helper-text">
+              Pick at least one, but no more than four tasks per mission!
             </FormHelperText>
         </FormControl>
         
