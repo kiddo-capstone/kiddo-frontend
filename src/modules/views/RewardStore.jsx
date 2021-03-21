@@ -16,6 +16,13 @@ title: {
   flexDirection: "row",
   justifyContent: "space-between"
 },
+container: {
+  display: "grid",
+  fontSize: "20px",
+  padding: "1em 1em 1em 1em",
+  gridTemplateColumns: "repeat(3, 1fr)",
+  gridGap: "50px",
+},
 coin: {
   height: "45px",
   margin: "30px",
@@ -67,8 +74,10 @@ const RewardStore = ({ id }) => {
       {/* <SpinningCoin/> */}
       <img src={coin.img} alt="gold coin" className={classes.coin}/>
       </div>
-      <h2>Click "Buy" to Purchase Your Reward!</h2>
-      { makeRewardCards() }
+      <h2 style={{color: appStyles.colors.blue}}>Click "Buy" to Purchase Your Reward!</h2>
+      <div className={classes.container}>
+        { makeRewardCards() }
+      </div>
     </PageContainer>
   )
 }
