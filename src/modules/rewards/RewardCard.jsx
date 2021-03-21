@@ -3,6 +3,9 @@ import RoundButton from "../../ui/button/RoundButton"
 import AppContext from "../App/AppContext"
 import { redeemReward } from "../common/apiCalls";
 import { makeStyles } from "@material-ui/core";
+import theme from "../../ui/common/theme";
+
+const appStyles = theme
 
 const useStyles = makeStyles(() => ({
   card: {
@@ -11,11 +14,15 @@ const useStyles = makeStyles(() => ({
     justifyContent: "space-around",
     boxSizing: "border-box",
     textAlign: "left",
-    backgroundColor: "#665c5c",
+    backgroundColor: appStyles.colors.red,
     borderRadius: "10px",
     color: "white",
     fontSize: "16px",
     padding: "30px 10px 20px 10px",
+    "&:hover": {
+      boxShadow: "0px 20px 40px rgba(0, 0, 0, 0.4)",
+      transform: "scale(1.05, 1.05)"
+    }
 }
   }))
 const RewardCard = ({ reward }) => {
