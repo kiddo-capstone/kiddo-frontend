@@ -18,16 +18,12 @@ title: {
 },
 container: {
   display: "grid",
-  // gridAutoFlow: "column",
   fontSize: "20px",
-  padding: "1em 1em 1em 1em",
+  padding: "2em 3em 2em 3em",
   gridTemplateColumns: "repeat(3, 1fr)",
   gridGap: "50px",
-  // [theme.breakpoints.up("md")]: {
-  //    gridTemplateColumns: "repeat(3, 1fr)",
-  // },
   [theme.breakpoints.down("sm")]: {
-     gridTemplateColumns: "repeat(2, 1fr)",
+     gridTemplateColumns: "repeat(3, 1fr)",
   },
   [theme.breakpoints.down("xs")]: {
      gridTemplateColumns: "repeat(1, 1fr)",
@@ -38,18 +34,6 @@ coin: {
   margin: "30px",
   alignSelf: "center",
   animation: "$spin infinite ease 2s"
-  /* -moz-transition: all .2s linear,
-  -webkit-transition: all .2s linear,
-  transition: all .2s linear, */
-
-  // "&:hover": {
-  //   paddingRight: "20px",
-  //   "-ms-transform": "rotate(-180deg)",
-  //   "-moz-transform": "rotate(-180deg)",
-  //   "-webkit-transform": "rotate(-180deg)",
-  //   transform: "rotate(-180deg)",
-  //   }
-  
   },
   "@keyframes spin" : {
       "0%": {
@@ -93,7 +77,7 @@ const RewardStore = ({ id }) => {
       <h1>Reward Store</h1>
       <img src={coin.img} alt="gold coin" className={classes.coin}/>
       </div>
-      <h3 style={{color: appStyles.colors.yellow}}>Click "Buy" to Purchase Your Reward!</h3>
+      <h3 style={{fontFamily: appStyles.fonts.secondary, color: appStyles.colors.white}}>Click "Buy" to Purchase Your Reward!</h3>
       <div className={classes.container}>
         { makeRewardCards() }
       </div>

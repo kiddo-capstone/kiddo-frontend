@@ -52,7 +52,7 @@ const useStyles = makeStyles(() => ({
   },
   "@keyframes pulse": {
     "0%": {
-      transform: "scale(1.1)",
+      transform: "scale(1.3)",
     },
     "100%": {
       transform: "scale(1.4)",
