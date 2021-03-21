@@ -1,8 +1,5 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import { PageContainer, TitleContainer } from "../../ui/containers/index";
-import Button from "@material-ui/core/Button";
 import magnifyingGlass from "../../assets/magnifying-glass.png";
 
 const useStyles = makeStyles(() => ({
@@ -32,7 +29,7 @@ const LoadingAnimation = () => {
   return (
     <img
       className={classes.glass}
-      style={{ height: "20%" }}
+      style={{ height: "12em" }}
       src={magnifyingGlass}
       alt="magnifying glass"
     />

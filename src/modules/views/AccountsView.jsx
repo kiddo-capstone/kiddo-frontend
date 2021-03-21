@@ -49,7 +49,7 @@ const AccountsView = () => {
   }
 
   const renderCards = () => {
-    if (!state.currentUser?.relationships?.users.data.length) return (
+    if (!state.currentUser?.relationships?.users?.data?.length) return (
       <div style={{display: 'flex', flexDirection:'column', alignItems: 'center'}}>
         <div style={{width: '80%'}}>
           <p>
