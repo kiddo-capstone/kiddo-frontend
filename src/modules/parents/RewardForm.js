@@ -97,4 +97,4 @@ const RewardForm = ({parentId, children, childId, handleRewardSubmit}) => {
   );
 };
 
-export default RewardForm;
+export default React.memo(RewardForm);

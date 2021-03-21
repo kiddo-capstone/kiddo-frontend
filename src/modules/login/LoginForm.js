@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import AppContext from "../App/AppContext";
 import theme from "../../ui/common/theme";
 import { useHistory } from "react-router-dom";
+import {getAllUsers} from '../common/apiCalls'
 
 const useStyles = makeStyles(() => ({
   form: {
@@ -30,9 +31,11 @@ const LoginForm = () => {
   const classes = useStyles();
   const history = useHistory();
 
-  const login = (e) => {
+  const login = async (e) => {
     e.preventDefault();
-    const user = state.users.find((user) => {
+    const allUsers = await getAllUsers();
+    // const user = state.users.find((user) => {
+    const user = allUsers.find((user) => {
       return user.attributes.email === email;
     });
     if (user) {

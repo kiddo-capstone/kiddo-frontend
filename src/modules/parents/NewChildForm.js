@@ -34,4 +34,4 @@ const NewChildForm = ({addChild}) => {
   );
 };
 
-export default NewChildForm;
+export default React.memo(NewChildForm);

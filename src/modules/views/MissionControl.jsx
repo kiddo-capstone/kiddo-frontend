@@ -85,7 +85,7 @@ const MissionControl = props => {
       dispatch(action)
       setSessionUser(matched)
     }
-  },[sessionUser])
+  },[setSessionUser])
 
   const makeMissionList = () => {
     if (sessionUser) {
