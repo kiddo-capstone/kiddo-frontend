@@ -4,8 +4,15 @@ import { PageContainer } from "../../ui/containers";
 import AppContext from "../App/AppContext";
 import RewardCard from "../rewards/RewardCard";
 import { coin } from "../../assets/index";
+import { makeStyles } from "@material-ui/core";
+import theme from "../../ui/common/theme";
+
+const appStyles = theme;
+const useStyles = makeStyles(() => ({
+  }))
 
 const RewardStore = ({ id }) => {
+  const classes = useStyles()
   const [rewards, setRewards] = useState([])
   const [state, dispatch] = useContext(AppContext)
 
