@@ -37,7 +37,7 @@ coin: {
   height: "60px",
   margin: "30px",
   alignSelf: "center",
-  animation: "spin 2s infinite"
+  animation: "$spin infinite ease 2s"
   /* -moz-transition: all .2s linear,
   -webkit-transition: all .2s linear,
   transition: all .2s linear, */
@@ -49,9 +49,19 @@ coin: {
   //   "-webkit-transform": "rotate(-180deg)",
   //   transform: "rotate(-180deg)",
   //   }
+  
   },
   "@keyframes spin" : {
-    transform: "rotate(-180deg)"
+      "0%": {
+      transform: "rotate(180deg)",
+    },
+
+    "50%": {
+      transform: "rotate(-180deg)",
+    },
+    "100%": {
+      transform: "rotate(180deg)",
+    },
     
   }
 
@@ -81,10 +91,9 @@ const RewardStore = ({ id }) => {
       <div className={classes.title}>
         <img src={coin.img} alt="gold coin" className={classes.coin}/>
       <h1>Reward Store</h1>
-      {/* <SpinningCoin/> */}
       <img src={coin.img} alt="gold coin" className={classes.coin}/>
       </div>
-      <h2 style={{color: appStyles.colors.blue}}>Click "Buy" to Purchase Your Reward!</h2>
+      <h3 style={{color: appStyles.colors.yellow}}>Click "Buy" to Purchase Your Reward!</h3>
       <div className={classes.container}>
         { makeRewardCards() }
       </div>
