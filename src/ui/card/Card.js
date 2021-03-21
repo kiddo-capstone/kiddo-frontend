@@ -34,6 +34,7 @@ function KiddoCard({child}) {
   const handleClick = () => {
     const action = { type: `SET_CURRENT_USER`, currentUser: child }
     dispatch(action)
+    localStorage.setItem("kiddoKidUser", JSON.stringify(child));
   }
 
   return (

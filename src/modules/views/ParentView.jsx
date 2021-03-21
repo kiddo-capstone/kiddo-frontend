@@ -15,48 +15,50 @@ import RewardForm from "../parents/RewardForm";
 import NewChildForm from "../parents/NewChildForm";
 import ChildList from "../parents/ChildList";
 
+const kiddoParentId = JSON.parse(localStorage.getItem("kiddoParentId"));
 
 const ParentView = () => {
   const [child, setChild] = React.useState("");
+  const [sessionUser, setSessionUser] = React.useState([]);
   const [parentChildren, setParentChildren] = React.useState([]);
   const [missionName, setMissionName] = useState("");
   const [missionReady, setMissionReady] = React.useState(false);
   const [choices, setChoices] = React.useState([]);
   const [state, dispatch] = useContext(AppContext);
 
-  useEffect( () => {
-    if (state.currentUser?.type === 'user') {
+  useEffect(() => {
+    if (!state.parentId) {
+      const action = { type: `SET_PARENT_ID`, parentId: kiddoParentId }
+      dispatch(action)  
+    }
+    if (state.parentId || kiddoParentId) {
       updateParent()
     }
-  },[])
-
+  },[state.parentId])
+  
   useEffect(() => {
-    setMissionReady(false)
-    if (choices.length && child && missionName) {
-      setMissionReady(true)
-    }
-  },[choices, missionName, child])
-
-  useEffect(() => {
-    if (state.currentUser?.relationships) fetchChildren()
-  },[state.currentUser])
+    if (sessionUser) fetchChildren()
+    console.log(sessionUser);
+  },[sessionUser])
 
   const updateParent = async () => {
-    const parentId = state.currentUser.id
-    const parent = await getParentById(parentId)
+    const parent = await getParentById(+state.parentId)
     const action = { type: `SET_CURRENT_USER`, currentUser: parent.data }
     dispatch(action)
+    setSessionUser(parent.data)
   }
   
   const fetchChildren = async () => {
-    const childIds = state.currentUser.relationships.users.data
-    const fetchedKids = await childIds.reduce(async (promises, cid) => {
-      const allChildren = await promises
-      const child = await getUserById(cid.id)
-      allChildren.push(child)
-      return allChildren
-    }, [])
-    setParentChildren(fetchedKids)
+    const childIds = sessionUser.relationships?.users.data
+    if (childIds){
+      const fetchedKids = await childIds.reduce(async (promises, cid) => {
+        const allChildren = await promises
+        const child = await getUserById(cid.id)
+        allChildren.push(child)
+        return allChildren
+      }, [])
+      setParentChildren(fetchedKids)
+    }
   }
 
   const addChild = async (name) => {
@@ -114,7 +116,7 @@ const ParentView = () => {
         </FormControl>
 
         <FormControl>
-          <RewardForm parentId={state.currentUser.id} childId={child?.id} handleRewardSubmit={handleRewardSubmit}>
+          <RewardForm parentId={state.currentUser?.id} childId={child?.id} handleRewardSubmit={handleRewardSubmit}>
             <FormControl>
               <ChildList childList={parentChildren} selection={child} updateSelection={updateSelection}>
                 Who is eligible for this reward?
