@@ -180,22 +180,26 @@ export default function TransferList({getChoices}) {
       <Grid item>
         <Grid container direction="column" alignItems="center">
           <Button
+            style={{borderWidth: '3px', fontWeight: 'bold'}}
+            color='primary'
             variant="outlined"
             size="small"
             className={classes.button}
             onClick={handleCheckedRight}
             disabled={leftChecked.length === 0}
             aria-label="move selected right">
-            &gt;
+            Add Task
           </Button>
           <Button
+            style={{borderWidth: '3px', fontWeight: 'bold'}}
+            color='primary'
             variant="outlined"
             size="small"
             className={classes.button}
             onClick={handleCheckedLeft}
             disabled={rightChecked.length === 0}
             aria-label="move selected left">
-            &lt;
+            Remove Task
           </Button>
         </Grid>
       </Grid>
