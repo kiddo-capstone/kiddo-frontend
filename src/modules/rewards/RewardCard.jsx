@@ -45,7 +45,8 @@ const useStyles = makeStyles(() => ({
     transition: "ease .3s",
   },
   pulse: {
-    animation: "$pulse infinite alternate .75s ease",
+    zIndex: 0,
+    // animation: "$pulse infinite alternate .75s ease",
     color: "lightgreen !important",
   },
   "@keyframes pulse": {
@@ -60,30 +61,31 @@ const useStyles = makeStyles(() => ({
 const RewardCard = ({ reward }) => {
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
+
   const checkForPurchase = (pointValue) => {
-    if (state.currentUser?.attributes.points >= pointValue) {
+    // if (state.currentUser?.attributes.points >= pointValue) {
+    if (!reward.attributes.redeemed) {
       return (
-        <Button onClick={() => redeem()}>Buy</Button>
+        <Button style={{zIndex: 100, width: 'fit-content'}} onClick={() => redeem()}>Redeem Reward!</Button>
       )
     }
   }
 
   const redeem = () => {
-    const updates = {
-      title: reward.attributes.title,
-      points_to_redeem: reward.attributes.points_to_redeem,
-      redeemed: true
-    }
-    console.log(updates, +reward.id)
-    redeemReward(reward.id, updates)
-    .then(data => console.log(data))
+    redeemReward(+reward.id, {"redeemed": true})
+    .then(setRedemption())
+  }
+
+  const setRedemption = () => {
+    const action = {type: "SET_REDEEMED", redeemed: true}
+    dispatch(action)
   }
 
   return (
     <div className={classes.card}>
       <h3>{reward.attributes.title}</h3>
       <p>{reward.attributes.description}</p>
-      <p style={{color: appStyles.colors.yellow, fontSize: "18px"}}>💰 X {reward.attributes.points_to_redeem}</p>
+      <p style={{color: appStyles.colors.yellow, fontSize: "18px"}}>{reward.attributes.redeemed ? "REDEEMED" : `💰 X ${reward.attributes.points_to_redeem}`}</p>
       <div className={classes.pulse}>
         {checkForPurchase(reward.attributes.points_to_redeem)}
       </div>
