@@ -22,31 +22,31 @@ const App = () => {
 
   useEffect(async () => {
     await getAllMissions()
-      .then(data => addDataToState('missions', data.data))
-      .catch(error => setError(error))
-    }, [])
-    
-    useEffect(async () => {
-      await getAllTasks()
-      .then(data => addDataToState('tasks', data.data))
-      .catch(error => setError(error))
-    }, [])
-    
-    // useEffect(() => {
-    //   console.log('app effect')
-    //   return !isAuthenticated ?
-    //   <Redirect to="/" /> :
-    //   <Redirect to="/accounts" />
-    // }, [])
+      .then((data) => addDataToState("missions", data.data))
+      .catch((error) => setError(error));
+  }, []);
+
+  useEffect(async () => {
+    await getAllTasks()
+      .then((data) => addDataToState("tasks", data.data))
+      .catch((error) => setError(error));
+  }, []);
+
+  // useEffect(() => {
+  //   console.log('app effect')
+  //   return !isAuthenticated ?
+  //   <Redirect to="/" /> :
+  //   <Redirect to="/accounts" />
+  // }, [])
 
   const addDataToState = (type, data) => {
-    const action = { type: `FETCH_${type.toUpperCase()}`, [type]: data }
-    dispatch(action)
-  }
+    const action = { type: `FETCH_${type.toUpperCase()}`, [type]: data };
+    dispatch(action);
+  };
 
   return (
     <>
-      { !error ? 
+      {!error ? (
         <AppContext.Provider value={[state, dispatch]}>
           <AppContainer />
           <Switch>
@@ -67,13 +67,13 @@ const App = () => {
                 return <TaskView id={id} />;
               }}
             />
-            <Route 
-              exact 
-              path="/mission-control/:id" 
+            <Route
+              exact
+              path="/mission-control/:id"
               render={({ match }) => {
                 const id = +match.params.id;
-                return <MissionControl id={id}/>;
-               }}
+                return <MissionControl id={id} />;
+              }}
             />
             <Route
               exact
@@ -87,10 +87,12 @@ const App = () => {
             <Route exact path="/accounts" component={AccountsView} />
             <Route path="/" component={Error400} />
           </Switch>
-        </AppContext.Provider> :
-        <Error500 /> }
+        </AppContext.Provider>
+      ) : (
+        <Error500 />
+      )}
     </>
   );
-}
+};
 
 export default React.memo(App);

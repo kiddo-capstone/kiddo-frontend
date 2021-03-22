@@ -27,12 +27,23 @@ const ProgressBar = (props) => {
     color: appStyles.colors.black,
     fontWeight: "bold",
   };
-
+  const determineTotalBar = (total, completed) => {
+    if (total === 100 && completed <= total) {
+      return <span style={label}>{`${completed}%`}</span>;
+    } else if (total !== 100 && completed <= total) {
+      return <span style={label}>{`${completed}/${total}`}</span>;
+    } else if (total === 100 && completed >= total) {
+      return (
+        <span style={label}>{`WOW! ${completed} points. Check out the`}</span>
+      );
+    }
+  };
   return (
     <div style={container}>
       <div style={filler}>
         {total === 100 && <span style={label}>{`${completed}%`}</span>}
         {total !== 100 && <span style={label}>{`${completed}/${total}`}</span>}
+        {/* {determineTotalBar(total, completed)} */}
       </div>
     </div>
   );

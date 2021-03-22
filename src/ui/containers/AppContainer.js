@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     backgroundColor: "#1c1c1c",
-    fontSize: "calc(10px + 2vmin)",
+    fontSize: "calc(10px + 1.5vmin)",
     [theme.breakpoints.up("md")]: {
       width: `calc(100% - ${drawerWidth}px)`,
       // display: "none",
@@ -143,9 +143,7 @@ function AppContainer(props) {
               <Link to={`/mission-control/${state.currentUser.id}`}>
                 Mission Control
               </Link>
-              <Link to={`/rewards/${state.currentUser.id}`}>
-                Rewards
-              </Link>
+              <Link to={`/rewards/${state.currentUser.id}`}>Rewards</Link>
               <Link to="/accounts">Agents</Link>
             </div>
           )}

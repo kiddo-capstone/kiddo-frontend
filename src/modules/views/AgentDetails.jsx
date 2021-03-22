@@ -104,6 +104,7 @@ const AgentDetails = props => {
   useEffect(() => {
     if (state.currentUser && state.currentUser.type === "user") {
       setSessionUser(state.currentUser);
+      determinePath();
     } else {
       setSessionUser(null);
     }
@@ -130,22 +131,22 @@ const AgentDetails = props => {
       setIsRaining(false);
     }, 6000);
   }
-
+  
   const determinePath = () => {
     return !state.currentUser
       ? history.push("/")
-      : history.push("/mission-control");
+      : history.push(`/mission-control/${state.currentUser.id}`);
   };
 
   const getPointsProgress = (points, target) => {
     if (points < target) {
       return ((points / target) * 100).toFixed(1);
-    } else if (points === target) {
+    } else if (sessionUser.attributes.points > 100) {
+      return ("Visit the store!")
       // Could put a fun animation in here!
       // Then it needs to either reload a progress bar,
       // OR no progress bar and starts Points
       // Back at 0 + the difference once user hits the target
-      return "You did it!";
     }
   };
 
@@ -168,13 +169,13 @@ const AgentDetails = props => {
               <h2>Date:</h2>
               <h3>{new Date().toLocaleDateString()}</h3>
             </div>
-            {/* {state.currentUser?.type === "user" ? ()} */}
+            {sessionUser !== null && sessionUser.type === "user" && (
+              <>
             <div className={classes.detailsChild}>
               <h2>Agent Status:</h2>
               <StatusForm />
             </div>
-            {sessionUser !== null && (
-              <>
+            
                 <div className={classes.detailsChild}>
                   <h2>Points:</h2>
                   <h3>{sessionUser.attributes.points}</h3>
