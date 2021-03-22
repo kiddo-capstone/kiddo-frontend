@@ -1,73 +1,171 @@
-# KidDo: _UI/UX_
+>[KidDo deployed site](main.d308du7xm8oyif.amplifyapp.com/)
 
-### _A full-stack capstone project for Turing School of Software & Development_
+---
 
-<br>
+### KidDo 
+###### Find the things that you want to skate on and create spots for others  
 
-#### _Frontend Created By: [Scott Brabson](https://github.com/brabbuss), [Lola Dolinsky](https://github.com/lo-la-do-li) and [Bailey Dunning](https://github.com/baileydunning)_
+---
 
-<br>
+![Welcome to KidDo]![Screen Shot 2021-03-21 at 6 11 07 PM](https://user-images.githubusercontent.com/66697338/111926038-d0dc4980-8a70-11eb-9f47-55ed0da145ea.png)
 
-To view KidDo in the browser, visit our deployed site [here!](https://main.d308du7xm8oyif.amplifyapp.com/welcome)
 
-<br>
-
-#### Or set up on your local device:
-
-<details>
-  <summary>Setup</summary>
-
-_On your terminal:_
-
-- `git clone git@github.com:kiddo-capstone/kiddo-frontend.git`
-- `cd kiddo-frontend`
-- `npm i`
-- `npm start`
-
-_To run the E2E test suite:_
-
-- `npx cypress open` & click `Run integration specs` in the Cypress app **or**
-- `npx cypress run`
-</details>
-
-<br>
+*Homepage*
 
 ## Table of Contents
+* [Introduction](#introduction)
+* [Features](#features)
+* [Reflection](#reflection)
+* [Team](#team)
 
-- [Project Overview](#project-overview)
-- [Added Features](#added-features)
-- [Technologies And Tools](#technologies-and-tools)
-- [Roadmap](#roadmap)
-- [Contributors](#contributors)
 
-## Project Overview
+## Introduction
 
-KidDo is a secret-agent-themed skill-building app for kids ages ~9-12. KidDo game-ifies learning and task management, allowing the user to collect "photo evidence" with their phone's camera in order to complete tasks centered around health, social/emotional, academic, and basic life skills. A kid "Agent" receives positive reinforcement by collecting points for completing tasks within a mission, working toward earning badges for each type of task.
+### Overview
+KidDo is a secret-agent-themed skill building app for kids ages ~9-12. KidDo gamifies learning and task management, allowing the user to collect "photo evidence" with their phone's camera in order to complete tasks centered around health, social/emotional, academic, and basic life skills. A kid "Agent" receives positive reinforcement by collecting points for completing tasks within a mission, working toward redeeming parent rewards created by the parent.
 
-- _Kids_
-- _Parents_
+KidDo is a Progressive Web App built with React and advanced hooks on the front end, and ruby/rails on the backend. KidDo is a fullstack group project designed specifically for Mod 4 Turing software engineer students. The project seeks to challenge the totality of learning of students up to this point, pulling together their combined core-stack knowledge in front and backend technologies.
 
- <br>
+The project emphasises React fundamentals at a scale much greater than students previously embarked on. We used advanced hooks (context + reducer) for state management, saving on the boilerplate of Redux. The fullstack nature of the project required carefully and critically planning component architecture and the flow of data, pushing us to employ professional 'soft' skills in the planning and project management stages; the team utilized wireframing, mind-mapping and managing project workflow with Issues and PRs through the **Agile** methodology on GitHub Project Board.
 
-Visit the [KidDo Backend Repo](https://github.com/kiddo-capstone/kiddo-backend) to see the server, data schema, and API contracts developed by our amazing Backend team! The server enables full CRUD methodology for our app.
+Lastly, be sure to click this here when you see it:
+<details>
+  <summary>**Under the Hood**</summary>
+There's more info under here about the functionality being described!
+</details>
 
-## Technologies And Tools
-
+### Tech Stack
 > - Progressive Web App
-> - Service Worker
+> - Service Workers
 > - React (w/ hooks)
 > - React Router
 > - JavaScript ES6
-> - JSX
+> - Async
+> - REST API
 > - Material-UI
 > - Auth0
-> - Cypress Testing
-> - Frontend Deployment:
-> - Heroku
-> - Project Management
-> - Git
-> - GitHub Projects
-> - Miro Wireframe Design
+> - HTML 
+> - CSS
+> - Material UI
+> - TDD: Cypress, React Testing Library, Jest
+
+- Deploy: AWS + TravisCI
+- Project Management: GitHub Projects Board
+- VC: git + GH
+- Wireframing: Miro
+
+## Features 
+
+![parent-view](https://user-images.githubusercontent.com/66697338/111925957-6cb98580-8a70-11eb-8c2e-bc930d5f1872.png)
+
+*Parent Dashboard (HQ)*
+
+**Parent Dashboard (HQ)**
+
+The official 'parent' portion of the app. In this view, parents can add children to their account. This is where mission creation happens. Missions are composed of tasks for children to do. Those tasks are worth points and can be used to redeem a 'Parent Reward' - which is also created by the parent. See this video for a breakdown of the features offered in the Parent Dashboard.
+
+[![Parent View Tutorial](https://user-images.githubusercontent.com/66697338/111926634-41846580-8a73-11eb-921c-7163c8f8836e.png)](https://player.vimeo.com/video/527057071 "Video Title")
+
+![Screen Shot 2021-03-21 at 6 28 24 PM](https://user-images.githubusercontent.com/66697338/111926634-41846580-8a73-11eb-921c-7163c8f8836e.png)
+<iframe src="https://player.vimeo.com/video/527057071" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen/>
+
+
+![Mission Control](https://user-images.githubusercontent.com/66697338/111926819-f7e84a80-8a73-11eb-9fec-8bb96872f767.png)
+
+**Mission Control** 
+
+The rest of the app is effectively an experience for the child, or KidDo agent. Mission control is where KidDo agents can find the missions created by parent accounts populated with preloaded or custom parent tasks. Mission cards carry information pertinent to the mission, including badges that indicate the type of tasks populating the mission.
+
+![Mission card](https://user-images.githubusercontent.com/66697338/111926936-7644ec80-8a74-11eb-9476-f73cce6a9537.gif)
+
+<details>
+  <summary>**Under the Hood**</summary>
+
+---
+
+This being our first comprehensive full stack project, there were some missteps in the planning stages. To gather a users missions, we do not have a single API call to the backend to get a list of missions for a user by ID...sadly. When the component renders, an API call is made to gather a list of all missions. The user's ID is passed into the endpoint from the Account selection screen, and then collected from the endpoint inside of the `match` object on the Mission Control screen. This ID is then used to filter out all related missions from the entire list of missions. 
+
+In the future, we'd like to retool some of the API calls, including getting all missions by user ID.
+
+---
+
+</details>
+
+![Screen Shot 2021-03-21 at 6 44 57 PM](https://user-images.githubusercontent.com/66697338/111927204-8b6e4b00-8a75-11eb-9759-e0defaaa22a7.png)
+
+**Mission Details**
+
+Inside of the mission, users can see the various tasks that compose that mission, their details, point value, and what they submitted if the task has been completed.
+
+![Mar-21-2021 18-46-42](https://user-images.githubusercontent.com/66697338/111927286-d1c3aa00-8a75-11eb-9909-fe569757d83b.gif)
+
+
+![Screen Shot 2021-03-21 at 6 48 03 PM](https://user-images.githubusercontent.com/66697338/111927324-f9b30d80-8a75-11eb-8af0-31c6ee3addf2.png)
+
+**Task View**
+
+Inside of Task View, users will receive information on their task and what to do to complete it. Tasks are currently either completed by journaling based on a prompt, or by taking a photo based on a prompt. Upon submission, the task is reflected as complete, the user collects the point value of the task, and the user can see a record of what they submitted.
+
+On completion, users receive an animation that indicates the collection of points and their 'Agent Stats' are updated.
+
+![Mar-21-2021 18-57-30](https://user-images.githubusercontent.com/66697338/111927725-53680780-8a77-11eb-8904-228dfe200b62.gif)
+
+
+<details>
+  <summary>**Under the Hood**</summary>
+
+---
+
+The preloaded tasks were composed in a CSV and seeded into our DB. Similar logic exists for creating custom Parent Tasks in Parent View. The logic to render completed cards occurs inside of a `useEffect` in the Daily Mission view. Similar logic updates point totals, task completion tracking, and changes to the missions list. 
+
+---
+
+</details>
+
+
+![image](https://user-images.githubusercontent.com/66697338/111927791-8e6a3b00-8a77-11eb-9e46-2fbd914a2c21.png)
+
+**Parent Rewards**
+
+Once users have accumulated enough points, users may opt to redeem a Parent Reward (as created by the parent in parent view)...for clarification, this production shot has placeholder text that is in regards to the developer's cat.
+
+
+## Reflection
+
+
+#### Wins
+
+* Stable App
+* Delivered a very ambitious app on a limited timeline and new fs environment
+* Excellently detailed/documented issues and stories inside GH Projects
+* Complex interactions between the different type of accounts (parents, kids)
+* Rebase workflow resulted in zero merge conflicts
+* Deploy to AWS with TravisCI
+* Deploying as PWA with caching for offline functionality
+
+#### Challanges
+
+* Limited time frame with limited experience on a full stack team
+Given more time/experience in these settings, I think we'd have learned to 'speak each others' languages' a bit more fluently. Despite the best intent, often even when saying the same things, the differences in approaching coding from the BE to the FE resulted in some gaps. That being said, it still worked extremely well working together and it was a delight to begin to better understand the best practices of developing data models inside of a relational database.
+
+* Scope
+We elected to stick with React without a framework. While I do not believe this is a problem in and of itself for a project this size, it does mean that planning has to be clear, crisp and extensive. While we didn't shirk planning duties - our foresight was limited by a lack of experience. There were numerous revisions in how to approach data in both the FE and BE as the project began to grow. This challenge goes hand in hand with the above challenge.
+
+* Security and Persistence
+Currently, on refresh state will persist by virtue of local storage. The limitations of local storage are quite obvious. In the future, persisting states would be more of a collaborative effort between FE and BE. I would like to look into more modern and professional solutions, such as cookies, tokens, etc.
+
+#### Future
+
+* More robust security
+* First UX
+* Better UX for child login
+* Validating Google for use with Auth0 in production
+* Push and email notifications
+
+#### _Frontend Created By: [Scott Brabson](https://github.com/brabbuss), [Lola Dolinsky](https://github.com/lo-la-do-li) and [Bailey Dunning](https://github.com/baileydunning)_
+
+Visit the [KidDo Backend Repo](https://github.com/kiddo-capstone/kiddo-backend) to see the server, data schema, and API contracts developed by our amazing Backend team! The server enables full CRUD methodology for our app.
+
 
 ## Contributors
 
