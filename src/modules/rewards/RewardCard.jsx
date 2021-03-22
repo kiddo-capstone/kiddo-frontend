@@ -86,6 +86,7 @@ const RewardCard = ({ reward }) => {
       <h3>{reward.attributes.title}</h3>
       <p>{reward.attributes.description}</p>
       <p style={{color: appStyles.colors.yellow, fontSize: "18px"}}>{reward.attributes.redeemed ? "REDEEMED" : `💰 X ${reward.attributes.points_to_redeem}`}</p>
+      {reward.attributes.redeemed && "Show this to HQ as proof!"}
       <div className={classes.pulse}>
         {checkForPurchase(reward.attributes.points_to_redeem)}
       </div>
