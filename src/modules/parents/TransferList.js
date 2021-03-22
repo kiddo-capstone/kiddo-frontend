@@ -158,7 +158,7 @@ export default function TransferList({ getChoices, children }) {
                   checked={checked.indexOf(value) !== -1}
                   tabIndex={-1}
                   disableRipple
-                  inputProps={{ "aria-labelledby": labelId }}
+                  inputProps={{ "aria-label": labelId }}
                 />
               </ListItemIcon>
               <ListItemText id={labelId} primary={`${value}`} />
