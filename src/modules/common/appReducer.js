@@ -30,6 +30,8 @@ export const appReducer = (state, action) => {
       return { ...state, currentUser: action.currentUser }
     case 'SET_PARENT_ID':
       return { ...state, parentId: action.parentId }
+    case 'SET_REDEEMED':
+      return { ...state, redeemed: action.redeemed }
     default:
       return state;
   }
