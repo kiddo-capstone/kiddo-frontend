@@ -7,7 +7,7 @@
 
 ---
 
-![Welcome to KidDo]![Screen Shot 2021-03-21 at 6 11 07 PM](https://user-images.githubusercontent.com/66697338/111926038-d0dc4980-8a70-11eb-9f47-55ed0da145ea.png)
+![Welcome to KidDo](https://user-images.githubusercontent.com/66697338/111925957-6cb98580-8a70-11eb-8c2e-bc930d5f1872.png)
 
 
 *Homepage*
@@ -56,23 +56,20 @@ There's more info under here about the functionality being described!
 
 ## Features 
 
-![parent-view](https://user-images.githubusercontent.com/66697338/111925957-6cb98580-8a70-11eb-8c2e-bc930d5f1872.png)
+### **Parent Dashboard (HQ)**
+
+![Screen Shot 2021-03-21 at 6 11 07 PM](https://user-images.githubusercontent.com/66697338/111926038-d0dc4980-8a70-11eb-9f47-55ed0da145ea.png)
 
 *Parent Dashboard (HQ)*
-
-**Parent Dashboard (HQ)**
 
 The official 'parent' portion of the app. In this view, parents can add children to their account. This is where mission creation happens. Missions are composed of tasks for children to do. Those tasks are worth points and can be used to redeem a 'Parent Reward' - which is also created by the parent. See this video for a breakdown of the features offered in the Parent Dashboard.
 
 [![Parent View Tutorial](https://user-images.githubusercontent.com/66697338/111926634-41846580-8a73-11eb-921c-7163c8f8836e.png)](https://player.vimeo.com/video/527057071 "Video Title")
 
-![Screen Shot 2021-03-21 at 6 28 24 PM](https://user-images.githubusercontent.com/66697338/111926634-41846580-8a73-11eb-921c-7163c8f8836e.png)
-<iframe src="https://player.vimeo.com/video/527057071" width="640" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen/>
 
+### **Mission Control** 
 
 ![Mission Control](https://user-images.githubusercontent.com/66697338/111926819-f7e84a80-8a73-11eb-9fec-8bb96872f767.png)
-
-**Mission Control** 
 
 The rest of the app is effectively an experience for the child, or KidDo agent. Mission control is where KidDo agents can find the missions created by parent accounts populated with preloaded or custom parent tasks. Mission cards carry information pertinent to the mission, including badges that indicate the type of tasks populating the mission.
 
@@ -91,18 +88,19 @@ In the future, we'd like to retool some of the API calls, including getting all 
 
 </details>
 
-![Screen Shot 2021-03-21 at 6 44 57 PM](https://user-images.githubusercontent.com/66697338/111927204-8b6e4b00-8a75-11eb-9759-e0defaaa22a7.png)
 
-**Mission Details**
+### **Mission Details**
+
+![Screen Shot 2021-03-21 at 6 44 57 PM](https://user-images.githubusercontent.com/66697338/111927204-8b6e4b00-8a75-11eb-9759-e0defaaa22a7.png)
 
 Inside of the mission, users can see the various tasks that compose that mission, their details, point value, and what they submitted if the task has been completed.
 
 ![Mar-21-2021 18-46-42](https://user-images.githubusercontent.com/66697338/111927286-d1c3aa00-8a75-11eb-9909-fe569757d83b.gif)
 
 
-![Screen Shot 2021-03-21 at 6 48 03 PM](https://user-images.githubusercontent.com/66697338/111927324-f9b30d80-8a75-11eb-8af0-31c6ee3addf2.png)
+### **Task View**
 
-**Task View**
+![Screen Shot 2021-03-21 at 6 48 03 PM](https://user-images.githubusercontent.com/66697338/111927324-f9b30d80-8a75-11eb-8af0-31c6ee3addf2.png)
 
 Inside of Task View, users will receive information on their task and what to do to complete it. Tasks are currently either completed by journaling based on a prompt, or by taking a photo based on a prompt. Upon submission, the task is reflected as complete, the user collects the point value of the task, and the user can see a record of what they submitted.
 
@@ -123,9 +121,10 @@ The preloaded tasks were composed in a CSV and seeded into our DB. Similar logic
 </details>
 
 
-![image](https://user-images.githubusercontent.com/66697338/111927791-8e6a3b00-8a77-11eb-9e46-2fbd914a2c21.png)
 
-**Parent Rewards**
+### **Parent Rewards**
+
+![image](https://user-images.githubusercontent.com/66697338/111927791-8e6a3b00-8a77-11eb-9e46-2fbd914a2c21.png)
 
 Once users have accumulated enough points, users may opt to redeem a Parent Reward (as created by the parent in parent view)...for clarification, this production shot has placeholder text that is in regards to the developer's cat.
 
