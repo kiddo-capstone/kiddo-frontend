@@ -3,7 +3,7 @@
 ---
 
 ### KidDo 
-###### Find the things that you want to skate on and create spots for others  
+###### A secret agent themed learning platform for kids that is both fun and rewarding. KidDo Agents learn to earn! 
 
 ---
 
