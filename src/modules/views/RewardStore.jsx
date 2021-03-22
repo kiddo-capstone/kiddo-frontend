@@ -48,16 +48,30 @@ coin: {
   }
 }))
 
+const kiddoKidUser = JSON.parse(localStorage.getItem("kiddoKidUser"));
+
 const RewardStore = ({ id }) => {
   const classes = useStyles()
   const [rewards, setRewards] = useState([])
   const [state, dispatch] = useContext(AppContext)
-
+  
+  useEffect(() => {
+    if (!state.currentUser && kiddoKidUser) {
+      const action = { type: `SET_CURRENT_USER`, currentUser: kiddoKidUser };
+      dispatch(action);
+    }
+  }, [])
+  
   useEffect(() => {
     getRewardsByUserId(id)
       .then(data => setRewards(data.data))
       .catch(error => console.log(error))
-  }, [])
+    if (state.redeemed) {
+      const action = {type: "SET_REDEEMED", redeemed: false}
+      dispatch(action)
+    }
+    console.log(state.redeemed)
+  }, [state.redeemed])
 
   const makeRewardCards = () => {
     if (rewards.length > 0) {
@@ -76,7 +90,7 @@ const RewardStore = ({ id }) => {
       </div>
       
       <h3 style={{fontFamily: appStyles.fonts.secondary, color: appStyles.colors.white}}>
-        Click "Buy" to Purchase Your Reward!
+        {rewards.length ? "Click 'Buy' to Purchase Your Reward!" : "Ask HQ to add a reward!"}
       </h3>
       
       <div className={classes.container}>
