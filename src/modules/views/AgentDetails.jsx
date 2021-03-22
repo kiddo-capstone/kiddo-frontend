@@ -156,7 +156,7 @@ const AgentDetails = props => {
       <div className={classes.card}>
         <div className={classes.cardHeader}>
           <div className={classes.avatar} onClick={() => determinePath()}>
-            <img src={kids} />
+            <img src={kids} alt="KidDo Agents smiling logo"/>
           </div>
           <span className={classes.titleText}>
             <h1>
