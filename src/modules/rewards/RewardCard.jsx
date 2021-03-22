@@ -21,8 +21,6 @@ const useStyles = makeStyles(() => ({
     border: "solid 4px lightgrey",
     borderRadius: "5px",
     backgroundColor: "#3e445296",
-    // borderRadius: "10px",
-    // color: "white",
     fontSize: "16px",
     padding: "30px 10px 20px 10px",
     transition: "ease .3s",
@@ -76,7 +74,7 @@ const RewardCard = ({ reward }) => {
       points_to_redeem: reward.attributes.points_to_redeem,
       redeemed: true
     }
-    console.log(updates)
+    console.log(updates, +reward.id)
     redeemReward(reward.id, updates)
     .then(data => console.log(data))
   }

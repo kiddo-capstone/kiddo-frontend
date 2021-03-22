@@ -4,9 +4,8 @@ import { PageContainer } from "../../ui/containers";
 import AppContext from "../App/AppContext";
 import RewardCard from "../rewards/RewardCard";
 import { coin } from "../../assets/index";
-import { makeStyles, useTheme } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
-import SpinningCoin from "../../ui/animations/SpinningCoin";
 
 const appStyles = theme;
 
@@ -23,10 +22,10 @@ container: {
   gridTemplateColumns: "repeat(3, 1fr)",
   gridGap: "50px",
   [theme.breakpoints.down("sm")]: {
-     gridTemplateColumns: "repeat(3, 1fr)",
+    gridTemplateColumns: "repeat(3, 1fr)",
   },
   [theme.breakpoints.down("xs")]: {
-     gridTemplateColumns: "repeat(1, 1fr)",
+    gridTemplateColumns: "repeat(1, 1fr)",
   },
 },
 coin: {
@@ -46,9 +45,7 @@ coin: {
     "100%": {
       transform: "rotate(180deg)",
     },
-    
   }
-
 }))
 
 const RewardStore = ({ id }) => {
@@ -74,10 +71,14 @@ const RewardStore = ({ id }) => {
     <PageContainer>
       <div className={classes.title}>
         <img src={coin.img} alt="gold coin" className={classes.coin}/>
-      <h1>Reward Store</h1>
-      <img src={coin.img} alt="gold coin" className={classes.coin}/>
+        <h1>Reward Store</h1>
+        <img src={coin.img} alt="gold coin" className={classes.coin}/>
       </div>
-      <h3 style={{fontFamily: appStyles.fonts.secondary, color: appStyles.colors.white}}>Click "Buy" to Purchase Your Reward!</h3>
+      
+      <h3 style={{fontFamily: appStyles.fonts.secondary, color: appStyles.colors.white}}>
+        Click "Buy" to Purchase Your Reward!
+      </h3>
+      
       <div className={classes.container}>
         { makeRewardCards() }
       </div>
