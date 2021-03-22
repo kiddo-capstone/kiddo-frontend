@@ -53,14 +53,15 @@ export const getRewardsByUserId = (id) => {
 };
 
 export const redeemReward = (rewardId, updates) => {
+  console.log(rewardId)
   return (
-    fetch(`https://kiddo-backend.herokuapp.com/api/v1/rewards?id=${rewardId}`,
+    fetch(`https://kiddo-backend.herokuapp.com/api/v1/rewards/${rewardId}`,
     {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: updates,
+      body: JSON.stringify(updates),
     })
   ).then((res) => res.json())
 }
