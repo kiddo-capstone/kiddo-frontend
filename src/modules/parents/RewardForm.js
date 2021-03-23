@@ -88,6 +88,7 @@ const RewardForm = ({ parentId, children, childId, handleRewardSubmit }) => {
         variant="contained"
         onClick={submitReward}
         color="primary"
+        aria-label="Submit new reward"
       >
         {ready ? "Add Reward!" : "Add more reward details"}
       </Button>
