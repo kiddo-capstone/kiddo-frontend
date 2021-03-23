@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/core";
-import PageContainer from "../../ui/containers/PageContainer";
+import { PageContainer, TitleContainer } from "../../ui/containers";
 import { brainTraining, healthTraining, creativityTraining, basicTraining } from "../../assets/index";
 import theme from "../../ui/common/theme";
 import AppContext from "../App/AppContext";
@@ -107,7 +107,9 @@ const Welcome = () => {
   return (
     <PageContainer>
       <section className={classes.welcome}>
-        <h1>Welcome to KidDo!</h1>
+        <TitleContainer>
+          <h1>Welcome to KidDo!</h1>
+        </TitleContainer>
         <p>As a KidDo agent, it’s your job to complete missions that help you work towards being the best version of yourself. Mission Control is home to all the different missions you can do. Missions are built out of up to four tasks that can earn you points. Each task falls under one of these four categories:</p>
         <div className={classes.taskTypes}>
           <div className={classes.category}>
