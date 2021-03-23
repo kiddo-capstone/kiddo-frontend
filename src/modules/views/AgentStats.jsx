@@ -89,7 +89,7 @@ const AgentStats = () => {
   
 
   useEffect(async () => {
-    if (state.currentUser.type === "user") {
+    if (state.currentUser?.type === "user") {
       const fetchedStats = await getUserStats(state.currentUser.id)
       if (fetchedStats && fetchedStats !== userStats) {
         createStats(fetchedStats)

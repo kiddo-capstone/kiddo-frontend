@@ -61,8 +61,8 @@ const RewardCard = ({ reward }) => {
   const [state, dispatch] = useContext(AppContext);
 
   const checkForPurchase = (pointValue) => {
-    // if (state.currentUser?.attributes.points >= pointValue) {
-    if (!reward.attributes.redeemed) {
+    if (state.currentUser?.attributes.points >= pointValue && !reward.attributes.redeemed) {
+    // if (!reward.attributes.redeemed) {
       return (
         <Button style={{zIndex: 100, width: 'fit-content'}} onClick={() => redeem()}>Redeem Reward!</Button>
       )
