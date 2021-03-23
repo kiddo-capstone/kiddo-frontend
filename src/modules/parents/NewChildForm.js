@@ -23,9 +23,8 @@ const NewChildForm = ({ addChild }) => {
         Add your KidDo Agents by name and we'll send them your missions!
       </FormHelperText>
       <TextField
-        id="outlined-basic"
+        id="input-agent-name"
         label="KidDo Agent Name"
-        aria-label="input new child agent name"
         variant="outlined"
         value={newChildName}
         onChange={(event) => setNewChildName(event.target.value)}
@@ -34,7 +33,6 @@ const NewChildForm = ({ addChild }) => {
         style={{ margin: "1em" }}
         onClick={() => handleClick()}
         disabled={newChildName ? false : true}
-        aria-label="Add new KidDo agent"
         variant="contained"
         color="primary"
       >
