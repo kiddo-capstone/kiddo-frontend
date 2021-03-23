@@ -1,4 +1,4 @@
->[KidDo deployed site](main.d308du7xm8oyif.amplifyapp.com/)
+>[KidDo deployed site](https://main.d308du7xm8oyif.amplifyapp.com/)
 
 ---
 
