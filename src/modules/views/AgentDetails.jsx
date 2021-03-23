@@ -114,7 +114,7 @@ const AgentDetails = props => {
     if (sessionUser !== null && sessionUser.type === 'user') {
       updateUserDetails();
     }
-  }, [state.selectedTask]);
+  }, [state.selectedTask, state.redeemed]);
 
   const updateUserDetails = async () => {
     const userPoints = sessionUser.attributes.points
