@@ -4,8 +4,8 @@ import { PageContainer, TitleContainer } from "../../ui/containers";
 import { brainTraining, healthTraining, creativityTraining, basicTraining } from "../../assets/index";
 import theme from "../../ui/common/theme";
 import AppContext from "../App/AppContext";
-import { Link } from "react-router-dom";
-import UserIndex from "../login/UserIndex";
+// import { Link } from "react-router-dom";
+// import UserIndex from "../login/UserIndex";
 import ModalWrapper from "../../ui/modal/ModalWrapper";
 
 
@@ -181,15 +181,6 @@ const Welcome = () => {
             Depending on the task, you’ll either be asked to write a prompt or submit a picture. Remember, since we’re on the internet, never take pictures of yourself, your family, or anything that might reveal personal information! 
           </p>
           <p>Have fun and stay safe 😎.</p>
-        {/* {!state.currentUser ?
-        <div className={classes.userLogin}>
-          <h3>To get started on your first mission, login or sign up below!</h3>
-          <UserIndex />
-        </div> :
-        <>
-          <Link to="mission-control">Take me to mission control!</Link>
-        </>
-        } */}
         </div>
       </section>
     </PageContainer>
