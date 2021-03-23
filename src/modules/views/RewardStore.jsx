@@ -30,7 +30,7 @@ container: {
 },
 coin: {
   height: "60px",
-  margin: "30px",
+  margin: "0 30px 0 30px",
   alignSelf: "center",
   animation: "$spin infinite ease 2s"
   },
