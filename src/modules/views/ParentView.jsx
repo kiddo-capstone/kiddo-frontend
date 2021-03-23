@@ -146,17 +146,18 @@ const ParentView = () => {
           <TextField
             id="outlined-basic"
             label="Mission Title"
+            aria-label="mission title"
             variant="outlined"
             value={missionName}
             onChange={(event) => setMissionName(event.target.value)}
           />
-          <FormHelperText style={{margin:'1em'}}id="my-helper-text">
+          <FormHelperText style={{margin:'1em'}}id="my-helper-text" aria-label="mission-name-helper-text">
             This is the name of the mission your child will see 🥳 
           </FormHelperText>
             <TransferList getChoices={getChoices}>
               <TaskCreation />
             </TransferList>
-            <FormHelperText style={{margin:'1em', textAlign:'center'}}id="my-helper-text">
+            <FormHelperText style={{margin:'1em', textAlign:'center'}}id="my-helper-text" aria-label="task-selection-helper-text">
               Pick at least one, but no more than four tasks per mission!
             </FormHelperText>
         </FormControl>

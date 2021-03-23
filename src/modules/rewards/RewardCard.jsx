@@ -1,11 +1,9 @@
 import { useContext } from "react"
-import RoundButton from "../../ui/button/RoundButton"
 import AppContext from "../App/AppContext"
 import { redeemReward } from "../common/apiCalls";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
 import Button from "../../ui/button/Button";
-import GoldCoinRain from "../../ui/animations/goldCoinRain";
 
 const appStyles = theme
 
@@ -63,8 +61,8 @@ const RewardCard = ({ reward }) => {
   const [state, dispatch] = useContext(AppContext);
 
   const checkForPurchase = (pointValue) => {
-    // if (state.currentUser?.attributes.points >= pointValue) {
-    if (!reward.attributes.redeemed) {
+    if (state.currentUser?.attributes.points >= pointValue && !reward.attributes.redeemed) {
+    // if (!reward.attributes.redeemed) {
       return (
         <Button style={{zIndex: 100, width: 'fit-content'}} onClick={() => redeem()}>Redeem Reward!</Button>
       )

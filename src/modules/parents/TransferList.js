@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import AppContext from '../../modules/App/AppContext'
+import AppContext from "../../modules/App/AppContext";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
@@ -12,7 +12,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Button from "@material-ui/core/Button";
 import Divider from "@material-ui/core/Divider";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     margin: "auto",
   },
@@ -38,18 +38,18 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function not(a, b) {
-  return a.filter(value => b.indexOf(value) === -1);
+  return a.filter((value) => b.indexOf(value) === -1);
 }
 
 function intersection(a, b) {
-  return a.filter(value => b.indexOf(value) !== -1);
+  return a.filter((value) => b.indexOf(value) !== -1);
 }
 
 function union(a, b) {
   return [...a, ...not(b, a)];
 }
 
-export default function TransferList({getChoices, children}) {
+export default function TransferList({ getChoices, children }) {
   const classes = useStyles();
   const [state, dispatch] = useContext(AppContext);
   const [checked, setChecked] = React.useState([]);
@@ -57,35 +57,35 @@ export default function TransferList({getChoices, children}) {
   const [right, setRight] = React.useState([]);
 
   useEffect(() => {
-    setLeft(generateTaskChoices())
-  }, [state.tasks])
-  
+    setLeft(generateTaskChoices());
+  }, [state.tasks]);
+
   useEffect(() => {
     const taskIdList = right.reduce((acc, t) => {
-      acc.push(t.split(' ')[0])
-      return acc
-    }, [])
-    
+      acc.push(t.split(" ")[0]);
+      return acc;
+    }, []);
+
     const taskObjects = taskIdList.reduce((acc, id) => {
-      const match = state.tasks.find(t => t.id === id)
-      acc.push(match)
-      return acc
-    }, [])
+      const match = state.tasks.find((t) => t.id === id);
+      acc.push(match);
+      return acc;
+    }, []);
 
     getChoices(taskObjects);
-  }, [right])
-  
+  }, [right]);
+
   const generateTaskChoices = () => {
     return state.tasks.reduce((acc, t) => {
-      acc.push(t.id + ' ' + t.attributes.name)
-      return acc
-    }, [])
-  }
+      acc.push(t.id + " " + t.attributes.name);
+      return acc;
+    }, []);
+  };
 
   const leftChecked = intersection(checked, left);
   const rightChecked = intersection(checked, right);
 
-  const handleToggle = value => () => {
+  const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
     const newChecked = [...checked];
 
@@ -98,9 +98,9 @@ export default function TransferList({getChoices, children}) {
     setChecked(newChecked);
   };
 
-  const numberOfChecked = items => intersection(checked, items).length;
+  const numberOfChecked = (items) => intersection(checked, items).length;
 
-  const handleToggleAll = items => () => {
+  const handleToggleAll = (items) => () => {
     if (numberOfChecked(items) === items.length) {
       setChecked(not(checked, items));
     } else {
@@ -143,7 +143,7 @@ export default function TransferList({getChoices, children}) {
       />
       <Divider />
       <List className={classes.list} dense component="div" role="list">
-        {items.map(value => {
+        {items.map((value) => {
           const labelId = `transfer-list-all-item-${value}-label`;
 
           return (
@@ -151,13 +151,14 @@ export default function TransferList({getChoices, children}) {
               key={value}
               role="listitem"
               button
-              onClick={handleToggle(value)}>
+              onClick={handleToggle(value)}
+            >
               <ListItemIcon>
                 <Checkbox
                   checked={checked.indexOf(value) !== -1}
                   tabIndex={-1}
                   disableRipple
-                  inputProps={{ "aria-labelledby": labelId }}
+                  inputProps={{ "aria-label": labelId }}
                 />
               </ListItemIcon>
               <ListItemText id={labelId} primary={`${value}`} />
@@ -175,33 +176,35 @@ export default function TransferList({getChoices, children}) {
       spacing={2}
       justify="center"
       alignItems="center"
-      className={classes.root}>
+      className={classes.root}
+    >
       <Grid item>{customList("Tasks", left)}</Grid>
       <Grid item>
         <Grid container direction="column" alignItems="center">
-          
           {children}
-          
+
           <Button
-            style={{borderWidth: '3px', fontWeight: 'bold'}}
-            color='primary'
+            style={{ borderWidth: "3px", fontWeight: "bold" }}
+            color="primary"
             variant="outlined"
             size="small"
             className={classes.button}
             onClick={handleCheckedRight}
             disabled={leftChecked.length === 0}
-            aria-label="move selected right">
+            aria-label="move selected right"
+          >
             Add Task
           </Button>
           <Button
-            style={{borderWidth: '3px', fontWeight: 'bold'}}
-            color='primary'
+            style={{ borderWidth: "3px", fontWeight: "bold" }}
+            color="primary"
             variant="outlined"
             size="small"
             className={classes.button}
             onClick={handleCheckedLeft}
             disabled={rightChecked.length === 0}
-            aria-label="move selected left">
+            aria-label="move selected left"
+          >
             Remove Task
           </Button>
         </Grid>

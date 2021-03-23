@@ -88,14 +88,22 @@ const AgentStats = () => {
   const [open, setOpen] = React.useState(false);
   
 
-  useEffect(async () => {
-    if (state.currentUser.type === "user") {
-      const fetchedStats = await getUserStats(state.currentUser.id)
-      if (fetchedStats && fetchedStats !== userStats) {
-        createStats(fetchedStats)
-      }
+  useEffect(() => {
+    if (state.currentUser?.type === "user") {
+      determineStats()
+      setUserStatsInState(userStats)   
     }
-  }, [setUserStats])
+  }, [userStats])
+  
+  const setUserStatsInState = (statsData) => {
+    const action = {type: "SET_CURRENT_USER_STATS", currentUserStats: statsData}
+    dispatch(action)
+  }
+
+  const determineStats = async () => {
+    const fetchedStats = await getUserStats(state.currentUser.id).then(data => createStats(data))
+    return fetchedStats
+  }
 
   const createStats = (stats) => {
     const statsWithIcons = stats.map(stat => {
@@ -116,7 +124,8 @@ const AgentStats = () => {
         return stat
       } 
       else {
-        // stat.icon = brainTraining
+        // This is to account for original tasks
+        // created for development with category "IQ, EQ", etc.
         return stat
       }
     })

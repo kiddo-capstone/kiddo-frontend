@@ -104,7 +104,7 @@ const AgentDetails = props => {
   useEffect(() => {
     if (state.currentUser && state.currentUser.type === "user") {
       setSessionUser(state.currentUser);
-      determinePath();
+      // determinePath();
     } else {
       setSessionUser(null);
     }
@@ -114,7 +114,7 @@ const AgentDetails = props => {
     if (sessionUser !== null && sessionUser.type === 'user') {
       updateUserDetails();
     }
-  }, [state.selectedTask]);
+  }, [state.selectedTask, , state.currentUserStats]);
 
   const updateUserDetails = async () => {
     const userPoints = sessionUser.attributes.points
@@ -156,7 +156,7 @@ const AgentDetails = props => {
       <div className={classes.card}>
         <div className={classes.cardHeader}>
           <div className={classes.avatar} onClick={() => determinePath()}>
-            <img src={kids} />
+            <img src={kids} alt="KidDo Agents smiling logo"/>
           </div>
           <span className={classes.titleText}>
             <h1>

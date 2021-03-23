@@ -1,13 +1,10 @@
 import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/core";
-import PageContainer from "../../ui/containers/PageContainer";
+import { PageContainer, TitleContainer } from "../../ui/containers";
 import { brainTraining, healthTraining, creativityTraining, basicTraining } from "../../assets/index";
 import theme from "../../ui/common/theme";
 import AppContext from "../App/AppContext";
-import { Link } from "react-router-dom";
-import UserIndex from "../login/UserIndex";
 import ModalWrapper from "../../ui/modal/ModalWrapper";
-
 
 const useStyles = makeStyles(() => ({
   welcome: {
@@ -22,6 +19,9 @@ const useStyles = makeStyles(() => ({
   },
   category: {
     margin: "5%",
+    "& h2": {
+      fontSize: "26px"
+    }
   },
   categoryDesc: {
     fontSize: "0.8em",
@@ -107,11 +107,13 @@ const Welcome = () => {
   return (
     <PageContainer>
       <section className={classes.welcome}>
-        <h1>Welcome to KidDo!</h1>
+        <TitleContainer>
+          <h1>Welcome to KidDo!</h1>
+        </TitleContainer>
         <p>As a KidDo agent, it’s your job to complete missions that help you work towards being the best version of yourself. Mission Control is home to all the different missions you can do. Missions are built out of up to four tasks that can earn you points. Each task falls under one of these four categories:</p>
         <div className={classes.taskTypes}>
           <div className={classes.category}>
-            <h3>Brain Training</h3>
+            <h2>Brain Training</h2>
 
             <ModalWrapper 
               id={categories.brain.id} 
@@ -120,14 +122,14 @@ const Welcome = () => {
               handleClose={handleClose}
               handleClickOpen={handleClickOpen}
               >
-              <div onClick={(e) => handleClickOpen(e)}>
+              <div aria-label="click to open brain training description" onClick={(e) => handleClickOpen(e)}>
                 <p className={classes.categoryDesc}>{categories.brain.description}</p>
               </div>
             </ModalWrapper>
           </div>
           
           <div className={classes.category}>
-            <h3>Creativity Training</h3>
+            <h2>Creativity Training</h2>
             <ModalWrapper 
               id={categories.creativity.id} 
               open={openCreativity} 
@@ -135,14 +137,14 @@ const Welcome = () => {
               handleClose={handleClose}
               handleClickOpen={handleClickOpen}
               >
-              <div onClick={(e) => handleClickOpen(e)}>
+              <div onClick={(e) => handleClickOpen(e)} aria-label="click to open creativity training description">
                 <p className={classes.categoryDesc}>{categories.creativity.description}</p>
               </div>
             </ModalWrapper>
           </div>
 
            <div className={classes.category}>
-            <h3>Health Training</h3>
+            <h2>Health Training</h2>
             <ModalWrapper 
               id={categories.health.id} 
               open={openHealth} 
@@ -150,14 +152,14 @@ const Welcome = () => {
               handleClose={handleClose}
               handleClickOpen={handleClickOpen}
               >
-              <div onClick={(e) => handleClickOpen(e)}>
+              <div onClick={(e) => handleClickOpen(e)} aria-label="click to open health training description">
                 <p className={classes.categoryDesc}>{categories.health.description}</p>
               </div>
             </ModalWrapper>
           </div>
             
           <div className={classes.category}>
-            <h3>Basic Training</h3>
+            <h2>Basic Training</h2>
             <ModalWrapper 
               id={categories.basic.id} 
               open={openBasic} 
@@ -165,7 +167,7 @@ const Welcome = () => {
               handleClose={handleClose}
               handleClickOpen={handleClickOpen}
               >
-              <div onClick={(e) => handleClickOpen(e)}>
+              <div onClick={(e) => handleClickOpen(e)} aria-label="click to open basic training description">
                 <p className={classes.categoryDesc}>{categories.basic.description}</p>
               </div>
             </ModalWrapper>
@@ -176,15 +178,6 @@ const Welcome = () => {
             Depending on the task, you’ll either be asked to write a prompt or submit a picture. Remember, since we’re on the internet, never take pictures of yourself, your family, or anything that might reveal personal information! 
           </p>
           <p>Have fun and stay safe 😎.</p>
-        {/* {!state.currentUser ?
-        <div className={classes.userLogin}>
-          <h3>To get started on your first mission, login or sign up below!</h3>
-          <UserIndex />
-        </div> :
-        <>
-          <Link to="mission-control">Take me to mission control!</Link>
-        </>
-        } */}
         </div>
       </section>
     </PageContainer>

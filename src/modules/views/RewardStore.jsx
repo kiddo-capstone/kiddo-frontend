@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { getRewardsByUserId, redeemReward } from "../common/apiCalls";
-import { PageContainer } from "../../ui/containers";
+import { PageContainer, TitleContainer } from "../../ui/containers";
 import AppContext from "../App/AppContext";
 import RewardCard from "../rewards/RewardCard";
 import { coin } from "../../assets/index";
@@ -30,7 +30,7 @@ container: {
 },
 coin: {
   height: "60px",
-  margin: "30px",
+  margin: "0 30px 0 30px",
   alignSelf: "center",
   animation: "$spin infinite ease 2s"
   },
@@ -85,13 +85,15 @@ const RewardStore = ({ id }) => {
     <PageContainer>
       <div className={classes.title}>
         <img src={coin.img} alt="gold coin" className={classes.coin}/>
-        <h1>Reward Store</h1>
+        <TitleContainer>
+          <h1>Reward Store</h1>
+        </TitleContainer>
         <img src={coin.img} alt="gold coin" className={classes.coin}/>
       </div>
       
-      <h3 style={{fontFamily: appStyles.fonts.secondary, color: appStyles.colors.white}}>
-        {rewards.length ? "Click 'Buy' to Purchase Your Reward!" : "Ask HQ to add a reward!"}
-      </h3>
+      <h2 style={{fontFamily: appStyles.fonts.secondary, fontSize: "24px", color: appStyles.colors.white}}>
+        {rewards.length ? "Click REDEEM to Purchase Your Reward!" : "Ask HQ to add a reward!"}
+      </h2>
       
       <div className={classes.container}>
         { makeRewardCards() }
