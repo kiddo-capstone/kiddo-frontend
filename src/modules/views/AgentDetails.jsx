@@ -104,7 +104,7 @@ const AgentDetails = props => {
   useEffect(() => {
     if (state.currentUser && state.currentUser.type === "user") {
       setSessionUser(state.currentUser);
-      determinePath();
+      // determinePath();
     } else {
       setSessionUser(null);
     }

@@ -33,6 +33,7 @@ const NewChildForm = ({ addChild }) => {
         style={{ margin: "1em" }}
         onClick={() => handleClick()}
         disabled={newChildName ? false : true}
+        aria-label="Add new KidDo agent"
         variant="contained"
         color="primary"
       >
