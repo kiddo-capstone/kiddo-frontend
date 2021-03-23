@@ -177,7 +177,7 @@ const Task = ({ props }) => {
           className={classes.link}
           key={props.id}
           to={`/task/${props.id}`}
-          aria-label={`link to task ${props.attributes.task_name}`}
+          // aria-label={`link to task ${props.attributes.task_name}`}
         >
           {taskCard()}
         </Link>
@@ -208,7 +208,7 @@ const Task = ({ props }) => {
               <img
                 className={classes.taskImage}
                 src={image_path}
-                alt={`photo-evidence`}
+                // alt="photo-evidence"
               />
             </span>
           ) : (
