@@ -1,11 +1,9 @@
 import { useContext } from "react"
-import RoundButton from "../../ui/button/RoundButton"
 import AppContext from "../App/AppContext"
 import { redeemReward } from "../common/apiCalls";
 import { makeStyles } from "@material-ui/core";
 import theme from "../../ui/common/theme";
 import Button from "../../ui/button/Button";
-import GoldCoinRain from "../../ui/animations/goldCoinRain";
 
 const appStyles = theme
 

@@ -4,10 +4,7 @@ import { PageContainer, TitleContainer } from "../../ui/containers";
 import { brainTraining, healthTraining, creativityTraining, basicTraining } from "../../assets/index";
 import theme from "../../ui/common/theme";
 import AppContext from "../App/AppContext";
-// import { Link } from "react-router-dom";
-// import UserIndex from "../login/UserIndex";
 import ModalWrapper from "../../ui/modal/ModalWrapper";
-
 
 const useStyles = makeStyles(() => ({
   welcome: {

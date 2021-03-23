@@ -95,7 +95,7 @@ const AgentStats = () => {
         createStats(fetchedStats)
       }
     }
-  }, [setUserStats])
+  }, [userStats])
 
   const createStats = (stats) => {
     const statsWithIcons = stats.map(stat => {
@@ -116,7 +116,8 @@ const AgentStats = () => {
         return stat
       } 
       else {
-        // stat.icon = brainTraining
+        // This is to account for original tasks
+        // created for development with category "IQ, EQ", etc.
         return stat
       }
     })
